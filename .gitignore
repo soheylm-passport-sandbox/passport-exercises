@@ -27,6 +27,10 @@ outputs/
 *.pt
 *.pth
 
+# Versioned fictional exercises, not research datasets
+!evidence/data/
+!evidence/data/*.md
+
 # Operating-system files
 .DS_Store
 Thumbs.db
