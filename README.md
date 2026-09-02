@@ -12,7 +12,7 @@ then let it create or reuse your personal fork, assessment branch, and draft
 pull request:
 
 ```text
-gh extension install soheylm-passport-sandbox/gh-passport
+gh extension install soheylm-passport-sandbox/gh-passport --force --pin v0.2.0
 gh passport start
 ```
 
