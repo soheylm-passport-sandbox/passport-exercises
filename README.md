@@ -12,7 +12,7 @@ then let it create or reuse your personal fork, assessment branch, and draft
 pull request:
 
 ```text
-gh extension install IDEALLab/gh-passport
+gh extension install soheylm-passport-sandbox/gh-passport
 gh passport start
 ```
 

@@ -14,7 +14,7 @@ independently.
 ## Before You Start
 
 Complete the manual Git baseline. Review the current
-[AI reference index](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/README.md) because entitlements,
+[AI reference index](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/README.md) because entitlements,
 interfaces, model lists, and prices are volatile.
 
 ## Machine And Shell
@@ -58,7 +58,7 @@ prompt content.
 ## If Blocked
 
 Use the offline route. Purchasing access is never a recovery requirement. For
-technical symptoms, use [AI-agent troubleshooting](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/troubleshooting/ai-agents.md).
+technical symptoms, use [AI-agent troubleshooting](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/troubleshooting/ai-agents.md).
 
 ## Understand Before Accepting AI Output
 

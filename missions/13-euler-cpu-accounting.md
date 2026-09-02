@@ -68,7 +68,7 @@ sanitized tiny-job interpretation. Do not include broad job history.
 ## If Blocked
 
 Do not increase resources when fields are unclear. Use
-[Euler resource optimization](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/euler-resource-optimization.md)
+[Euler resource optimization](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-resource-optimization.md)
 and ask for help for MPI/multiprocess workloads, highly variable inputs, or
 disagreeing metrics.
 

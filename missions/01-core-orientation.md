@@ -87,7 +87,7 @@ recovery step does not resolve the problem. The public issue is assigned to
 the lab maintainer for asynchronous triage; nobody needs to be online when you
 submit it.
 
-Use the [glossary](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/glossary.md) when a term is unfamiliar.
+Use the [glossary](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/glossary.md) when a term is unfamiliar.
 
 ## Understand Before Accepting AI Output
 

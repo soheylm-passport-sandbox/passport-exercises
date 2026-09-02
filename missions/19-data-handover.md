@@ -56,7 +56,7 @@ details, credentials, personal data, or full storage listings.
 
 Record missing ownership or retention decisions explicitly rather than
 inventing them. Use the
-[project handover lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/project-handover.md) and ask the
+[project handover lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/project-handover.md) and ask the
 supervisor to assign the next owner.
 
 ## Understand Before Accepting AI Output

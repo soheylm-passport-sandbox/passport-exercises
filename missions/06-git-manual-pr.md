@@ -76,7 +76,7 @@ configuration.
 
 Do not use `git reset --hard`, broad deletion, or force push as a first repair.
 Preserve `git status`, the current branch, and the diff, then use the
-[first safe PR lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/first-safe-pr.md) recovery section or ask
+[first safe PR lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/first-safe-pr.md) recovery section or ask
 for help through the non-secret dashboard issue form.
 
 ## Understand Before Accepting AI Output

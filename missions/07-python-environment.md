@@ -13,7 +13,7 @@ another and prevents collaborators from reproducing the environment.
 ## Before You Start
 
 Complete the manual Git mission. Install Miniforge using the current
-[Python setup guide](https://github.com/IDEALLab/onboarding-IT/blob/main/onboarding_IT_guides/python_setup.md) if `conda`
+[Python setup guide](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/python_setup.md) if `conda`
 is unavailable.
 
 ## Machine And Shell
@@ -58,7 +58,7 @@ credentials or private package indexes.
 
 Do not repeatedly reinstall into `base`. Record `conda info --envs`, the Python
 path, and the exact error without credentials. Use the
-[reproducible Python lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/reproducible-python.md) or ask for
+[reproducible Python lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/reproducible-python.md) or ask for
 help before deleting an existing environment.
 
 ## Understand Before Accepting AI Output

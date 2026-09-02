@@ -14,7 +14,7 @@ risks unaddressed.
 ## Before You Start
 
 Complete the universal core and read the
-[Supervisor and Staff track](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/tracks/supervisor-staff.md). Use a
+[Supervisor and Staff track](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/tracks/supervisor-staff.md). Use a
 fictional or sanitized project for passport evidence.
 
 ## Machine And Shell
@@ -61,7 +61,7 @@ private membership lists.
 
 Do not grant broad access while waiting for a decision. Record the blocker and
 obtain the information owner, system owner, or lab owner decision. Use
-[lab IT policy](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/policy/lab-it.md) for escalation.
+[lab IT policy](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/lab-it.md) for escalation.
 
 ## Understand Before Accepting AI Output
 

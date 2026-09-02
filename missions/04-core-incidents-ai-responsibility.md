@@ -14,7 +14,7 @@ is not proof that a command ran or a result is correct.
 
 ## Before You Start
 
-Read [Incidents and getting help](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md). Use
+Read [Incidents and getting help](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md). Use
 only fictional scenarios in the evidence.
 
 ## Machine And Shell
@@ -58,7 +58,7 @@ include real logs, tokens, research data, ETH/private identifiers, or screenshot
 
 If one scenario resembles a real current event, stop writing the assessment
 answer and use the actual incident path. The
-[incident scenarios lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/incident-scenarios.md) provides
+[incident scenarios lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/incident-scenarios.md) provides
 additional safe examples.
 
 ## Understand Before Accepting AI Output

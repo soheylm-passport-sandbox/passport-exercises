@@ -64,7 +64,7 @@ membership, or confidential filenames.
 Check VPN, exact hostname, account format, and assigned supervisor folder. Do
 not use another person's saved credentials, install remote services, or select
 another mapped drive. Use the
-[remote access guide](https://github.com/IDEALLab/onboarding-IT/blob/main/onboarding_IT_guides/remote.md).
+[remote access guide](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/remote.md).
 
 ## Understand Before Accepting AI Output
 

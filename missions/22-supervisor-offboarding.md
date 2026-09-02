@@ -57,7 +57,7 @@ store real student completion records or access lists in the handbook.
 
 Preserve data and access state while ownership or retention is unclear. Do not
 perform broad deletion to “clean up.” Use the
-[project handover lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/project-handover.md) and escalate to
+[project handover lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/project-handover.md) and escalate to
 the relevant owner.
 
 ## Understand Before Accepting AI Output

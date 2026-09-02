@@ -58,7 +58,7 @@ lists or protected directory output.
 
 Do not guess numeric group IDs or apply broad recursive commands. Ask the
 storage owner to inspect the smallest affected directory. Use
-[Euler storage](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/storage.md) for the canonical
+[Euler storage](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/storage.md) for the canonical
 setgid/default ACL procedure when Euler is the approved system.
 
 ## Understand Before Accepting AI Output

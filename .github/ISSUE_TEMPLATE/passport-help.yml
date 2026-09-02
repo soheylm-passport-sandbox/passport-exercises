@@ -28,7 +28,7 @@ body:
     id: pull_request
     attributes:
       label: Public assessment PR URL
-      description: Paste only the public IDEALLab/passport-exercises PR URL. Leave blank if no PR exists.
+      description: Paste only the public soheylm-passport-sandbox/passport-exercises PR URL. Leave blank if no PR exists.
   - type: textarea
     id: message
     attributes:

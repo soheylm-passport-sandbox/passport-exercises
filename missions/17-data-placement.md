@@ -14,8 +14,8 @@ authoritative and which rules apply.
 ## Before You Start
 
 Identify the project information owner and supervisor. Read the
-[data placement lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/data-placement.md) and current
-[data and AI policy](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/policy/data-and-ai.md). Do not move real
+[data placement lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/data-placement.md) and current
+[data and AI policy](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/data-and-ai.md). Do not move real
 project data during this planning mission.
 
 ## Machine And Shell
@@ -62,7 +62,7 @@ or secret storage URLs.
 
 Do not create another ad hoc copy. Record the unresolved owner, classification,
 or storage decision and ask the supervisor. Use the
-[NAS guide](https://github.com/IDEALLab/onboarding-IT/blob/main/onboarding_IT_guides/nas_ideal.md) only after the assigned
+[NAS guide](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/nas_ideal.md) only after the assigned
 supervisor folder is known.
 
 ## Understand Before Accepting AI Output

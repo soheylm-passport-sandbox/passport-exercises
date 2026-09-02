@@ -79,7 +79,7 @@ if ((Test-Path $KeyPath) -or (Test-Path "$KeyPath.pub")) {
 
 Set a passphrase. Install only the `.pub` file and perform the key-only proof
 using the exact platform block in
-[Euler access and SSH](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/access-and-ssh.md#3-install-only-the-public-key-on-euler).
+[Euler access and SSH](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/access-and-ssh.md#3-install-only-the-public-key-on-euler).
 The required proof disables password and keyboard-interactive fallback and must
 print `key-ok`.
 
@@ -113,7 +113,7 @@ passwords, verbose authentication logs, or `authorized_keys` contents.
 
 Stop at the first failed gate. Do not regenerate repeatedly, overwrite keys,
 replace the whole SSH config, or loosen permissions broadly. Use
-[Euler SSH troubleshooting](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/troubleshooting.md)
+[Euler SSH troubleshooting](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/troubleshooting.md)
 and share only the exact error plus sanitized `ssh -G` fields.
 
 ## Understand Before Accepting AI Output

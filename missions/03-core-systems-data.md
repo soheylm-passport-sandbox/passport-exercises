@@ -14,8 +14,8 @@ material. Correct placement prevents data loss, leakage, and blocked projects.
 
 ## Before You Start
 
-Read [Environments overview](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/environments-overview.md) and
-[Data and AI safety](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/data-and-ai-safety.md). Ask your
+Read [Environments overview](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/environments-overview.md) and
+[Data and AI safety](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/data-and-ai-safety.md). Ask your
 supervisor who owns the project's information decisions.
 
 ## Machine And Shell
@@ -60,7 +60,7 @@ confidential content.
 
 Do not guess a storage path or AI approval. Record the unresolved decision and
 ask the project information owner or supervisor. The
-[data and AI policy](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/policy/data-and-ai.md) defines the escalation
+[data and AI policy](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/data-and-ai.md) defines the escalation
 boundary.
 
 ## Understand Before Accepting AI Output

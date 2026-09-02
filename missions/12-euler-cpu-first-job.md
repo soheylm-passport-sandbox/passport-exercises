@@ -94,7 +94,7 @@ private paths, credentials, or broad account output.
 For an invalid account, stop and check `my_share_info`. For a pending job,
 inspect `myjobs -j "$job_id"` instead of submitting duplicates. Read the first
 meaningful error before changing resources. Use the
-[first Euler job lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/euler-first-job.md) for recovery.
+[first Euler job lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-first-job.md) for recovery.
 
 ## Understand Before Accepting AI Output
 

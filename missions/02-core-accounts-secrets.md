@@ -13,7 +13,7 @@ password was disclosed.
 
 ## Before You Start
 
-Read [Accounts and security](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/accounts-and-security.md). Keep
+Read [Accounts and security](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/accounts-and-security.md). Keep
 all passwords, recovery codes, tokens, private keys, and unpublished material
 out of the evidence and this conversation.
 
@@ -57,7 +57,7 @@ settings screenshot.
 ## If Blocked
 
 If you suspect a real exposure, stop the exercise and follow
-[Incidents and getting help](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md). Do not
+[Incidents and getting help](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md). Do not
 post the secret in a GitHub issue or ask an AI tool to inspect it.
 
 ## Understand Before Accepting AI Output

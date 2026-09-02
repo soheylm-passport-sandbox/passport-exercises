@@ -14,7 +14,7 @@ responsibility away from the account owner.
 ## Before You Start
 
 Complete the manual Git task and choose the approved AI access route. Read
-[agents, models, providers and interfaces](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/agents-and-interfaces.md)
+[agents, models, providers and interfaces](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/agents-and-interfaces.md)
 and confirm the training content is permitted for the selected service.
 
 ## Machine And Shell
@@ -59,7 +59,7 @@ transcript, account screenshot, unpublished data, or billing details.
 
 Start a new bounded agent thread if context has become inconsistent. Return to
 the clean baseline when edits spread outside the fixture. Use the
-[manual versus agent lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/manual-vs-agent.md) for recovery.
+[manual versus agent lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/manual-vs-agent.md) for recovery.
 
 ## Understand Before Accepting AI Output
 

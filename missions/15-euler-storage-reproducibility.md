@@ -60,7 +60,7 @@ directory listings.
 
 Do not invent permissions or recursively change a shared tree. Ask the data
 owner about authoritative storage and use
-[Euler storage](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/storage.md) for lifecycle and
+[Euler storage](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/storage.md) for lifecycle and
 collaboration recovery.
 
 ## Understand Before Accepting AI Output

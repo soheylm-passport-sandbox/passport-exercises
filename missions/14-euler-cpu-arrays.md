@@ -59,7 +59,7 @@ rename it to an executable Slurm script or submit it.
 
 Reduce the cap to `%1` and validate a representative input. If many tasks fail
 identically, cancel the array and debug one task. Use the
-[job arrays lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/euler-job-arrays.md) for dependent or
+[job arrays lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-job-arrays.md) for dependent or
 heterogeneous workloads.
 
 ## Understand Before Accepting AI Output
