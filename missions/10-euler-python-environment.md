@@ -2,15 +2,13 @@
 
 ## Outcome
 
-Create or safely reuse a small Python environment on Euler and know how to
-activate it inside a Slurm script.
+Create or safely reuse a small Python environment on Euler, the ETH shared computing cluster, and activate it inside every submitted Slurm job script.
 
 ## Concept
 
-A Python environment contains operating-system-specific executables and paths.
-The environment on your laptop cannot be copied to Euler. Recreate it on Euler
-from a reviewed project definition, and make each batch script establish its
-own software context.
+Your laptop and Euler are separate computers with different operating systems and software. An environment created on one cannot be copied safely to the other. Euler provides software modules, which select a maintained application version for the current shell. A project environment then adds the Python packages needed by that project.
+
+Recreate the environment on Euler from a reviewed definition, and make every Slurm batch script load its module and activate its environment before running Python.
 
 ## Worked Example
 
@@ -35,7 +33,21 @@ Create or safely reuse one small Euler-native Python virtual environment and ver
 
 **Follow these steps in order.** Your laptop environment and Euler environment are separate. Run these steps on Euler after the SSH mission prints config-ok. This exercise creates no Slurm job and installs no project package.
 
-### 1. Connect to Euler
+### 1. Separate laptop and Euler software
+
+**Where:** This browser
+
+Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python packages. Both must be selected again inside each submitted batch job.
+
+- [Read the Euler Python environment reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/python-environments.md)
+
+**Expected:** You know why a laptop environment is not copied to Euler and why a job script activates its own environment.
+
+**Continue when:** Connect to Euler with the tested alias.
+
+**If not:** Return to the local Python environment mission before creating another environment.
+
+### 2. Connect to Euler
 
 **Where:** Your computer
 
@@ -65,7 +77,7 @@ ssh euler
 
 **If not:** Return to the SSH mission. Do not run Euler commands in the local shell.
 
-### 2. Check the Euler Python module
+### 3. Check the Euler Python module
 
 **Where:** Euler login node
 
@@ -93,7 +105,7 @@ printf 'module-python-ok\n'
 
 **If not:** Run module spider python and use the help path with its non-secret output. Do not guess a replacement module.
 
-### 3. Inspect before creating
+### 4. Inspect before creating
 
 **Where:** Euler login node
 
@@ -127,7 +139,7 @@ fi
 
 **If not:** Do not delete or rename the existing path. Use the help route to identify its owner and purpose.
 
-### 4. Create or reuse the environment
+### 5. Create or reuse the environment
 
 **Where:** Euler login node
 
@@ -173,7 +185,7 @@ fi
 
 **If not:** Keep the first error. Do not rerun with sudo, remove the target, or install packages into base.
 
-### 5. Verify the active interpreter
+### 6. Verify the active interpreter
 
 **Where:** Euler login node
 
@@ -201,7 +213,7 @@ deactivate
 
 **If not:** Stop and inspect the reported interpreter. Do not repair it by copying your laptop environment.
 
-### 6. Put setup inside the Slurm script
+### 7. Put setup inside the Slurm script
 
 **Where:** Euler login node
 
@@ -222,7 +234,7 @@ python your_script.py
 
 **If not:** Do not rely on a login-shell activation to define an unattended job.
 
-### 7. Confirm the safe marker
+### 8. Confirm the safe marker
 
 **Where:** Your computer
 

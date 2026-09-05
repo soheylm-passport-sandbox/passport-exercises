@@ -2,13 +2,13 @@
 
 ## Outcome
 
-Use an AI coding agent on one fictional file, review every proposed action,
-then verify the diff and result yourself.
+Use an AI coding agent, a tool that can inspect and change project files, on one fictional file. Review every proposed action, then verify the Git diff and result yourself.
 
 ## Concept
 
-An agent can read files, edit code, execute commands, and publish changes. The
-person who authorizes its actions remains responsible for them.
+An AI coding agent can inspect repository files, propose or make edits, and request terminal commands. It is more capable than an ordinary chat window because its tools can change real files or services. The person who authorizes those actions remains responsible.
+
+Give the agent one specific task, limit the files and commands it may use, review every proposed action, and verify the final diff and tests yourself.
 
 ## Worked Example
 

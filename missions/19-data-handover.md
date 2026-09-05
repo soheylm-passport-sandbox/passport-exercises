@@ -7,9 +7,9 @@ personal account or computer.
 
 ## Concept
 
-Projects often fail operationally after a student leaves even when files still
-exist. A handover establishes ownership, provenance, reproduction, access, and
-cleanup rather than transferring an unexplained directory.
+A project handover is the documented transfer of ownership, access, locations, and knowledge before a person leaves. It identifies the authoritative code and data, explains how to reproduce important results, confirms that successors can access them, and names what may be cleaned up.
+
+A directory full of unexplained files is not a handover, even if the files still exist.
 
 ## Worked Example
 

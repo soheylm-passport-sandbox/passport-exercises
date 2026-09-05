@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Test your Euler account, reuse or create one dedicated SSH key, and configure a
-working `euler` shortcut without replacing existing SSH files.
+Connect your computer to Euler, ETH Zurich's shared computing cluster, through SSH. Reuse or create one dedicated key and configure a safe `euler` shortcut without replacing existing SSH files.
 
 ## Concept
 
-SSH can fail because of the network, account/password, key installation, or
-local configuration. Test them in that order and change only the part that
-fails. Keep existing keys and unrelated SSH hosts intact.
+Euler is ETH Zurich's shared high-performance computing cluster: many managed computers used through a central login service and the Slurm job scheduler. SSH, or Secure Shell, opens a protected terminal connection from your computer to Euler.
+
+An SSH key pair has a private key that stays on your computer and a public `.pub` file that may be installed on Euler. The key passphrase unlocks the local private key; it is different from your ETH password. Test network, password login, key installation, and local configuration in that order, changing only the part that fails.
 
 ## Worked Example
 
@@ -28,7 +27,7 @@ Running PowerShell at an Euler Bash prompt, concatenating Host blocks, or pointi
 
 Test your direct Euler login, keep a working dedicated key or create one without overwriting anything, then configure and test the euler SSH alias.
 
-**Follow these steps in order.** Run the steps on your own computer in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.
+**Follow these steps in order.** Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.
 
 ### 1. Check the network or VPN
 

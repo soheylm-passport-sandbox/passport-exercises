@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Connect to Blade, use the correct storage drives, and verify a
-temporary-to-durable file copy.
+Connect by Remote Desktop to Blade, the lab's shared Windows computer for licensed graphical software. Use the correct temporary and durable storage drives and verify one file copy.
 
 ## Concept
 
-Blade is a shared Windows engineering workstation, not an HPC cluster or
-permanent personal drive. Data left only on local `C:` or temporary `D:` can be
-lost, while heavy computation can degrade every interactive user.
+Blade is the IDEAL Lab's shared Windows computer. You reach its graphical desktop through Remote Desktop Protocol (RDP) when you need licensed Windows engineering software such as Siemens NX or interactive pre/post-processing. Several people may be connected at once.
+
+Blade is not the lab's permanent storage or its heavy-compute cluster. `P:` maps to durable project data on the NAS, `D:` is temporary local working space, and `C:` plus Desktop, Documents, and Downloads are not project storage.
 
 ## Worked Example
 
@@ -28,13 +27,13 @@ Keeping the only copy on C: or D:, treating Blade as a general ML server, or exp
 
 Connect to Blade by RDP, verify the host, and complete a safe temporary-to-durable file round trip.
 
-**Follow these steps in order.** Blade is a shared Windows GUI workstation. Use P: for durable project data, D: for temporary work, and never C: or user folders for project storage.
+**Follow these steps in order.** Blade is the lab's shared remote Windows computer for licensed graphical software. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.
 
 ### 1. Confirm Blade is the right system
 
 **Where:** This browser
 
-Use Blade for interactive licensed Windows software, CAD, pre/post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.
+Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP). Use it for interactive licensed Windows software, CAD, pre/post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.
 
 **Expected:** Your task requires the shared Windows GUI environment.
 

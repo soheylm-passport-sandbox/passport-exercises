@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Use `sacct` and `seff` to inspect a completed Euler job and choose the next
-resource request from measured use.
+Use Slurm accounting commands to compare the CPU and memory reserved for one completed Euler job with what it actually used, then choose the next request from evidence.
 
 ## Concept
 
-Large “just in case” requests reduce availability and may wait longer without
-improving a serial or I/O-bound program. A completed state alone does not prove
-appropriate resource use.
+A Slurm request reserves CPU, memory, and time for an Euler job. Requested resources and resources actually used are different. `sacct` reports exact accounting fields for a recorded job, while `seff` summarizes CPU and memory efficiency.
+
+Large “just in case” requests can wait longer and reduce capacity for others without making a serial or I/O-bound program faster. Measure a representative run before changing the next request.
 
 ## Worked Example
 
@@ -31,7 +30,21 @@ Connect to Euler, read sacct and seff for the completed training job, then choos
 
 **Follow these steps in order.** Connect to Euler and reuse the job ID from the first-job mission. This mission does not submit another job.
 
-### 1. Connect to Euler
+### 1. Distinguish requested and used resources
+
+**Where:** This browser
+
+A Slurm request reserves CPUs, memory, and time before a job runs. sacct provides exact recorded fields; seff summarizes CPU and memory efficiency. Read both for the existing job before deciding what a future run should request.
+
+- [Open the Slurm accounting reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/slurm.md)
+
+**Expected:** You can distinguish allocated resources from measured use.
+
+**Continue when:** Connect and recover the existing job ID.
+
+**If not:** Return to the first-job mission; do not submit another job for this exercise.
+
+### 2. Connect to Euler
 
 **Where:** Your computer
 
@@ -61,7 +74,7 @@ ssh euler
 
 **If not:** Return to the SSH access mission; do not run Euler commands in the local shell.
 
-### 2. Use the existing job ID
+### 3. Use the existing job ID
 
 **Where:** Euler login node
 
@@ -80,7 +93,7 @@ if [ -s "$id_file" ]; then printf 'Stored job ID: '; cat "$id_file"; else sacct 
 
 **If not:** Stop if you cannot identify one unambiguous training job.
 
-### 3. Read the accounting fields
+### 4. Read the accounting fields
 
 **Where:** Euler login node
 
@@ -110,7 +123,7 @@ printf 'accounting-ready\n'
 
 **If not:** Wait for accounting to appear or verify the job ID; do not resubmit.
 
-### 4. Read seff
+### 5. Read seff
 
 **Where:** Euler login node
 
@@ -132,7 +145,7 @@ seff "$job_id"
 
 **If not:** Use sacct and application logs if seff is unavailable.
 
-### 5. Interpret before changing resources
+### 6. Interpret before changing resources
 
 **Where:** Euler login node
 
@@ -144,7 +157,7 @@ Separate requested resources from actual use. A very short smoke test proves the
 
 **If not:** Return to the field definitions; do not increase resources by guesswork.
 
-### 6. Choose the next measured request
+### 7. Choose the next measured request
 
 **Where:** Euler login node
 
@@ -156,7 +169,7 @@ Keep or reduce unused resources, leave sensible headroom for representative vari
 
 **If not:** Measure a representative input before claiming a production allocation.
 
-### 7. Submit accounting evidence
+### 8. Submit accounting evidence
 
 **Where:** Your computer
 

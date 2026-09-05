@@ -2,13 +2,13 @@
 
 ## Outcome
 
-Create a project-local Conda environment, keep it out of Git, and verify the
-Python interpreter in use.
+Create an isolated Python interpreter and package set for one project with Conda, keep the local `.venv` folder out of Git, and verify which interpreter runs.
 
 ## Concept
 
-Installing packages globally or into `base` makes projects interfere with one
-another and prevents collaborators from reproducing the environment.
+Python is a programming language, and a Python interpreter is the program that runs Python files. Projects often require different package versions, so each project needs an isolated environment containing its own interpreter and packages.
+
+Conda creates and manages such environments. Miniforge is the small Conda distribution used by this guide. This mission stores the project environment in `.venv`; the folder is local and ignored by Git, while `environment.yml` records the reproducible definition.
 
 ## Worked Example
 
@@ -29,7 +29,21 @@ Install or verify Miniforge, create the project environment from environment.yml
 
 **Follow these steps in order.** Do not install packages into base or the system Python. Keep an existing .venv until you have identified what it contains.
 
-### 1. Prepare the Python practice folder
+### 1. Know what the Python environment contains
+
+**Where:** This browser
+
+Python is run by an interpreter. Packages add reusable code. A project environment keeps one interpreter and package set separate from other projects. Conda manages the environment; Miniforge provides Conda; environment.yml records what to recreate; .venv is the local environment folder used in this mission.
+
+- [Open the Python setup reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/python_setup.md)
+
+**Expected:** You can distinguish the versioned environment.yml definition from the local .venv installation.
+
+**Continue when:** Prepare the Python practice folder.
+
+**If not:** Do not install packages globally or into base until the terms are clear.
+
+### 2. Prepare the Python practice folder
 
 **Where:** Your computer
 
@@ -41,7 +55,7 @@ Press Prepare practice folder in this step and run the displayed enter-folder co
 
 **If not:** Do not create another clone; run gh passport doctor.
 
-### 2. Check Conda
+### 3. Check Conda
 
 **Where:** Your computer
 
@@ -74,7 +88,7 @@ conda info --base
 
 **If not:** Check for an existing installation in the next step. Do not install a second copy yet.
 
-### 3. Recover an existing Conda installation
+### 4. Recover an existing Conda installation
 
 **Where:** Your computer
 
@@ -151,7 +165,7 @@ fi
 
 **If not:** If more than one installation is listed, or a Start-menu Conda prompt exists at another path, stop and use the sanitized help path. Do not uninstall, rename, or overwrite any installation.
 
-### 4. Install Miniforge on Windows only if needed
+### 5. Install Miniforge on Windows only if needed
 
 **Where:** Your computer
 
@@ -165,7 +179,7 @@ Run this step only after the recovery check printed no-common-conda-installation
 
 **If not:** Stop if an existing installation or destination is reported; diagnose it instead of overwriting it.
 
-### 5. Install Miniforge on macOS only if needed
+### 6. Install Miniforge on macOS only if needed
 
 **Where:** Your computer
 
@@ -205,7 +219,7 @@ bash "$installer"
 
 **If not:** If curl is unavailable, use the official release link and choose the MacOSX installer for this Mac's architecture. Stop if the architecture or destination is unclear; do not overwrite an existing Conda installation.
 
-### 6. Install Miniforge on Linux only if needed
+### 7. Install Miniforge on Linux only if needed
 
 **Where:** Your computer
 
@@ -245,7 +259,7 @@ bash "$installer"
 
 **If not:** If curl is unavailable, use the official release link and choose the Linux installer for this computer's architecture. Stop if the architecture or destination is unclear; do not use sudo or overwrite another Conda installation.
 
-### 7. Reopen and recheck Conda
+### 8. Reopen and recheck Conda
 
 **Where:** Your computer
 
@@ -278,7 +292,7 @@ conda info --base
 
 **If not:** Do not install another copy. On Windows, try Miniforge Prompt and run conda info --base. On any platform, use the sanitized help path with the command-not-found message and the base path already found; do not include your username or full home path.
 
-### 8. Read the environment definition
+### 9. Read the environment definition
 
 **Where:** Your computer
 
@@ -308,7 +322,7 @@ cat environment.yml
 
 **If not:** Return to Prepare practice folder if environment.yml is missing or changed; do not invent a replacement.
 
-### 9. Inspect the environment path
+### 10. Inspect the environment path
 
 **Where:** Your computer
 
@@ -377,7 +391,7 @@ fi
 
 **If not:** Stop if the path is a link, incomplete, unreadable, or uses another Python version. Identify who created it before removing or replacing anything.
 
-### 10. Verify the environment path is ignored
+### 11. Verify the environment path is ignored
 
 **Where:** Your computer
 
@@ -407,7 +421,7 @@ git check-ignore -v --no-index .venv/conda-meta/history
 
 **If not:** Stop and correct .gitignore before creating the environment or committing project files.
 
-### 11. Create or reuse the project Conda environment
+### 12. Create or reuse the project Conda environment
 
 **Where:** Your computer
 
@@ -475,7 +489,7 @@ fi
 
 **If not:** Read the first Conda or environment error. Do not rerun with administrator rights, follow a link target, or delete an unrelated environment.
 
-### 12. Activate the project environment
+### 13. Activate the project environment
 
 **Where:** Your computer
 
@@ -505,7 +519,7 @@ conda activate ./.venv
 
 **If not:** Windows: open Miniforge Prompt and run conda init powershell. macOS: run conda init zsh. Linux Bash: run conda init bash. Run it once, close only that command terminal, keep the terminal running the Passport open, open a new command terminal, return to the practice root, and retry.
 
-### 13. Verify the active interpreter
+### 14. Verify the active interpreter
 
 **Where:** Your computer
 
@@ -535,7 +549,7 @@ python -c "import sys; print(sys.executable); print(sys.version)"
 
 **If not:** Do not install packages until the interpreter path is correct.
 
-### 14. Use the same interpreter in your editor
+### 15. Use the same interpreter in your editor
 
 **Where:** Your computer
 

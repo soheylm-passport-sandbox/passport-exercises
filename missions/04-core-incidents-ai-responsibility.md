@@ -7,9 +7,9 @@ actions performed by AI tools or automation.
 
 ## Concept
 
-Continuing to experiment after a suspected credential, confidentiality,
-access, or data-loss incident can increase harm. Likewise, fluent agent output
-is not proof that a command ran or a result is correct.
+An incident is a real or suspected loss of confidentiality, access, control, or data. Stop the harmful action, preserve useful evidence, verify containment, and report through the private route.
+
+One example is a runaway Euler job: a program submitted to the shared cluster through Slurm that is consuming resources by mistake. Its numeric job ID identifies it; `scancel` stops it, `squeue` shows queued or running jobs, and `sacct` shows recorded job history. These commands are introduced here only so the fictional scenario is understandable; the Euler track teaches how to use them.
 
 ## Worked Example
 
@@ -32,7 +32,21 @@ Practise a safe incident response and confirm who remains responsible for automa
 
 **Follow these steps in order.** Use only the fictional scenarios below. If one resembles a current event, leave the exercise and use the private incident path.
 
-### 1. Confirm the scenario is fictional
+### 1. Understand the incident examples
+
+**Where:** This browser
+
+An incident is a suspected loss of confidentiality, access, control, or data. In the Euler example, a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.
+
+- [Read the incident and help procedure](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md)
+
+**Expected:** You can explain the Euler example without needing to know Slurm syntax.
+
+**Continue when:** Continue using only the fictional scenarios.
+
+**If not:** Read the definitions again; do not experiment on a real account or job.
+
+### 2. Confirm the scenario is fictional
 
 **Where:** This browser
 
@@ -44,7 +58,7 @@ Do not enter real names, account identifiers, logs, credentials, job output, or 
 
 **If not:** Stop the exercise and open the real incident procedure.
 
-### 2. Stop the risky action
+### 3. Stop the risky action
 
 **Where:** This browser
 
@@ -58,7 +72,7 @@ Stop the known harmful action without destroying evidence. For a runaway Euler j
 
 **If not:** Stop trying to fix it alone. Use the linked incident procedure to send a private report to your supervisor or lab IT, ETH cyber incident support, or ETH HPC support.
 
-### 3. Verify containment
+### 4. Verify containment
 
 **Where:** This browser
 
@@ -72,7 +86,7 @@ Check the affected service directly. Examples include confirming a token is revo
 
 **If not:** Do not assume containment. Preserve the observed facts and use the linked private incident route.
 
-### 4. Identify the private reporting route
+### 5. Identify the private reporting route
 
 **Where:** This browser
 
@@ -86,7 +100,7 @@ For each fictional scenario, use the linked procedure to identify who you would 
 
 **If not:** Use the linked decision list. If this is a real event, leave the exercise and report it privately; do not put its details in the Passport.
 
-### 5. Keep a person accountable
+### 6. Keep a person accountable
 
 **Where:** This browser
 
@@ -98,7 +112,7 @@ The person who authorizes and reviews an AI or automation action remains respons
 
 **If not:** Stop automation that has no accountable reviewer.
 
-### 6. Complete the scenarios
+### 7. Complete the scenarios
 
 **Where:** This browser
 

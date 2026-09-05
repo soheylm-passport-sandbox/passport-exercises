@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Choose and configure one AI coding route without exposing credentials or
-assuming that the lab pays for it.
+Choose and configure one AI coding route by identifying its model, access provider, agent, and editor. Keep credentials private and do not assume that the lab pays for the service.
 
 ## Concept
 
-Models, providers, agents, interfaces, and tool protocols are different
-components. Account ownership, billing, model access, and data terms can change
-independently.
+An AI setup contains several parts. A model generates text. A provider or gateway supplies API access and billing. An agent uses the model while reading files or requesting tools. The editor or terminal is the interface where you control it; MCP or ACP may connect additional tools.
+
+Choose the complete access route, not only a model name. Account ownership, cost limits, permissions, and data rules still apply independently.
 
 ## Worked Example
 
@@ -28,13 +27,13 @@ Calling OpenRouter an agent, confusing a model with an IDE, or pasting an API ke
 
 Configure one AI route, open only the synthetic practice repository, and prove that a read-only request changes no file.
 
-**Follow these steps in order.** Use the no-cost Copilot Student route if you are eligible. A personal paid service is optional and remains your financial responsibility.
+**Follow these steps in order.** An AI model, access provider, coding agent, and editor are separate parts. Identify them first. Use the no-cost Copilot Student route if eligible; any personal paid service remains your financial responsibility.
 
 ### 1. Identify the components
 
 **Where:** This browser
 
-Distinguish the model, provider or gateway, agent harness, interface, and tool protocol. For example, OpenRouter is a gateway; it is not the coding agent.
+Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the agent can read files or request tools; the editor or terminal is the interface; MCP or ACP may connect extra tools. For example, OpenRouter is a gateway, not the coding agent.
 
 - [Read agents and interfaces](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/agents-and-interfaces.md)
 

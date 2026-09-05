@@ -2,13 +2,13 @@
 
 ## Outcome
 
-Submit one tiny CPU job through Slurm, track it with `squeue`, inspect it with
-`sacct` and `seff`, and verify its output.
+Submit one tiny CPU program to an Euler compute node through the Slurm scheduler, then follow its job ID through the queue, accounting, efficiency, and output checks.
 
 ## Concept
 
-Euler login nodes are shared control points. Resource-intensive programs belong
-in Slurm allocations, where CPU, memory, time, logs, and ownership are explicit.
+Euler has login nodes and compute nodes. An SSH session first reaches a login node, which is only for editing files, transferring data, and controlling jobs. Programs that use significant CPU or memory run on compute nodes.
+
+Slurm is the scheduler that allocates a compute node and resources. A batch job is a script submitted with `sbatch`; `squeue` shows whether it is waiting or running, `sacct` records its final state and resources, and `seff` summarizes efficiency. This mission submits one tiny CPU job and follows that same job ID to completion.
 
 ## Worked Example
 
@@ -30,7 +30,21 @@ Create one small Python CPU batch script, inspect it, submit it once, and verify
 
 **Follow these steps in order.** Run every Euler command on the same login node. The recipe stores one job ID in $HOME/passport-euler/first-job.id so it survives logout; never resubmit because a job is pending.
 
-### 1. Connect to Euler
+### 1. Know where an Euler job runs
+
+**Where:** This browser
+
+SSH opens an Euler login node for file and job management. Slurm schedules actual computation on a compute node. sbatch submits one batch script, squeue shows active jobs, sacct reports recorded state and resources, and seff summarizes efficiency. All four commands use the same numeric job ID.
+
+- [Open the Slurm command reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/slurm.md)
+
+**Expected:** You can distinguish the login node from the compute node and state what sbatch, squeue, sacct, and seff do.
+
+**Continue when:** Connect to the login node.
+
+**If not:** Do not run a workload until the login-node and compute-node roles are clear.
+
+### 2. Connect to Euler
 
 **Where:** Your computer
 
@@ -60,7 +74,7 @@ ssh euler
 
 **If not:** Return to the SSH mission; do not use password fallback as a tunnel workaround.
 
-### 2. Confirm the login node and account
+### 3. Confirm the login node and account
 
 **Where:** Euler login node
 
@@ -79,7 +93,7 @@ my_share_info
 
 **If not:** Stop if es_fuge is absent. Do not guess another account; use the access help path.
 
-### 3. Create and inspect the job script
+### 4. Create and inspect the job script
 
 **Where:** Euler login node
 
@@ -158,7 +172,7 @@ sed -n '1,100p' first-job.slurm
 
 **If not:** Correct the script before sbatch; do not submit a script you have not read.
 
-### 4. Submit once and record the job ID
+### 5. Submit once and record the job ID
 
 **Where:** Euler login node
 
@@ -193,7 +207,7 @@ fi
 
 **If not:** Read the sbatch error and fix its cause; do not submit a second copy.
 
-### 5. Inspect the queue
+### 6. Inspect the queue
 
 **Where:** Euler login node
 
@@ -215,7 +229,7 @@ squeue -j "$job_id" -o "%.18i %.2t %.30R"
 
 **If not:** If the ID is wrong, recover it with squeue -u "$USER" or sacct; do not resubmit.
 
-### 6. Verify completion with sacct
+### 7. Verify completion with sacct
 
 **Where:** Euler login node
 
@@ -245,7 +259,7 @@ sacct -j "$job_id" --format=JobID,JobName,User,Account,State,ExitCode,Elapsed,Al
 
 **If not:** If the state is FAILED, TIMEOUT, or OUT_OF_MEMORY, inspect logs before changing resources.
 
-### 7. Inspect seff
+### 8. Inspect seff
 
 **Where:** Euler login node
 
@@ -267,7 +281,7 @@ seff "$job_id"
 
 **If not:** Use sacct and logs if seff is not yet available; do not invent utilization values.
 
-### 8. Verify the environment and output markers
+### 9. Verify the environment and output markers
 
 **Where:** Euler login node
 
@@ -291,7 +305,7 @@ grep -Fx "5 squared is 25" "$output"
 
 **If not:** Inspect both output and error logs for this job before changing or rerunning anything.
 
-### 9. Check and submit the mission
+### 10. Check and submit the mission
 
 **Where:** Your computer
 

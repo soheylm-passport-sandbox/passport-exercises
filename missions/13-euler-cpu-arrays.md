@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Fix a Slurm array so concurrent tasks are capped and every task writes a
-distinct log.
+Fix a Slurm job array, which runs many similar tasks from one script, so simultaneous tasks are capped and each task writes a distinct log.
 
 ## Concept
 
-Array size is not concurrency. An uncapped array can make many tasks eligible
-simultaneously, and several individually capped arrays can still exceed a safe
-aggregate request.
+A Slurm job array submits many similar tasks from one script. The array range sets the total number of tasks; the value after `%` limits how many may run at the same time. This concurrency cap controls simultaneous demand, not total work.
+
+Every task also needs a distinct log name, and the combined CPU, memory, and GPU request must be calculated before submission.
 
 ## Worked Example
 
@@ -31,7 +30,21 @@ Correct the synthetic Slurm array file, add a concurrency cap, and make every ta
 
 **Follow these steps in order.** The supplied file is deliberately unsafe. Edit it locally and never submit it to Euler.
 
-### 1. Prepare the array fixture
+### 1. Understand an array and its concurrency cap
+
+**Where:** This browser
+
+A job array creates many similar Slurm tasks from one script. The range sets total tasks; %N limits simultaneous tasks. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.
+
+- [Open the job-array lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-job-arrays.md)
+
+**Expected:** You can distinguish total task count from the maximum running at once.
+
+**Continue when:** Open the deliberately unsafe local fixture.
+
+**If not:** Do not submit a real array until you can calculate its simultaneous resource total.
+
+### 2. Prepare the array fixture
 
 **Where:** Your computer
 
@@ -43,7 +56,7 @@ Press Prepare practice folder, enter it, and open workspace/slurm/array_job.slur
 
 **If not:** Do not create your own replacement script or use Euler for this exercise.
 
-### 2. Identify both defects
+### 3. Identify both defects
 
 **Where:** Your computer
 
@@ -55,7 +68,7 @@ Read the array and log directives. The fixture allows 100 tasks without a concur
 
 **If not:** Review the array and log-name explanation before editing.
 
-### 3. Add a small concurrency cap
+### 4. Add a small concurrency cap
 
 **Where:** Your computer
 
@@ -73,7 +86,7 @@ Replace the unsafe array directive with the exact line below. It creates ten tas
 
 **If not:** Do not use an uncapped range or a zero cap.
 
-### 4. Use parent and task IDs in logs
+### 5. Use parent and task IDs in logs
 
 **Where:** Your computer
 
@@ -92,7 +105,7 @@ Replace both log directives with the two exact lines below. %A is the parent job
 
 **If not:** Correct both directives before running the verifier.
 
-### 5. Calculate the concurrent resource total
+### 6. Calculate the concurrent resource total
 
 **Where:** Your computer
 
@@ -104,7 +117,7 @@ Before using any array in a real project, multiply the cap by each task's CPU, m
 
 **If not:** Keep the cap at one until the per-task and combined totals are known.
 
-### 6. Review the edited file
+### 7. Review the edited file
 
 **Where:** Your computer
 

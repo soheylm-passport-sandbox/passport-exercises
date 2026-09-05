@@ -7,10 +7,9 @@ the same Passport later.
 
 ## Concept
 
-The passport uses several locations for different purposes. The local browser
-remembers where you were, while the trusted GitHub check records whether a
-submitted mission passed. A locally checked box is therefore not an official
-result.
+Before using a lab system, know its role. Git records file history; GitHub stores shared repositories and reviews. The NAS is durable shared project storage. Blade is a shared remote Windows computer for licensed graphical software. Euler is ETH Zurich's shared computing cluster for scheduled CPU and GPU work.
+
+The Passport itself runs locally in your browser. It remembers your draft and current page on this computer, while a trusted GitHub check records whether submitted work passed.
 
 ## Worked Example
 
@@ -55,7 +54,21 @@ Open the Passport dashboard and confirm that it names the computer platform you 
 
 **If not:** Stop before platform-specific work, submit one sanitized help request, and return later. Keep this Passport; do not create a second one or alter its files.
 
-### 3. Review the assigned missions
+### 3. Recognize the systems named in your route
+
+**Where:** This browser
+
+Read the short system map. Git and GitHub manage code history and review. The NAS stores durable shared project data. Blade is a shared remote Windows computer for licensed graphical software. Euler is ETH Zurich's shared cluster for scheduled CPU and GPU computation. Later missions explain access; do not connect to any of them in this step.
+
+- [Open the laptop, NAS, Blade, and Euler map](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/environments-overview.md)
+
+**Expected:** You can state in one sentence what GitHub, NAS, Blade, and Euler are used for.
+
+**Continue when:** Review why each mission was assigned to you.
+
+**If not:** Read the linked system map before choosing or removing a responsibility.
+
+### 4. Review the assigned missions
 
 **Where:** This browser
 
@@ -67,7 +80,7 @@ Read the mission list from top to bottom. Check that it covers your real respons
 
 **If not:** Use the sanitized help request if a required responsibility is missing or an irrelevant one was assigned.
 
-### 4. Know where progress is stored
+### 5. Know where progress is stored
 
 **Where:** This browser
 
@@ -79,7 +92,7 @@ Draft answers stay on this computer. Submitted receipts and the trusted completi
 
 **If not:** Re-read the status explanation before submitting any mission.
 
-### 5. Close and reopen the Passport
+### 6. Close and reopen the Passport
 
 **Where:** Your computer
 

@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Open your authorized NAS username folder and verify that you can create, read,
-and remove one harmless test file.
+Connect to the IDEAL Lab NAS, the durable shared network drive for approved project data. Enter only your authorized username folder and verify one harmless test file.
 
 ## Concept
 
-The NAS is durable shared project storage. Access is limited by project,
-supervisor, and user boundaries; it is not a general shared working directory
-and it is not a replacement for GitHub.
+NAS means network-attached storage: the IDEAL Lab's durable shared project drive, reached over the ETH network rather than stored inside your laptop. It holds approved project datasets, checkpoints, results, and deliverables that a team must keep and share.
+
+The NAS is organized by supervisor and project permissions. Use only the approved supervisor folder and your ETH-username subfolder. It is not a replacement for GitHub source control and should not be used directly for high-I/O Euler computation.
 
 ## Worked Example
 
@@ -31,7 +30,21 @@ Connect to the approved NAS project folder, verify your username boundary, and l
 
 **Follow these steps in order.** You need the supervisor's first name and explicit permission first. Never test access at the NAS root or in another person's folder.
 
-### 1. Confirm the approved folder
+### 1. Know what the NAS is
+
+**Where:** This browser
+
+NAS means network-attached storage. It is the lab's durable shared project drive reached over the ETH network. It is not inside your laptop, not a general folder open to everyone, and not the place to run high-I/O Euler jobs directly.
+
+- [Open the NAS reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/nas_ideal.md)
+
+**Expected:** You can distinguish durable NAS project data from local, GitHub, and temporary storage.
+
+**Continue when:** Ask for the exact approved project folder.
+
+**If not:** Do not mount or probe a guessed folder.
+
+### 2. Confirm the approved folder
 
 **Where:** This browser
 
@@ -43,7 +56,7 @@ Ask your supervisor for the exact supervisor project folder and confirm that you
 
 **If not:** Stop. Do not browse or create folders by guessing.
 
-### 2. Connect to the ETH network
+### 3. Connect to the ETH network
 
 **Where:** Your computer
 
@@ -57,7 +70,7 @@ Use the campus network or ETH VPN before mounting the share.
 
 **If not:** Fix VPN or network access before changing credentials or paths.
 
-### 3. Map the NAS folder in Windows
+### 4. Map the NAS folder in Windows
 
 **Where:** Your computer
 
@@ -71,7 +84,7 @@ Press Win+E, right-click This PC, choose Map network drive, select an unused dri
 
 **If not:** Check VPN, the supervisor-name spelling, and the d\username account format; do not use another person's saved credentials.
 
-### 4. Connect to the NAS folder in macOS
+### 5. Connect to the NAS folder in macOS
 
 **Where:** Your computer
 
@@ -85,7 +98,7 @@ Open Finder, press Command+K, and enter smb://d.ethz.ch/groups/mavt/ide/Projects
 
 **If not:** Check VPN, the supervisor-name spelling, and the d\username account format; do not save another person's credentials.
 
-### 5. Connect to the NAS folder in Linux
+### 6. Connect to the NAS folder in Linux
 
 **Where:** Your computer
 
@@ -99,7 +112,7 @@ Open your file manager, choose Other Locations or Connect to Server, and enter s
 
 **If not:** Check VPN and the exact URL; ask for the approved Linux method instead of changing system settings.
 
-### 6. Enter your username folder
+### 7. Enter your username folder
 
 **Where:** Your computer
 
@@ -111,7 +124,7 @@ Inside the mounted supervisor folder, open the folder whose name is exactly your
 
 **If not:** Message your supervisor through your usual private ETH or lab channel: ask them to confirm or create your NAS username folder. Do not put the real path in a public issue.
 
-### 7. Copy the mounted folder path
+### 8. Copy the mounted folder path
 
 **Where:** Your computer
 
@@ -141,7 +154,7 @@ pwd
 
 **If not:** Do not guess a hidden mount path. Ask for the approved mount method if the file manager cannot expose a local path.
 
-### 8. Run the access probe
+### 9. Run the access probe
 
 **Where:** Your computer
 
@@ -153,7 +166,7 @@ Enter your ETH username and the mounted username-folder path in the local confir
 
 **If not:** Do not broaden permissions or use chmod 777. For folder ownership or access, message your supervisor through your usual private ETH or lab channel. If the folder works but the Passport verifier fails, use the public help form with only your operating system, this mission title, and the failed step; omit the path and username.
 
-### 9. Use NAS for durable shared data
+### 10. Use NAS for durable shared data
 
 **Where:** This browser
 

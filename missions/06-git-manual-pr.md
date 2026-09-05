@@ -2,13 +2,13 @@
 
 ## Outcome
 
-Make one manual change, review it, create a Conventional Commit, push a branch,
-and open a draft pull request.
+Use Git manually to edit and review one file, record a Conventional Commit, send the branch to GitHub, and open a draft pull request for review.
 
 ## Concept
 
-Agents and IDE buttons are safer after you understand the underlying branch,
-working tree, staged diff, commit, remote branch, and review boundary.
+A Git change moves through a visible sequence. The working tree contains the files you are editing. A branch keeps the work separate. Staging selects the reviewed changes for one commit; the commit records them with an author and message. Pushing sends that branch to GitHub. A pull request, or PR, asks others to review the branch before it is merged.
+
+Complete this sequence manually once before delegating it to an IDE button or AI agent.
 
 ## Worked Example
 
@@ -29,7 +29,21 @@ Make one small manual change, review both diffs, create a Conventional Commit, p
 
 **Follow these steps in order.** Do this mission without an AI agent. Use the exact practice folder and commands prepared by the Passport.
 
-### 1. Open the practice folder
+### 1. Learn the manual Git change path
+
+**Where:** This browser
+
+Edit a file in the working tree, inspect the diff, stage only the reviewed file, record it as a commit, push the branch to GitHub, then open a pull request for review. A draft pull request is visible but explicitly not ready to merge.
+
+- [Read the beginner Git workflow](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/git_workflow.md)
+
+**Expected:** You can name the order: edit, diff, stage, commit, push, pull request.
+
+**Continue when:** Open the prepared practice folder.
+
+**If not:** Do not use an IDE button or agent to skip a step you cannot yet identify.
+
+### 2. Open the practice folder
 
 **Where:** Your computer
 
@@ -41,7 +55,7 @@ Press Prepare practice folder in this step. Run the displayed enter-folder comma
 
 **If not:** Do not clone again; rerun the preparation or gh passport doctor.
 
-### 2. Inspect before editing
+### 3. Inspect before editing
 
 **Where:** Your computer
 
@@ -77,7 +91,7 @@ sed -n '1,160p' workspace/manual_task/project-note.md
 
 **If not:** Stop and understand every existing change before touching a file.
 
-### 3. Open the exact practice folder in an editor
+### 4. Open the exact practice folder in an editor
 
 **Where:** Your computer
 
@@ -91,7 +105,7 @@ Use a plain-text code editor you already trust. If you do not have one, install 
 
 **If not:** Return to the folder path shown by Prepare practice folder; do not open the handbook or a research repository instead.
 
-### 4. Make the requested edit
+### 5. Make the requested edit
 
 **Where:** Your computer
 
@@ -111,7 +125,7 @@ The staged diff must be reviewed before publishing.
 
 **If not:** Undo only the mistaken lines in your editor; do not reset the repository.
 
-### 5. Review the unstaged diff
+### 6. Review the unstaged diff
 
 **Where:** Your computer
 
@@ -144,7 +158,7 @@ git diff -- workspace/manual_task/project-note.md
 
 **If not:** Correct the file before staging anything.
 
-### 6. Stage one file
+### 7. Stage one file
 
 **Where:** Your computer
 
@@ -180,7 +194,7 @@ git diff --cached
 
 **If not:** Use git restore --staged on the unintended path, correct it, and review again.
 
-### 7. Create a Conventional Commit
+### 8. Create a Conventional Commit
 
 **Where:** Your computer
 
@@ -210,7 +224,7 @@ git commit -m "docs(practice): explain staged diff review"
 
 **If not:** Read the first Git error; do not use force or skip hooks.
 
-### 8. Push and open a draft pull request
+### 9. Push and open a draft pull request
 
 **Where:** Your computer
 
@@ -222,7 +236,7 @@ Run the exact push and gh pr create commands displayed by Prepare practice folde
 
 **If not:** Do not create a second PR; inspect the branch and existing PR with gh pr status.
 
-### 9. Review what GitHub received
+### 10. Review what GitHub received
 
 **Where:** Your computer
 

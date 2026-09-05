@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Review a one-GPU Slurm script, select the required GPU model, and set explicit
-CPU, memory, time, and log limits.
+Review a Slurm script that reserves one GPU accelerator on Euler, then set an explicit model, CPU, memory, time, account, and log plan without submitting it.
 
 ## Concept
 
-Dataset size does not prove multi-GPU scaling. An idle or CPU/I/O-bound GPU job
-wastes scarce shared resources, and a long interactive tunnel can remain
-allocated after useful work stops.
+A GPU is an accelerator used only by software written to perform GPU operations. Requesting a GPU reserves it even when the program is waiting on CPU, data, or configuration. One Slurm GPU request normally allocates one accelerator on a shared compute node, not the whole physical node.
+
+Start with one supported GPU and measured CPU, memory, and time. Use more GPUs only after a representative test proves that the program scales.
 
 ## Worked Example
 
@@ -31,7 +30,21 @@ Repair the unsafe one-GPU Slurm fixture locally and apply the lab starter limits
 
 **Follow these steps in order.** This is a review exercise. Do not run sbatch. Use one explicit GPU model and the es_fuge account.
 
-### 1. Prepare the GPU fixture
+### 1. Understand what a GPU request reserves
+
+**Where:** This browser
+
+A GPU accelerates only compatible code. A Slurm request such as rtx_4090:1 reserves one accelerator on a compute node; it does not prove that the program uses it efficiently and does not grant the whole node. CPU, memory, time, logs, and the project account are requested separately.
+
+- [Open the Euler GPU policy](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/euler-share.md)
+
+**Expected:** You can explain why the starter plan requests one explicit GPU plus measured supporting resources.
+
+**Continue when:** Review the synthetic GPU fixture.
+
+**If not:** Do not request multiple GPUs from dataset size or assumption alone.
+
+### 2. Prepare the GPU fixture
 
 **Where:** Your computer
 
@@ -43,7 +56,7 @@ Press Prepare practice folder, enter it, and open workspace/slurm/gpu_job.slurm.
 
 **If not:** Do not copy the unsafe fixture into a real project.
 
-### 2. Identify the unsafe request
+### 3. Identify the unsafe request
 
 **Where:** Your computer
 
@@ -55,7 +68,7 @@ Find the public account, forced partition, four-GPU request, 64 CPUs, 500 GiB me
 
 **If not:** Review the Euler GPU reference before editing.
 
-### 3. Choose one GPU model
+### 4. Choose one GPU model
 
 **Where:** Your computer
 
@@ -67,7 +80,7 @@ Use rtx_4090:1 by default. Use rtx_3090:1 when a 4090 is unavailable. Use pro_60
 
 **If not:** Do not submit duplicate jobs for several GPU models.
 
-### 4. Set the lab starter profile
+### 5. Set the lab starter profile
 
 **Where:** Your computer
 
@@ -90,7 +103,7 @@ Remove the partition line and the old --mem line. Replace the account, GPU, CPU,
 
 **If not:** Reduce the request or explain a measured reason before any live submission.
 
-### 5. Add output and error logs
+### 6. Add output and error logs
 
 **Where:** Your computer
 
@@ -110,7 +123,7 @@ Add the time and log directives below. %x expands to the job name and %j to its 
 
 **If not:** Do not rely on default Slurm output names for this starter.
 
-### 6. Review without submitting
+### 7. Review without submitting
 
 **Where:** Your computer
 

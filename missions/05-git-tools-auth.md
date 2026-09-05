@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Verify Git and GitHub CLI, sign in to the intended GitHub account, and set the
-commit identity used in the practice repository.
+Configure Git, the file-history program on your computer, and GitHub, the service that stores shared repositories and reviews. Verify the account and commit identity used by the practice repository.
 
 ## Concept
 
-Git records authorship, while GitHub authentication controls repository
-access. They are separate. A correct identity and a verified branch prevent
-misattributed commits and changes in the wrong location.
+Git is version-control software on your computer: it records file changes as commits. A repository is a project folder plus that history. GitHub stores a remote copy of a repository so people can share and review work. GitHub CLI is the `gh` terminal program used to sign in and perform GitHub actions.
+
+Git author identity and GitHub login are separate. Check both before changing a project so commits have the correct author and go to the intended repository and branch.
 
 ## Worked Example
 
@@ -30,7 +29,21 @@ Prepare the practice repository, verify Git and GitHub CLI, authenticate the int
 
 **Follow these steps in order.** Run one step at a time in the practice folder. Keep a working setup; repair only the check that fails.
 
-### 1. Prepare the Git practice folder
+### 1. Know what Git and GitHub do
+
+**Where:** This browser
+
+Git records versions of files on this computer. A repository is the project folder and its history; a branch keeps one line of work separate. GitHub stores the shared remote repository, and GitHub CLI is the gh terminal program used to sign in and perform GitHub actions.
+
+- [Open the Git workflow reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/git_workflow.md)
+
+**Expected:** You can distinguish Git on your computer from GitHub on the web.
+
+**Continue when:** Prepare the isolated practice repository.
+
+**If not:** Read the definitions before changing identity, login, branch, or remote settings.
+
+### 2. Prepare the Git practice folder
 
 **Where:** Your computer
 
@@ -42,7 +55,7 @@ Press Prepare practice folder in this step. Wait for the Passport to show one fo
 
 **If not:** Do not create or delete folders manually; run gh passport doctor.
 
-### 2. Check Git and GitHub CLI
+### 3. Check Git and GitHub CLI
 
 **Where:** Your computer
 
@@ -94,7 +107,7 @@ gh --version
 
 **If not:** Install only the missing tool from its official link, close the terminal, reopen it, and rerun this step.
 
-### 3. Check the GitHub account
+### 4. Check the GitHub account
 
 **Where:** Your computer
 
@@ -124,7 +137,7 @@ gh auth status --active --hostname github.com
 
 **If not:** If no account or the wrong account is shown, use the next step. Never put a token in a repository URL.
 
-### 4. Sign in only when needed
+### 5. Sign in only when needed
 
 **Where:** Your computer
 
@@ -170,7 +183,7 @@ gh auth status --active --hostname github.com
 
 **If not:** Stop before creating commits. Finish the browser login or use the help path for the exact error.
 
-### 5. Inspect your commit identity
+### 6. Inspect your commit identity
 
 **Where:** Your computer
 
@@ -203,7 +216,7 @@ git config --show-origin --get user.email
 
 **If not:** Set only the missing or incorrect values in the next step.
 
-### 6. Set identity only if needed
+### 7. Set identity only if needed
 
 **Where:** Your computer
 
@@ -259,7 +272,7 @@ git config --show-origin --get user.email
 
 **If not:** Do not continue with an empty identity; correct the value or request sanitized help.
 
-### 7. Students: verify your ETH email for GitHub Education
+### 8. Students: verify your ETH email for GitHub Education
 
 **Where:** This browser
 
@@ -273,11 +286,11 @@ Students: open GitHub email settings on the same account confirmed above. If a v
 
 **If not:** Continue the manual Git route while resolving email verification. Never submit mailbox codes to the Passport.
 
-### 8. Students: apply for GitHub Education
+### 9. Students: apply for GitHub Education
 
 **Where:** This browser
 
-Students: open Education benefits on the same account. This is where GitHub manages student verification and Student Developer Pack benefits. If GitHub already shows approved student benefits, keep them and skip the application. Otherwise select Start an application and submit only the proof requested through that GitHub page. Staff and learners who are not eligible skip this step. Approval may take time and does not block Git practice.
+GitHub Education is GitHub's student-verification program; approved accounts can see the current Student Developer Pack benefits. Students: open Education benefits on the same account. If GitHub already shows approved student benefits, keep them and skip the application. Otherwise select Start an application and submit only the proof requested through that GitHub page. Staff and learners who are not eligible skip this step. Approval may take time and does not block Git practice.
 
 - [Open GitHub Education benefits](https://github.com/settings/education/benefits)
 
@@ -289,7 +302,7 @@ Students: open Education benefits on the same account. This is where GitHub mana
 
 **If not:** Continue the manual Git route. Do not buy a product to pass this mission.
 
-### 9. Inspect repository, branch, and remote
+### 10. Inspect repository, branch, and remote
 
 **Where:** Your computer
 

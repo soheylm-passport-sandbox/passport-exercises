@@ -2,14 +2,19 @@
 
 ## Outcome
 
-Choose the correct place for code, durable data, temporary files, Windows GUI
-work, and scheduled computation.
+Learn what GitHub, the NAS, Blade, Euler, and temporary storage are, then choose the correct place for code, durable data, Windows GUI work, and scheduled computation.
 
 ## Concept
 
-Git is not a data archive, scratch is not a backup, a laptop is not a shared
-compute node, and an AI provider is not automatically approved for unpublished
-material. Correct placement prevents data loss, leakage, and blocked projects.
+A lab project normally uses several systems, each for a different purpose:
+
+- GitHub stores reviewed source code and small text files.
+- The IDEAL Lab NAS is durable shared storage for approved project data.
+- Blade is a shared remote Windows computer for licensed graphical software.
+- Euler is ETH Zurich's shared cluster for CPU and GPU programs submitted through the Slurm scheduler.
+- Scratch and temporary folders hold replaceable working files, not the only copy of a result.
+
+Choose a location from its purpose, owner, and retention rules, not from free disk space.
 
 ## Worked Example
 
@@ -35,7 +40,21 @@ Map code, durable data, temporary files, Windows GUI work, and scheduled compute
 
 **Follow these steps in order.** For each item, decide who owns it, how long it must survive, and where the work actually runs.
 
-### 1. Place source code
+### 1. Read the system map before placing files
+
+**Where:** This browser
+
+Identify the role of each location: GitHub for reviewed source code, NAS for durable shared project data, Blade for licensed Windows GUI work, Euler for scheduled computation, and scratch or temporary folders for replaceable working files.
+
+- [Open the complete system decision table](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/environments-overview.md)
+
+**Expected:** Each system has one clear purpose and temporary storage is not treated as durable.
+
+**Continue when:** Place source code first.
+
+**If not:** Do not answer from familiarity or free disk space; reread the decision table.
+
+### 2. Place source code
 
 **Where:** This browser
 
@@ -47,7 +66,7 @@ Keep source code and reviewable text in GitHub. Each contributor uses a separate
 
 **If not:** Move code collaboration out of a shared NAS checkout before continuing.
 
-### 2. Place durable project data
+### 3. Place durable project data
 
 **Where:** This browser
 
@@ -59,7 +78,7 @@ Use the supervisor-approved NAS project folder or another explicitly approved du
 
 **If not:** Ask the supervisor for the authoritative project location; do not invent one.
 
-### 3. Identify temporary storage
+### 4. Identify temporary storage
 
 **Where:** This browser
 
@@ -71,7 +90,7 @@ Use scratch, Blade D:, or another named temporary area only for replaceable work
 
 **If not:** Copy and verify the required data in durable storage before proceeding.
 
-### 4. Place Windows GUI work
+### 5. Place Windows GUI work
 
 **Where:** This browser
 
@@ -83,7 +102,7 @@ Use Blade for approved interactive Windows software such as CAD or pre/post-proc
 
 **If not:** Stop an unattended heavy workload and choose an approved compute system.
 
-### 5. Place scheduled computation
+### 6. Place scheduled computation
 
 **Where:** This browser
 
@@ -95,7 +114,7 @@ Use Euler compute nodes through Slurm for CPU or GPU computation. Login nodes ar
 
 **If not:** Do not run the workload directly on an Euler login node.
 
-### 6. Complete the placement map
+### 7. Complete the placement map
 
 **Where:** This browser
 

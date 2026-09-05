@@ -1,5 +1,5 @@
 {
-  "curriculum_version": "2.1.0",
+  "curriculum_version": "2.1.1",
   "missions": {
     "ai-agent-baseline": {
       "activity": {
@@ -301,13 +301,13 @@
           }
         ],
         "recipe": {
-          "intro": "Use the no-cost Copilot Student route if you are eligible. A personal paid service is optional and remains your financial responsibility.",
+          "intro": "An AI model, access provider, coding agent, and editor are separate parts. Identify them first. Use the no-cost Copilot Student route if eligible; any personal paid service remains your financial responsibility.",
           "steps": [
             {
               "commands": [],
               "expected": "You can name the role of every component in the chosen setup.",
               "id": "components",
-              "instruction": "Distinguish the model, provider or gateway, agent harness, interface, and tool protocol. For example, OpenRouter is a gateway; it is not the coding agent.",
+              "instruction": "Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the agent can read files or request tools; the editor or terminal is the interface; MCP or ACP may connect extra tools. For example, OpenRouter is a gateway, not the coding agent.",
               "links": [
                 {
                   "label": "Read agents and interfaces",
@@ -564,13 +564,13 @@
           }
         ],
         "recipe": {
-          "intro": "Blade is a shared Windows GUI workstation. Use P: for durable project data, D: for temporary work, and never C: or user folders for project storage.",
+          "intro": "Blade is the lab's shared remote Windows computer for licensed graphical software. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.",
           "steps": [
             {
               "commands": [],
               "expected": "Your task requires the shared Windows GUI environment.",
               "id": "purpose",
-              "instruction": "Use Blade for interactive licensed Windows software, CAD, pre/post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.",
+              "instruction": "Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP). Use it for interactive licensed Windows software, CAD, pre/post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.",
               "links": [],
               "machine": "browser",
               "on_failure": "Choose the appropriate compute or storage system instead.",
@@ -870,7 +870,7 @@
               "commands": [],
               "expected": "You have an approved private place for unique passwords and recovery codes, or you have requested installation help for a managed device.",
               "id": "password-manager",
-              "instruction": "Keep a working approved password manager if you already use one. Otherwise, on a personal computer follow ETH's KeePass guidance and use KeePassXC; on an ETH-managed device ask the responsible IT support before installing software. Do not store ETH passwords in an unapproved cloud-hosted vault.",
+              "instruction": "A password manager is an encrypted application for storing unique passwords and recovery information. Keep a working approved password manager if you already use one. Otherwise, on a personal computer follow ETH's KeePass guidance and use KeePassXC; on an ETH-managed device ask the responsible IT support before installing software. Do not store ETH passwords in an unapproved cloud-hosted vault.",
               "links": [
                 {
                   "label": "Read the ETH KeePass guidance",
@@ -1103,6 +1103,25 @@
           "steps": [
             {
               "commands": [],
+              "expected": "You can explain the Euler example without needing to know Slurm syntax.",
+              "id": "terms",
+              "instruction": "An incident is a suspected loss of confidentiality, access, control, or data. In the Euler example, a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.",
+              "links": [
+                {
+                  "label": "Read the incident and help procedure",
+                  "url": "../../../docs/core/incidents-and-help.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Read the definitions again; do not experiment on a real account or job.",
+              "on_success": "Continue using only the fictional scenarios.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Understand the incident examples"
+            },
+            {
+              "commands": [],
               "expected": "The exercise contains fictional values only.",
               "id": "fiction-only",
               "instruction": "Do not enter real names, account identifiers, logs, credentials, job output, or project details in this public learning record.",
@@ -1316,6 +1335,25 @@
                 "all"
               ],
               "title": "Check your operating system"
+            },
+            {
+              "commands": [],
+              "expected": "You can state in one sentence what GitHub, NAS, Blade, and Euler are used for.",
+              "id": "system-map",
+              "instruction": "Read the short system map. Git and GitHub manage code history and review. The NAS stores durable shared project data. Blade is a shared remote Windows computer for licensed graphical software. Euler is ETH Zurich's shared cluster for scheduled CPU and GPU computation. Later missions explain access; do not connect to any of them in this step.",
+              "links": [
+                {
+                  "label": "Open the laptop, NAS, Blade, and Euler map",
+                  "url": "../../../docs/core/environments-overview.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Read the linked system map before choosing or removing a responsibility.",
+              "on_success": "Review why each mission was assigned to you.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Recognize the systems named in your route"
             },
             {
               "commands": [],
@@ -1560,6 +1598,25 @@
         "recipe": {
           "intro": "For each item, decide who owns it, how long it must survive, and where the work actually runs.",
           "steps": [
+            {
+              "commands": [],
+              "expected": "Each system has one clear purpose and temporary storage is not treated as durable.",
+              "id": "system-map",
+              "instruction": "Identify the role of each location: GitHub for reviewed source code, NAS for durable shared project data, Blade for licensed Windows GUI work, Euler for scheduled computation, and scratch or temporary folders for replaceable working files.",
+              "links": [
+                {
+                  "label": "Open the complete system decision table",
+                  "url": "../../../docs/core/environments-overview.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not answer from familiarity or free disk space; reread the decision table.",
+              "on_success": "Place source code first.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Read the system map before placing files"
+            },
             {
               "commands": [],
               "expected": "Code has version history and no shared writable working tree.",
@@ -2516,7 +2573,7 @@
           }
         ],
         "recipe": {
-          "intro": "Run the steps on your own computer in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.",
+          "intro": "Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.",
           "steps": [
             {
               "commands": [],
@@ -2991,6 +3048,25 @@
           "intro": "Connect to Euler and reuse the job ID from the first-job mission. This mission does not submit another job.",
           "steps": [
             {
+              "commands": [],
+              "expected": "You can distinguish allocated resources from measured use.",
+              "id": "terms",
+              "instruction": "A Slurm request reserves CPUs, memory, and time before a job runs. sacct provides exact recorded fields; seff summarizes CPU and memory efficiency. Read both for the existing job before deciding what a future run should request.",
+              "links": [
+                {
+                  "label": "Open the Slurm accounting reference",
+                  "url": "../../../docs/reference/euler/slurm.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Return to the first-job mission; do not submit another job for this exercise.",
+              "on_success": "Connect and recover the existing job ID.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Distinguish requested and used resources"
+            },
+            {
               "commands": [
                 {
                   "command": "ssh euler",
@@ -3239,6 +3315,25 @@
           "steps": [
             {
               "commands": [],
+              "expected": "You can distinguish total task count from the maximum running at once.",
+              "id": "terms",
+              "instruction": "A job array creates many similar Slurm tasks from one script. The range sets total tasks; %N limits simultaneous tasks. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.",
+              "links": [
+                {
+                  "label": "Open the job-array lab",
+                  "url": "../../../docs/labs/euler-job-arrays.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not submit a real array until you can calculate its simultaneous resource total.",
+              "on_success": "Open the deliberately unsafe local fixture.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Understand an array and its concurrency cap"
+            },
+            {
+              "commands": [],
               "expected": "The unsafe fixture is open in the separate practice repository.",
               "id": "prepare",
               "instruction": "Press Prepare practice folder, enter it, and open workspace/slurm/array_job.slurm.txt.",
@@ -3449,6 +3544,25 @@
         "recipe": {
           "intro": "Run every Euler command on the same login node. The recipe stores one job ID in $HOME/passport-euler/first-job.id so it survives logout; never resubmit because a job is pending.",
           "steps": [
+            {
+              "commands": [],
+              "expected": "You can distinguish the login node from the compute node and state what sbatch, squeue, sacct, and seff do.",
+              "id": "terms",
+              "instruction": "SSH opens an Euler login node for file and job management. Slurm schedules actual computation on a compute node. sbatch submits one batch script, squeue shows active jobs, sacct reports recorded state and resources, and seff summarizes efficiency. All four commands use the same numeric job ID.",
+              "links": [
+                {
+                  "label": "Open the Slurm command reference",
+                  "url": "../../../docs/reference/euler/slurm.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not run a workload until the login-node and compute-node roles are clear.",
+              "on_success": "Connect to the login node.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Know where an Euler job runs"
+            },
             {
               "commands": [
                 {
@@ -3735,6 +3849,25 @@
           "steps": [
             {
               "commands": [],
+              "expected": "You can explain why the starter plan requests one explicit GPU plus measured supporting resources.",
+              "id": "terms",
+              "instruction": "A GPU accelerates only compatible code. A Slurm request such as rtx_4090:1 reserves one accelerator on a compute node; it does not prove that the program uses it efficiently and does not grant the whole node. CPU, memory, time, logs, and the project account are requested separately.",
+              "links": [
+                {
+                  "label": "Open the Euler GPU policy",
+                  "url": "../../../docs/policy/euler-share.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not request multiple GPUs from dataset size or assumption alone.",
+              "on_success": "Review the synthetic GPU fixture.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Understand what a GPU request reserves"
+            },
+            {
+              "commands": [],
               "expected": "The deliberately unsafe GPU script is open locally.",
               "id": "prepare",
               "instruction": "Press Prepare practice folder, enter it, and open workspace/slurm/gpu_job.slurm.txt.",
@@ -3973,6 +4106,25 @@
         "recipe": {
           "intro": "Your laptop environment and Euler environment are separate. Run these steps on Euler after the SSH mission prints config-ok. This exercise creates no Slurm job and installs no project package.",
           "steps": [
+            {
+              "commands": [],
+              "expected": "You know why a laptop environment is not copied to Euler and why a job script activates its own environment.",
+              "id": "terms",
+              "instruction": "Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python packages. Both must be selected again inside each submitted batch job.",
+              "links": [
+                {
+                  "label": "Read the Euler Python environment reference",
+                  "url": "../../../docs/reference/euler/python-environments.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Return to the local Python environment mission before creating another environment.",
+              "on_success": "Connect to Euler with the tested alias.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Separate laptop and Euler software"
+            },
             {
               "commands": [
                 {
@@ -4310,6 +4462,25 @@
           "steps": [
             {
               "commands": [],
+              "expected": "You can identify which locations survive, which are shared, and which are temporary.",
+              "id": "terms",
+              "instruction": "Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Only the named durable location is authoritative.",
+              "links": [
+                {
+                  "label": "Open the Euler storage reference",
+                  "url": "../../../docs/reference/euler/storage.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not place the only copy of a result in scratch or TMPDIR.",
+              "on_success": "Record the code revision for the fictional run.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Know the Euler storage areas"
+            },
+            {
+              "commands": [],
               "expected": "The run plan names one exact commit and a clean or explicitly described source state.",
               "id": "revision",
               "instruction": "Use a reviewed Git commit as the code identifier. A commit hash records provenance but does not freeze later edits to an active checkout.",
@@ -4495,6 +4666,25 @@
         "recipe": {
           "intro": "Do this mission without an AI agent. Use the exact practice folder and commands prepared by the Passport.",
           "steps": [
+            {
+              "commands": [],
+              "expected": "You can name the order: edit, diff, stage, commit, push, pull request.",
+              "id": "terms",
+              "instruction": "Edit a file in the working tree, inspect the diff, stage only the reviewed file, record it as a commit, push the branch to GitHub, then open a pull request for review. A draft pull request is visible but explicitly not ready to merge.",
+              "links": [
+                {
+                  "label": "Read the beginner Git workflow",
+                  "url": "../../../onboarding_IT_guides/git_workflow.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not use an IDE button or agent to skip a step you cannot yet identify.",
+              "on_success": "Open the prepared practice folder.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Learn the manual Git change path"
+            },
             {
               "commands": [],
               "expected": "The terminal is at the root of the practice repository.",
@@ -4811,6 +5001,25 @@
           "steps": [
             {
               "commands": [],
+              "expected": "You can distinguish Git on your computer from GitHub on the web.",
+              "id": "terms",
+              "instruction": "Git records versions of files on this computer. A repository is the project folder and its history; a branch keeps one line of work separate. GitHub stores the shared remote repository, and GitHub CLI is the gh terminal program used to sign in and perform GitHub actions.",
+              "links": [
+                {
+                  "label": "Open the Git workflow reference",
+                  "url": "../../../onboarding_IT_guides/git_workflow.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Read the definitions before changing identity, login, branch, or remote settings.",
+              "on_success": "Prepare the isolated practice repository.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Know what Git and GitHub do"
+            },
+            {
+              "commands": [],
               "expected": "The Passport reports a ready practice folder.",
               "id": "prepare",
               "instruction": "Press Prepare practice folder in this step. Wait for the Passport to show one folder path and one practice branch. Run the displayed enter-folder command and keep this terminal in that folder.",
@@ -5025,7 +5234,7 @@
               "commands": [],
               "expected": "Eligible students see approved benefits or a pending application. Staff and other ineligible learners skip this student-only step.",
               "id": "education-application",
-              "instruction": "Students: open Education benefits on the same account. This is where GitHub manages student verification and Student Developer Pack benefits. If GitHub already shows approved student benefits, keep them and skip the application. Otherwise select Start an application and submit only the proof requested through that GitHub page. Staff and learners who are not eligible skip this step. Approval may take time and does not block Git practice.",
+              "instruction": "GitHub Education is GitHub's student-verification program; approved accounts can see the current Student Developer Pack benefits. Students: open Education benefits on the same account. If GitHub already shows approved student benefits, keep them and skip the application. Otherwise select Start an application and submit only the proof requested through that GitHub page. Staff and learners who are not eligible skip this step. Approval may take time and does not block Git practice.",
               "links": [
                 {
                   "label": "Open GitHub Education benefits",
@@ -5171,6 +5380,25 @@
         "recipe": {
           "intro": "You need the supervisor's first name and explicit permission first. Never test access at the NAS root or in another person's folder.",
           "steps": [
+            {
+              "commands": [],
+              "expected": "You can distinguish durable NAS project data from local, GitHub, and temporary storage.",
+              "id": "terms",
+              "instruction": "NAS means network-attached storage. It is the lab's durable shared project drive reached over the ETH network. It is not inside your laptop, not a general folder open to everyone, and not the place to run high-I/O Euler jobs directly.",
+              "links": [
+                {
+                  "label": "Open the NAS reference",
+                  "url": "../../../onboarding_IT_guides/nas_ideal.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not mount or probe a guessed folder.",
+              "on_success": "Ask for the exact approved project folder.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Know what the NAS is"
+            },
             {
               "commands": [],
               "expected": "You know the supervisor first name, your short ETH username, and who owns the project data.",
@@ -5426,6 +5654,25 @@
         "recipe": {
           "intro": "Do not install packages into base or the system Python. Keep an existing .venv until you have identified what it contains.",
           "steps": [
+            {
+              "commands": [],
+              "expected": "You can distinguish the versioned environment.yml definition from the local .venv installation.",
+              "id": "terms",
+              "instruction": "Python is run by an interpreter. Packages add reusable code. A project environment keeps one interpreter and package set separate from other projects. Conda manages the environment; Miniforge provides Conda; environment.yml records what to recreate; .venv is the local environment folder used in this mission.",
+              "links": [
+                {
+                  "label": "Open the Python setup reference",
+                  "url": "../../../onboarding_IT_guides/python_setup.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Do not install packages globally or into base until the terms are clear.",
+              "on_success": "Prepare the Python practice folder.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Know what the Python environment contains"
+            },
             {
               "commands": [],
               "expected": "The practice repository and practice branch are active.",
@@ -6755,54 +7002,63 @@
   ],
   "responsibilities": {
     "ai_agents": {
+      "description": "Select this if an AI tool may read, edit, or run commands in a lab repository. Ordinary chatbot use outside lab work is not part of this track.",
       "title": "Use AI coding agents on lab work",
       "tracks": [
         "ai_agents"
       ]
     },
     "blade": {
+      "description": "Select this if you need the lab's shared remote Windows computer for licensed graphical engineering software such as CAD or pre/post-processing.",
       "title": "Use the IDEAL Lab Blade server",
       "tracks": [
         "blade"
       ]
     },
     "data_steward": {
+      "description": "Select this if you decide where shared datasets, checkpoints, results, or handover records belong, or who may access them.",
       "title": "Organize shared research data and results",
       "tracks": [
         "data_steward"
       ]
     },
     "euler_cpu": {
+      "description": "Select this for programs that should run on Euler, ETH Zurich's shared research-computing cluster, using CPUs rather than a GPU.",
       "title": "Run CPU computation on Euler",
       "tracks": [
         "euler_cpu"
       ]
     },
     "euler_gpu": {
+      "description": "Select this for programs that have been written and tested to use a GPU on Euler. The CPU track is added first because access and job control are shared.",
       "title": "Run GPU computation on Euler",
       "tracks": [
         "euler_gpu"
       ]
     },
     "git": {
+      "description": "Select this if you will change code or documentation shared on GitHub. Git records file versions; GitHub stores the shared repository and its reviews.",
       "title": "Modify or review files through GitHub",
       "tracks": [
         "git"
       ]
     },
     "nas": {
+      "description": "Select this if you need the lab's durable shared network drive for approved project datasets, checkpoints, results, or deliverables.",
       "title": "Use the IDEAL Lab NAS for project data",
       "tracks": [
         "nas"
       ]
     },
     "python": {
+      "description": "Select this if you will run or edit Python code. You will learn to keep each project's packages in a separate reproducible environment.",
       "title": "Develop or run Python projects",
       "tracks": [
         "python"
       ]
     },
     "supervisor": {
+      "description": "Select this if you assign onboarding routes, approve access, own research data, or organize handover and offboarding.",
       "title": "Approve access or supervise researchers",
       "tracks": [
         "supervisor"

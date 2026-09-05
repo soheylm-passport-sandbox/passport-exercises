@@ -2,13 +2,13 @@
 
 ## Outcome
 
-Reproduce a bug, add a regression test, make the smallest fix, rerun the tests,
-and inspect the diff.
+Use a Python test to reproduce a small bug, add a regression check, make the smallest fix, rerun all declared tests, and inspect the Git diff.
 
 ## Concept
 
-“It works on my machine” is not research evidence. Code, dependencies, inputs,
-configuration, tests, and relevant versions must be identifiable.
+A reproducible change can be checked again by another person from the recorded code, dependencies, inputs, configuration, and command. A test is code that checks an expected behavior and reports success or failure.
+
+For a bug fix, first run a test that exposes the missing behavior, then change the implementation, rerun all declared tests, and review the Git diff. “It works on my machine” alone is not evidence.
 
 ## Worked Example
 

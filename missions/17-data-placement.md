@@ -7,9 +7,9 @@ compute location, and retention.
 
 ## Concept
 
-A file can be accessible without being durable, approved, backed up, or safe to
-share. Multiple undocumented copies create ambiguity about which one is
-authoritative and which rules apply.
+Research data includes source measurements, derived datasets, checkpoints, logs, results, and records needed to understand the work. The authoritative copy is the named version the project treats as correct; other copies are working, transfer, cache, or backup copies.
+
+A file can be accessible without being durable, approved, backed up, or safe to share. Choose its location from sensitivity, owner, collaborators, compute needs, retention, and deletion rules.
 
 ## Worked Example
 

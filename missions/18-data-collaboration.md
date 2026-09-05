@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Plan shared-data access without using one shared Git working tree or broad file
-permissions.
+Plan shared-data access while keeping a separate Git project folder, or working tree, for each developer and avoiding broad file permissions.
 
 ## Concept
 
-A shared Git working tree mixes branches, indexes, uncommitted files, and file
-ownership between users. Shared datasets, checkpoints, logs, and results need a
-different permission and lifecycle design.
+Code and data are shared differently. Each developer uses a separate Git clone for code and exchanges reviewed changes through GitHub. A Git working tree is the checked-out project folder, including its current branch, staged changes, and uncommitted edits; sharing one writable tree mixes those states and file ownership between people.
+
+Datasets, checkpoints, logs, and results instead use an approved shared data location with a named owner, limited permissions, write boundaries, versioning, and cleanup rules.
 
 ## Worked Example
 

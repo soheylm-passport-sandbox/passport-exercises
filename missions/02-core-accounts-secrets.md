@@ -7,9 +7,9 @@ material, and respond correctly to credential exposure.
 
 ## Concept
 
-Commands run under your identity. A leaked token or private key may provide
-access to private repositories, research data, or shared compute even when no
-password was disclosed.
+An account is your personal identity on a service. A credential, such as a password, token, private key, or recovery code, proves that identity and must not be shared. A password manager is an encrypted application for storing unique passwords and recovery information.
+
+Commands and automated tools run under your identity. A leaked credential may provide access to private repositories, research data, or shared compute even when your password was not disclosed.
 
 ## Worked Example
 
@@ -35,7 +35,7 @@ Set up the minimum account protections, learn what may never be submitted, then 
 
 **Where:** This browser
 
-Keep a working approved password manager if you already use one. Otherwise, on a personal computer follow ETH's KeePass guidance and use KeePassXC; on an ETH-managed device ask the responsible IT support before installing software. Do not store ETH passwords in an unapproved cloud-hosted vault.
+A password manager is an encrypted application for storing unique passwords and recovery information. Keep a working approved password manager if you already use one. Otherwise, on a personal computer follow ETH's KeePass guidance and use KeePassXC; on an ETH-managed device ask the responsible IT support before installing software. Do not store ETH passwords in an unapproved cloud-hosted vault.
 
 - [Read the ETH KeePass guidance](https://unlimited.ethz.ch/help/security/passwort-manager-keepass)
 

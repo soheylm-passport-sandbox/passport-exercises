@@ -2,14 +2,13 @@
 
 ## Outcome
 
-Plan an Euler run with an exact code revision, immutable inputs, temporary
-work, durable outputs, environment metadata, and identifiable logs.
+Choose among Euler home, shared work, scratch, and job-temporary storage, then record enough code, input, environment, command, output, and log information to reproduce a run.
 
 ## Concept
 
-`$SCRATCH` is not a backup and `$TMPDIR` disappears with the job. Slurm captures
-the batch script, not every external code, configuration, model, or input file
-it references.
+Euler provides several storage areas. `$HOME` is small private storage for code and configuration. `/cluster/work/fuge` is shared working storage for approved lab projects. `$SCRATCH` is temporary high-throughput storage, and `$TMPDIR` exists only on the compute node during one job.
+
+A reproducible run records the code revision, environment, inputs, configuration, command, logs, and durable output location. Neither scratch storage nor the submitted Slurm script alone preserves all of that information.
 
 ## Worked Example
 
@@ -30,7 +29,21 @@ Apply the reproducible-run sequence to a fictional Euler job before deciding whe
 
 **Follow these steps in order.** Use the fictional scenario. Choose locations by ownership and durability, not convenience.
 
-### 1. Record the code revision
+### 1. Know the Euler storage areas
+
+**Where:** This browser
+
+Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Only the named durable location is authoritative.
+
+- [Open the Euler storage reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/storage.md)
+
+**Expected:** You can identify which locations survive, which are shared, and which are temporary.
+
+**Continue when:** Record the code revision for the fictional run.
+
+**If not:** Do not place the only copy of a result in scratch or TMPDIR.
+
+### 2. Record the code revision
 
 **Where:** This browser
 
@@ -42,7 +55,7 @@ Use a reviewed Git commit as the code identifier. A commit hash records provenan
 
 **If not:** Do not call an uncommitted changing checkout reproducible.
 
-### 2. Freeze input identity
+### 3. Freeze input identity
 
 **Where:** This browser
 
@@ -54,7 +67,7 @@ Place approved durable inputs in project storage and record a version or checksu
 
 **If not:** Stop if a pending job points to files that collaborators may overwrite.
 
-### 3. Use scratch only for replaceable work
+### 4. Use scratch only for replaceable work
 
 **Where:** This browser
 
@@ -66,7 +79,7 @@ Use Euler scratch for high-throughput temporary files that can be rebuilt. Do no
 
 **If not:** Copy and verify irreplaceable output in approved durable storage.
 
-### 4. Name durable outputs and ownership
+### 5. Name durable outputs and ownership
 
 **Where:** This browser
 
@@ -78,7 +91,7 @@ Assign durable results to an approved Euler project/work location or NAS project
 
 **If not:** Ask the project owner before inventing a durable location.
 
-### 5. Record the environment
+### 6. Record the environment
 
 **Where:** This browser
 
@@ -90,7 +103,7 @@ Record modules, environment definition, application version, configuration, and 
 
 **If not:** Do not rely on an undocumented interactive shell history.
 
-### 6. Keep identifiable logs
+### 7. Keep identifiable logs
 
 **Where:** This browser
 
@@ -102,7 +115,7 @@ Use run-specific log names containing the job ID and retain the useful logs with
 
 **If not:** Correct colliding or ambiguous log paths first.
 
-### 7. Complete the run plan
+### 8. Complete the run plan
 
 **Where:** This browser
 
