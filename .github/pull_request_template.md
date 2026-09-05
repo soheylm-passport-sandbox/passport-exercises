@@ -6,7 +6,7 @@
 
 ## Changes
 
-<!-- List only the evidence and bounded exercise files changed. -->
+<!-- List only the evidence and exercise files changed. -->
 
 ## Verification
 
@@ -19,6 +19,6 @@ automated or AI-generated result as personal verification. -->
 
 ## AI Assistance
 
-<!-- State `none` or identify the bounded task, service category, files shared,
+<!-- State `none` or identify the specific task, service category, files shared,
 and human review performed. Never include credentials, billing data, protected
 research material, or a full transcript. -->

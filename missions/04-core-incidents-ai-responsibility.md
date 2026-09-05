@@ -2,9 +2,8 @@
 
 ## Outcome
 
-You can stop unsafe activity, contain impact, preserve useful evidence, report
-through the correct path, and remain responsible for commands suggested by
-software or AI agents.
+Stop and report an IT incident safely, and understand who is responsible for
+actions performed by AI tools or automation.
 
 ## Concept
 
@@ -16,7 +15,7 @@ is not proof that a command ran or a result is correct.
 
 The answer preserves evidence, contains risk, uses the private reporting path, and leaves accountability with a person.
 
-A correct example uses these decisions:
+Check these points:
 
 - **Put the first incident-response actions in order.** Stop the risky action and preserve evidence. -> Contain or revoke what can cause further harm. -> Report through the private incident path. -> Document verified facts and follow-up.
 - **Who owns an action taken by an AI coding agent?** The person who authorized and reviewed the action.
@@ -29,16 +28,95 @@ Trying to make the incident look harmless before preserving evidence or notifyin
 
 ## Your Action
 
-Resolve four fictional scenarios covering incident order, AI accountability, an
-uncontrolled Euler job, and lost scratch data.
+Practise a safe incident response and confirm who remains responsible for automated actions.
 
-The passport presents the structured questions and required confirmation in the
+**Follow these steps in order.** Use only the fictional scenarios below. If one resembles a current event, leave the exercise and use the private incident path.
+
+### 1. Confirm the scenario is fictional
+
+**Where:** This browser
+
+Do not enter real names, account identifiers, logs, credentials, job output, or project details in this public learning record.
+
+**Expected:** The exercise contains fictional values only.
+
+**Continue when:** Continue with the response order.
+
+**If not:** Stop the exercise and open the real incident procedure.
+
+### 2. Stop the risky action
+
+**Where:** This browser
+
+Stop the known harmful action without destroying evidence. For a runaway Euler job, record its job ID and cancel that job.
+
+- [Choose the correct private incident route](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md)
+
+**Expected:** The immediate harmful action has stopped.
+
+**Continue when:** Verify the stopped state.
+
+**If not:** Stop trying to fix it alone. Use the linked incident procedure to send a private report to your supervisor or lab IT, ETH cyber incident support, or ETH HPC support.
+
+### 3. Verify containment
+
+**Where:** This browser
+
+Check the affected service directly. Examples include confirming a token is revoked or using squeue or sacct to confirm a job stopped.
+
+- [Choose the correct private incident route](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md)
+
+**Expected:** The service reports the contained state.
+
+**Continue when:** Continue to reporting.
+
+**If not:** Do not assume containment. Preserve the observed facts and use the linked private incident route.
+
+### 4. Identify the private reporting route
+
+**Where:** This browser
+
+For each fictional scenario, use the linked procedure to identify who you would contact: your supervisor or lab IT for lab projects, NAS, or research data; ETH cyber incident support for stolen credentials, phishing, malware, or attacks; ETH HPC support for Euler service or account problems that contain no confidential research content. Do not send a real report for a fictional scenario. Public Passport PRs and issues are never incident channels.
+
+- [Open the incident and help procedure](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md)
+
+**Expected:** You can name the correct private recipient for each fictional scenario without contacting that recipient.
+
+**Continue when:** Continue to the accountability question.
+
+**If not:** Use the linked decision list. If this is a real event, leave the exercise and report it privately; do not put its details in the Passport.
+
+### 5. Keep a person accountable
+
+**Where:** This browser
+
+The person who authorizes and reviews an AI or automation action remains responsible for its commands, changes, publication, and consequences.
+
+**Expected:** A named person owns every automated action.
+
+**Continue when:** Continue to the scenarios.
+
+**If not:** Stop automation that has no accountable reviewer.
+
+### 6. Complete the scenarios
+
+**Where:** This browser
+
+Put the response actions in order and answer the accountability questions.
+
+**Expected:** Every safety-critical scenario follows the documented order.
+
+**Continue when:** Run Check my work.
+
+**If not:** Use the feedback and retry with fictional information only.
+
+The Passport presents the questions and required confirmation in the
 browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
 Use **Check my work** before submitting. The local verifier checks only the
-bounded activity named above. A score of 100% is required, and every
+mission activity above. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 

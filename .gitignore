@@ -27,7 +27,7 @@ outputs/
 *.pt
 *.pth
 
-# The launcher writes bounded public receipts here, never temporary drafts.
+# The launcher writes only declared public receipts here, never temporary drafts.
 submissions/*.tmp
 
 # The visible Git practice clone is separate from managed transport.

@@ -1,4 +1,4 @@
-# Bounded Agent Task
+# One-File Agent Task
 
 This is an intentionally incorrect fictional storage plan. It contains no
 research data and is safe to share with an approved training agent.

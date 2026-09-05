@@ -2,8 +2,8 @@
 
 ## Outcome
 
-You can connect a small behavior change to a regression test, run the declared
-checks, inspect the diff, and explain how another contributor reproduces it.
+Reproduce a bug, add a regression test, make the smallest fix, rerun the tests,
+and inspect the diff.
 
 ## Concept
 
@@ -14,7 +14,7 @@ configuration, tests, and relevant versions must be identifiable.
 
 The hidden behavior check and the visible tests pass without committing the environment or generated files.
 
-A correct example uses these decisions:
+Check these points:
 
 - **When may you record that tests passed?** After you personally ran the named test command and observed success.
 - **What belongs in the commit?** Source, tests, and declared dependencies needed to reproduce the change.
@@ -25,39 +25,213 @@ Accepting a passing command from an agent without personally running it in the i
 
 ## Your Action
 
-Correct the bounded Python function, add the missing test, run the project test suite inside .venv, and review the diff.
+Reproduce a Python bug, add a regression test, make the smallest fix, and rerun the tests in the project Conda environment.
 
-**windows / powershell**
+**Follow these steps in order.** A test must fail for the missing behavior before the implementation is changed, then pass after the correction.
+
+### 1. Open the Python fixture
+
+**Where:** Your computer
+
+Press Prepare practice folder in this step and run the displayed enter-folder command. Then activate ./.venv and move to workspace/python_project with the command below.
+
+**Run on Windows - PowerShell:**
 
 ```powershell
-.\\.venv\\Scripts\\python.exe -m unittest discover -s tests -v
+conda activate ./.venv
+cd workspace/python_project
 ```
 
-Expected: The visible project tests pass in the project environment.
-
-**macos / zsh**
+**Run on macOS - zsh:**
 
 ```zsh
-./.venv/bin/python -m unittest discover -s tests -v
+conda activate ./.venv
+cd workspace/python_project
 ```
 
-Expected: The visible project tests pass in the project environment.
-
-**linux / bash**
+**Run on Linux - Bash:**
 
 ```bash
-./.venv/bin/python -m unittest discover -s tests -v
+conda activate ./.venv
+cd workspace/python_project
 ```
 
-Expected: The visible project tests pass in the project environment.
+**Expected:** The terminal is in workspace/python_project and uses the project environment.
 
-The passport presents the structured questions and required confirmation in the
+**Continue when:** Run the unchanged baseline.
+
+**If not:** Return to the environment mission; do not use a different Python.
+
+### 2. Run the baseline test
+
+**Where:** Your computer
+
+Run the complete declared test command before editing.
+
+**Run on Windows - PowerShell:**
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+**Run on macOS - zsh:**
+
+```zsh
+python -m unittest discover -s tests -v
+```
+
+**Run on Linux - Bash:**
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+**Expected:** The existing one-CPU test passes.
+
+**Continue when:** Read the source and existing test.
+
+**If not:** Stop and repair the environment or baseline before changing code.
+
+### 3. Explain the missing behavior
+
+**Where:** Your computer
+
+Read passport_example.py and tests/test_passport_example.py. Work out the expected total for four CPUs at 3 GiB per CPU.
+
+**Expected:** You expect 12 GiB and can explain why the current function returns the wrong value.
+
+**Continue when:** Add the regression test first.
+
+**If not:** Re-read the function inputs and do not edit by trial and error.
+
+### 4. Add and run the regression test
+
+**Where:** Your computer
+
+Open tests/test_passport_example.py. Add the shown method inside the TotalMemoryTests class, save the file, then run the suite before fixing the function.
+
+**Put this in the named Python file:**
+
+```python
+def test_multiple_cpus(self) -> None:
+    self.assertEqual(total_memory_gib(4, 3), 12)
+```
+
+**Run on Windows - PowerShell:**
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+**Run on macOS - zsh:**
+
+```zsh
+python -m unittest discover -s tests -v
+```
+
+**Run on Linux - Bash:**
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+**Expected:** The new test fails for the expected 3-versus-12 behavior.
+
+**Continue when:** Make the smallest implementation fix.
+
+**If not:** If the test passes or fails for another reason, correct the test before editing the implementation.
+
+### 5. Correct the implementation
+
+**Where:** Your computer
+
+Open passport_example.py. Keep the existing input validation and replace only the current return line with the line shown below.
+
+**Put this in the named Python file:**
+
+```python
+return cpus * memory_per_cpu_gib
+```
+
+**Expected:** The function returns the total while invalid non-positive inputs still raise ValueError.
+
+**Continue when:** Run the complete suite again.
+
+**If not:** Revert only the mistaken edit in your editor and return to the failing test.
+
+### 6. Run the complete tests
+
+**Where:** Your computer
+
+Run the same declared command in the same activated environment.
+
+**Run on Windows - PowerShell:**
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+**Run on macOS - zsh:**
+
+```zsh
+python -m unittest discover -s tests -v
+```
+
+**Run on Linux - Bash:**
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+**Expected:** All visible tests pass.
+
+**Continue when:** Review repository state and diff.
+
+**If not:** Read the first failing traceback and fix its cause; do not delete or weaken a test.
+
+### 7. Review the reproducible change
+
+**Where:** Your computer
+
+Confirm that only source and tests changed, no environment or cache is tracked, and the diff has no whitespace errors.
+
+**Run on Windows - PowerShell:**
+
+```powershell
+git status --short
+git diff --check
+git diff -- workspace/python_project
+```
+
+**Run on macOS - zsh:**
+
+```zsh
+git status --short
+git diff --check
+git diff -- workspace/python_project
+```
+
+**Run on Linux - Bash:**
+
+```bash
+git status --short
+git diff --check
+git diff -- workspace/python_project
+```
+
+**Expected:** The diff contains the intended source and regression test only.
+
+**Continue when:** Run Check my work.
+
+**If not:** Remove generated files from the change and review again.
+
+The Passport presents the questions and required confirmation in the
 browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
 Use **Check my work** before submitting. The local verifier checks only the
-bounded activity named above. A score of 80% is required, and every
+mission activity above. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -70,7 +244,7 @@ packages merely to make the check green.
 Useful references:
 
 - [Reproducible Python](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/reproducible-python.md)
-- [Code Contributor](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/tracks/code-contributor.md)
+- [Code contributor track](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/tracks/code-contributor.md)
 
 ## Understand Before Accepting AI Output
 

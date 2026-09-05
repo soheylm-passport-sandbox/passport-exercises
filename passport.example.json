@@ -1,6 +1,6 @@
 {
   "assessment_branch": "onboarding/your-github-username",
-  "curriculum_version": "2.0.0",
+  "curriculum_version": "2.1.0",
   "fork_repository": "YOUR-GITHUB-USERNAME/passport-exercises",
   "github_user": "YOUR-GITHUB-USERNAME",
   "missions": [
@@ -12,9 +12,8 @@
     "git-manual-pr",
     "python-environment",
     "python-reproducible-change",
-    "ai-tool-configuration",
-    "ai-agent-baseline",
     "euler-access-ssh",
+    "euler-python-environment",
     "euler-cpu-first-job",
     "euler-cpu-accounting",
     "euler-cpu-arrays",
@@ -26,7 +25,9 @@
     "data-handover",
     "blade-access-storage",
     "supervisor-onboarding",
-    "supervisor-offboarding"
+    "supervisor-offboarding",
+    "ai-tool-configuration",
+    "ai-agent-baseline"
   ],
   "platform": "linux",
   "responsibilities": [

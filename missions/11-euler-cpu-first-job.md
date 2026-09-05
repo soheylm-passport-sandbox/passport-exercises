@@ -1,0 +1,338 @@
+# Mission: Submit And Control A Tiny Euler CPU Job
+
+## Outcome
+
+Submit one tiny CPU job through Slurm, track it with `squeue`, inspect it with
+`sacct` and `seff`, and verify its output.
+
+## Concept
+
+Euler login nodes are shared control points. Resource-intensive programs belong
+in Slurm allocations, where CPU, memory, time, logs, and ownership are explicit.
+
+## Worked Example
+
+The job completes on a compute node with one CPU, 1 GiB per CPU, no GPU, a zero
+exit code, and logs named with its job ID.
+
+Check these points:
+
+- **Where does the actual computation run?** On a Slurm-allocated compute node.
+- **The job is absent from squeue. What next?** Use sacct and inspect the job logs; it may already have finished.
+
+## Common Trap
+
+Running work on the login node, resubmitting because squeue is empty, or losing the job ID before checking sacct.
+
+## Your Action
+
+Create one small Python CPU batch script, inspect it, submit it once, and verify its queue, accounting, environment, efficiency, and output.
+
+**Follow these steps in order.** Run every Euler command on the same login node. The recipe stores one job ID in $HOME/passport-euler/first-job.id so it survives logout; never resubmit because a job is pending.
+
+### 1. Connect to Euler
+
+**Where:** Your computer
+
+From your local terminal, connect with the tested euler alias. The prompt should change to an Euler login node.
+
+**Run on Windows - PowerShell:**
+
+```powershell
+ssh euler
+```
+
+**Run on macOS - zsh:**
+
+```zsh
+ssh euler
+```
+
+**Run on Linux - Bash:**
+
+```bash
+ssh euler
+```
+
+**Expected:** The shell prompt is on an Euler login node.
+
+**Continue when:** Confirm the login-node context and lab share.
+
+**If not:** Return to the SSH mission; do not use password fallback as a tunnel workaround.
+
+### 2. Confirm the login node and account
+
+**Where:** Euler login node
+
+Run these read-only checks on Euler before creating a job. The host must be a login node and my_share_info must list es_fuge.
+
+**Run on Euler - Bash:**
+
+```bash
+hostname
+my_share_info
+```
+
+**Expected:** The hostname is an Euler login node and es_fuge appears in your share information.
+
+**Continue when:** Create the small job script.
+
+**If not:** Stop if es_fuge is absent. Do not guess another account; use the access help path.
+
+### 3. Create and inspect the job script
+
+**Where:** Euler login node
+
+Create the expected script in your home training folder without overwriting an existing different file. The script establishes its Python environment inside the job. If the same script already exists after an interrupted session, reuse it. Validate Bash syntax and print it before submission.
+
+**Run on Euler - Bash:**
+
+<!-- passport-snippet:euler-cpu-tiny-request -->
+```bash
+(
+set -eu
+work_dir="$HOME/passport-euler"
+script="$work_dir/first-job.slurm"
+mkdir -p "$work_dir/logs"
+tmp="$(mktemp "$work_dir/.first-job.XXXXXX")"
+trap 'if [ -n "${tmp:-}" ]; then rm -f "$tmp"; fi' EXIT
+cat > "$tmp" <<'EOF'
+#!/usr/bin/env bash
+#SBATCH --job-name=passport-cpu
+#SBATCH --account=es_fuge
+#SBATCH --time=00:02:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=1G
+#SBATCH --output=logs/%x_%j.out
+#SBATCH --error=logs/%x_%j.err
+
+set -euo pipefail
+module purge
+module load stack/2024-06 python/3.11.6
+venv="$HOME/passport-euler/venvs/passport-python"
+[ -x "$venv/bin/python" ] || {
+  printf 'STOP: complete the Euler Python environment mission first.\n' >&2
+  exit 1
+}
+. "$venv/bin/activate"
+python - <<'PYTHON'
+import os
+import pathlib
+import platform
+import socket
+import sys
+
+expected = pathlib.Path.home() / "passport-euler" / "venvs" / "passport-python"
+if pathlib.Path(sys.prefix) != expected or platform.python_version() != "3.11.6":
+    raise SystemExit("STOP: unexpected Python environment")
+print(f"job_id={os.environ['SLURM_JOB_ID']}")
+print(f"host={socket.gethostname()}")
+print(f"cpus={os.environ['SLURM_CPUS_PER_TASK']}")
+print("python_environment=passport-python")
+for number in range(1, 6):
+    print(f"{number} squared is {number * number}")
+PYTHON
+EOF
+if [ -e "$script" ]; then
+  cmp -s "$tmp" "$script" || {
+    printf 'STOP: %s already exists with different content.\n' "$script" >&2
+    exit 1
+  }
+  printf 'existing-script-ok\n'
+else
+  mv "$tmp" "$script"
+  tmp=''
+  printf 'created-script-ok\n'
+fi
+cd "$work_dir"
+bash -n first-job.slurm
+sed -n '1,100p' first-job.slurm
+)
+```
+<!-- /passport-snippet:euler-cpu-tiny-request -->
+
+**Expected:** The command prints created-script-ok or existing-script-ok, then shows es_fuge, two minutes, one task, one CPU, 1 GiB per CPU, the dated Python module, the training environment, and separate logs.
+
+**Continue when:** Submit it once.
+
+**If not:** Correct the script before sbatch; do not submit a script you have not read.
+
+### 4. Submit once and record the job ID
+
+**Where:** Euler login node
+
+Submit only when no stored job ID exists. If this step was already completed, the command reuses the stored numeric ID and does not submit another job.
+
+**Run on Euler - Bash:**
+
+```bash
+(
+set -eu
+cd "$HOME/passport-euler"
+id_file="$HOME/passport-euler/first-job.id"
+if [ -e "$id_file" ]; then
+  [ -s "$id_file" ] || { printf 'STOP: %s is empty. Ask for help before submitting.\n' "$id_file" >&2; exit 1; }
+  job_id="$(cat "$id_file")"
+  case "$job_id" in ''|*[!0-9]*) printf 'STOP: stored job ID is invalid.\n' >&2; exit 1;; esac
+  printf 'Existing job, not resubmitted: %s\n' "$job_id"
+else
+  submission="$(sbatch --parsable first-job.slurm)"
+  job_id="${submission%%;*}"
+  case "$job_id" in ''|*[!0-9]*) printf 'STOP: sbatch did not return a numeric job ID.\n' >&2; exit 1;; esac
+  printf '%s\n' "$job_id" > "$id_file"
+  chmod 600 "$id_file"
+  printf 'Submitted job: %s\n' "$job_id"
+fi
+)
+```
+
+**Expected:** One numeric job ID is printed and stored, including on clusters where sbatch appends a cluster name; rerunning the step says Existing job, not resubmitted.
+
+**Continue when:** Inspect that job in the queue.
+
+**If not:** Read the sbatch error and fix its cause; do not submit a second copy.
+
+### 5. Inspect the queue
+
+**Where:** Euler login node
+
+Query only the recorded job. A header without a row means the short job already left the active queue.
+
+**Run on Euler - Bash:**
+
+```bash
+(
+job_id="$(cat "$HOME/passport-euler/first-job.id")"
+case "$job_id" in ''|*[!0-9]*) printf 'STOP: stored job ID is invalid.\n' >&2; exit 1;; esac
+squeue -j "$job_id" -o "%.18i %.2t %.30R"
+)
+```
+
+**Expected:** The job is pending or running, or it has already left the queue.
+
+**Continue when:** Wait for completion and inspect accounting.
+
+**If not:** If the ID is wrong, recover it with squeue -u "$USER" or sacct; do not resubmit.
+
+### 6. Verify completion with sacct
+
+**Where:** Euler login node
+
+Run this for the same job. If it says job-not-finished, wait 30 seconds and run this same step again. Never return to sbatch while waiting.
+
+**Run on Euler - Bash:**
+
+```bash
+(
+set -eu
+job_id="$(cat "$HOME/passport-euler/first-job.id")"
+case "$job_id" in ''|*[!0-9]*) printf 'STOP: stored job ID is invalid.\n' >&2; exit 1;; esac
+state="$(sacct -X -n -j "$job_id" --format=State | awk 'NF {print $1; exit}' | cut -d+ -f1)"
+case "$state" in
+  COMPLETED) printf 'job-completed\n' ;;
+  PENDING|RUNNING|CONFIGURING|COMPLETING) printf 'job-not-finished: %s; wait 30 seconds and rerun this step; do not resubmit\n' "$state"; exit 2 ;;
+  '') printf 'accounting-not-ready; wait 30 seconds and rerun this step; do not resubmit\n'; exit 2 ;;
+  *) printf 'STOP: job ended in %s; inspect both logs before changing resources.\n' "$state" >&2; sacct -j "$job_id" --format=JobID,JobName,User,Account,State,ExitCode,Elapsed,AllocCPUS,ReqMem,MaxRSS; exit 1 ;;
+esac
+sacct -j "$job_id" --format=JobID,JobName,User,Account,State,ExitCode,Elapsed,AllocCPUS,ReqMem,MaxRSS
+)
+```
+
+**Expected:** While queued or running, the command says to wait without resubmitting. After completion it prints job-completed, then sacct shows the main job and its steps. The main row names your user, es_fuge, COMPLETED, 0:0, one CPU, and 1G requested memory; MaxRSS may appear on the .batch step.
+
+**Continue when:** Inspect the efficiency report.
+
+**If not:** If the state is FAILED, TIMEOUT, or OUT_OF_MEMORY, inspect logs before changing resources.
+
+### 7. Inspect seff
+
+**Where:** Euler login node
+
+Read the requested-versus-used CPU and memory summary for the same job.
+
+**Run on Euler - Bash:**
+
+```bash
+(
+job_id="$(cat "$HOME/passport-euler/first-job.id")"
+case "$job_id" in ''|*[!0-9]*) printf 'STOP: stored job ID is invalid.\n' >&2; exit 1;; esac
+seff "$job_id"
+)
+```
+
+**Expected:** seff names the recorded job and reports CPU and memory use.
+
+**Continue when:** Verify the program output.
+
+**If not:** Use sacct and logs if seff is not yet available; do not invent utilization values.
+
+### 8. Verify the environment and output markers
+
+**Where:** Euler login node
+
+Read only the two expected lines from the output file for the stored job ID. They prove that the batch script used the training environment and completed its calculation.
+
+**Run on Euler - Bash:**
+
+```bash
+(
+job_id="$(cat "$HOME/passport-euler/first-job.id")"
+case "$job_id" in ''|*[!0-9]*) printf 'STOP: stored job ID is invalid.\n' >&2; exit 1;; esac
+output="$HOME/passport-euler/logs/passport-cpu_$job_id.out"
+grep -Fx "python_environment=passport-python" "$output"
+grep -Fx "5 squared is 25" "$output"
+)
+```
+
+**Expected:** The command prints exactly python_environment=passport-python and 5 squared is 25.
+
+**Continue when:** Enter the observed values in the local confirmation fields.
+
+**If not:** Inspect both output and error logs for this job before changing or rerunning anything.
+
+### 9. Check and submit the mission
+
+**Where:** Your computer
+
+Return to the local Passport, enter only the requested sanitized job facts, press Check my work, then submit once.
+
+**Expected:** The Passport accepts the job ID, account, owner check, queue check, final state, resources, Python environment check, seff check, and output marker.
+
+**Continue when:** Continue to accounting and right-sizing.
+
+**If not:** Re-read the same job with sacct, seff, and its logs; do not submit another job.
+
+The Passport presents the questions and required confirmation in the
+browser. Do not create or edit a submission JSON file by hand.
+
+## Check Your Work
+
+Use **Check my work** before submitting. The local verifier checks only the
+mission activity above. A score of 100% is required, and every
+safety-critical question must be correct. Failed attempts provide targeted
+feedback and can be retried without penalty.
+
+## If Blocked
+
+For an invalid account, stop and check `my_share_info`. For a pending job,
+inspect `myjobs -j "$job_id"` instead of submitting duplicates. Read the first
+meaningful error before changing resources. Use the
+[first Euler job lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-first-job.md) for recovery.
+
+Useful references:
+
+- [First Euler job](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-first-job.md)
+- [Slurm reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/slurm.md)
+- [IDEAL Lab Euler share policy](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/euler-share.md)
+
+## Understand Before Accepting AI Output
+
+Personally read the script, record the real job ID, know how to cancel it, and
+inspect output and accounting. An agent must not submit or enlarge the job.
+
+## Finish And Continue
+
+When **Check my work** passes, use **Submit mission** once. The launcher
+publishes only this mission's generated, sanitized submission. Continue when the
+dashboard shows the trusted result; a local check alone is not a pass.

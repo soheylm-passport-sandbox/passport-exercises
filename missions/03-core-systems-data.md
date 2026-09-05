@@ -2,9 +2,8 @@
 
 ## Outcome
 
-You can place code, durable research data, temporary files, GUI work, and
-compute intentionally instead of treating every available drive or service as
-interchangeable.
+Choose the correct place for code, durable data, temporary files, Windows GUI
+work, and scheduled computation.
 
 ## Concept
 
@@ -16,10 +15,10 @@ material. Correct placement prevents data loss, leakage, and blocked projects.
 
 The map separates source control, durable storage, temporary storage, GUI access, and scheduled computation.
 
-A correct example uses these decisions:
+Check these points:
 
 - **Where does maintained source code belong?** In an approved GitHub repository.
-- **Where should a heavy batch computation run?** In a bounded Slurm allocation on Euler or another approved compute system.
+- **Where should a heavy batch computation run?** In a Slurm allocation with explicit CPU, memory, and time limits on Euler or another approved compute system.
 - **Where should an approved collaborative dataset remain authoritative?** In the supervisor-approved durable project location on NAS or another named project store.
 - **What may be placed in scratch storage?** Temporary high-throughput files that can be recreated from recorded inputs.
 - **Where should you use an approved Windows-only engineering GUI?** On Blade for interactive GUI work, while heavy batch computation uses an approved compute system.
@@ -27,19 +26,94 @@ A correct example uses these decisions:
 
 ## Common Trap
 
-Choosing a location because it is convenient today rather than because its ownership, backup, and lifecycle fit the data.
+Choosing a location without checking ownership, backup, lifetime, and where the
+data will be processed.
 
 ## Your Action
 
-Place each fictional code, dataset, temporary output, GUI task, and compute task on the appropriate system.
+Map code, durable data, temporary files, Windows GUI work, and scheduled compute to the correct lab systems.
 
-The passport presents the structured questions and required confirmation in the
+**Follow these steps in order.** For each item, decide who owns it, how long it must survive, and where the work actually runs.
+
+### 1. Place source code
+
+**Where:** This browser
+
+Keep source code and reviewable text in GitHub. Each contributor uses a separate clone and collaborates through branches and pull requests.
+
+**Expected:** Code has version history and no shared writable working tree.
+
+**Continue when:** Continue to durable project data.
+
+**If not:** Move code collaboration out of a shared NAS checkout before continuing.
+
+### 2. Place durable project data
+
+**Where:** This browser
+
+Use the supervisor-approved NAS project folder or another explicitly approved durable project store for datasets, checkpoints, and deliverables.
+
+**Expected:** The durable copy has a named owner and approved access.
+
+**Continue when:** Continue to temporary data.
+
+**If not:** Ask the supervisor for the authoritative project location; do not invent one.
+
+### 3. Identify temporary storage
+
+**Where:** This browser
+
+Use scratch, Blade D:, or another named temporary area only for replaceable working copies. Record how needed results return to durable storage.
+
+**Expected:** No irreplaceable file exists only in temporary storage.
+
+**Continue when:** Continue to interactive GUI work.
+
+**If not:** Copy and verify the required data in durable storage before proceeding.
+
+### 4. Place Windows GUI work
+
+**Where:** This browser
+
+Use Blade for approved interactive Windows software such as CAD or pre/post-processing. Keep durable files on P: and move heavy computation elsewhere.
+
+**Expected:** Blade is used interactively and does not hold the only durable copy.
+
+**Continue when:** Continue to scheduled computation.
+
+**If not:** Stop an unattended heavy workload and choose an approved compute system.
+
+### 5. Place scheduled computation
+
+**Where:** This browser
+
+Use Euler compute nodes through Slurm for CPU or GPU computation. Login nodes are for access, file management, editing, and job control.
+
+**Expected:** The Slurm job requests explicit CPU, memory, and time limits.
+
+**Continue when:** Continue to the classification questions.
+
+**If not:** Do not run the workload directly on an Euler login node.
+
+### 6. Complete the placement map
+
+**Where:** This browser
+
+Classify every fictional item below. Use the named systems and durability rules, not the amount of free disk space.
+
+**Expected:** Every item has one justified location.
+
+**Continue when:** Run Check my work.
+
+**If not:** Return to the relevant system rule and correct the placement.
+
+The Passport presents the questions and required confirmation in the
 browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
 Use **Check my work** before submitting. The local verifier checks only the
-bounded activity named above. A score of 80% is required, and every
+mission activity above. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -54,7 +128,7 @@ Useful references:
 
 - [Environments Overview](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/environments-overview.md)
 - [Data And Ai Safety](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/data-and-ai-safety.md)
-- [Data And Ai](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/data-and-ai.md)
+- [Data and AI policy](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/policy/data-and-ai.md)
 
 ## Understand Before Accepting AI Output
 
