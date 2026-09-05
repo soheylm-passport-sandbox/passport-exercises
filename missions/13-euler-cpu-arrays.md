@@ -2,7 +2,8 @@
 
 ## Outcome
 
-Fix a Slurm job array, which runs many similar tasks from one script, so simultaneous tasks are capped and each task writes a distinct log.
+Correct a practice script that starts many similar Euler tasks. Limit how many
+can run at once and give every task its own log file.
 
 ## Concept
 
@@ -12,8 +13,8 @@ Every task also needs a distinct log name, and the combined CPU, memory, and GPU
 
 ## Worked Example
 
-The verifier accepts exactly ten tasks with at most one running at a time and
-distinct logs for every task. No command submits the fixture to Euler.
+The checker accepts exactly ten tasks with at most one running at a time and
+distinct logs for every task. No command submits the practice file to Euler.
 
 Check these points:
 
@@ -26,31 +27,39 @@ Submitting a large array before adding %N, or using %j so tasks overwrite or obs
 
 ## Your Action
 
-Correct the synthetic Slurm array file, add a concurrency cap, and make every task log name unique.
+Correct the fictional Slurm array practice file, add a concurrency cap, and make every task log name unique.
 
 **Follow these steps in order.** The supplied file is deliberately unsafe. Edit it locally and never submit it to Euler.
 
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
+
 ### 1. Understand an array and its concurrency cap
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-A job array creates many similar Slurm tasks from one script. The range sets total tasks; %N limits simultaneous tasks. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.
+A job array creates many similar Slurm tasks from one script. The range sets the total number of tasks. The value after %, called the concurrency cap, limits how many tasks may run at the same time. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.
 
 - [Open the job-array lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/euler-job-arrays.md)
 
 **Expected:** You can distinguish total task count from the maximum running at once.
 
-**Continue when:** Open the deliberately unsafe local fixture.
+**Continue when:** Open the deliberately unsafe local practice file.
 
 **If not:** Do not submit a real array until you can calculate its simultaneous resource total.
 
-### 2. Prepare the array fixture
+### 2. Prepare the array practice file
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder, enter it, and open workspace/slurm/array_job.slurm.txt.
 
-**Expected:** The unsafe fixture is open in the separate practice repository.
+**Expected:** The unsafe practice file is open in the separate practice repository.
 
 **Continue when:** Inspect it without submitting.
 
@@ -58,9 +67,9 @@ Press Prepare practice folder, enter it, and open workspace/slurm/array_job.slur
 
 ### 3. Identify both defects
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Read the array and log directives. The fixture allows 100 tasks without a concurrency cap and uses log names that do not identify each array task.
+Read the array and log settings. The practice file allows 100 tasks without a concurrency cap and uses log names that do not identify each array task.
 
 **Expected:** You can explain why uncapped tasks and colliding logs are unsafe.
 
@@ -70,7 +79,7 @@ Read the array and log directives. The fixture allows 100 tasks without a concur
 
 ### 4. Add a small concurrency cap
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Replace the unsafe array directive with the exact line below. It creates ten tasks, numbered 0 through 9, and allows at most one to run at a time.
 
@@ -88,7 +97,7 @@ Replace the unsafe array directive with the exact line below. It creates ten tas
 
 ### 5. Use parent and task IDs in logs
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Replace both log directives with the two exact lines below. %A is the parent job ID and %a is the array task index.
 
@@ -103,39 +112,39 @@ Replace both log directives with the two exact lines below. %A is the parent job
 
 **Continue when:** Inspect the local diff.
 
-**If not:** Correct both directives before running the verifier.
+**If not:** Correct both settings before pressing Check my work.
 
 ### 6. Calculate the concurrent resource total
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Before using any array in a real project, multiply the cap by each task's CPU, memory, and GPU request. For --array=0-9%3 with 2 CPUs and 4 GiB per CPU, three tasks can run together: 3 x 2 = 6 CPUs and 3 x 2 x 4 GiB = 24 GiB. Then add your other active jobs and arrays; the cap applies only to this array.
 
 **Expected:** You can calculate the maximum simultaneous tasks, CPUs, system memory, and GPUs before submission.
 
-**Continue when:** Review the edited fixture.
+**Continue when:** Review the edited practice file.
 
 **If not:** Keep the cap at one until the per-task and combined totals are known.
 
 ### 7. Review the edited file
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Confirm that only the synthetic fixture changed and that no command submitted it.
+Confirm that only the fictional practice file changed and that no command submitted it.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git diff -- workspace/slurm/array_job.slurm.txt
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git diff -- workspace/slurm/array_job.slurm.txt
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git diff -- workspace/slurm/array_job.slurm.txt
@@ -152,8 +161,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -176,6 +185,6 @@ lab limit is a ceiling, not a target for an agent to consume.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

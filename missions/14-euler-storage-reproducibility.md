@@ -2,11 +2,12 @@
 
 ## Outcome
 
-Choose among Euler home, shared work, scratch, and job-temporary storage, then record enough code, input, environment, command, output, and log information to reproduce a run.
+Choose where Euler code, inputs, temporary work, results, and logs belong.
+Record enough information for another person to repeat the run.
 
 ## Concept
 
-Euler provides several storage areas. `$HOME` is small private storage for code and configuration. `/cluster/work/fuge` is shared working storage for approved lab projects. `$SCRATCH` is temporary high-throughput storage, and `$TMPDIR` exists only on the compute node during one job.
+Euler provides several storage areas. Names beginning with `$` below are shell variables: short names that resolve to paths. `$HOME` is small private storage for code and configuration. `/cluster/work/fuge` is shared working storage for approved lab projects. `$SCRATCH` is temporary high-throughput storage, and `$TMPDIR` exists only on the compute node during one job.
 
 A reproducible run records the code revision, environment, inputs, configuration, command, logs, and durable output location. Neither scratch storage nor the submitted Slurm script alone preserves all of that information.
 
@@ -17,7 +18,7 @@ The plan separates Git, approved Euler storage, scratch, and durable results and
 Check these points:
 
 - **What is Euler scratch for?** Temporary high-throughput files that can be recreated.
-- **What must a reproducible run identify?** Code revision, environment, immutable inputs, parameters, resources, and outputs.
+- **What must a reproducible run identify?** Code revision, environment, exact unchanged inputs, parameters, resources, and outputs.
 
 ## Common Trap
 
@@ -25,15 +26,15 @@ Keeping the only copy in scratch, processing high-I/O workloads directly on an e
 
 ## Your Action
 
-Apply the reproducible-run sequence to a fictional Euler job before deciding where each artifact belongs.
+Apply the reproducible-run sequence to a fictional Euler job before deciding where each file or result belongs.
 
-**Follow these steps in order.** Use the fictional scenario. Choose locations by ownership and durability, not convenience.
+**Follow these steps in order.** Names such as $HOME and $SCRATCH are shell variables: short names that resolve to paths on Euler. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Use the fictional scenario. Choose locations by ownership and durability, not convenience.
 
 ### 1. Know the Euler storage areas
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Only the named durable location is authoritative.
+Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Name the durable location that will hold the main copy after the run.
 
 - [Open the Euler storage reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/storage.md)
 
@@ -45,21 +46,21 @@ Use $HOME for small private code and configuration, /cluster/work/fuge for appro
 
 ### 2. Record the code revision
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Use a reviewed Git commit as the code identifier. A commit hash records provenance but does not freeze later edits to an active checkout.
+Use a reviewed Git commit as the code identifier. The commit's identifier records exactly which code version was used, but it does not stop someone from editing other uncommitted files in the active project folder.
 
 **Expected:** The run plan names one exact commit and a clean or explicitly described source state.
 
-**Continue when:** Choose the authoritative input location.
+**Continue when:** Choose the exact input location for this run.
 
 **If not:** Do not call an uncommitted changing checkout reproducible.
 
 ### 3. Freeze input identity
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Place approved durable inputs in project storage and record a version or checksum. Copy the exact run inputs to a run-specific location when required.
+Place approved durable inputs in project storage and record a version or checksum. A checksum is a short calculated fingerprint used to detect whether a file changed. Copy the exact run inputs to a run-specific location when required.
 
 **Expected:** The inputs used by the job can be identified later.
 
@@ -69,7 +70,7 @@ Place approved durable inputs in project storage and record a version or checksu
 
 ### 4. Use scratch only for replaceable work
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Use Euler scratch for high-throughput temporary files that can be rebuilt. Do not leave the only checkpoint or result there.
 
@@ -81,11 +82,11 @@ Use Euler scratch for high-throughput temporary files that can be rebuilt. Do no
 
 ### 5. Name durable outputs and ownership
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Assign durable results to an approved Euler project/work location or NAS project location with a named owner and retention decision.
 
-**Expected:** The authoritative result location and owner are explicit.
+**Expected:** The main durable result location and its owner are stated explicitly.
 
 **Continue when:** Record the software environment.
 
@@ -93,7 +94,7 @@ Assign durable results to an approved Euler project/work location or NAS project
 
 ### 6. Record the environment
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Record modules, environment definition, application version, configuration, and the exact command or script used.
 
@@ -105,7 +106,7 @@ Record modules, environment definition, application version, configuration, and 
 
 ### 7. Keep identifiable logs
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Use run-specific log names containing the job ID and retain the useful logs with the run metadata.
 
@@ -117,30 +118,30 @@ Use run-specific log names containing the job ID and retain the useful logs with
 
 ### 8. Complete the run plan
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Place every fictional artifact and explain how the plan survives reruns, collaboration, and scratch cleanup.
+Place every fictional file or result and explain how the plan survives reruns, collaboration, and scratch cleanup.
 
 **Expected:** Git, durable storage, scratch, environment metadata, and logs have distinct roles.
 
 **Continue when:** Run Check my work.
 
-**If not:** Return to the first artifact whose owner or durability is unclear.
+**If not:** Return to the first file or result whose owner or durability is unclear.
 
 The Passport presents the questions and required confirmation in the
 browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
 ## If Blocked
 
-Do not invent permissions or recursively change a shared tree. Ask the data
-owner about authoritative storage and use
+Do not invent permissions or recursively change a shared folder. Ask the data
+owner which approved location holds the main durable copy, and use
 [Euler storage](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/storage.md) for lifecycle and
 collaboration recovery.
 
@@ -158,6 +159,6 @@ backup.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

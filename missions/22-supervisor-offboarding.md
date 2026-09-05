@@ -7,9 +7,10 @@ access.
 
 ## Concept
 
-Departures create data-loss and lingering-access risk when handover starts after
-accounts expire. Offboarding must distinguish project records from disposable
-copies and preserve incident or retention obligations.
+Offboarding is the planned transfer of work and removal of access when someone
+leaves a project or the lab. Starting only after accounts expire can lose data
+and leave old access active. Transfer and verify required project records first;
+remove access only after an authorized successor can use them.
 
 ## Worked Example
 
@@ -28,11 +29,11 @@ Removing accounts before transferring ownership, or assuming that access revocat
 
 Apply the safe order to a fictional departure: inventory, transfer, verify, clean temporary work, rotate credentials, revoke, and record.
 
-**Follow these steps in order.** Preserve required project records and evidence. Do not delete broadly while ownership or retention is unresolved.
+**Follow these steps in order.** Offboarding is the planned transfer of work and removal of access when someone leaves. Preserve required project records and evidence. Do not delete broadly while ownership or retention is unresolved.
 
 ### 1. Inventory project dependencies
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 List repositories, durable and temporary data, environments, services, shared credentials, devices, scheduled jobs, documentation, and undocumented knowledge.
 
@@ -44,7 +45,7 @@ List repositories, durable and temporary data, environments, services, shared cr
 
 ### 2. Transfer ownership
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Move repositories, service ownership, durable data responsibility, and operational knowledge to named authorized people or project-owned accounts.
 
@@ -56,9 +57,9 @@ Move repositories, service ownership, durable data responsibility, and operation
 
 ### 3. Verify the handover
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Have the successor locate the code revision, environment definition, authoritative data, verification command, expected result, and known limitations.
+Have the successor locate the code revision, environment definition, main approved data copy, verification command, expected result, and known limitations.
 
 **Expected:** The successor can reproduce the agreed verification command and result.
 
@@ -68,7 +69,7 @@ Have the successor locate the code revision, environment definition, authoritati
 
 ### 4. Close active compute and temporary storage
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Record or stop active jobs, copy required results to durable storage, and assign deletion dates to scratch and Blade D: copies.
 
@@ -80,7 +81,7 @@ Record or stop active jobs, copy required results to durable storage, and assign
 
 ### 5. Rotate shared credentials
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Rotate project-owned shared secrets where permitted and remove personal tokens or keys from services. Never ask the departing person to publish a secret.
 
@@ -92,7 +93,7 @@ Rotate project-owned shared secrets where permitted and remove personal tokens o
 
 ### 6. Remove access after verification
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Revoke repository, storage, compute, machine, AI-service, and group access according to each system owner's process.
 
@@ -104,7 +105,7 @@ Revoke repository, storage, compute, machine, AI-service, and group access accor
 
 ### 7. Record completion
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 For the fictional case, choose the correct sequence and decide how each unfinished or retained item is owned and dated.
 
@@ -119,8 +120,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -144,6 +145,6 @@ revocation. The named owner of each system must confirm its own action.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

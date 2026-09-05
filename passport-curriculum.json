@@ -1,10 +1,10 @@
 {
-  "curriculum_version": "2.1.1",
+  "curriculum_version": "2.1.2",
   "missions": {
     "ai-agent-baseline": {
       "activity": {
         "action": "Give an agent one small fictional task, review its plan and diff, then verify the result yourself.",
-        "expected_result": "The fixture is corrected, the canary remains unchanged, the verifier passes, and no agent transcript is submitted.",
+        "expected_result": "The practice file is corrected, the protected file remains unchanged, Check my work passes, and no agent conversation is submitted.",
         "kind": "repository_task",
         "machine": "local",
         "questions": [
@@ -50,7 +50,7 @@
               },
               {
                 "id": "wrong_b",
-                "label": "The controller without seeing the files."
+                "label": "The AI service without seeing the files."
               }
             ],
             "prompt": "Who verifies the final diff and tests?",
@@ -58,7 +58,7 @@
           }
         ],
         "recipe": {
-          "intro": "The agent may edit only storage-plan.md. The canary file, repository settings, dependencies, and real data are outside scope.",
+          "intro": "The agent may edit only storage-plan.md. The protected scope-canary.txt file, repository settings, dependencies, and real data are outside scope.",
           "steps": [
             {
               "commands": [],
@@ -72,13 +72,13 @@
               "platforms": [
                 "all"
               ],
-              "title": "Prepare the agent fixture"
+              "title": "Prepare the AI practice files"
             },
             {
               "commands": [],
               "expected": "You can describe the intended P:, D:, C:, and heavy-compute rules.",
               "id": "manual-baseline",
-              "instruction": "Read the fixture README and unsafe storage plan. Identify the four required corrections and the one file the agent may edit.",
+              "instruction": "Read the practice README and unsafe storage plan. Identify the four required corrections and the one file the agent may edit.",
               "links": [],
               "machine": "local",
               "on_failure": "Return to the systems mission before delegating the task.",
@@ -192,9 +192,9 @@
             },
             {
               "commands": [],
-              "expected": "The changed-path, canary, and storage-rule checks pass.",
+              "expected": "The changed-file, protected-file, and storage-rule checks pass.",
               "id": "verify",
-              "instruction": "Return to this page and press Check my work. The verifier checks the changed path, exact canary, and required storage statements.",
+              "instruction": "Return to this page and press Check my work. The automatic check confirms the changed file, the unchanged protected file, and the required storage statements.",
               "links": [],
               "machine": "browser",
               "on_failure": "Use the named failed check; do not submit an agent transcript or claim.",
@@ -202,7 +202,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Run the Passport verifier"
+              "title": "Check the result"
             }
           ]
         },
@@ -246,8 +246,8 @@
     },
     "ai-tool-configuration": {
       "activity": {
-        "action": "Configure one AI route, open only the synthetic practice repository, and prove that a read-only request changes no file.",
-        "expected_result": "The selected agent inspects the synthetic repository without changing it, and the learner knows which account pays for any usage.",
+        "action": "Configure one AI coding tool, open only the fictional practice repository, and prove that a read-only request changes no file.",
+        "expected_result": "The selected agent inspects the fictional practice repository without changing it, and the learner knows which account pays for any usage.",
         "kind": "guided_local",
         "machine": "local",
         "questions": [
@@ -301,13 +301,13 @@
           }
         ],
         "recipe": {
-          "intro": "An AI model, access provider, coding agent, and editor are separate parts. Identify them first. Use the no-cost Copilot Student route if eligible; any personal paid service remains your financial responsibility.",
+          "intro": "An artificial-intelligence (AI) model generates a response. A provider supplies access and billing. A coding agent may read files and request tools. An editor is the application where you see and control it. An application programming interface (API) key is a secret that authorizes programmatic service use and may spend money. Identify these parts first. Use the no-cost Copilot Student option if eligible; any personal paid service remains your financial responsibility.",
           "steps": [
             {
               "commands": [],
               "expected": "You can name the role of every component in the chosen setup.",
               "id": "components",
-              "instruction": "Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the agent can read files or request tools; the editor or terminal is the interface; MCP or ACP may connect extra tools. For example, OpenRouter is a gateway, not the coding agent.",
+              "instruction": "Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the coding agent can read files or request tools; the editor is the application where you control it. For example, OpenRouter is a gateway, not a coding agent. You do not need to configure a tool protocol for this lesson.",
               "links": [
                 {
                   "label": "Read agents and interfaces",
@@ -316,7 +316,7 @@
               ],
               "machine": "browser",
               "on_failure": "Do not configure credentials until the billing path and agent are clear.",
-              "on_success": "Choose one access route.",
+              "on_success": "Choose one setup option.",
               "platforms": [
                 "all"
               ],
@@ -324,28 +324,28 @@
             },
             {
               "commands": [],
-              "expected": "You have selected one route and can name its account owner, payer, editor, and agent interface.",
+              "expected": "You have selected one option and can name its account owner, payer, editor, and agent interface.",
               "id": "choose-route",
-              "instruction": "Use exactly one route. Eligible students use VS Code with GitHub Copilot Student. If you deliberately choose Zed with a personal OpenRouter account, skip the two Copilot-only steps and follow the linked Zed procedure. Use another route only when its owner has supplied written setup, data, cost, and permission rules. If no route is available, leave this mission pending and continue the non-AI missions.",
+              "instruction": "Use exactly one option. Eligible students use VS Code with GitHub Copilot Student. If you deliberately choose Zed with a personal OpenRouter account, skip the two Copilot-only steps and follow the linked Zed procedure. Use another option only when its owner has supplied written setup, data, cost, and permission rules. If no option is available, leave this lesson pending and continue the non-AI lessons.",
               "links": [
                 {
-                  "label": "Compare supported AI routes",
+                  "label": "Compare supported AI setup options",
                   "url": "../../../docs/reference/ai/README.md"
                 }
               ],
               "machine": "browser",
-              "on_failure": "Leave this mission pending and continue manually. Do not create a paid account merely to pass.",
-              "on_success": "Follow only the selected route below.",
+              "on_failure": "Leave this lesson pending and continue manually. Do not create a paid account merely to pass.",
+              "on_success": "Follow only the selected option below.",
               "platforms": [
                 "all"
               ],
-              "title": "Choose the access route"
+              "title": "Choose one setup option"
             },
             {
               "commands": [],
               "expected": "GitHub identifies the Student benefit without a paid checkout.",
               "id": "copilot-benefit",
-              "instruction": "Do this step only for the Copilot route. After GitHub Education approval, open Education benefits. If Copilot Student is already active, keep it. Otherwise select the Copilot Student activation offered by GitHub. If GitHub asks for payment or a payment method, stop; payment is not required for this route.",
+              "instruction": "Do this step only for the Copilot option. After GitHub Education approval, open Education benefits. If Copilot Student is already active, keep it. Otherwise select the Copilot Student activation offered by GitHub. If GitHub asks for payment or a payment method, stop; payment is not required for this option.",
               "links": [
                 {
                   "label": "Open Education benefits",
@@ -362,13 +362,13 @@
               "platforms": [
                 "all"
               ],
-              "title": "Copilot route: activate the Student benefit"
+              "title": "Copilot option: activate the Student benefit"
             },
             {
               "commands": [],
               "expected": "VS Code shows the intended GitHub account and opens its Chat or Agent interface.",
               "id": "editor",
-              "instruction": "Do this step only for the Copilot route. Install or open VS Code. Open Extensions, install GitHub Copilot from publisher GitHub if it is absent, then select the Copilot icon, choose Use AI Features, and sign in with the same GitHub account used for the Passport. If more than one GitHub account is present, use the Accounts menu to select the intended account for Copilot.",
+              "instruction": "Do this step only for the Copilot option. VS Code is the editor used here. An extension is an add-on installed inside the editor; GitHub Copilot is the coding-agent extension. Install or open VS Code. Open Extensions, install GitHub Copilot from publisher GitHub if it is absent, then select the Copilot icon, choose Use AI Features, and sign in with the same GitHub account used for the Passport. If more than one GitHub account is present, use the Accounts menu to select the intended account for Copilot.",
               "links": [
                 {
                   "label": "Download VS Code",
@@ -381,17 +381,17 @@
               ],
               "machine": "local",
               "on_failure": "Use the Accounts menu to select the intended account. Do not purchase a plan or grant unexplained access to pass this mission.",
-              "on_success": "Continue to Prepare the synthetic practice repository.",
+              "on_success": "Continue to Prepare the fictional practice repository.",
               "platforms": [
                 "all"
               ],
-              "title": "Copilot route: connect VS Code"
+              "title": "Copilot option: connect VS Code"
             },
             {
               "commands": [],
-              "expected": "For the Zed route, a dedicated limited key is stored outside files and Git. For the Copilot route, this step is skipped.",
+              "expected": "For the Zed option, a dedicated limited key is stored outside files and Git. For the Copilot option, this step is skipped.",
               "id": "optional-paid",
-              "instruction": "Do this step only for the Zed route; Copilot users skip it. Follow the linked procedure from start to finish: create a separate personal key, set a low key limit before use, and enter it only through Zed's provider UI so the operating-system keychain stores it. The lab does not provide credits, reimburse charges, or accept liability for personal usage or loss.",
+              "instruction": "Do this step only for the Zed option; Copilot users skip it. Follow the linked procedure from start to finish: create a separate personal key, set a low key limit before use, and enter it only through Zed's provider UI so the operating-system keychain stores it. The lab does not provide credits, reimburse charges, or accept liability for personal usage or loss.",
               "links": [
                 {
                   "label": "Read the optional Zed and OpenRouter procedure",
@@ -400,11 +400,11 @@
               ],
               "machine": "browser",
               "on_failure": "Revoke an exposed key and stop requests until account activity is understood.",
-              "on_success": "Continue to Prepare the synthetic practice repository.",
+              "on_success": "Continue to Prepare the fictional practice repository.",
               "platforms": [
                 "all"
               ],
-              "title": "Zed route: follow the personal OpenRouter procedure"
+              "title": "Zed option: follow the personal OpenRouter procedure"
             },
             {
               "commands": [],
@@ -418,7 +418,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Open the synthetic practice repository"
+              "title": "Open the fictional practice repository"
             },
             {
               "commands": [
@@ -459,9 +459,9 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The command prints nothing: no AI fixture, editor setting, transcript, or credential file changed.",
+              "expected": "The command prints nothing: no AI practice file, editor setting, transcript, or credential file changed.",
               "id": "verify-clean",
-              "instruction": "Run the scoped Git status command at the practice-repository root. It checks the AI fixture and common editor or credential-file locations without confusing this mission with unfinished files from another exercise.",
+              "instruction": "Run the limited Git status command at the practice repository's root, meaning its top-level folder. It checks the AI practice files and common editor or credential-file locations without confusing this lesson with unfinished files from another exercise.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not commit the change; remove it safely and rotate any exposed credential.",
@@ -490,7 +490,7 @@
           "attestation"
         ]
       },
-      "title": "Choose And Configure An AI Access Route",
+      "title": "Set Up One AI Coding Tool Safely",
       "track": "ai_agents",
       "verification": {
         "critical_must_pass": true,
@@ -510,7 +510,7 @@
     "blade-access-storage": {
       "activity": {
         "action": "Connect to Blade by RDP, verify the host, and complete a safe temporary-to-durable file round trip.",
-        "expected_result": "A hash-matched test copy reaches the approved P: folder, both test files are removed, C: is not used, and no heavy unattended compute is started.",
+        "expected_result": "A verified test copy reaches the approved P: folder, both test files are removed, C: is not used, and no heavy unattended computation is started.",
         "kind": "guided_remote",
         "machine": "blade",
         "questions": [
@@ -543,12 +543,12 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Interactive Windows GUI software and light prototyping.",
+            "feedback": "Interactive graphical Windows software and light prototyping.",
             "id": "blade_compute",
             "options": [
               {
                 "id": "correct",
-                "label": "Interactive Windows GUI software and light prototyping."
+                "label": "Interactive graphical Windows software and light prototyping."
               },
               {
                 "id": "wrong_a",
@@ -564,13 +564,13 @@
           }
         ],
         "recipe": {
-          "intro": "Blade is the lab's shared remote Windows computer for licensed graphical software. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.",
+          "intro": "Blade is the lab's shared remote Windows computer for licensed graphical software. RDP, or Remote Desktop Protocol, displays and controls its Windows desktop from your computer. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.",
           "steps": [
             {
               "commands": [],
-              "expected": "Your task requires the shared Windows GUI environment.",
+              "expected": "Your task requires the shared graphical Windows environment.",
               "id": "purpose",
-              "instruction": "Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP). Use it for interactive licensed Windows software, CAD, pre/post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.",
+              "instruction": "Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP). Use it for interactive licensed Windows software, computer-aided design (CAD), simulation pre-processing and post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.",
               "links": [],
               "machine": "browser",
               "on_failure": "Choose the appropriate compute or storage system instead.",
@@ -584,7 +584,7 @@
               "commands": [],
               "expected": "The Blade hostname is reachable from your computer.",
               "id": "network",
-              "instruction": "Use the campus network or connect ETH VPN before opening RDP.",
+              "instruction": "Use the campus network or connect ETH VPN before opening RDP. VPN means Virtual Private Network: the official secure connection used to reach ETH-only services from outside the campus network.",
               "links": [
                 {
                   "label": "Open the ETH VPN instructions",
@@ -661,7 +661,7 @@
                 }
               ],
               "machine": "local",
-              "on_failure": "Check VPN, protocol RDP, the exact hostname, and d\\username. If the client or RDP plugin cannot be installed through the approved software source, use the sanitized Passport help form; do not install remote services.",
+              "on_failure": "Check VPN, protocol RDP, the exact hostname, and d\\username. If the client or RDP plugin cannot be installed through the approved software source, use the Passport help form without including private information; do not install remote services.",
               "on_success": "Verify the remote hostname.",
               "platforms": [
                 "linux"
@@ -724,9 +724,9 @@
             },
             {
               "commands": [],
-              "expected": "Only the interactive GUI or light prototype remains on Blade.",
+              "expected": "Only the interactive graphical application or light prototype remains on Blade.",
               "id": "compute-rule",
-              "instruction": "Do not start overnight training, broad sweeps, or unscheduled heavy computation. Do not install a WSL distribution or enable Windows features without approval.",
+              "instruction": "Do not start overnight training, broad sweeps, or unscheduled heavy computation. Do not install a Windows Subsystem for Linux (WSL) distribution or enable Windows features without approval.",
               "links": [],
               "machine": "blade",
               "on_failure": "Stop the workload safely and move it to an approved scheduled compute system.",
@@ -738,7 +738,7 @@
             },
             {
               "commands": [],
-              "expected": "The receipt confirms correct host, durable copy, D: cleanup, and no C: usage.",
+              "expected": "The result confirms the correct host, durable copy, D: cleanup, and no C: usage.",
               "id": "receipt",
               "instruction": "Enter only the hostname and yes/no storage confirmations in the local Passport. Do not publish the supervisor name, mapped path, credentials, or screenshot.",
               "links": [],
@@ -748,7 +748,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Record the sanitized result"
+              "title": "Record the safe result"
             }
           ]
         },
@@ -767,7 +767,7 @@
           "attestation"
         ]
       },
-      "title": "Use Blade For GUI Work Without Losing Data",
+      "title": "Use Blade For Graphical Work Without Losing Data",
       "track": "blade",
       "verification": {
         "critical_must_pass": true,
@@ -835,7 +835,7 @@
                 "label": "Either file if it has a passphrase."
               }
             ],
-            "prompt": "Which SSH file may be shared with a service?",
+            "prompt": "When a service asks for an SSH key, which file may be shared?",
             "type": "single"
           },
           {
@@ -843,7 +843,7 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Verify MFA in your own account settings and never publish one-time or recovery codes.",
+            "feedback": "Verify two-factor authentication in your own account settings and never publish one-time or recovery codes.",
             "id": "mfa_status",
             "options": [
               {
@@ -859,7 +859,7 @@
                 "label": "Send a screenshot containing recovery codes."
               }
             ],
-            "prompt": "How should you verify GitHub MFA without exposing a secret?",
+            "prompt": "How should you verify GitHub two-factor authentication without exposing a secret?",
             "type": "single"
           }
         ],
@@ -889,7 +889,7 @@
               "commands": [],
               "expected": "GitHub reports that two-factor authentication is enabled and the recovery-code view is closed after secure storage.",
               "id": "mfa",
-              "instruction": "Open your personal GitHub password and authentication settings. Enable two-factor authentication, configure the recovery methods offered by GitHub, and store the recovery codes in the approved private location from the previous step. Never upload a recovery code to the Passport.",
+              "instruction": "Two-factor authentication (2FA) asks for a second proof after your password. Open your personal GitHub password and authentication settings, enable 2FA, configure the recovery methods offered by GitHub, and store the recovery codes in the approved private location from the previous step. Never upload a recovery code to the Passport.",
               "links": [
                 {
                   "label": "Open GitHub authentication settings",
@@ -910,12 +910,12 @@
             },
             {
               "commands": [],
-              "expected": "Git status and the intended diff contain no secret value.",
+              "expected": "No secret value is inside any file that Git is asked to record or share.",
               "id": "secret-files",
-              "instruction": "Store local secrets only in an approved secret store or ignored local file. A sample environment file may contain variable names, but never real values.",
+              "instruction": "Store local secrets only in an approved secret store or an ignored local file. Ignored means Git is configured not to record that file. A token is secret text that authorizes account or service access. An SSH key pair has a private key that stays on your computer and a public file ending in .pub that may be given to the named service. A sample environment file may show the names of settings a program needs, but never their real secret values.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Remove the value from the working tree and rotate it if it may have been exposed.",
+              "on_failure": "Remove the value from the project files and any staged Git change, then rotate it if it may have been exposed.",
               "on_success": "Continue to the exposure procedure.",
               "platforms": [
                 "all"
@@ -926,7 +926,7 @@
               "commands": [],
               "expected": "The compromised credential can no longer be used.",
               "id": "exposure",
-              "instruction": "If a credential may be exposed, revoke or rotate it first, preserve useful evidence, and report through the private incident path. Deleting a message or commit is not sufficient.",
+              "instruction": "If a credential may be exposed, revoke it, meaning disable it, or rotate it, meaning replace it with a new one. Do this first, preserve useful evidence, and report through the private incident path. Deleting a message or a recorded Git version is not sufficient.",
               "links": [
                 {
                   "label": "Open the incident and help procedure",
@@ -934,8 +934,8 @@
                 }
               ],
               "machine": "browser",
-              "on_failure": "Stop using the affected account. Use the linked incident procedure to contact your supervisor or lab IT, ETH cyber incident support, or ETH HPC support, according to the affected system.",
-              "on_success": "Document only sanitized facts and continue.",
+              "on_failure": "Stop using the affected account. Use the linked incident procedure to contact your supervisor or lab IT, ETH cyber incident support, or ETH High-Performance Computing (HPC) support, according to the affected system.",
+              "on_success": "Document only non-secret facts and continue.",
               "platforms": [
                 "all"
               ],
@@ -1078,7 +1078,7 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Scratch is not an authoritative copy; preserve remaining evidence, report the loss, and recover or rerun transparently.",
+            "feedback": "Scratch is temporary and must not hold the only required copy; preserve remaining evidence, report the loss, and state honestly what was recovered or rerun.",
             "id": "scratch_loss",
             "options": [
               {
@@ -1105,7 +1105,7 @@
               "commands": [],
               "expected": "You can explain the Euler example without needing to know Slurm syntax.",
               "id": "terms",
-              "instruction": "An incident is a suspected loss of confidentiality, access, control, or data. In the Euler example, a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.",
+              "instruction": "An incident is a suspected loss of confidentiality, access, control, or data. An AI coding agent is a tool that can read project files and request edits or commands. Automation is software that performs steps without a person typing each one. In the Euler example, Slurm is the scheduler and a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.",
               "links": [
                 {
                   "label": "Read the incident and help procedure",
@@ -1146,7 +1146,7 @@
                 }
               ],
               "machine": "browser",
-              "on_failure": "Stop trying to fix it alone. Use the linked incident procedure to send a private report to your supervisor or lab IT, ETH cyber incident support, or ETH HPC support.",
+              "on_failure": "Stop trying to fix it alone. Use the linked incident procedure to send a private report to your supervisor or lab IT, ETH cyber incident support, or ETH High-Performance Computing (HPC) support.",
               "on_success": "Verify the stopped state.",
               "platforms": [
                 "all"
@@ -1176,7 +1176,7 @@
               "commands": [],
               "expected": "You can name the correct private recipient for each fictional scenario without contacting that recipient.",
               "id": "report",
-              "instruction": "For each fictional scenario, use the linked procedure to identify who you would contact: your supervisor or lab IT for lab projects, NAS, or research data; ETH cyber incident support for stolen credentials, phishing, malware, or attacks; ETH HPC support for Euler service or account problems that contain no confidential research content. Do not send a real report for a fictional scenario. Public Passport PRs and issues are never incident channels.",
+              "instruction": "For each fictional scenario, use the linked procedure to identify the private contact. Contact your supervisor or lab IT for lab projects, NAS, or research data. Contact ETH cyber incident support for stolen credentials, phishing, malware, or attacks. Contact ETH High-Performance Computing (HPC) support for Euler service or account problems that contain no confidential research content. Do not send a real report for a fictional scenario. Public Passport submissions and public help issues are never incident channels.",
               "links": [
                 {
                   "label": "Open the incident and help procedure",
@@ -1251,8 +1251,8 @@
     },
     "core-orientation": {
       "activity": {
-        "action": "Confirm that you are in your assigned local Passport, review your route, then prove that you can close and resume it.",
-        "expected_result": "The same route reopens locally, and GitHub stores the submitted completion result.",
+        "action": "Confirm that you are in your local Passport, review your assigned lessons, then prove that you can close and reopen it.",
+        "expected_result": "Your saved lesson list reopens on this computer, and GitHub records a result only after you submit an exercise.",
         "kind": "knowledge_check",
         "machine": "browser",
         "questions": [
@@ -1260,13 +1260,37 @@
             "answer": [
               "correct"
             ],
+            "critical": false,
+            "feedback": "Use the machine and shell label: open that shell on the named machine, paste after its prompt, and press Enter.",
+            "id": "command_place",
+            "options": [
+              {
+                "id": "correct",
+                "label": "In a PowerShell window, after its prompt; then press Enter."
+              },
+              {
+                "id": "wrong_a",
+                "label": "In the web browser address bar."
+              },
+              {
+                "id": "wrong_b",
+                "label": "In a chat message to another person."
+              }
+            ],
+            "prompt": "An instruction says Your computer / PowerShell. Where do you run its command?",
+            "type": "single"
+          },
+          {
+            "answer": [
+              "correct"
+            ],
             "critical": true,
-            "feedback": "The trusted GitHub controller result for the submitted commit.",
+            "feedback": "The automatic Passport check shown on GitHub is the official result for submitted work.",
             "id": "status_source",
             "options": [
               {
                 "id": "correct",
-                "label": "The trusted GitHub controller result for the submitted commit."
+                "label": "The automatic Passport check shown on GitHub for the submitted work."
               },
               {
                 "id": "wrong_a",
@@ -1285,20 +1309,20 @@
               "correct"
             ],
             "critical": false,
-            "feedback": "Run gh passport open; the launcher uses its local registry.",
+            "feedback": "Run gh passport open; the launcher remembers the managed folder on this computer.",
             "id": "resume_path",
             "options": [
               {
                 "id": "correct",
-                "label": "Run gh passport open; the launcher uses its local registry."
+                "label": "Run gh passport open; the launcher remembers the managed folder on this computer."
               },
               {
                 "id": "wrong_a",
-                "label": "Create a new fork and branch."
+                "label": "Create another public exercise copy and start over."
               },
               {
                 "id": "wrong_b",
-                "label": "Find an old loopback URL in browser history."
+                "label": "Reuse an old local address from the browser history."
               }
             ],
             "prompt": "How do you reopen the real passport later?",
@@ -1306,17 +1330,17 @@
           }
         ],
         "recipe": {
-          "intro": "Do not submit anything from a curriculum preview. Complete each check before moving to the next one.",
+          "intro": "Do not submit anything from a public course preview. Complete each check before moving to the next one.",
           "steps": [
             {
               "commands": [],
               "expected": "The banner identifies your local Passport.",
               "id": "confirm-mode",
-              "instruction": "Read the banner at the top of the page. Your working copy must say that this is your local Passport. A page labelled Curriculum preview is only a public example.",
+              "instruction": "Read the banner at the top of the page. Your working copy must say that this is your local Passport. A page labelled Public course preview is only an example and cannot save or submit work.",
               "links": [],
               "machine": "browser",
               "on_failure": "Return to How to start and launch your Passport before continuing.",
-              "on_success": "Continue to your route.",
+              "on_success": "Continue to the computer check.",
               "platforms": [
                 "all"
               ],
@@ -1324,13 +1348,13 @@
             },
             {
               "commands": [],
-              "expected": "The dashboard platform matches this computer.",
+              "expected": "The operating system shown on the progress page matches this computer.",
               "id": "review-platform",
-              "instruction": "Open the Passport dashboard and confirm that it names the computer platform you are actually using: Windows, macOS, or Linux.",
+              "instruction": "Open the Passport progress page and confirm that it names the operating system on the computer in front of you: Windows, macOS, or Linux.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Stop before platform-specific work, submit one sanitized help request, and return later. Keep this Passport; do not create a second one or alter its files.",
-              "on_success": "Continue to the assigned route.",
+              "on_failure": "Stop before platform-specific work, submit one help request without private information, and return later. Keep this Passport; do not create a second one or alter its files.",
+              "on_success": "Continue to the command basics.",
               "platforms": [
                 "all"
               ],
@@ -1338,9 +1362,28 @@
             },
             {
               "commands": [],
+              "expected": "You can distinguish a terminal from a shell and identify the machine named above a command.",
+              "id": "command-basics",
+              "instruction": "Every command names the computer and application where it runs. Your computer or local means the laptop or desktop in front of you; remote means another computer reached through the network. A terminal is the text application you open. A shell is the program inside it that reads commands: PowerShell on Windows, zsh on macOS, and Bash on Linux or Euler. On Windows, open PowerShell. On macOS or Linux, open Terminal; it starts zsh or Bash automatically. You do not need to install a separate Bash or zsh application. A prompt is the text and cursor showing that the shell is ready. Paste only the displayed command after that prompt, press Enter once, and read the output before continuing. A path is the address of a file or folder.",
+              "links": [
+                {
+                  "label": "Open terminal and command basics",
+                  "url": "../../../docs/core/command-line-basics.md"
+                }
+              ],
+              "machine": "browser",
+              "on_failure": "Reopen How to start and read Before step 1 before running any command.",
+              "on_success": "Continue to the system map.",
+              "platforms": [
+                "all"
+              ],
+              "title": "Learn where commands run"
+            },
+            {
+              "commands": [],
               "expected": "You can state in one sentence what GitHub, NAS, Blade, and Euler are used for.",
               "id": "system-map",
-              "instruction": "Read the short system map. Git and GitHub manage code history and review. The NAS stores durable shared project data. Blade is a shared remote Windows computer for licensed graphical software. Euler is ETH Zurich's shared cluster for scheduled CPU and GPU computation. Later missions explain access; do not connect to any of them in this step.",
+              "instruction": "Read the short system map. Git and GitHub manage code history and review. The NAS stores durable shared project data. Blade is a shared remote Windows computer for licensed graphical software. Euler is an ETH Zurich service made of many managed computers for research calculations. A CPU is the general-purpose processor used by most programs; a GPU is an accelerator used only by compatible programs. Euler schedules both kinds of work. Later lessons explain access; do not connect to any of these systems in this step.",
               "links": [
                 {
                   "label": "Open the laptop, NAS, Blade, and Euler map",
@@ -1349,34 +1392,34 @@
               ],
               "machine": "browser",
               "on_failure": "Read the linked system map before choosing or removing a responsibility.",
-              "on_success": "Review why each mission was assigned to you.",
+              "on_success": "Review why each lesson was assigned to you.",
               "platforms": [
                 "all"
               ],
-              "title": "Recognize the systems named in your route"
+              "title": "Meet the systems used by the lab"
             },
             {
               "commands": [],
-              "expected": "You can explain why each optional track appears.",
+              "expected": "You can explain why each optional group of lessons appears.",
               "id": "review-route",
-              "instruction": "Read the mission list from top to bottom. Check that it covers your real responsibilities. Dependencies are added automatically.",
+              "instruction": "Read the lesson list from top to bottom. Each lesson teaches and checks one practical skill. Related lessons are grouped by topic. The Passport automatically adds any earlier lessons needed for the work you selected. Check that the list covers what you expect to do in the lab.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Use the sanitized help request if a required responsibility is missing or an irrelevant one was assigned.",
-              "on_success": "Continue when the route matches your work.",
+              "on_failure": "Use the help request without private information if a required responsibility is missing or an irrelevant one was assigned.",
+              "on_success": "Continue when the lesson list matches your work.",
               "platforms": [
                 "all"
               ],
-              "title": "Review the assigned missions"
+              "title": "Review your assigned lessons"
             },
             {
               "commands": [],
-              "expected": "You can distinguish a local draft from a trusted GitHub result.",
+              "expected": "You can distinguish a local draft, a public submission record, and the automatic GitHub result.",
               "id": "understand-status",
-              "instruction": "Draft answers stay on this computer. Submitted receipts and the trusted completion result live on GitHub. A checked box in the browser alone is not an official pass.",
+              "instruction": "Draft answers stay on this computer. When you submit a lesson, the launcher creates a small public submission record on GitHub containing only the requested safe answers. An automatic Passport check reads that submitted record and reports the official result on GitHub. A checked box in the browser alone is not an official pass.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Re-read the status explanation before submitting any mission.",
+              "on_failure": "Re-read the status explanation before submitting any lesson.",
               "on_success": "Continue to the resume test.",
               "platforms": [
                 "all"
@@ -1401,13 +1444,13 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The first local server stops, then the browser reopens the same Passport and route from a new local server.",
+              "expected": "The first local server stops, then the browser reopens the same Passport and lesson list from a new local server.",
               "id": "resume",
-              "instruction": "Close this browser tab. Return to the terminal that is running the Passport, press Ctrl+C once, and wait until the normal PowerShell or shell prompt returns. Then run the open command below from that prompt. Do not reinstall the extension or clone another repository.",
+              "instruction": "The Passport page is provided by a small local server: a program running on this computer in the terminal you kept open. Close this browser tab. Return to that terminal. Hold the Ctrl key and tap C once; do not type the characters Ctrl+C. This asks the local server to stop. Wait until the normal PowerShell, zsh, or Bash prompt returns, then paste and run the open command below. Do not reinstall the extension or clone another repository.",
               "links": [],
               "machine": "local",
-              "on_failure": "If Ctrl+C does not return a prompt, open one new terminal. Run gh passport doctor there, then use the sanitized help path if the same Passport cannot be found.",
-              "on_success": "Return to this mission and run Check my work.",
+              "on_failure": "If Ctrl+C does not return a prompt, open one new terminal. Run gh passport doctor there, then request help without including private information if the same Passport cannot be found.",
+              "on_success": "Return to this lesson and select Check my work.",
               "platforms": [
                 "all"
               ],
@@ -1445,8 +1488,8 @@
     },
     "core-systems-data": {
       "activity": {
-        "action": "Map code, durable data, temporary files, Windows GUI work, and scheduled compute to the correct lab systems.",
-        "expected_result": "The map separates source control, durable storage, temporary storage, GUI access, and scheduled computation.",
+        "action": "Map code, durable data, temporary files, graphical Windows work, and scheduled computation to the correct lab systems.",
+        "expected_result": "The map separates code history, durable storage, temporary storage, graphical access, and scheduled computation.",
         "kind": "knowledge_check",
         "machine": "browser",
         "questions": [
@@ -1484,7 +1527,7 @@
             "options": [
               {
                 "id": "correct",
-                "label": "In a time-, CPU-, and memory-limited Slurm job on Euler or another approved compute system."
+                "label": "In a scheduled Slurm job with explicit CPU, memory, and time limits on Euler or another approved compute system."
               },
               {
                 "id": "wrong_a",
@@ -1503,7 +1546,7 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Keep the authoritative copy in the supervisor-approved durable project location.",
+            "feedback": "Keep the main durable copy in the project location approved by the supervisor.",
             "id": "durable_dataset",
             "options": [
               {
@@ -1519,7 +1562,7 @@
                 "label": "Only in Euler scratch."
               }
             ],
-            "prompt": "Where should an approved collaborative dataset remain authoritative?",
+            "prompt": "Where should the main durable copy of an approved collaborative dataset live?",
             "type": "single"
           },
           {
@@ -1575,12 +1618,12 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Use the fictional fixture; real protected context requires prior approval for the exact service and content.",
+            "feedback": "Use the fictional practice files; real protected context requires prior approval for the exact service and content.",
             "id": "ai_context",
             "options": [
               {
                 "id": "correct",
-                "label": "Only the fictional fixture provided by the mission, unless the real data owner approved the exact service and content."
+                "label": "Only the fictional practice files provided by the mission, unless the real data owner approved the exact service and content."
               },
               {
                 "id": "wrong_a",
@@ -1596,13 +1639,13 @@
           }
         ],
         "recipe": {
-          "intro": "For each item, decide who owns it, how long it must survive, and where the work actually runs.",
+          "intro": "A CPU is the general-purpose processor used by most programs. A GPU is an accelerator used by compatible programs. Durable storage is intended to keep required files under an approved recovery plan; temporary storage may be purged. A GUI is an application controlled with windows, menus, and buttons. For each item, decide who owns it, how long it must survive, and where the work actually runs.",
           "steps": [
             {
               "commands": [],
               "expected": "Each system has one clear purpose and temporary storage is not treated as durable.",
               "id": "system-map",
-              "instruction": "Identify the role of each location: GitHub for reviewed source code, NAS for durable shared project data, Blade for licensed Windows GUI work, Euler for scheduled computation, and scratch or temporary folders for replaceable working files.",
+              "instruction": "Identify the role of each location: GitHub for reviewed source code, NAS for durable shared project data, Blade for licensed graphical Windows work, Euler for scheduled computation, and scratch or temporary folders for replaceable working files. Scheduled computation means submitting a program with requested CPU, memory, and time so a scheduler can choose where and when it runs.",
               "links": [
                 {
                   "label": "Open the complete system decision table",
@@ -1621,7 +1664,7 @@
               "commands": [],
               "expected": "Code has version history and no shared writable working tree.",
               "id": "code",
-              "instruction": "Keep source code and reviewable text in GitHub. Each contributor uses a separate clone and collaborates through branches and pull requests.",
+              "instruction": "Keep source code and reviewable text in GitHub. Each contributor uses a separate clone, meaning their own working copy of the project. A branch keeps one line of work separate, and a pull request asks for that branch to be reviewed before it is combined with shared work.",
               "links": [],
               "machine": "browser",
               "on_failure": "Move code collaboration out of a shared NAS checkout before continuing.",
@@ -1635,10 +1678,10 @@
               "commands": [],
               "expected": "The durable copy has a named owner and approved access.",
               "id": "durable-data",
-              "instruction": "Use the supervisor-approved NAS project folder or another explicitly approved durable project store for datasets, checkpoints, and deliverables.",
+              "instruction": "Use the supervisor-approved NAS project folder or another explicitly approved durable project store. A dataset is a collection of research data; a checkpoint is a saved state from a computation or model; a deliverable is an output the project must keep.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Ask the supervisor for the authoritative project location; do not invent one.",
+              "on_failure": "Ask the supervisor which project location holds the main durable copy; do not invent one.",
               "on_success": "Continue to temporary data.",
               "platforms": [
                 "all"
@@ -1649,7 +1692,7 @@
               "commands": [],
               "expected": "No irreplaceable file exists only in temporary storage.",
               "id": "temporary",
-              "instruction": "Use scratch, Blade D:, or another named temporary area only for replaceable working copies. Record how needed results return to durable storage.",
+              "instruction": "Scratch means temporary working storage intended for replaceable files. Use scratch, Blade D:, or another named temporary area only for working copies you can recreate. Record how needed results return to durable storage.",
               "links": [],
               "machine": "browser",
               "on_failure": "Copy and verify the required data in durable storage before proceeding.",
@@ -1663,7 +1706,7 @@
               "commands": [],
               "expected": "Blade is used interactively and does not hold the only durable copy.",
               "id": "blade",
-              "instruction": "Use Blade for approved interactive Windows software such as CAD or pre/post-processing. Keep durable files on P: and move heavy computation elsewhere.",
+              "instruction": "Use Blade for approved interactive Windows software such as computer-aided design (CAD) or simulation pre-processing and post-processing. Inside Blade, P: is a Windows drive letter for the connected durable project storage. Keep durable files there and move heavy computation elsewhere.",
               "links": [],
               "machine": "browser",
               "on_failure": "Stop an unattended heavy workload and choose an approved compute system.",
@@ -1677,7 +1720,7 @@
               "commands": [],
               "expected": "The Slurm job requests explicit CPU, memory, and time limits.",
               "id": "euler",
-              "instruction": "Use Euler compute nodes through Slurm for CPU or GPU computation. Login nodes are for access, file management, editing, and job control.",
+              "instruction": "Euler login nodes are the computers reached first for access, file management, editing, and job control. Slurm is the scheduler that assigns submitted work to compute nodes. Run CPU or GPU computation on those compute nodes, not on a login node.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not run the workload directly on an Euler login node.",
@@ -1767,12 +1810,12 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Inspect the owner, group, ACL, and intended boundary before requesting a narrow change.",
+            "feedback": "Inspect the owner, group, detailed access-control list (ACL), and intended folder boundary before requesting a narrow change.",
             "id": "permission_fix",
             "options": [
               {
                 "id": "correct",
-                "label": "Inspect the owner, group, ACL, and intended boundary before requesting a narrow change."
+                "label": "Inspect the owner, group, detailed access-control list (ACL), and intended folder boundary before requesting a narrow change."
               },
               {
                 "id": "wrong_a",
@@ -1791,12 +1834,12 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Keep the authoritative source read-only and write derived outputs to separate named locations.",
+            "feedback": "Keep the main approved source copy read-only and write derived outputs to separate named locations.",
             "id": "source_boundary",
             "options": [
               {
                 "id": "correct",
-                "label": "Keep the authoritative source read-only and write derived outputs to separate named locations."
+                "label": "Keep the main approved source copy read-only and write derived outputs to separate named locations."
               },
               {
                 "id": "wrong_a",
@@ -1839,12 +1882,12 @@
               "correct"
             ],
             "critical": false,
-            "feedback": "Use run- or user-specific output paths and record which version is authoritative.",
+            "feedback": "Use run- or user-specific output paths and record which version is the main approved copy.",
             "id": "output_identity",
             "options": [
               {
                 "id": "correct",
-                "label": "Use run- or user-specific output paths and record which version is authoritative."
+                "label": "Use run- or user-specific output paths and record which version is the main approved copy."
               },
               {
                 "id": "wrong_a",
@@ -1863,12 +1906,12 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Stop overwriting, preserve both copies, and have the named owner resolve the authoritative version.",
+            "feedback": "Stop overwriting, preserve both copies, and have the named owner choose the main approved version.",
             "id": "conflict_recovery",
             "options": [
               {
                 "id": "correct",
-                "label": "Stop overwriting, preserve both copies, and have the named owner resolve the authoritative version."
+                "label": "Stop overwriting, preserve both copies, and have the named owner choose the main approved version."
               },
               {
                 "id": "wrong_a",
@@ -1884,7 +1927,7 @@
           }
         ],
         "recipe": {
-          "intro": "Use the fictional dataset and checkpoint scenario. Do not apply permissions to a real shared folder in this mission.",
+          "intro": "A dataset is a collection of research data. A checkpoint is a saved program or model state. Permissions state who may read or change files. A detailed access-control list (ACL) can grant extra permissions to named people or groups. Use only the fictional scenario below; do not apply permissions to a real shared folder in this mission.",
           "steps": [
             {
               "commands": [],
@@ -1916,12 +1959,12 @@
             },
             {
               "commands": [],
-              "expected": "Concurrent work cannot silently overwrite authoritative inputs.",
+              "expected": "Concurrent work cannot silently overwrite the main approved inputs.",
               "id": "write-boundary",
-              "instruction": "Separate immutable source data from derived data, checkpoints, and logs. Name which paths each workflow may modify.",
+              "instruction": "Keep source data that must not change separate from derived data, checkpoints, and logs. Name which folders each program may modify.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Add immutable or versioned boundaries before collaboration starts.",
+              "on_failure": "Make source files read-only or use clearly versioned copies before collaboration starts.",
               "on_success": "Separate code collaboration from data sharing.",
               "platforms": [
                 "all"
@@ -1936,7 +1979,7 @@
               "links": [],
               "machine": "browser",
               "on_failure": "Move the repository out of the shared writable data directory.",
-              "on_success": "Define naming and provenance for generated data.",
+              "on_success": "Define names and record where generated data came from and how it was produced.",
               "platforms": [
                 "all"
               ],
@@ -1944,12 +1987,12 @@
             },
             {
               "commands": [],
-              "expected": "A collaborator can recover without guessing which copy is authoritative.",
+              "expected": "A collaborator can recover without guessing which copy is the main approved one.",
               "id": "recovery",
               "instruction": "Record who resolves duplicate outputs, how versions are identified, where the durable copy lives, and how temporary work is cleaned.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Do not start shared writes with an ambiguous authoritative copy.",
+              "on_failure": "Do not start shared writes until the main approved copy is named.",
               "on_success": "Complete the structured questions.",
               "platforms": [
                 "all"
@@ -2002,7 +2045,7 @@
     },
     "data-handover": {
       "activity": {
-        "action": "Complete the synthetic handover file so another authorized person can locate, verify, rerun, and retire the project.",
+        "action": "Complete the fictional handover practice file so another authorized person can locate, verify, rerun, and retire the project.",
         "expected_result": "Another authorized person could locate, verify, rerun, and safely retire the fictional project without hidden personal dependencies.",
         "kind": "structured_plan",
         "machine": "browser",
@@ -2061,7 +2104,7 @@
           "steps": [
             {
               "commands": [],
-              "expected": "The synthetic template is open in the practice repository.",
+              "expected": "The fictional template is open in the practice repository.",
               "id": "prepare",
               "instruction": "Press Prepare practice folder, enter it, and open workspace/handover/project-handover.md.",
               "links": [],
@@ -2071,7 +2114,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Prepare the handover fixture"
+              "title": "Prepare the handover practice file"
             },
             {
               "commands": [
@@ -2105,11 +2148,11 @@
               ],
               "expected": "The revision has exactly 40 hexadecimal characters and the environment field is complete.",
               "id": "revision",
-              "instruction": "Replace the revision and environment placeholders with the fictional values below. A real handover would use the exact commit produced by git rev-parse HEAD and the committed environment file.",
+              "instruction": "A code revision is the exact recorded version used for a result; an environment definition records the required software. Replace both placeholders with the fictional values below. A real handover would use the exact commit produced by git rev-parse HEAD and the committed environment file.",
               "links": [],
               "machine": "local",
               "on_failure": "Replace labels such as latest or current with an exact revision.",
-              "on_success": "Record authoritative and temporary data locations.",
+              "on_success": "Record the main approved and temporary data locations.",
               "platforms": [
                 "all"
               ],
@@ -2118,7 +2161,7 @@
             {
               "commands": [
                 {
-                  "command": "Authoritative location: P:\\ExampleSupervisor\\example-user\\synthetic-project\n\nTemporary locations to remove: D:\\example-user\\synthetic-project-cache",
+                  "command": "Main approved data location: P:\\ExampleSupervisor\\example-user\\synthetic-project\n\nTemporary locations to remove: D:\\example-user\\synthetic-project-cache",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "markdown"
@@ -2129,7 +2172,7 @@
               "instruction": "Replace both data placeholders with the fictional paths below. They demonstrate a durable project location and a temporary copy without exposing a real lab path.",
               "links": [],
               "machine": "local",
-              "on_failure": "Resolve which copy is authoritative before continuing.",
+              "on_failure": "Resolve which copy is the main approved copy before continuing.",
               "on_success": "Add a verification command and expected result.",
               "platforms": [
                 "all"
@@ -2198,7 +2241,7 @@
               ],
               "expected": "The diff is complete, fictional, and limited to one file.",
               "id": "review",
-              "instruction": "Confirm that only the synthetic handover file changed, every placeholder is gone, and no real information was inserted.",
+              "instruction": "Confirm that only the fictional handover practice file changed, every placeholder is gone, and no real information was inserted.",
               "links": [],
               "machine": "local",
               "on_failure": "Remove real or extra information before submitting.",
@@ -2249,7 +2292,7 @@
     },
     "data-placement": {
       "activity": {
-        "action": "Apply the storage decision sequence to six fictional research artifacts, then answer the placement scenarios.",
+        "action": "Apply the storage decision sequence to six fictional research files or results, then answer the placement scenarios.",
         "expected_result": "Every placement has a named owner, an approved location, a durability rule, and a cleanup rule.",
         "kind": "structured_plan",
         "machine": "browser",
@@ -2283,12 +2326,12 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "Ask the information owner to confirm classification, access, and the authoritative location.",
+            "feedback": "Ask the information owner to confirm classification, access, and the main approved location.",
             "id": "owner_first",
             "options": [
               {
                 "id": "correct",
-                "label": "Ask the information owner to confirm classification, access, and the authoritative location."
+                "label": "Ask the information owner to confirm classification, access, and the main approved location."
               },
               {
                 "id": "wrong_a",
@@ -2395,18 +2438,18 @@
                 "label": "It has the shortest filename."
               }
             ],
-            "prompt": "What identifies an authoritative data copy?",
+            "prompt": "What identifies the main approved data copy?",
             "type": "single"
           }
         ],
         "recipe": {
-          "intro": "Work from sensitivity, ownership, durability, collaboration, compute locality, and retention. Do not choose from free space alone.",
+          "intro": "Sensitivity describes the harm or access restriction associated with disclosure. Durability describes whether a file must survive failure or cleanup. Retention states how long it must be kept. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Decide these points, ownership, collaboration, and where computation runs before choosing storage; free space alone is not a reason.",
           "steps": [
             {
               "commands": [],
               "expected": "The classification is explicit and justified.",
               "id": "classify",
-              "instruction": "Decide whether the artifact is public, internal, confidential, personal, or otherwise restricted under the project's approved classification.",
+              "instruction": "For each file or result produced or used by the project, decide whether it is public, internal, confidential, personal, or otherwise restricted under the project's approved classification.",
               "links": [],
               "machine": "browser",
               "on_failure": "Stop placement until the project owner resolves the classification.",
@@ -2420,7 +2463,7 @@
               "commands": [],
               "expected": "One accountable owner is named.",
               "id": "owner",
-              "instruction": "Identify who decides access, retention, and deletion for the artifact. A person who happens to have a copy is not automatically the owner.",
+              "instruction": "Identify who decides access, retention, and deletion for the file or result. A person who happens to have a copy is not automatically the owner.",
               "links": [],
               "machine": "browser",
               "on_failure": "Ask the supervisor; do not self-authorize access.",
@@ -2434,7 +2477,7 @@
               "commands": [],
               "expected": "Irreplaceable material is assigned to approved durable storage.",
               "id": "durability",
-              "instruction": "Mark the artifact as durable, reproducible temporary work, cache, or disposable output. Record backup and recovery expectations.",
+              "instruction": "Mark the file or result as durable, reproducible temporary work, a temporary copy kept for faster access, or disposable output. Record backup and recovery expectations.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not leave the only copy in scratch, Blade D:, or a laptop.",
@@ -2465,7 +2508,7 @@
               "instruction": "Name when temporary copies are removed and who confirms durable transfer or deletion.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Keep the artifact unchanged until retention authority is clear.",
+              "on_failure": "Keep the file or result unchanged until the person responsible for retention has decided what must happen.",
               "on_success": "Complete the fictional placements.",
               "platforms": [
                 "all"
@@ -2474,7 +2517,7 @@
             },
             {
               "commands": [],
-              "expected": "No sensitive or durable artifact is assigned to unapproved temporary storage.",
+              "expected": "No sensitive or durable file or result is assigned to unapproved temporary storage.",
               "id": "answer",
               "instruction": "Choose a location for every fictional file and check it against all five decisions above.",
               "links": [],
@@ -2573,13 +2616,13 @@
           }
         ],
         "recipe": {
-          "intro": "Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.",
+          "intro": "Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. An SSH alias is a short local name for saved connection settings; IdentityFile is the setting that names the private key. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.",
           "steps": [
             {
               "commands": [],
               "expected": "This computer has a working network path for the direct Euler login test.",
               "id": "network",
-              "instruction": "Confirm that this computer has working internet access. Euler SSH normally connects directly to euler.ethz.ch. If that address times out on a restricted network, try the campus network or ETH VPN before changing any SSH file.",
+              "instruction": "Confirm that this computer has working internet access. Euler SSH normally connects directly to euler.ethz.ch. ETH VPN, or Virtual Private Network, is the official secure connection for reaching ETH-only services from outside the campus network. If the address times out on a restricted network, try the campus network or ETH VPN before changing any SSH file.",
               "links": [
                 {
                   "label": "Open the ETH VPN instructions",
@@ -2614,7 +2657,7 @@
               ],
               "expected": "After the ETH password, Euler prints password-login-ok.",
               "id": "password-login",
-              "instruction": "Enter the short ETH username, not an email address. On a first connection, compare the host fingerprint with ETH's published host keys before accepting it. This test ignores your user SSH config and disables public-key authentication so it really tests the ETH password.",
+              "instruction": "Enter the short ETH username, not an email address. A host fingerprint is a short identifier for the remote computer's SSH key. On a first connection, compare the displayed fingerprint with ETH's published host keys before accepting it. This test ignores your user SSH config and disables public-key authentication so it really tests the ETH password.",
               "links": [
                 {
                   "label": "Check ETH Euler host keys",
@@ -2649,7 +2692,7 @@
               ],
               "expected": "You know which SSH files exist. An existing config also prints existing-config-parses.",
               "id": "inspect",
-              "instruction": "List the local .ssh folder, print the numbered user config if it exists, and ask OpenSSH to parse the current euler alias. This step is read-only. Do not edit or delete anything.",
+              "instruction": "OpenSSH is the ssh command-line program on your computer. Its .ssh folder contains keys and an optional config file. List that folder, print the numbered config if it exists, and ask OpenSSH to parse the current euler alias. This step is read-only. Do not edit or delete anything.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop if OpenSSH names a bad line. Use the SSH troubleshooting page to correct only that line; do not append another Host block or replace the file.",
@@ -2662,28 +2705,28 @@
             {
               "commands": [
                 {
-                  "command": "& {\n  $EulerUser = Read-Host \"Short ETH username\"\n  if ($EulerUser -notmatch \"^[A-Za-z0-9._-]+$\") { throw \"STOP: invalid ETH username\" }\n\n  $Resolved = @(ssh -G euler 2>$null)\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: existing SSH config is invalid\" }\n  $ResolvedHostMatch = $Resolved | Select-String '^hostname\\s+' | Select-Object -First 1\n  $ResolvedUserMatch = $Resolved | Select-String '^user\\s+' | Select-Object -First 1\n  $ResolvedHost = if ($ResolvedHostMatch) { ($ResolvedHostMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $ResolvedUser = if ($ResolvedUserMatch) { ($ResolvedUserMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $PublicIdentity = @($Resolved | Select-String '^identityfile\\s+.*\\.pub\\s*$')\n  if ($ResolvedHost -eq \"euler.ethz.ch\" -and $ResolvedUser -eq $EulerUser) {\n    if ($PublicIdentity.Count -gt 0) { throw \"STOP: the existing euler alias points IdentityFile at a .pub file\" }\n    ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler \"echo existing-alias-ok\"\n    if ($LASTEXITCODE -eq 0) { return }\n  }\n\n  $KeyPath = Join-Path $env:USERPROFILE \".ssh\\id_ed25519_euler\"\n  $PrivateExists = Test-Path -LiteralPath $KeyPath\n  $PublicExists = Test-Path -LiteralPath \"$KeyPath.pub\"\n  if ($PrivateExists -xor $PublicExists) { throw \"STOP: the canonical key pair is incomplete; do not overwrite either file\" }\n  if (-not $PrivateExists) { Write-Host \"no-canonical-key\"; return }\n  ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$EulerUser@euler.ethz.ch\" \"echo canonical-key-ok\"\n}",
+                  "command": "& {\n  $EulerUser = Read-Host \"Short ETH username\"\n  if ($EulerUser -notmatch \"^[A-Za-z0-9._-]+$\") { throw \"STOP: invalid ETH username\" }\n\n  $Resolved = @(ssh -G euler 2>$null)\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: existing SSH config is invalid\" }\n  $ResolvedHostMatch = $Resolved | Select-String '^hostname\\s+' | Select-Object -First 1\n  $ResolvedUserMatch = $Resolved | Select-String '^user\\s+' | Select-Object -First 1\n  $ResolvedHost = if ($ResolvedHostMatch) { ($ResolvedHostMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $ResolvedUser = if ($ResolvedUserMatch) { ($ResolvedUserMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $PublicIdentity = @($Resolved | Select-String '^identityfile\\s+.*\\.pub\\s*$')\n  if ($ResolvedHost -eq \"euler.ethz.ch\" -and $ResolvedUser -eq $EulerUser) {\n    if ($PublicIdentity.Count -gt 0) { throw \"STOP: the existing euler alias points IdentityFile at a .pub file\" }\n    ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler \"echo existing-alias-ok\"\n    if ($LASTEXITCODE -eq 0) { return }\n  }\n\n  $KeyPath = Join-Path $env:USERPROFILE \".ssh\\id_ed25519_euler\"\n  $PrivateExists = Test-Path -LiteralPath $KeyPath\n  $PublicExists = Test-Path -LiteralPath \"$KeyPath.pub\"\n  if ($PrivateExists -xor $PublicExists) { throw \"STOP: the standard key pair is incomplete; do not overwrite either file\" }\n  if (-not $PrivateExists) { Write-Host \"no-standard-key\"; return }\n  ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$EulerUser@euler.ethz.ch\" \"echo standard-key-ok\"\n}",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
-                  "command": "(\nprintf 'Short ETH username: '; read -r eth_user\ncase \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n\nresolved=\"$(ssh -G euler 2>/dev/null)\" || {\n  printf 'STOP: existing SSH config is invalid\\n' >&2\n  exit 1\n}\nresolved_host=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"hostname\" { print $2; exit }')\"\nresolved_user=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"user\" { print $2; exit }')\"\nif [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n  if printf '%s\\n' \"$resolved\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: the existing euler alias points IdentityFile at a .pub file\\n' >&2\n    exit 1\n  fi\n  if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'echo existing-alias-ok'; then\n    exit 0\n  fi\nfi\n\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nprivate_exists=0; public_exists=0\n[ -f \"$key\" ] && private_exists=1\n[ -f \"$key.pub\" ] && public_exists=1\nif [ \"$private_exists\" -ne \"$public_exists\" ]; then\n  printf 'STOP: the canonical key pair is incomplete; do not overwrite either file\\n' >&2\n  exit 1\nfi\nif [ \"$private_exists\" -eq 0 ]; then\n  printf 'no-canonical-key\\n'\n  exit 0\nfi\nssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'echo canonical-key-ok'\n)",
+                  "command": "(\nprintf 'Short ETH username: '; read -r eth_user\ncase \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n\nresolved=\"$(ssh -G euler 2>/dev/null)\" || {\n  printf 'STOP: existing SSH config is invalid\\n' >&2\n  exit 1\n}\nresolved_host=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"hostname\" { print $2; exit }')\"\nresolved_user=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"user\" { print $2; exit }')\"\nif [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n  if printf '%s\\n' \"$resolved\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: the existing euler alias points IdentityFile at a .pub file\\n' >&2\n    exit 1\n  fi\n  if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'echo existing-alias-ok'; then\n    exit 0\n  fi\nfi\n\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nprivate_exists=0; public_exists=0\n[ -f \"$key\" ] && private_exists=1\n[ -f \"$key.pub\" ] && public_exists=1\nif [ \"$private_exists\" -ne \"$public_exists\" ]; then\n  printf 'STOP: the standard key pair is incomplete; do not overwrite either file\\n' >&2\n  exit 1\nfi\nif [ \"$private_exists\" -eq 0 ]; then\n  printf 'no-standard-key\\n'\n  exit 0\nfi\nssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'echo standard-key-ok'\n)",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
-                  "command": "(\nprintf 'Short ETH username: '; read -r eth_user\ncase \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n\nresolved=\"$(ssh -G euler 2>/dev/null)\" || {\n  printf 'STOP: existing SSH config is invalid\\n' >&2\n  exit 1\n}\nresolved_host=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"hostname\" { print $2; exit }')\"\nresolved_user=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"user\" { print $2; exit }')\"\nif [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n  if printf '%s\\n' \"$resolved\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: the existing euler alias points IdentityFile at a .pub file\\n' >&2\n    exit 1\n  fi\n  if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'echo existing-alias-ok'; then\n    exit 0\n  fi\nfi\n\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nprivate_exists=0; public_exists=0\n[ -f \"$key\" ] && private_exists=1\n[ -f \"$key.pub\" ] && public_exists=1\nif [ \"$private_exists\" -ne \"$public_exists\" ]; then\n  printf 'STOP: the canonical key pair is incomplete; do not overwrite either file\\n' >&2\n  exit 1\nfi\nif [ \"$private_exists\" -eq 0 ]; then\n  printf 'no-canonical-key\\n'\n  exit 0\nfi\nssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'echo canonical-key-ok'\n)",
+                  "command": "(\nprintf 'Short ETH username: '; read -r eth_user\ncase \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n\nresolved=\"$(ssh -G euler 2>/dev/null)\" || {\n  printf 'STOP: existing SSH config is invalid\\n' >&2\n  exit 1\n}\nresolved_host=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"hostname\" { print $2; exit }')\"\nresolved_user=\"$(printf '%s\\n' \"$resolved\" | awk '$1 == \"user\" { print $2; exit }')\"\nif [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n  if printf '%s\\n' \"$resolved\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: the existing euler alias points IdentityFile at a .pub file\\n' >&2\n    exit 1\n  fi\n  if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'echo existing-alias-ok'; then\n    exit 0\n  fi\nfi\n\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nprivate_exists=0; public_exists=0\n[ -f \"$key\" ] && private_exists=1\n[ -f \"$key.pub\" ] && public_exists=1\nif [ \"$private_exists\" -ne \"$public_exists\" ]; then\n  printf 'STOP: the standard key pair is incomplete; do not overwrite either file\\n' >&2\n  exit 1\nfi\nif [ \"$private_exists\" -eq 0 ]; then\n  printf 'no-standard-key\\n'\n  exit 0\nfi\nssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'echo standard-key-ok'\n)",
                   "platform": "linux",
                   "shell": "bash"
                 }
               ],
-              "expected": "The final marker is existing-alias-ok, canonical-key-ok, or no-canonical-key.",
+              "expected": "The final marker is existing-alias-ok, standard-key-ok, or no-standard-key.",
               "id": "existing-key-test",
-              "instruction": "First test an existing euler alias when it resolves to this Euler account. The command forces a direct connection to euler.ethz.ch on port 22 and ignores any ProxyCommand or ProxyJump. If that is not available, test the canonical id_ed25519_euler pair directly while ignoring user config. Every connection in this step disables ETH-password and keyboard-interactive fallback.",
+              "instruction": "First test an existing euler alias when it resolves to this Euler account. ProxyCommand and ProxyJump are settings that can reroute SSH through another connection; this test disables them and connects directly to euler.ethz.ch on the standard SSH port 22. If no suitable alias is available, test id_ed25519_euler, the standard key filename used by this guide, while ignoring user config. Keyboard-interactive login is another password-like login method. Every connection in this step disables both ETH-password and keyboard-interactive fallback, so success proves that a key worked.",
               "links": [],
               "machine": "local",
-              "on_failure": "If the canonical pair exists but neither key-only test succeeds, use the next diagnostic step. If OpenSSH reports a .pub IdentityFile, correct that config line first.",
-              "on_success": "After existing-alias-ok, skip key generation and installation and continue at the alias step, which preserves the working identity. After canonical-key-ok, also skip to the alias step. After no-canonical-key, continue to key generation.",
+              "on_failure": "If the standard id_ed25519_euler pair exists but neither key-only test succeeds, use the next diagnostic step. If OpenSSH reports a .pub IdentityFile, correct that config line first.",
+              "on_success": "After existing-alias-ok, skip key generation and installation and continue at the alias step, which preserves the working identity. After standard-key-ok, also skip to the alias step. After no-standard-key, continue to key generation.",
               "platforms": [
                 "all"
               ],
@@ -2709,7 +2752,7 @@
               ],
               "expected": "Both fingerprint lines contain the same SHA256 value and the final line is key-pair-matches.",
               "id": "failed-key-stop",
-              "instruction": "Run this only when id_ed25519_euler exists but the canonical key-only test did not print canonical-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it.",
+              "instruction": "Run this only when id_ed25519_euler exists but its key-only test did not print standard-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it.",
               "links": [
                 {
                   "label": "Open Euler SSH troubleshooting",
@@ -2727,24 +2770,24 @@
             {
               "commands": [
                 {
-                  "command": "& {\n  $SshDir = Join-Path $env:USERPROFILE \".ssh\"\n  $KeyPath = Join-Path $SshDir \"id_ed25519_euler\"\n  New-Item -ItemType Directory -Force $SshDir | Out-Null\n  if ((Test-Path -LiteralPath $KeyPath) -or (Test-Path -LiteralPath \"$KeyPath.pub\")) { throw \"STOP: canonical key or public key already exists; nothing was overwritten\" }\n  ssh-keygen -t ed25519 -a 100 -f $KeyPath -C \"$env:USERNAME@euler\"\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: ssh-keygen failed\" }\n  icacls $KeyPath /inheritance:r\n  icacls $KeyPath /grant:r \"${env:USERNAME}:(R)\"\n}",
+                  "command": "& {\n  $SshDir = Join-Path $env:USERPROFILE \".ssh\"\n  $KeyPath = Join-Path $SshDir \"id_ed25519_euler\"\n  New-Item -ItemType Directory -Force $SshDir | Out-Null\n  if ((Test-Path -LiteralPath $KeyPath) -or (Test-Path -LiteralPath \"$KeyPath.pub\")) { throw \"STOP: standard key or public key already exists; nothing was overwritten\" }\n  ssh-keygen -t ed25519 -a 100 -f $KeyPath -C \"$env:USERNAME@euler\"\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: ssh-keygen failed\" }\n  icacls $KeyPath /inheritance:r\n  icacls $KeyPath /grant:r \"${env:USERNAME}:(R)\"\n}",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
-                  "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nmkdir -p \"$HOME/.ssh\" && chmod 700 \"$HOME/.ssh\"\nif [ -e \"$key\" ] || [ -e \"$key.pub\" ]; then printf 'STOP: canonical key or public key already exists; nothing was overwritten\\n' >&2; exit 1; fi\nssh-keygen -t ed25519 -a 100 -f \"$key\" -C \"$USER@euler\"\n)",
+                  "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nmkdir -p \"$HOME/.ssh\" && chmod 700 \"$HOME/.ssh\"\nif [ -e \"$key\" ] || [ -e \"$key.pub\" ]; then printf 'STOP: standard key or public key already exists; nothing was overwritten\\n' >&2; exit 1; fi\nssh-keygen -t ed25519 -a 100 -f \"$key\" -C \"$USER@euler\"\n)",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
-                  "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nmkdir -p \"$HOME/.ssh\" && chmod 700 \"$HOME/.ssh\"\nif [ -e \"$key\" ] || [ -e \"$key.pub\" ]; then printf 'STOP: canonical key or public key already exists; nothing was overwritten\\n' >&2; exit 1; fi\nssh-keygen -t ed25519 -a 100 -f \"$key\" -C \"$USER@euler\"\n)",
+                  "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nmkdir -p \"$HOME/.ssh\" && chmod 700 \"$HOME/.ssh\"\nif [ -e \"$key\" ] || [ -e \"$key.pub\" ]; then printf 'STOP: standard key or public key already exists; nothing was overwritten\\n' >&2; exit 1; fi\nssh-keygen -t ed25519 -a 100 -f \"$key\" -C \"$USER@euler\"\n)",
                   "platform": "linux",
                   "shell": "bash"
                 }
               ],
               "expected": "Both id_ed25519_euler and id_ed25519_euler.pub are created; the private key has restricted permissions.",
               "id": "generate",
-              "instruction": "Run this only after no-canonical-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks.",
+              "instruction": "Run this only after no-standard-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop at the first error and keep all pre-existing files unchanged.",
@@ -2752,7 +2795,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Create the canonical key only when absent"
+              "title": "Create the standard dedicated key only when absent"
             },
             {
               "commands": [
@@ -2774,7 +2817,7 @@
               ],
               "expected": "After the ETH password, Euler prints public-key-installed and no SSH or permission error.",
               "id": "install-public",
-              "instruction": "Send the contents of id_ed25519_euler.pub through the working password login. The remote command removes a possible Windows carriage return, preserves authorized_keys, and avoids adding a duplicate exact line.",
+              "instruction": "Send only the contents of id_ed25519_euler.pub through the working password login. Euler stores accepted public keys in a file named authorized_keys. The remote command removes a possible Windows carriage return, preserves all existing entries, and avoids adding a duplicate exact line.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not edit authorized_keys manually; diagnose the reported login or permission error.",
@@ -2817,27 +2860,27 @@
             {
               "commands": [
                 {
-                  "command": "& {\n  $EulerUser = Read-Host \"Short ETH username\"\n  if ($EulerUser -notmatch \"^[A-Za-z0-9._-]+$\") { throw \"STOP: invalid ETH username\" }\n  $SshDir = Join-Path $env:USERPROFILE \".ssh\"; $Config = Join-Path $SshDir \"config\"; $IncludeDir = Join-Path $SshDir \"passport.d\"; $BackupDir = Join-Path $SshDir \"passport-backups\"; $EulerConfig = Join-Path $IncludeDir \"euler.conf\"; $KeyPath = Join-Path $SshDir \"id_ed25519_euler\"\n  $ConfigExisted = Test-Path -LiteralPath $Config\n  $EulerConfigExisted = Test-Path -LiteralPath $EulerConfig\n  foreach ($Path in @($Config, $EulerConfig)) {\n    if ((Test-Path -LiteralPath $Path) -and ((((Get-Item -LiteralPath $Path).Attributes) -band [IO.FileAttributes]::ReparsePoint) -ne 0)) {\n      throw \"STOP: $Path is a link or reparse point; no file was changed\"\n    }\n  }\n\n  $ResolvedBefore = @(ssh -G euler 2>$null)\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: existing SSH config is invalid; no file was changed\" }\n  $ResolvedHostMatch = $ResolvedBefore | Select-String '^hostname\\s+' | Select-Object -First 1\n  $ResolvedUserMatch = $ResolvedBefore | Select-String '^user\\s+' | Select-Object -First 1\n  $ResolvedHost = if ($ResolvedHostMatch) { ($ResolvedHostMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $ResolvedUser = if ($ResolvedUserMatch) { ($ResolvedUserMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $ResolvedIdentity = @($ResolvedBefore | ForEach-Object { if ($_ -match '^identityfile\\s+(.+)$') { $Matches[1] } })\n  if (@($ResolvedIdentity | Where-Object { $_ -match '\\.pub$' }).Count -gt 0) { throw \"STOP: existing IdentityFile points at a .pub file\" }\n\n  $UseExisting = $false\n  if ($ResolvedHost -eq \"euler.ethz.ch\" -and $ResolvedUser -eq $EulerUser) {\n    ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler \"exit 0\"\n    $UseExisting = $LASTEXITCODE -eq 0\n  }\n\n  $CanonicalWorks = $false\n  $PrivateExists = Test-Path -LiteralPath $KeyPath\n  $PublicExists = Test-Path -LiteralPath \"$KeyPath.pub\"\n  if (-not $UseExisting -and ($PrivateExists -xor $PublicExists)) { throw \"STOP: canonical key pair is incomplete\" }\n  if (-not $UseExisting -and $PrivateExists) {\n    ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$EulerUser@euler.ethz.ch\" \"exit 0\"\n    $CanonicalWorks = $LASTEXITCODE -eq 0\n  }\n  if (-not $UseExisting -and -not $CanonicalWorks) { throw \"STOP: no tested key-only identity is available\" }\n\n  New-Item -ItemType Directory -Force $IncludeDir, $BackupDir -ErrorAction Stop | Out-Null\n  $Stamp = \"$(Get-Date -Format yyyyMMdd-HHmmss-fffffff)-$PID\"\n  $ConfigBackup = Join-Path $BackupDir \"config.$Stamp\"\n  $EulerConfigBackup = Join-Path $BackupDir \"euler.conf.$Stamp\"\n  if ($ConfigExisted) { Copy-Item -LiteralPath $Config -Destination $ConfigBackup -ErrorAction Stop }\n  if ($EulerConfigExisted) { Copy-Item -LiteralPath $EulerConfig -Destination $EulerConfigBackup -ErrorAction Stop }\n\n  $Lines = @(\"Host euler\", \"  HostName euler.ethz.ch\", \"  User $EulerUser\")\n  if ($UseExisting) {\n    if ($ResolvedIdentity.Count -eq 0) { throw \"STOP: working alias has no inspectable identity selection\" }\n    foreach ($Identity in $ResolvedIdentity) {\n      if ($Identity.Contains('\"')) { throw \"STOP: unsupported quote in resolved identity path\" }\n      $Lines += '  IdentityFile \"' + $Identity + '\"'\n    }\n    $ResolvedIdentitiesOnlyMatch = $ResolvedBefore | Select-String '^identitiesonly\\s+' | Select-Object -First 1\n    $ResolvedIdentitiesOnly = if ($ResolvedIdentitiesOnlyMatch) { ($ResolvedIdentitiesOnlyMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n    if ($ResolvedIdentitiesOnly -notin @(\"yes\", \"no\")) { throw \"STOP: invalid resolved IdentitiesOnly value\" }\n    $Lines += \"  IdentitiesOnly $ResolvedIdentitiesOnly\"\n  } else {\n    $Lines += \"  IdentityFile ~/.ssh/id_ed25519_euler\"\n    $Lines += \"  IdentitiesOnly yes\"\n  }\n  $Lines += @(\"  Port 22\", \"  ProxyCommand none\", \"  ProxyJump none\", \"  PreferredAuthentications publickey\", \"  PasswordAuthentication no\", \"  KbdInteractiveAuthentication no\", \"  ForwardAgent no\")\n\n  $EulerTemporary = \"$EulerConfig.passport-new\"\n  $Lines | Set-Content -LiteralPath $EulerTemporary -Encoding ascii\n  ssh -F $EulerTemporary -G euler | Out-Null\n  if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath $EulerTemporary -ErrorAction SilentlyContinue; throw \"STOP: generated Euler block is invalid\" }\n\n  $Include = \"Include ~/.ssh/passport.d/*.conf\"; $NewLine = [Environment]::NewLine\n  $Old = if (Test-Path -LiteralPath $Config) { [System.IO.File]::ReadAllText($Config) } else { \"\" }\n  $Broad = '(?m)^[ \\t]*Include[ \\t]+(?:~/.ssh/)?passport\\.d/\\*(?:\\.conf)?[ \\t]*(?:\\r?\\n|$)'\n  $Rest = [System.Text.RegularExpressions.Regex]::Replace($Old, $Broad, \"\").TrimStart([char[]]@([char]13, [char]10))\n  $Updated = if ($Rest) { \"$Include$NewLine$Rest\" } else { \"$Include$NewLine\" }\n  $ConfigTemporary = \"$Config.passport-new\"\n  [System.IO.File]::WriteAllText($ConfigTemporary, $Updated, [System.Text.UTF8Encoding]::new($false))\n  ssh -F $ConfigTemporary -G euler | Out-Null\n  if ($LASTEXITCODE -ne 0) {\n    Remove-Item -LiteralPath $EulerTemporary, $ConfigTemporary -ErrorAction SilentlyContinue\n    throw \"STOP: generated SSH config is invalid; the original files are unchanged\"\n  }\n\n  try {\n    Move-Item -Force -LiteralPath $EulerTemporary -Destination $EulerConfig -ErrorAction Stop\n    Move-Item -Force -LiteralPath $ConfigTemporary -Destination $Config -ErrorAction Stop\n    ssh -G euler | Out-Null\n    if ($LASTEXITCODE -ne 0) { throw \"final Euler alias validation failed\" }\n  } catch {\n    $Failure = $_.Exception.Message\n    $RestoreFailed = $false\n    try {\n      if ($ConfigExisted) { Copy-Item -Force -LiteralPath $ConfigBackup -Destination $Config -ErrorAction Stop }\n      else { Remove-Item -Force -LiteralPath $Config -ErrorAction SilentlyContinue }\n    } catch { $RestoreFailed = $true }\n    try {\n      if ($EulerConfigExisted) { Copy-Item -Force -LiteralPath $EulerConfigBackup -Destination $EulerConfig -ErrorAction Stop }\n      else { Remove-Item -Force -LiteralPath $EulerConfig -ErrorAction SilentlyContinue }\n    } catch { $RestoreFailed = $true }\n    Remove-Item -Force -LiteralPath $EulerTemporary, $ConfigTemporary -ErrorAction SilentlyContinue\n    if ($RestoreFailed) { throw \"STOP: install failed and automatic restore was incomplete. Restore only config.$Stamp and euler.conf.$Stamp from $BackupDir. Cause: $Failure\" }\n    throw \"STOP: install failed; the original SSH files were restored automatically. Cause: $Failure\"\n  }\n}",
+                  "command": "& {\n  $EulerUser = Read-Host \"Short ETH username\"\n  if ($EulerUser -notmatch \"^[A-Za-z0-9._-]+$\") { throw \"STOP: invalid ETH username\" }\n  $SshDir = Join-Path $env:USERPROFILE \".ssh\"; $Config = Join-Path $SshDir \"config\"; $IncludeDir = Join-Path $SshDir \"passport.d\"; $BackupDir = Join-Path $SshDir \"passport-backups\"; $EulerConfig = Join-Path $IncludeDir \"euler.conf\"; $KeyPath = Join-Path $SshDir \"id_ed25519_euler\"\n  $ConfigExisted = Test-Path -LiteralPath $Config\n  $EulerConfigExisted = Test-Path -LiteralPath $EulerConfig\n  foreach ($Path in @($Config, $EulerConfig)) {\n    if ((Test-Path -LiteralPath $Path) -and ((((Get-Item -LiteralPath $Path).Attributes) -band [IO.FileAttributes]::ReparsePoint) -ne 0)) {\n      throw \"STOP: $Path is a link or reparse point; no file was changed\"\n    }\n  }\n\n  $ResolvedBefore = @(ssh -G euler 2>$null)\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: existing SSH config is invalid; no file was changed\" }\n  $ResolvedHostMatch = $ResolvedBefore | Select-String '^hostname\\s+' | Select-Object -First 1\n  $ResolvedUserMatch = $ResolvedBefore | Select-String '^user\\s+' | Select-Object -First 1\n  $ResolvedHost = if ($ResolvedHostMatch) { ($ResolvedHostMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $ResolvedUser = if ($ResolvedUserMatch) { ($ResolvedUserMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n  $ResolvedIdentity = @($ResolvedBefore | ForEach-Object { if ($_ -match '^identityfile\\s+(.+)$') { $Matches[1] } })\n  if (@($ResolvedIdentity | Where-Object { $_ -match '\\.pub$' }).Count -gt 0) { throw \"STOP: existing IdentityFile points at a .pub file\" }\n\n  $UseExisting = $false\n  if ($ResolvedHost -eq \"euler.ethz.ch\" -and $ResolvedUser -eq $EulerUser) {\n    ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler \"exit 0\"\n    $UseExisting = $LASTEXITCODE -eq 0\n  }\n\n  $StandardKeyWorks = $false\n  $PrivateExists = Test-Path -LiteralPath $KeyPath\n  $PublicExists = Test-Path -LiteralPath \"$KeyPath.pub\"\n  if (-not $UseExisting -and ($PrivateExists -xor $PublicExists)) { throw \"STOP: standard key pair is incomplete\" }\n  if (-not $UseExisting -and $PrivateExists) {\n    ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$EulerUser@euler.ethz.ch\" \"exit 0\"\n    $StandardKeyWorks = $LASTEXITCODE -eq 0\n  }\n  if (-not $UseExisting -and -not $StandardKeyWorks) { throw \"STOP: no tested key-only identity is available\" }\n\n  New-Item -ItemType Directory -Force $IncludeDir, $BackupDir -ErrorAction Stop | Out-Null\n  $Stamp = \"$(Get-Date -Format yyyyMMdd-HHmmss-fffffff)-$PID\"\n  $ConfigBackup = Join-Path $BackupDir \"config.$Stamp\"\n  $EulerConfigBackup = Join-Path $BackupDir \"euler.conf.$Stamp\"\n  if ($ConfigExisted) { Copy-Item -LiteralPath $Config -Destination $ConfigBackup -ErrorAction Stop }\n  if ($EulerConfigExisted) { Copy-Item -LiteralPath $EulerConfig -Destination $EulerConfigBackup -ErrorAction Stop }\n\n  $Lines = @(\"Host euler\", \"  HostName euler.ethz.ch\", \"  User $EulerUser\")\n  if ($UseExisting) {\n    if ($ResolvedIdentity.Count -eq 0) { throw \"STOP: working alias has no inspectable identity selection\" }\n    foreach ($Identity in $ResolvedIdentity) {\n      if ($Identity.Contains('\"')) { throw \"STOP: unsupported quote in resolved identity path\" }\n      $Lines += '  IdentityFile \"' + $Identity + '\"'\n    }\n    $ResolvedIdentitiesOnlyMatch = $ResolvedBefore | Select-String '^identitiesonly\\s+' | Select-Object -First 1\n    $ResolvedIdentitiesOnly = if ($ResolvedIdentitiesOnlyMatch) { ($ResolvedIdentitiesOnlyMatch.Line -split '\\s+', 2)[1] } else { \"\" }\n    if ($ResolvedIdentitiesOnly -notin @(\"yes\", \"no\")) { throw \"STOP: invalid resolved IdentitiesOnly value\" }\n    $Lines += \"  IdentitiesOnly $ResolvedIdentitiesOnly\"\n  } else {\n    $Lines += \"  IdentityFile ~/.ssh/id_ed25519_euler\"\n    $Lines += \"  IdentitiesOnly yes\"\n  }\n  $Lines += @(\"  Port 22\", \"  ProxyCommand none\", \"  ProxyJump none\", \"  PreferredAuthentications publickey\", \"  PasswordAuthentication no\", \"  KbdInteractiveAuthentication no\", \"  ForwardAgent no\")\n\n  $EulerTemporary = \"$EulerConfig.passport-new\"\n  $Lines | Set-Content -LiteralPath $EulerTemporary -Encoding ascii\n  ssh -F $EulerTemporary -G euler | Out-Null\n  if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath $EulerTemporary -ErrorAction SilentlyContinue; throw \"STOP: generated Euler block is invalid\" }\n\n  $Include = \"Include ~/.ssh/passport.d/*.conf\"; $NewLine = [Environment]::NewLine\n  $Old = if (Test-Path -LiteralPath $Config) { [System.IO.File]::ReadAllText($Config) } else { \"\" }\n  $Broad = '(?m)^[ \\t]*Include[ \\t]+(?:~/.ssh/)?passport\\.d/\\*(?:\\.conf)?[ \\t]*(?:\\r?\\n|$)'\n  $Rest = [System.Text.RegularExpressions.Regex]::Replace($Old, $Broad, \"\").TrimStart([char[]]@([char]13, [char]10))\n  $Updated = if ($Rest) { \"$Include$NewLine$Rest\" } else { \"$Include$NewLine\" }\n  $ConfigTemporary = \"$Config.passport-new\"\n  [System.IO.File]::WriteAllText($ConfigTemporary, $Updated, [System.Text.UTF8Encoding]::new($false))\n  ssh -F $ConfigTemporary -G euler | Out-Null\n  if ($LASTEXITCODE -ne 0) {\n    Remove-Item -LiteralPath $EulerTemporary, $ConfigTemporary -ErrorAction SilentlyContinue\n    throw \"STOP: generated SSH config is invalid; the original files are unchanged\"\n  }\n\n  try {\n    Move-Item -Force -LiteralPath $EulerTemporary -Destination $EulerConfig -ErrorAction Stop\n    Move-Item -Force -LiteralPath $ConfigTemporary -Destination $Config -ErrorAction Stop\n    ssh -G euler | Out-Null\n    if ($LASTEXITCODE -ne 0) { throw \"final Euler alias validation failed\" }\n  } catch {\n    $Failure = $_.Exception.Message\n    $RestoreFailed = $false\n    try {\n      if ($ConfigExisted) { Copy-Item -Force -LiteralPath $ConfigBackup -Destination $Config -ErrorAction Stop }\n      else { Remove-Item -Force -LiteralPath $Config -ErrorAction SilentlyContinue }\n    } catch { $RestoreFailed = $true }\n    try {\n      if ($EulerConfigExisted) { Copy-Item -Force -LiteralPath $EulerConfigBackup -Destination $EulerConfig -ErrorAction Stop }\n      else { Remove-Item -Force -LiteralPath $EulerConfig -ErrorAction SilentlyContinue }\n    } catch { $RestoreFailed = $true }\n    Remove-Item -Force -LiteralPath $EulerTemporary, $ConfigTemporary -ErrorAction SilentlyContinue\n    if ($RestoreFailed) { throw \"STOP: install failed and automatic restore was incomplete. Restore only config.$Stamp and euler.conf.$Stamp from $BackupDir. Cause: $Failure\" }\n    throw \"STOP: install failed; the original SSH files were restored automatically. Cause: $Failure\"\n  }\n}",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
-                  "command": "(\n  set -eu\n  printf 'Short ETH username: '; read -r eth_user\n  case \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n  ssh_dir=\"$HOME/.ssh\"; config=\"$ssh_dir/config\"; include_dir=\"$ssh_dir/passport.d\"; backup_dir=\"$ssh_dir/passport-backups\"; euler_config=\"$include_dir/euler.conf\"; key=\"$ssh_dir/id_ed25519_euler\"\n  [ ! -L \"$config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$config\" >&2; exit 1; }\n  [ ! -L \"$euler_config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$euler_config\" >&2; exit 1; }\n  config_existed=0; euler_config_existed=0\n  if [ -e \"$config\" ]; then [ -f \"$config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$config\" >&2; exit 1; }; config_existed=1; fi\n  if [ -e \"$euler_config\" ]; then [ -f \"$euler_config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$euler_config\" >&2; exit 1; }; euler_config_existed=1; fi\n\n  resolved_before=\"$(ssh -G euler 2>/dev/null)\" || {\n    printf 'STOP: existing SSH config is invalid; no file was changed\\n' >&2\n    exit 1\n  }\n  resolved_host=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"hostname\" { print $2; exit }')\"\n  resolved_user=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"user\" { print $2; exit }')\"\n  if printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: existing IdentityFile points at a .pub file\\n' >&2\n    exit 1\n  fi\n\n  use_existing=0\n  if [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n    if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'exit 0'; then\n      use_existing=1\n    fi\n  fi\n\n  private_exists=0; public_exists=0\n  [ -f \"$key\" ] && private_exists=1\n  [ -f \"$key.pub\" ] && public_exists=1\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -ne \"$public_exists\" ]; then printf 'STOP: canonical key pair is incomplete\\n' >&2; exit 1; fi\n  canonical_works=0\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -eq 1 ]; then\n    if ssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'exit 0'; then\n      canonical_works=1\n    fi\n  fi\n  if [ \"$use_existing\" -eq 0 ] && [ \"$canonical_works\" -eq 0 ]; then\n    printf 'STOP: no tested key-only identity is available\\n' >&2\n    exit 1\n  fi\n\n  mkdir -p \"$include_dir\" \"$backup_dir\" && chmod 700 \"$ssh_dir\" \"$include_dir\" \"$backup_dir\"\n  stamp=\"$(date +%Y%m%d-%H%M%S)-$$\"\n  config_backup=\"$backup_dir/config.$stamp\"\n  euler_config_backup=\"$backup_dir/euler.conf.$stamp\"\n  [ \"$config_existed\" -eq 0 ] || cp -p \"$config\" \"$config_backup\"\n  [ \"$euler_config_existed\" -eq 0 ] || cp -p \"$euler_config\" \"$euler_config_backup\"\n\n  restore_originals() {\n    restore_status=0\n    if [ \"$config_existed\" -eq 1 ]; then cp -p \"$config_backup\" \"$config\" || restore_status=1; else rm -f \"$config\" || restore_status=1; fi\n    if [ \"$euler_config_existed\" -eq 1 ]; then cp -p \"$euler_config_backup\" \"$euler_config\" || restore_status=1; else rm -f \"$euler_config\" || restore_status=1; fi\n    return \"$restore_status\"\n  }\n\n  euler_temporary=\"$euler_config.passport-new\"\n  {\n    printf 'Host euler\\n  HostName euler.ethz.ch\\n  User %s\\n' \"$eth_user\"\n    if [ \"$use_existing\" -eq 1 ]; then\n      identity_count=0\n      while IFS= read -r identity; do\n        [ -n \"$identity\" ] || continue\n        case \"$identity\" in *'\"'*) printf 'STOP: unsupported quote in resolved identity path\\n' >&2; exit 1;; esac\n        printf '  IdentityFile \"%s\"\\n' \"$identity\"\n        identity_count=$((identity_count + 1))\n      done <<EOF\n$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" { $1=\"\"; sub(/^[[:space:]]+/, \"\"); print }')\nEOF\n      [ \"$identity_count\" -gt 0 ] || { printf 'STOP: working alias has no inspectable identity selection\\n' >&2; exit 1; }\n      identities_only=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identitiesonly\" { print $2; exit }')\"\n      case \"$identities_only\" in yes|no) ;; *) printf 'STOP: invalid resolved IdentitiesOnly value\\n' >&2; exit 1;; esac\n      printf '  IdentitiesOnly %s\\n' \"$identities_only\"\n    else\n      printf '  IdentityFile ~/.ssh/id_ed25519_euler\\n  IdentitiesOnly yes\\n'\n    fi\n    printf '  Port 22\\n  ProxyCommand none\\n  ProxyJump none\\n  PreferredAuthentications publickey\\n  PasswordAuthentication no\\n  KbdInteractiveAuthentication no\\n  ForwardAgent no\\n'\n  } > \"$euler_temporary\"\n  chmod 600 \"$euler_temporary\"\n  ssh -F \"$euler_temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\"\n    printf 'STOP: generated Euler block is invalid\\n' >&2\n    exit 1\n  }\n\n  include='Include ~/.ssh/passport.d/*.conf'; temporary=\"$config.passport-new\"\n  if [ -f \"$config\" ]; then\n    awk -v include=\"$include\" 'BEGIN { print include } /^[[:space:]]*Include[[:space:]]+(~\\/[.]ssh\\/)?passport[.]d\\/[*]([.]conf)?[[:space:]]*$/ { next } { print }' \"$config\" > \"$temporary\"\n  else\n    printf '%s\\n' \"$include\" > \"$temporary\"\n  fi\n  chmod 600 \"$temporary\"\n  ssh -F \"$temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\" \"$temporary\"\n    printf 'STOP: generated SSH config is invalid; the original files are unchanged\\n' >&2\n    exit 1\n  }\n\n  if ! mv \"$euler_temporary\" \"$euler_config\" || ! mv \"$temporary\" \"$config\" || ! ssh -G euler >/dev/null; then\n    rm -f \"$euler_temporary\" \"$temporary\"\n    if restore_originals; then\n      printf 'STOP: install failed; the original SSH files were restored automatically\\n' >&2\n    else\n      printf 'STOP: install failed and automatic restore was incomplete. Restore only config.%s and euler.conf.%s from %s\\n' \"$stamp\" \"$stamp\" \"$backup_dir\" >&2\n    fi\n    exit 1\n  fi\n)",
+                  "command": "(\n  set -eu\n  printf 'Short ETH username: '; read -r eth_user\n  case \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n  ssh_dir=\"$HOME/.ssh\"; config=\"$ssh_dir/config\"; include_dir=\"$ssh_dir/passport.d\"; backup_dir=\"$ssh_dir/passport-backups\"; euler_config=\"$include_dir/euler.conf\"; key=\"$ssh_dir/id_ed25519_euler\"\n  [ ! -L \"$config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$config\" >&2; exit 1; }\n  [ ! -L \"$euler_config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$euler_config\" >&2; exit 1; }\n  config_existed=0; euler_config_existed=0\n  if [ -e \"$config\" ]; then [ -f \"$config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$config\" >&2; exit 1; }; config_existed=1; fi\n  if [ -e \"$euler_config\" ]; then [ -f \"$euler_config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$euler_config\" >&2; exit 1; }; euler_config_existed=1; fi\n\n  resolved_before=\"$(ssh -G euler 2>/dev/null)\" || {\n    printf 'STOP: existing SSH config is invalid; no file was changed\\n' >&2\n    exit 1\n  }\n  resolved_host=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"hostname\" { print $2; exit }')\"\n  resolved_user=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"user\" { print $2; exit }')\"\n  if printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: existing IdentityFile points at a .pub file\\n' >&2\n    exit 1\n  fi\n\n  use_existing=0\n  if [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n    if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'exit 0'; then\n      use_existing=1\n    fi\n  fi\n\n  private_exists=0; public_exists=0\n  [ -f \"$key\" ] && private_exists=1\n  [ -f \"$key.pub\" ] && public_exists=1\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -ne \"$public_exists\" ]; then printf 'STOP: standard key pair is incomplete\\n' >&2; exit 1; fi\n  standard_key_works=0\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -eq 1 ]; then\n    if ssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'exit 0'; then\n      standard_key_works=1\n    fi\n  fi\n  if [ \"$use_existing\" -eq 0 ] && [ \"$standard_key_works\" -eq 0 ]; then\n    printf 'STOP: no tested key-only identity is available\\n' >&2\n    exit 1\n  fi\n\n  mkdir -p \"$include_dir\" \"$backup_dir\" && chmod 700 \"$ssh_dir\" \"$include_dir\" \"$backup_dir\"\n  stamp=\"$(date +%Y%m%d-%H%M%S)-$$\"\n  config_backup=\"$backup_dir/config.$stamp\"\n  euler_config_backup=\"$backup_dir/euler.conf.$stamp\"\n  [ \"$config_existed\" -eq 0 ] || cp -p \"$config\" \"$config_backup\"\n  [ \"$euler_config_existed\" -eq 0 ] || cp -p \"$euler_config\" \"$euler_config_backup\"\n\n  restore_originals() {\n    restore_status=0\n    if [ \"$config_existed\" -eq 1 ]; then cp -p \"$config_backup\" \"$config\" || restore_status=1; else rm -f \"$config\" || restore_status=1; fi\n    if [ \"$euler_config_existed\" -eq 1 ]; then cp -p \"$euler_config_backup\" \"$euler_config\" || restore_status=1; else rm -f \"$euler_config\" || restore_status=1; fi\n    return \"$restore_status\"\n  }\n\n  euler_temporary=\"$euler_config.passport-new\"\n  {\n    printf 'Host euler\\n  HostName euler.ethz.ch\\n  User %s\\n' \"$eth_user\"\n    if [ \"$use_existing\" -eq 1 ]; then\n      identity_count=0\n      while IFS= read -r identity; do\n        [ -n \"$identity\" ] || continue\n        case \"$identity\" in *'\"'*) printf 'STOP: unsupported quote in resolved identity path\\n' >&2; exit 1;; esac\n        printf '  IdentityFile \"%s\"\\n' \"$identity\"\n        identity_count=$((identity_count + 1))\n      done <<EOF\n$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" { $1=\"\"; sub(/^[[:space:]]+/, \"\"); print }')\nEOF\n      [ \"$identity_count\" -gt 0 ] || { printf 'STOP: working alias has no inspectable identity selection\\n' >&2; exit 1; }\n      identities_only=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identitiesonly\" { print $2; exit }')\"\n      case \"$identities_only\" in yes|no) ;; *) printf 'STOP: invalid resolved IdentitiesOnly value\\n' >&2; exit 1;; esac\n      printf '  IdentitiesOnly %s\\n' \"$identities_only\"\n    else\n      printf '  IdentityFile ~/.ssh/id_ed25519_euler\\n  IdentitiesOnly yes\\n'\n    fi\n    printf '  Port 22\\n  ProxyCommand none\\n  ProxyJump none\\n  PreferredAuthentications publickey\\n  PasswordAuthentication no\\n  KbdInteractiveAuthentication no\\n  ForwardAgent no\\n'\n  } > \"$euler_temporary\"\n  chmod 600 \"$euler_temporary\"\n  ssh -F \"$euler_temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\"\n    printf 'STOP: generated Euler block is invalid\\n' >&2\n    exit 1\n  }\n\n  include='Include ~/.ssh/passport.d/*.conf'; temporary=\"$config.passport-new\"\n  if [ -f \"$config\" ]; then\n    awk -v include=\"$include\" 'BEGIN { print include } /^[[:space:]]*Include[[:space:]]+(~\\/[.]ssh\\/)?passport[.]d\\/[*]([.]conf)?[[:space:]]*$/ { next } { print }' \"$config\" > \"$temporary\"\n  else\n    printf '%s\\n' \"$include\" > \"$temporary\"\n  fi\n  chmod 600 \"$temporary\"\n  ssh -F \"$temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\" \"$temporary\"\n    printf 'STOP: generated SSH config is invalid; the original files are unchanged\\n' >&2\n    exit 1\n  }\n\n  if ! mv \"$euler_temporary\" \"$euler_config\" || ! mv \"$temporary\" \"$config\" || ! ssh -G euler >/dev/null; then\n    rm -f \"$euler_temporary\" \"$temporary\"\n    if restore_originals; then\n      printf 'STOP: install failed; the original SSH files were restored automatically\\n' >&2\n    else\n      printf 'STOP: install failed and automatic restore was incomplete. Restore only config.%s and euler.conf.%s from %s\\n' \"$stamp\" \"$stamp\" \"$backup_dir\" >&2\n    fi\n    exit 1\n  fi\n)",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
-                  "command": "(\n  set -eu\n  printf 'Short ETH username: '; read -r eth_user\n  case \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n  ssh_dir=\"$HOME/.ssh\"; config=\"$ssh_dir/config\"; include_dir=\"$ssh_dir/passport.d\"; backup_dir=\"$ssh_dir/passport-backups\"; euler_config=\"$include_dir/euler.conf\"; key=\"$ssh_dir/id_ed25519_euler\"\n  [ ! -L \"$config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$config\" >&2; exit 1; }\n  [ ! -L \"$euler_config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$euler_config\" >&2; exit 1; }\n  config_existed=0; euler_config_existed=0\n  if [ -e \"$config\" ]; then [ -f \"$config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$config\" >&2; exit 1; }; config_existed=1; fi\n  if [ -e \"$euler_config\" ]; then [ -f \"$euler_config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$euler_config\" >&2; exit 1; }; euler_config_existed=1; fi\n\n  resolved_before=\"$(ssh -G euler 2>/dev/null)\" || {\n    printf 'STOP: existing SSH config is invalid; no file was changed\\n' >&2\n    exit 1\n  }\n  resolved_host=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"hostname\" { print $2; exit }')\"\n  resolved_user=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"user\" { print $2; exit }')\"\n  if printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: existing IdentityFile points at a .pub file\\n' >&2\n    exit 1\n  fi\n\n  use_existing=0\n  if [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n    if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'exit 0'; then\n      use_existing=1\n    fi\n  fi\n\n  private_exists=0; public_exists=0\n  [ -f \"$key\" ] && private_exists=1\n  [ -f \"$key.pub\" ] && public_exists=1\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -ne \"$public_exists\" ]; then printf 'STOP: canonical key pair is incomplete\\n' >&2; exit 1; fi\n  canonical_works=0\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -eq 1 ]; then\n    if ssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'exit 0'; then\n      canonical_works=1\n    fi\n  fi\n  if [ \"$use_existing\" -eq 0 ] && [ \"$canonical_works\" -eq 0 ]; then\n    printf 'STOP: no tested key-only identity is available\\n' >&2\n    exit 1\n  fi\n\n  mkdir -p \"$include_dir\" \"$backup_dir\" && chmod 700 \"$ssh_dir\" \"$include_dir\" \"$backup_dir\"\n  stamp=\"$(date +%Y%m%d-%H%M%S)-$$\"\n  config_backup=\"$backup_dir/config.$stamp\"\n  euler_config_backup=\"$backup_dir/euler.conf.$stamp\"\n  [ \"$config_existed\" -eq 0 ] || cp -p \"$config\" \"$config_backup\"\n  [ \"$euler_config_existed\" -eq 0 ] || cp -p \"$euler_config\" \"$euler_config_backup\"\n\n  restore_originals() {\n    restore_status=0\n    if [ \"$config_existed\" -eq 1 ]; then cp -p \"$config_backup\" \"$config\" || restore_status=1; else rm -f \"$config\" || restore_status=1; fi\n    if [ \"$euler_config_existed\" -eq 1 ]; then cp -p \"$euler_config_backup\" \"$euler_config\" || restore_status=1; else rm -f \"$euler_config\" || restore_status=1; fi\n    return \"$restore_status\"\n  }\n\n  euler_temporary=\"$euler_config.passport-new\"\n  {\n    printf 'Host euler\\n  HostName euler.ethz.ch\\n  User %s\\n' \"$eth_user\"\n    if [ \"$use_existing\" -eq 1 ]; then\n      identity_count=0\n      while IFS= read -r identity; do\n        [ -n \"$identity\" ] || continue\n        case \"$identity\" in *'\"'*) printf 'STOP: unsupported quote in resolved identity path\\n' >&2; exit 1;; esac\n        printf '  IdentityFile \"%s\"\\n' \"$identity\"\n        identity_count=$((identity_count + 1))\n      done <<EOF\n$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" { $1=\"\"; sub(/^[[:space:]]+/, \"\"); print }')\nEOF\n      [ \"$identity_count\" -gt 0 ] || { printf 'STOP: working alias has no inspectable identity selection\\n' >&2; exit 1; }\n      identities_only=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identitiesonly\" { print $2; exit }')\"\n      case \"$identities_only\" in yes|no) ;; *) printf 'STOP: invalid resolved IdentitiesOnly value\\n' >&2; exit 1;; esac\n      printf '  IdentitiesOnly %s\\n' \"$identities_only\"\n    else\n      printf '  IdentityFile ~/.ssh/id_ed25519_euler\\n  IdentitiesOnly yes\\n'\n    fi\n    printf '  Port 22\\n  ProxyCommand none\\n  ProxyJump none\\n  PreferredAuthentications publickey\\n  PasswordAuthentication no\\n  KbdInteractiveAuthentication no\\n  ForwardAgent no\\n'\n  } > \"$euler_temporary\"\n  chmod 600 \"$euler_temporary\"\n  ssh -F \"$euler_temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\"\n    printf 'STOP: generated Euler block is invalid\\n' >&2\n    exit 1\n  }\n\n  include='Include ~/.ssh/passport.d/*.conf'; temporary=\"$config.passport-new\"\n  if [ -f \"$config\" ]; then\n    awk -v include=\"$include\" 'BEGIN { print include } /^[[:space:]]*Include[[:space:]]+(~\\/[.]ssh\\/)?passport[.]d\\/[*]([.]conf)?[[:space:]]*$/ { next } { print }' \"$config\" > \"$temporary\"\n  else\n    printf '%s\\n' \"$include\" > \"$temporary\"\n  fi\n  chmod 600 \"$temporary\"\n  ssh -F \"$temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\" \"$temporary\"\n    printf 'STOP: generated SSH config is invalid; the original files are unchanged\\n' >&2\n    exit 1\n  }\n\n  if ! mv \"$euler_temporary\" \"$euler_config\" || ! mv \"$temporary\" \"$config\" || ! ssh -G euler >/dev/null; then\n    rm -f \"$euler_temporary\" \"$temporary\"\n    if restore_originals; then\n      printf 'STOP: install failed; the original SSH files were restored automatically\\n' >&2\n    else\n      printf 'STOP: install failed and automatic restore was incomplete. Restore only config.%s and euler.conf.%s from %s\\n' \"$stamp\" \"$stamp\" \"$backup_dir\" >&2\n    fi\n    exit 1\n  fi\n)",
+                  "command": "(\n  set -eu\n  printf 'Short ETH username: '; read -r eth_user\n  case \"$eth_user\" in ''|*[!A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\\n' >&2; exit 1;; esac\n  ssh_dir=\"$HOME/.ssh\"; config=\"$ssh_dir/config\"; include_dir=\"$ssh_dir/passport.d\"; backup_dir=\"$ssh_dir/passport-backups\"; euler_config=\"$include_dir/euler.conf\"; key=\"$ssh_dir/id_ed25519_euler\"\n  [ ! -L \"$config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$config\" >&2; exit 1; }\n  [ ! -L \"$euler_config\" ] || { printf \"STOP: %s is a symbolic link; no file was changed\\n\" \"$euler_config\" >&2; exit 1; }\n  config_existed=0; euler_config_existed=0\n  if [ -e \"$config\" ]; then [ -f \"$config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$config\" >&2; exit 1; }; config_existed=1; fi\n  if [ -e \"$euler_config\" ]; then [ -f \"$euler_config\" ] || { printf \"STOP: %s is not a regular file\\n\" \"$euler_config\" >&2; exit 1; }; euler_config_existed=1; fi\n\n  resolved_before=\"$(ssh -G euler 2>/dev/null)\" || {\n    printf 'STOP: existing SSH config is invalid; no file was changed\\n' >&2\n    exit 1\n  }\n  resolved_host=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"hostname\" { print $2; exit }')\"\n  resolved_user=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"user\" { print $2; exit }')\"\n  if printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" && $2 ~ /[.]pub$/ { found=1 } END { exit !found }'; then\n    printf 'STOP: existing IdentityFile points at a .pub file\\n' >&2\n    exit 1\n  fi\n\n  use_existing=0\n  if [ \"$resolved_host\" = \"euler.ethz.ch\" ] && [ \"$resolved_user\" = \"$eth_user\" ]; then\n    if ssh -o Port=22 -o ProxyCommand=none -o ProxyJump=none -o ForwardAgent=no -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler 'exit 0'; then\n      use_existing=1\n    fi\n  fi\n\n  private_exists=0; public_exists=0\n  [ -f \"$key\" ] && private_exists=1\n  [ -f \"$key.pub\" ] && public_exists=1\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -ne \"$public_exists\" ]; then printf 'STOP: standard key pair is incomplete\\n' >&2; exit 1; fi\n  standard_key_works=0\n  if [ \"$use_existing\" -eq 0 ] && [ \"$private_exists\" -eq 1 ]; then\n    if ssh -F none -i \"$key\" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no \"$eth_user@euler.ethz.ch\" 'exit 0'; then\n      standard_key_works=1\n    fi\n  fi\n  if [ \"$use_existing\" -eq 0 ] && [ \"$standard_key_works\" -eq 0 ]; then\n    printf 'STOP: no tested key-only identity is available\\n' >&2\n    exit 1\n  fi\n\n  mkdir -p \"$include_dir\" \"$backup_dir\" && chmod 700 \"$ssh_dir\" \"$include_dir\" \"$backup_dir\"\n  stamp=\"$(date +%Y%m%d-%H%M%S)-$$\"\n  config_backup=\"$backup_dir/config.$stamp\"\n  euler_config_backup=\"$backup_dir/euler.conf.$stamp\"\n  [ \"$config_existed\" -eq 0 ] || cp -p \"$config\" \"$config_backup\"\n  [ \"$euler_config_existed\" -eq 0 ] || cp -p \"$euler_config\" \"$euler_config_backup\"\n\n  restore_originals() {\n    restore_status=0\n    if [ \"$config_existed\" -eq 1 ]; then cp -p \"$config_backup\" \"$config\" || restore_status=1; else rm -f \"$config\" || restore_status=1; fi\n    if [ \"$euler_config_existed\" -eq 1 ]; then cp -p \"$euler_config_backup\" \"$euler_config\" || restore_status=1; else rm -f \"$euler_config\" || restore_status=1; fi\n    return \"$restore_status\"\n  }\n\n  euler_temporary=\"$euler_config.passport-new\"\n  {\n    printf 'Host euler\\n  HostName euler.ethz.ch\\n  User %s\\n' \"$eth_user\"\n    if [ \"$use_existing\" -eq 1 ]; then\n      identity_count=0\n      while IFS= read -r identity; do\n        [ -n \"$identity\" ] || continue\n        case \"$identity\" in *'\"'*) printf 'STOP: unsupported quote in resolved identity path\\n' >&2; exit 1;; esac\n        printf '  IdentityFile \"%s\"\\n' \"$identity\"\n        identity_count=$((identity_count + 1))\n      done <<EOF\n$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identityfile\" { $1=\"\"; sub(/^[[:space:]]+/, \"\"); print }')\nEOF\n      [ \"$identity_count\" -gt 0 ] || { printf 'STOP: working alias has no inspectable identity selection\\n' >&2; exit 1; }\n      identities_only=\"$(printf '%s\\n' \"$resolved_before\" | awk '$1 == \"identitiesonly\" { print $2; exit }')\"\n      case \"$identities_only\" in yes|no) ;; *) printf 'STOP: invalid resolved IdentitiesOnly value\\n' >&2; exit 1;; esac\n      printf '  IdentitiesOnly %s\\n' \"$identities_only\"\n    else\n      printf '  IdentityFile ~/.ssh/id_ed25519_euler\\n  IdentitiesOnly yes\\n'\n    fi\n    printf '  Port 22\\n  ProxyCommand none\\n  ProxyJump none\\n  PreferredAuthentications publickey\\n  PasswordAuthentication no\\n  KbdInteractiveAuthentication no\\n  ForwardAgent no\\n'\n  } > \"$euler_temporary\"\n  chmod 600 \"$euler_temporary\"\n  ssh -F \"$euler_temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\"\n    printf 'STOP: generated Euler block is invalid\\n' >&2\n    exit 1\n  }\n\n  include='Include ~/.ssh/passport.d/*.conf'; temporary=\"$config.passport-new\"\n  if [ -f \"$config\" ]; then\n    awk -v include=\"$include\" 'BEGIN { print include } /^[[:space:]]*Include[[:space:]]+(~\\/[.]ssh\\/)?passport[.]d\\/[*]([.]conf)?[[:space:]]*$/ { next } { print }' \"$config\" > \"$temporary\"\n  else\n    printf '%s\\n' \"$include\" > \"$temporary\"\n  fi\n  chmod 600 \"$temporary\"\n  ssh -F \"$temporary\" -G euler >/dev/null || {\n    rm -f \"$euler_temporary\" \"$temporary\"\n    printf 'STOP: generated SSH config is invalid; the original files are unchanged\\n' >&2\n    exit 1\n  }\n\n  if ! mv \"$euler_temporary\" \"$euler_config\" || ! mv \"$temporary\" \"$config\" || ! ssh -G euler >/dev/null; then\n    rm -f \"$euler_temporary\" \"$temporary\"\n    if restore_originals; then\n      printf 'STOP: install failed; the original SSH files were restored automatically\\n' >&2\n    else\n      printf 'STOP: install failed and automatic restore was incomplete. Restore only config.%s and euler.conf.%s from %s\\n' \"$stamp\" \"$stamp\" \"$backup_dir\" >&2\n    fi\n    exit 1\n  fi\n)",
                   "platform": "linux",
                   "shell": "bash"
                 }
               ],
-              "expected": "The command finishes without a config error. A working existing identity is retained, or the tested canonical private key is selected. Prior files have timestamped backups, and a failed final install restores them automatically.",
+              "expected": "The command finishes without a config error. A working existing identity is retained, or the tested id_ed25519_euler private key is selected. Prior files have timestamped backups, and a failed final install restores them automatically.",
               "id": "alias",
-              "instruction": "Back up the existing config and validate it without connecting. If the current euler alias already passed the key-only test, preserve its resolved private-key selection; otherwise use the tested canonical key. Write the policy to passport.d/euler.conf and add one Include line. Backups go in passport-backups, which OpenSSH does not load.",
+              "instruction": "The SSH config file stores named connection settings. This guarded command backs it up and validates the result before any connection. If the current euler alias already passed the key-only test, it preserves that private-key selection; otherwise it uses the tested id_ed25519_euler key. It writes the euler settings to passport.d/euler.conf and adds one Include line telling OpenSSH to read that separate file. Backups go in passport-backups, which OpenSSH does not load.",
               "links": [],
               "machine": "local",
-              "on_failure": "Do not append another host block. The command restores the original files after an install failure. If it reports an incomplete restore, use only the two timestamped files it names; otherwise open the sanitized error through the Passport help link.",
+              "on_failure": "Do not append another host block. The command restores the original files after an install failure. If it reports an incomplete restore, use only the two timestamped files it names; otherwise open the Passport help link and include the error with private information removed.",
               "on_success": "Display the resolved settings.",
               "platforms": [
                 "all"
@@ -2862,9 +2905,9 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "hostname is euler.ethz.ch; port is 22; user is the short ETH username; no identityfile ends in .pub; preferredauthentications is publickey; passwordauthentication and kbdinteractiveauthentication are no; forwardagent is no; no proxycommand or proxyjump line is present. A generated canonical setup also shows id_ed25519_euler and identitiesonly yes.",
+              "expected": "hostname is euler.ethz.ch; port is 22; user is the short ETH username; no identityfile ends in .pub; preferredauthentications is publickey; passwordauthentication and kbdinteractiveauthentication are no; forwardagent is no; no proxycommand or proxyjump line is present. A newly generated setup also shows id_ed25519_euler and identitiesonly yes.",
               "id": "resolved-config",
-              "instruction": "Display the target, port, username, identity files, authentication methods, proxy state, and agent-forwarding setting that OpenSSH will actually use.",
+              "instruction": "Run ssh -G, which displays resolved settings without connecting. Verify the target computer, port, short ETH username, private-key path, allowed login methods, proxy state, and agent-forwarding setting that OpenSSH will actually use.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop and correct only passport.d/euler.conf. Keep unrelated SSH hosts and backup files unchanged.",
@@ -3051,7 +3094,7 @@
               "commands": [],
               "expected": "You can distinguish allocated resources from measured use.",
               "id": "terms",
-              "instruction": "A Slurm request reserves CPUs, memory, and time before a job runs. sacct provides exact recorded fields; seff summarizes CPU and memory efficiency. Read both for the existing job before deciding what a future run should request.",
+              "instruction": "A Slurm request reserves CPUs, memory, and time before a job runs. sacct provides exact recorded fields; seff summarizes CPU and memory efficiency. AllocCPUS is the allocated CPU count, ReqMem is requested memory, MaxRSS is the largest recorded memory use, Elapsed is run time, State is the final condition, and ExitCode reports program success or failure. Read both commands for the existing job before deciding what a future run should request.",
               "links": [
                 {
                   "label": "Open the Slurm accounting reference",
@@ -3186,7 +3229,7 @@
             },
             {
               "commands": [],
-              "expected": "The local receipt records only the sanitized inspection facts.",
+              "expected": "The result contains only the requested inspection facts and no username, path, log, or other private value.",
               "id": "complete",
               "instruction": "Enter the existing job ID and confirm that you personally inspected sacct and seff. Do not paste logs into the public record.",
               "links": [],
@@ -3232,8 +3275,8 @@
     },
     "euler-cpu-arrays": {
       "activity": {
-        "action": "Correct the synthetic Slurm array file, add a concurrency cap, and make every task log name unique.",
-        "expected_result": "The parser accepts ten tasks with a concurrency cap of one and unique logs; no command submits the fixture to Euler.",
+        "action": "Correct the fictional Slurm array practice file, add a concurrency cap, and make every task log name unique.",
+        "expected_result": "The checker accepts ten tasks with a concurrency cap of one and unique logs; no command submits the practice file to Euler.",
         "kind": "repository_task",
         "machine": "local",
         "questions": [
@@ -3317,7 +3360,7 @@
               "commands": [],
               "expected": "You can distinguish total task count from the maximum running at once.",
               "id": "terms",
-              "instruction": "A job array creates many similar Slurm tasks from one script. The range sets total tasks; %N limits simultaneous tasks. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.",
+              "instruction": "A job array creates many similar Slurm tasks from one script. The range sets the total number of tasks. The value after %, called the concurrency cap, limits how many tasks may run at the same time. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.",
               "links": [
                 {
                   "label": "Open the job-array lab",
@@ -3326,7 +3369,7 @@
               ],
               "machine": "browser",
               "on_failure": "Do not submit a real array until you can calculate its simultaneous resource total.",
-              "on_success": "Open the deliberately unsafe local fixture.",
+              "on_success": "Open the deliberately unsafe local practice file.",
               "platforms": [
                 "all"
               ],
@@ -3334,7 +3377,7 @@
             },
             {
               "commands": [],
-              "expected": "The unsafe fixture is open in the separate practice repository.",
+              "expected": "The unsafe practice file is open in the separate practice repository.",
               "id": "prepare",
               "instruction": "Press Prepare practice folder, enter it, and open workspace/slurm/array_job.slurm.txt.",
               "links": [],
@@ -3344,13 +3387,13 @@
               "platforms": [
                 "all"
               ],
-              "title": "Prepare the array fixture"
+              "title": "Prepare the array practice file"
             },
             {
               "commands": [],
               "expected": "You can explain why uncapped tasks and colliding logs are unsafe.",
               "id": "identify",
-              "instruction": "Read the array and log directives. The fixture allows 100 tasks without a concurrency cap and uses log names that do not identify each array task.",
+              "instruction": "Read the array and log settings. The practice file allows 100 tasks without a concurrency cap and uses log names that do not identify each array task.",
               "links": [],
               "machine": "local",
               "on_failure": "Review the array and log-name explanation before editing.",
@@ -3395,7 +3438,7 @@
               "instruction": "Replace both log directives with the two exact lines below. %A is the parent job ID and %a is the array task index.",
               "links": [],
               "machine": "local",
-              "on_failure": "Correct both directives before running the verifier.",
+              "on_failure": "Correct both settings before pressing Check my work.",
               "on_success": "Inspect the local diff.",
               "platforms": [
                 "all"
@@ -3410,7 +3453,7 @@
               "links": [],
               "machine": "local",
               "on_failure": "Keep the cap at one until the per-task and combined totals are known.",
-              "on_success": "Review the edited fixture.",
+              "on_success": "Review the edited practice file.",
               "platforms": [
                 "all"
               ],
@@ -3436,7 +3479,7 @@
               ],
               "expected": "The diff changes only the array cap and the two log names.",
               "id": "review",
-              "instruction": "Confirm that only the synthetic fixture changed and that no command submitted it.",
+              "instruction": "Confirm that only the fictional practice file changed and that no command submitted it.",
               "links": [],
               "machine": "local",
               "on_failure": "Remove every unrelated change before continuing.",
@@ -3548,7 +3591,7 @@
               "commands": [],
               "expected": "You can distinguish the login node from the compute node and state what sbatch, squeue, sacct, and seff do.",
               "id": "terms",
-              "instruction": "SSH opens an Euler login node for file and job management. Slurm schedules actual computation on a compute node. sbatch submits one batch script, squeue shows active jobs, sacct reports recorded state and resources, and seff summarizes efficiency. All four commands use the same numeric job ID.",
+              "instruction": "SSH opens an Euler login node for file and job management. Slurm schedules actual computation on a compute node. sbatch submits one batch script, squeue shows active jobs, sacct reports recorded state and resources, and seff summarizes efficiency. All four commands use the same numeric job ID. GiB is the memory unit used in this guide; 1 GiB is approximately one gigabyte.",
               "links": [
                 {
                   "label": "Open the Slurm command reference",
@@ -3738,7 +3781,7 @@
               "commands": [],
               "expected": "The Passport accepts the job ID, account, owner check, queue check, final state, resources, Python environment check, seff check, and output marker.",
               "id": "submit-receipt",
-              "instruction": "Return to the local Passport, enter only the requested sanitized job facts, press Check my work, then submit once.",
+              "instruction": "Return to the local Passport, enter only the requested job facts, press Check my work, then submit once. Do not enter a username, path, log, or other private value.",
               "links": [],
               "machine": "local",
               "on_failure": "Re-read the same job with sacct, seff, and its logs; do not submit another job.",
@@ -3790,8 +3833,8 @@
     },
     "euler-gpu-review": {
       "activity": {
-        "action": "Repair the unsafe one-GPU Slurm fixture locally and apply the lab starter limits without submitting it.",
-        "expected_result": "The parser accepts one explicit GPU, no forced partition, at most 16 CPUs, at most 64 GiB total memory, and at most four hours.",
+        "action": "Repair the unsafe one-GPU Slurm practice file locally and apply the lab starter limits without submitting it.",
+        "expected_result": "Check my work accepts one explicit GPU, no forced partition, at most 16 CPUs, at most 64 GiB total memory, and at most four hours.",
         "kind": "repository_task",
         "machine": "local",
         "questions": [
@@ -3845,7 +3888,7 @@
           }
         ],
         "recipe": {
-          "intro": "This is a review exercise. Do not run sbatch. Use one explicit GPU model and the es_fuge account.",
+          "intro": "This is a review exercise. Do not run sbatch, the Slurm submission command. Use one explicit GPU model and the es_fuge lab computing share. A Slurm partition is a named group of compute nodes; this starter request lets Euler choose it instead of forcing one.",
           "steps": [
             {
               "commands": [],
@@ -3860,7 +3903,7 @@
               ],
               "machine": "browser",
               "on_failure": "Do not request multiple GPUs from dataset size or assumption alone.",
-              "on_success": "Review the synthetic GPU fixture.",
+              "on_success": "Review the fictional GPU practice file.",
               "platforms": [
                 "all"
               ],
@@ -3873,12 +3916,12 @@
               "instruction": "Press Prepare practice folder, enter it, and open workspace/slurm/gpu_job.slurm.txt.",
               "links": [],
               "machine": "local",
-              "on_failure": "Do not copy the unsafe fixture into a real project.",
+              "on_failure": "Do not copy the unsafe practice file into a real project.",
               "on_success": "Identify every unsafe directive.",
               "platforms": [
                 "all"
               ],
-              "title": "Prepare the GPU fixture"
+              "title": "Prepare the GPU practice file"
             },
             {
               "commands": [],
@@ -3941,7 +3984,7 @@
               ],
               "expected": "Both output and error directives are present and unique per job.",
               "id": "logs",
-              "instruction": "Add the time and log directives below. %x expands to the job name and %j to its job ID. Create the logs directory only when this script is later used in a real project; do not submit this exercise fixture.",
+              "instruction": "Add the time and log settings below. %x expands to the job name and %j to its job ID. Create the logs directory only when this script is later used in a real project; do not submit this exercise practice file.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not rely on default Slurm output names for this starter.",
@@ -3971,10 +4014,10 @@
               ],
               "expected": "The diff contains one explicit one-GPU starter profile and no unrelated change.",
               "id": "review",
-              "instruction": "Inspect only the synthetic GPU file. Confirm that no sbatch command was run.",
+              "instruction": "Inspect only the fictional GPU practice file. Confirm that no sbatch command was run.",
               "links": [],
               "machine": "local",
-              "on_failure": "Correct the fixture locally; live testing is a separate deliberate action.",
+              "on_failure": "Correct the practice file locally; live testing is a separate deliberate action.",
               "on_success": "Run Check my work.",
               "platforms": [
                 "all"
@@ -4059,7 +4102,7 @@
               "correct"
             ],
             "critical": true,
-            "feedback": "A small environment fits in your home area. Shared work storage is not suitable for Conda-style trees, and scratch is temporary.",
+            "feedback": "A small environment fits in your home area. Shared work storage is not suitable for environment folders containing many small files, and scratch is temporary.",
             "id": "environment_location",
             "options": [
               {
@@ -4110,7 +4153,7 @@
               "commands": [],
               "expected": "You know why a laptop environment is not copied to Euler and why a job script activates its own environment.",
               "id": "terms",
-              "instruction": "Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python packages. Both must be selected again inside each submitted batch job.",
+              "instruction": "Python is a programming language, and an interpreter is the program that runs Python files. Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python interpreter and packages. Both must be selected again inside each submitted batch job.",
               "links": [
                 {
                   "label": "Read the Euler Python environment reference",
@@ -4118,7 +4161,7 @@
                 }
               ],
               "machine": "browser",
-              "on_failure": "Return to the local Python environment mission before creating another environment.",
+              "on_failure": "Read the linked Euler Python reference again. You do not need the laptop Python track unless it appears in your assigned route.",
               "on_success": "Connect to Euler with the tested alias.",
               "platforms": [
                 "all"
@@ -4307,7 +4350,7 @@
     },
     "euler-storage-reproducibility": {
       "activity": {
-        "action": "Apply the reproducible-run sequence to a fictional Euler job before deciding where each artifact belongs.",
+        "action": "Apply the reproducible-run sequence to a fictional Euler job before deciding where each file or result belongs.",
         "expected_result": "The run identifies exact code and inputs, uses scratch only for replaceable work, and preserves verified outputs and metadata.",
         "kind": "structured_plan",
         "machine": "browser",
@@ -4341,12 +4384,12 @@
               "correct"
             ],
             "critical": false,
-            "feedback": "Code revision, environment, immutable inputs, parameters, resources, command, logs, and outputs.",
+            "feedback": "Code revision, environment, exact unchanged inputs, parameters, resources, command, logs, and outputs.",
             "id": "run_record",
             "options": [
               {
                 "id": "correct",
-                "label": "Code revision, environment, immutable inputs, parameters, resources, command, logs, and outputs."
+                "label": "Code revision, environment, exact unchanged inputs, parameters, resources, command, logs, and outputs."
               },
               {
                 "id": "wrong_a",
@@ -4458,13 +4501,13 @@
           }
         ],
         "recipe": {
-          "intro": "Use the fictional scenario. Choose locations by ownership and durability, not convenience.",
+          "intro": "Names such as $HOME and $SCRATCH are shell variables: short names that resolve to paths on Euler. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Use the fictional scenario. Choose locations by ownership and durability, not convenience.",
           "steps": [
             {
               "commands": [],
               "expected": "You can identify which locations survive, which are shared, and which are temporary.",
               "id": "terms",
-              "instruction": "Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Only the named durable location is authoritative.",
+              "instruction": "Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Name the durable location that will hold the main copy after the run.",
               "links": [
                 {
                   "label": "Open the Euler storage reference",
@@ -4483,11 +4526,11 @@
               "commands": [],
               "expected": "The run plan names one exact commit and a clean or explicitly described source state.",
               "id": "revision",
-              "instruction": "Use a reviewed Git commit as the code identifier. A commit hash records provenance but does not freeze later edits to an active checkout.",
+              "instruction": "Use a reviewed Git commit as the code identifier. The commit's identifier records exactly which code version was used, but it does not stop someone from editing other uncommitted files in the active project folder.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not call an uncommitted changing checkout reproducible.",
-              "on_success": "Choose the authoritative input location.",
+              "on_success": "Choose the exact input location for this run.",
               "platforms": [
                 "all"
               ],
@@ -4497,7 +4540,7 @@
               "commands": [],
               "expected": "The inputs used by the job can be identified later.",
               "id": "inputs",
-              "instruction": "Place approved durable inputs in project storage and record a version or checksum. Copy the exact run inputs to a run-specific location when required.",
+              "instruction": "Place approved durable inputs in project storage and record a version or checksum. A checksum is a short calculated fingerprint used to detect whether a file changed. Copy the exact run inputs to a run-specific location when required.",
               "links": [],
               "machine": "browser",
               "on_failure": "Stop if a pending job points to files that collaborators may overwrite.",
@@ -4523,7 +4566,7 @@
             },
             {
               "commands": [],
-              "expected": "The authoritative result location and owner are explicit.",
+              "expected": "The main durable result location and its owner are stated explicitly.",
               "id": "outputs",
               "instruction": "Assign durable results to an approved Euler project/work location or NAS project location with a named owner and retention decision.",
               "links": [],
@@ -4567,10 +4610,10 @@
               "commands": [],
               "expected": "Git, durable storage, scratch, environment metadata, and logs have distinct roles.",
               "id": "answer",
-              "instruction": "Place every fictional artifact and explain how the plan survives reruns, collaboration, and scratch cleanup.",
+              "instruction": "Place every fictional file or result and explain how the plan survives reruns, collaboration, and scratch cleanup.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Return to the first artifact whose owner or durability is unclear.",
+              "on_failure": "Return to the first file or result whose owner or durability is unclear.",
               "on_success": "Run Check my work.",
               "platforms": [
                 "all"
@@ -4670,7 +4713,7 @@
               "commands": [],
               "expected": "You can name the order: edit, diff, stage, commit, push, pull request.",
               "id": "terms",
-              "instruction": "Edit a file in the working tree, inspect the diff, stage only the reviewed file, record it as a commit, push the branch to GitHub, then open a pull request for review. A draft pull request is visible but explicitly not ready to merge.",
+              "instruction": "The working tree is the project folder you are editing. A diff shows changed lines. Staging selects reviewed changes for the next commit; a commit records that version with an author and message. Pushing sends the branch to GitHub. A pull request, or PR, asks for the branch to be reviewed before merging. A draft PR is visible but explicitly not ready to merge. Follow the order: edit, diff, stage, commit, push, pull request.",
               "links": [
                 {
                   "label": "Read the beginner Git workflow",
@@ -4678,7 +4721,7 @@
                 }
               ],
               "machine": "browser",
-              "on_failure": "Do not use an IDE button or agent to skip a step you cannot yet identify.",
+              "on_failure": "Do not use an editor button or AI agent to skip a step you cannot yet identify.",
               "on_success": "Open the prepared practice folder.",
               "platforms": [
                 "all"
@@ -4849,7 +4892,7 @@
               ],
               "expected": "Git creates one commit with the shown subject.",
               "id": "commit",
-              "instruction": "Use the exact commit command prepared by the Passport. The form is type(scope): concise summary; the scope names the affected area.",
+              "instruction": "Use the exact commit command prepared by the Passport. This is a Conventional Commit: a consistent message in type(scope): concise summary form. The type states the kind of change, the optional scope names the affected area, and the summary says what changed.",
               "links": [],
               "machine": "local",
               "on_failure": "Read the first Git error; do not use force or skip hooks.",
@@ -5003,7 +5046,7 @@
               "commands": [],
               "expected": "You can distinguish Git on your computer from GitHub on the web.",
               "id": "terms",
-              "instruction": "Git records versions of files on this computer. A repository is the project folder and its history; a branch keeps one line of work separate. GitHub stores the shared remote repository, and GitHub CLI is the gh terminal program used to sign in and perform GitHub actions.",
+              "instruction": "Git records versions of files on this computer. A repository is a project folder and its history. A branch keeps one line of work separate. GitHub stores a shared online copy of the repository. A clone is a separate working copy on your computer. Git saves the online address under a short name called a remote; origin is the usual name for the copy you cloned from. GitHub CLI is the program named gh that signs in and performs GitHub actions from a terminal.",
               "links": [
                 {
                   "label": "Open the Git workflow reference",
@@ -5067,7 +5110,7 @@
               ],
               "expected": "Each command prints a version and no command-not-found error.",
               "id": "versions",
-              "instruction": "Open PowerShell on Windows, Terminal on macOS, or Bash on Linux. Run both checks after entering the practice folder.",
+              "instruction": "Open PowerShell on Windows or the Terminal application on macOS or Linux. On Linux, the terminal normally starts the Bash shell. Run both checks after entering the practice folder.",
               "links": [
                 {
                   "label": "Install Git",
@@ -5204,7 +5247,7 @@
                 }
               ],
               "machine": "local",
-              "on_failure": "Do not continue with an empty identity; correct the value or request sanitized help.",
+              "on_failure": "Do not continue with an empty identity; correct the value or request help without including private information.",
               "on_success": "Continue to the optional student benefit.",
               "platforms": [
                 "all"
@@ -5247,7 +5290,7 @@
               ],
               "machine": "browser",
               "on_failure": "Continue the manual Git route. Do not buy a product to pass this mission.",
-              "on_success": "Continue now; return to Copilot setup after approval.",
+              "on_success": "Continue now. If your route later includes the AI tool mission, that mission will check whether Copilot is available.",
               "platforms": [
                 "all"
               ],
@@ -5271,9 +5314,9 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The branch starts with practice/, and origin points to the expected GitHub repository without credentials in the URL.",
+              "expected": "The branch starts with practice/. The lines beginning with origin point to the expected GitHub repository and contain no password or token.",
               "id": "repository-state",
-              "instruction": "Confirm that you are inside the Passport practice clone, on its practice branch, and that the remote URL contains no embedded password or token.",
+              "instruction": "Confirm that you are inside the Passport practice clone, meaning its separate working copy on this computer. Check its practice branch and the saved online address called the remote. The usual remote name is origin. Its URL must contain no password or token.",
               "links": [],
               "machine": "local",
               "on_failure": "Return to Prepare practice folder; do not edit the remote until the mismatch is understood.",
@@ -5378,13 +5421,13 @@
           }
         ],
         "recipe": {
-          "intro": "You need the supervisor's first name and explicit permission first. Never test access at the NAS root or in another person's folder.",
+          "intro": "The NAS is a remote shared drive, not a folder inside your laptop. Connecting it so it appears as a drive or folder is called mapping or mounting the share. SMB, or Server Message Block, is the network file-sharing method used here; an address beginning with smb:// tells macOS or Linux to use it. Copy that address exactly. You need the supervisor's first name and explicit permission first. Never test access at the NAS root or in another person's folder.",
           "steps": [
             {
               "commands": [],
               "expected": "You can distinguish durable NAS project data from local, GitHub, and temporary storage.",
               "id": "terms",
-              "instruction": "NAS means network-attached storage. It is the lab's durable shared project drive reached over the ETH network. It is not inside your laptop, not a general folder open to everyone, and not the place to run high-I/O Euler jobs directly.",
+              "instruction": "NAS means network-attached storage. It is the lab's durable shared project drive reached over the ETH network. It is not inside your laptop and is not a general folder open to everyone. High input/output (high-I/O) work repeatedly reads or writes a large amount of data; do not run that kind of Euler job directly against the NAS.",
               "links": [
                 {
                   "label": "Open the NAS reference",
@@ -5417,7 +5460,7 @@
               "commands": [],
               "expected": "The ETH file service is reachable.",
               "id": "network",
-              "instruction": "Use the campus network or ETH VPN before mounting the share.",
+              "instruction": "Use the campus network or ETH VPN before connecting the network drive. VPN means Virtual Private Network: the official secure connection used to reach ETH-only services from outside the campus network. Connecting a network drive is also called mapping or mounting the share.",
               "links": [
                 {
                   "label": "Open the ETH VPN instructions",
@@ -5474,7 +5517,7 @@
               "commands": [],
               "expected": "The approved supervisor folder opens in the file manager.",
               "id": "mount-linux",
-              "instruction": "Open your file manager, choose Other Locations or Connect to Server, and enter smb://d.ethz.ch/groups/mavt/ide/Projects/<SupervisorFirstName>. Replace only the placeholder and sign in as d\\<eth-username> with your own ETH password. Do not use sudo, edit /etc/fstab, or install a system-wide SMB service for onboarding.",
+              "instruction": "Open your file manager, choose Other Locations or Connect to Server, and enter smb://d.ethz.ch/groups/mavt/ide/Projects/<SupervisorFirstName>. Replace only the placeholder and sign in as d\\<eth-username> with your own ETH password. Do not use sudo, edit /etc/fstab, or install a system-wide network file-sharing service for onboarding.",
               "links": [
                 {
                   "label": "Open the complete NAS guide",
@@ -5535,12 +5578,12 @@
             },
             {
               "commands": [],
-              "expected": "The local verifier reports username boundary, write, read, and removed as passed.",
+              "expected": "Check my work reports that the username boundary, write, read, and removal checks passed.",
               "id": "probe",
               "instruction": "Enter your ETH username and the mounted username-folder path in the local confirmation fields. Check my work creates a random test file, reads it, and removes it inside that boundary.",
               "links": [],
               "machine": "local",
-              "on_failure": "Do not broaden permissions or use chmod 777. For folder ownership or access, message your supervisor through your usual private ETH or lab channel. If the folder works but the Passport verifier fails, use the public help form with only your operating system, this mission title, and the failed step; omit the path and username.",
+              "on_failure": "Do not broaden permissions or use chmod 777. For folder ownership or access, message your supervisor through your usual private ETH or lab channel. If the folder works but Check my work fails, use the public help form with only your operating system, this mission title, and the failed step; omit the path and username.",
               "on_success": "Confirm the storage rules.",
               "platforms": [
                 "all"
@@ -5554,8 +5597,8 @@
               "instruction": "Keep datasets, checkpoints, and deliverables in the approved project hierarchy. Keep source code in separate Git clones, and stage high-I/O Euler work to approved Euler storage.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Move code collaboration to GitHub and identify the authoritative durable data copy.",
-              "on_success": "Submit the sanitized receipt once.",
+              "on_failure": "Move code collaboration to GitHub and identify the location that holds the main durable data copy.",
+              "on_success": "Submit the generated result once; it excludes the private NAS path and username.",
               "platforms": [
                 "all"
               ],
@@ -5652,13 +5695,13 @@
           }
         ],
         "recipe": {
-          "intro": "Do not install packages into base or the system Python. Keep an existing .venv until you have identified what it contains.",
+          "intro": "Do not install packages into Conda's shared base environment or into the Python installation used by the operating system. Keep an existing .venv folder until you have identified what it contains.",
           "steps": [
             {
               "commands": [],
               "expected": "You can distinguish the versioned environment.yml definition from the local .venv installation.",
               "id": "terms",
-              "instruction": "Python is run by an interpreter. Packages add reusable code. A project environment keeps one interpreter and package set separate from other projects. Conda manages the environment; Miniforge provides Conda; environment.yml records what to recreate; .venv is the local environment folder used in this mission.",
+              "instruction": "Python is run by a program called an interpreter. Packages add reusable code. A project environment keeps one interpreter and package set separate from other projects. Conda manages environments, and Miniforge provides Conda. Conda's base environment is the shared default and is not used for project packages. environment.yml records what to recreate. .venv is the local project environment folder. .gitignore tells Git not to record named local files or folders.",
               "links": [
                 {
                   "label": "Open the Python setup reference",
@@ -5677,7 +5720,7 @@
               "commands": [],
               "expected": "The practice repository and practice branch are active.",
               "id": "prepare",
-              "instruction": "Press Prepare practice folder in this step and run the displayed enter-folder command. Keep all following commands at the repository root unless a step says otherwise.",
+              "instruction": "Press Prepare practice folder in this step and run the displayed enter-folder command. The repository root is the top-level project folder that contains files such as environment.yml and .gitignore. Keep all following commands there unless a step says otherwise.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not create another clone; run gh passport doctor.",
@@ -5737,10 +5780,10 @@
               ],
               "expected": "The final line is existing-conda-initialized or no-common-conda-installation.",
               "id": "recover-conda",
-              "instruction": "Run this only when conda was not recognized. The check looks only in common personal installation folders and does not delete anything. If it finds exactly one installation, it runs conda init for this operating system; that change becomes available only in a newly opened terminal. On Windows, also search the Start menu for Miniforge Prompt, Miniconda Prompt, or Anaconda Prompt. If one exists but this check found nothing, open that prompt, run conda info --base, and use the sanitized help path rather than installing another copy.",
+              "instruction": "Run this only when conda was not recognized. The check looks only in common personal installation folders and does not delete anything. If it finds exactly one installation, it runs conda init for this operating system; that change becomes available only in a newly opened terminal. On Windows, also search the Start menu for Miniforge Prompt, Miniconda Prompt, or Anaconda Prompt. If one exists but this check found nothing, open that prompt, run conda info --base, and request help without including private information rather than installing another copy.",
               "links": [],
               "machine": "local",
-              "on_failure": "If more than one installation is listed, or a Start-menu Conda prompt exists at another path, stop and use the sanitized help path. Do not uninstall, rename, or overwrite any installation.",
+              "on_failure": "If more than one installation is listed, or a Start-menu Conda prompt exists at another path, stop and request help without including private information. Do not uninstall, rename, or overwrite any installation.",
               "on_success": "After existing-conda-initialized, skip installation and continue at Reopen and recheck Conda. After no-common-conda-installation, run only the installation step for this operating system.",
               "platforms": [
                 "all"
@@ -5777,7 +5820,7 @@
               ],
               "expected": "The operating system is Darwin, the checksum matches, and installation finishes without replacing another Conda installation.",
               "id": "install-miniforge-macos",
-              "instruction": "Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum for this Mac, verifies the download, then starts the interactive installer. Answer yes when asked to initialize zsh.",
+              "instruction": "Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum, a fingerprint used to detect a changed or damaged download. It checks that fingerprint before starting the interactive installer. Answer yes when asked to initialize zsh.",
               "links": [
                 {
                   "label": "Open official Miniforge releases",
@@ -5803,7 +5846,7 @@
               ],
               "expected": "The operating system is Linux, the checksum matches, and installation finishes without replacing another Conda installation.",
               "id": "install-miniforge-linux",
-              "instruction": "Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum for this Linux machine, verifies the download, then starts the interactive installer. Answer yes when asked to initialize bash. Do not use sudo.",
+              "instruction": "Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum, a fingerprint used to detect a changed or damaged download. It checks that fingerprint before starting the interactive installer. Answer yes when asked to initialize Bash. Do not use sudo.",
               "links": [
                 {
                   "label": "Open official Miniforge releases",
@@ -5812,7 +5855,7 @@
               ],
               "machine": "local",
               "on_failure": "If curl is unavailable, use the official release link and choose the Linux installer for this computer's architecture. Stop if the architecture or destination is unclear; do not use sudo or overwrite another Conda installation.",
-              "on_success": "Close this command terminal after the installer finishes, open a new Bash terminal, and continue at Reopen and recheck Conda.",
+              "on_success": "Close this command terminal after the installer finishes, open a new Terminal window, which normally starts Bash, and continue at Reopen and recheck Conda.",
               "platforms": [
                 "linux"
               ],
@@ -5838,10 +5881,10 @@
               ],
               "expected": "Conda prints a version and one base installation path without a command-not-found error.",
               "id": "recheck-conda",
-              "instruction": "If Conda already worked in the first check, keep this terminal. If you initialized or installed Conda, close only the terminal used for the setup commands, leave the terminal running the Passport open, and open a new PowerShell, Terminal, or Bash window. Run the enter-folder command shown in Prepare the Python practice folder, then run both checks below.",
+              "instruction": "If Conda already worked in the first check, keep this terminal. If you initialized or installed Conda, close only the terminal used for the setup commands, leave the terminal running the Passport open, and open a new PowerShell window on Windows or Terminal window on macOS or Linux. On Linux, Terminal normally starts Bash. Run the enter-folder command shown in Prepare the Python practice folder, then run both checks below.",
               "links": [],
               "machine": "local",
-              "on_failure": "Do not install another copy. On Windows, try Miniforge Prompt and run conda info --base. On any platform, use the sanitized help path with the command-not-found message and the base path already found; do not include your username or full home path.",
+              "on_failure": "Do not install another copy. On Windows, try Miniforge Prompt and run conda info --base. On any platform, request help with the command-not-found message and the base path already found; do not include your username or full home path.",
               "on_success": "Keep this terminal open and continue to the environment definition.",
               "platforms": [
                 "all"
@@ -5898,7 +5941,7 @@
               ],
               "expected": "The final line is ready-to-create or existing-conda-environment. An existing environment has been confirmed as a real directory using Python 3.11.",
               "id": "inspect-target",
-              "instruction": "Check whether .venv already exists before creating anything. A real project directory using Python 3.11 is kept. A symbolic link, incomplete environment, or different Python version stops the recipe; nothing is deleted.",
+              "instruction": "Check whether .venv already exists before creating anything. A symbolic link is a path that redirects to another file or folder; this recipe will not follow one. A normal project folder using Python 3.11 is kept. A link, incomplete environment, or different Python version stops the recipe; nothing is deleted.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop if the path is a link, incomplete, unreadable, or uses another Python version. Identify who created it before removing or replacing anything.",
@@ -5988,7 +6031,7 @@
               ],
               "expected": "The shell accepts the command without an activation error.",
               "id": "activate",
-              "instruction": "Activate the environment by its local prefix. Activation changes which Python this terminal uses; it does not change the project files.",
+              "instruction": "Activate the environment by its local .venv folder path. Activation changes which Python this terminal uses; it does not change the project files.",
               "links": [],
               "machine": "local",
               "on_failure": "Windows: open Miniforge Prompt and run conda init powershell. macOS: run conda init zsh. Linux Bash: run conda init bash. Run it once, close only that command terminal, keep the terminal running the Passport open, open a new command terminal, return to the practice root, and retry.",
@@ -6170,7 +6213,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Open the Python fixture"
+              "title": "Open the Python practice project"
             },
             {
               "commands": [
@@ -6399,7 +6442,7 @@
               },
               {
                 "id": "transfer",
-                "label": "Transfer ownership and document the authoritative locations."
+                "label": "Transfer ownership and document the locations that hold the main approved copies."
               },
               {
                 "id": "verify",
@@ -6571,7 +6614,7 @@
           }
         ],
         "recipe": {
-          "intro": "Preserve required project records and evidence. Do not delete broadly while ownership or retention is unresolved.",
+          "intro": "Offboarding is the planned transfer of work and removal of access when someone leaves. Preserve required project records and evidence. Do not delete broadly while ownership or retention is unresolved.",
           "steps": [
             {
               "commands": [],
@@ -6605,7 +6648,7 @@
               "commands": [],
               "expected": "The successor can reproduce the agreed verification command and result.",
               "id": "verify",
-              "instruction": "Have the successor locate the code revision, environment definition, authoritative data, verification command, expected result, and known limitations.",
+              "instruction": "Have the successor locate the code revision, environment definition, main approved data copy, verification command, expected result, and known limitations.",
               "links": [],
               "machine": "browser",
               "on_failure": "Complete the handover before revocation.",
@@ -6703,7 +6746,7 @@
     },
     "supervisor-onboarding": {
       "activity": {
-        "action": "Review a fictional researcher onboarding case and choose the route, owners, access, locations, dates, and approval boundaries.",
+        "action": "Review a fictional researcher onboarding case and choose the lessons, owners, access, locations, dates, and approval boundaries.",
         "expected_result": "Every requested capability has a reason, owner, location, review date when needed, and separate operational approval.",
         "kind": "structured_plan",
         "machine": "browser",
@@ -6746,11 +6789,11 @@
               },
               {
                 "id": "wrong_a",
-                "label": "Every track, in case it becomes useful later."
+                "label": "Every lesson group, in case it becomes useful later."
               },
               {
                 "id": "wrong_b",
-                "label": "Only the shortest track."
+                "label": "Only the shortest lesson group."
               }
             ],
             "prompt": "Which Passport responsibilities should be assigned?",
@@ -6878,11 +6921,11 @@
           }
         ],
         "recipe": {
-          "intro": "Training completion never grants system access. Every operational permission needs a separate owner decision.",
+          "intro": "A Passport lesson list is selected from the person's real work. Training completion never grants system access. Every operational permission needs a separate decision from the person responsible for that system or information.",
           "steps": [
             {
               "commands": [],
-              "expected": "The route contains only relevant responsibility tracks and their prerequisites.",
+              "expected": "The list contains only the relevant lesson groups and their required earlier lessons.",
               "id": "responsibilities",
               "instruction": "List the fictional researcher's real responsibilities: code, data stewardship, Euler CPU or GPU, Blade, AI tools, supervision, or none of these.",
               "links": [],
@@ -6916,7 +6959,7 @@
               "links": [],
               "machine": "browser",
               "on_failure": "Reduce the request or obtain a documented owner exception.",
-              "on_success": "Name authoritative code and data locations.",
+              "on_success": "Name the code and data locations that hold the main approved copies.",
               "platforms": [
                 "all"
               ],
@@ -6929,7 +6972,7 @@
               "instruction": "Record where code, durable data, temporary data, computation, and handover records belong.",
               "links": [],
               "machine": "browser",
-              "on_failure": "Resolve the authoritative location before data is created.",
+              "on_failure": "Decide which approved location will hold the main copy before data is created.",
               "on_success": "Separate training from provisioning.",
               "platforms": [
                 "all"
@@ -6940,7 +6983,7 @@
               "commands": [],
               "expected": "Provisioning status and Passport status are separate.",
               "id": "provision",
-              "instruction": "Record each access request and owner decision outside the public assessment. A passed mission is evidence of training, not authorization.",
+              "instruction": "Record each access request and owner decision outside the public assessment. A passed lesson is evidence of training, not authorization.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not activate access solely because training passed.",
@@ -6948,7 +6991,7 @@
               "platforms": [
                 "all"
               ],
-              "title": "Track operational approvals separately"
+              "title": "Record operational approvals separately"
             },
             {
               "commands": [],
@@ -6981,7 +7024,7 @@
           "attestation"
         ]
       },
-      "title": "Assign A Researcher Route And Safe Project Environment",
+      "title": "Assign Lessons And A Safe Project Environment",
       "track": "supervisor",
       "verification": {
         "critical_must_pass": true,
@@ -7002,63 +7045,63 @@
   ],
   "responsibilities": {
     "ai_agents": {
-      "description": "Select this if an AI tool may read, edit, or run commands in a lab repository. Ordinary chatbot use outside lab work is not part of this track.",
+      "description": "Select this if you will use a coding agent: an AI tool that can read or edit files and run commands after your approval in a lab project folder. Ordinary chatbot use outside lab work is not included.",
       "title": "Use AI coding agents on lab work",
       "tracks": [
         "ai_agents"
       ]
     },
     "blade": {
-      "description": "Select this if you need the lab's shared remote Windows computer for licensed graphical engineering software such as CAD or pre/post-processing.",
+      "description": "Select this if you need the lab's shared remote Windows computer for licensed graphical engineering software such as computer-aided design (CAD) or simulation pre/post-processing.",
       "title": "Use the IDEAL Lab Blade server",
       "tracks": [
         "blade"
       ]
     },
     "data_steward": {
-      "description": "Select this if you decide where shared datasets, checkpoints, results, or handover records belong, or who may access them.",
+      "description": "Select this if you decide where shared datasets and results belong, who may access them, or how they are handed to the next person. A dataset is a collection of research data.",
       "title": "Organize shared research data and results",
       "tracks": [
         "data_steward"
       ]
     },
     "euler_cpu": {
-      "description": "Select this for programs that should run on Euler, ETH Zurich's shared research-computing cluster, using CPUs rather than a GPU.",
+      "description": "Select this for programs that should run on Euler, ETH Zurich's service made of many managed computers for research calculations. A CPU is the general-purpose processor used by most programs.",
       "title": "Run CPU computation on Euler",
       "tracks": [
         "euler_cpu"
       ]
     },
     "euler_gpu": {
-      "description": "Select this for programs that have been written and tested to use a GPU on Euler. The CPU track is added first because access and job control are shared.",
+      "description": "Select this for programs written and tested to use a GPU, an accelerator for compatible software, on Euler. The CPU lessons come first because CPU and GPU work use the same Euler connection and scheduling system.",
       "title": "Run GPU computation on Euler",
       "tracks": [
         "euler_gpu"
       ]
     },
     "git": {
-      "description": "Select this if you will change code or documentation shared on GitHub. Git records file versions; GitHub stores the shared repository and its reviews.",
+      "description": "Select this if you will change code or documentation shared on GitHub. Git records file versions; GitHub stores the shared project and its reviews.",
       "title": "Modify or review files through GitHub",
       "tracks": [
         "git"
       ]
     },
     "nas": {
-      "description": "Select this if you need the lab's durable shared network drive for approved project datasets, checkpoints, results, or deliverables.",
+      "description": "Select this if you need the NAS, the lab's durable shared drive reached through the ETH network, for approved project data, saved program or model states, results, or deliverables.",
       "title": "Use the IDEAL Lab NAS for project data",
       "tracks": [
         "nas"
       ]
     },
     "python": {
-      "description": "Select this if you will run or edit Python code. You will learn to keep each project's packages in a separate reproducible environment.",
+      "description": "Select this if you will run or edit Python code. Python is a programming language. A package adds reusable code; an environment keeps one project's Python and packages separate so the setup can be recreated.",
       "title": "Develop or run Python projects",
       "tracks": [
         "python"
       ]
     },
     "supervisor": {
-      "description": "Select this if you assign onboarding routes, approve access, own research data, or organize handover and offboarding.",
+      "description": "Select this if you choose a person's onboarding lessons, approve access, own research data, or organize the transfer of work when someone joins or leaves.",
       "title": "Approve access or supervise researchers",
       "tracks": [
         "supervisor"

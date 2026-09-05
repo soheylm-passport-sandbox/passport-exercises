@@ -17,7 +17,7 @@ Revision: REPLACE_WITH_40_HEX_CHARACTERS
 
 ## Data
 
-Authoritative location: REPLACE_ME
+Main approved data location: REPLACE_ME
 
 Temporary locations to remove: REPLACE_ME
 

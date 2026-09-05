@@ -2,12 +2,22 @@
 
 ## Outcome
 
-Choose storage from data sensitivity, ownership, durability, collaboration,
-compute location, and retention.
+Choose a safe location for each research file by asking who owns it, who may
+see it, how long it must remain available, and where it will be used.
 
 ## Concept
 
-Research data includes source measurements, derived datasets, checkpoints, logs, results, and records needed to understand the work. The authoritative copy is the named version the project treats as correct; other copies are working, transfer, cache, or backup copies.
+Research data includes source measurements, derived datasets, checkpoints,
+logs, results, and records needed to understand the work. The main approved
+copy is the named version the project treats as correct; other copies are for
+work, transfer, faster access, or backup. Sensitivity describes the harm or
+access restriction associated with disclosure. Durability describes whether
+the file is intended to survive failure or cleanup. Retention states how long
+it must be kept.
+
+A checksum is a calculated fingerprint used to check whether two file copies
+contain the same data. It helps verify a copy; it does not decide whether the
+storage location is durable or approved.
 
 A file can be accessible without being durable, approved, backed up, or safe to share. Choose its location from sensitivity, owner, collaborators, compute needs, retention, and deletion rules.
 
@@ -26,15 +36,15 @@ Using Git for datasets or checkpoints, or assuming a synced personal folder is a
 
 ## Your Action
 
-Apply the storage decision sequence to six fictional research artifacts, then answer the placement scenarios.
+Apply the storage decision sequence to six fictional research files or results, then answer the placement scenarios.
 
-**Follow these steps in order.** Work from sensitivity, ownership, durability, collaboration, compute locality, and retention. Do not choose from free space alone.
+**Follow these steps in order.** Sensitivity describes the harm or access restriction associated with disclosure. Durability describes whether a file must survive failure or cleanup. Retention states how long it must be kept. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Decide these points, ownership, collaboration, and where computation runs before choosing storage; free space alone is not a reason.
 
 ### 1. Classify sensitivity
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Decide whether the artifact is public, internal, confidential, personal, or otherwise restricted under the project's approved classification.
+For each file or result produced or used by the project, decide whether it is public, internal, confidential, personal, or otherwise restricted under the project's approved classification.
 
 **Expected:** The classification is explicit and justified.
 
@@ -44,9 +54,9 @@ Decide whether the artifact is public, internal, confidential, personal, or othe
 
 ### 2. Name the owner
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Identify who decides access, retention, and deletion for the artifact. A person who happens to have a copy is not automatically the owner.
+Identify who decides access, retention, and deletion for the file or result. A person who happens to have a copy is not automatically the owner.
 
 **Expected:** One accountable owner is named.
 
@@ -56,9 +66,9 @@ Identify who decides access, retention, and deletion for the artifact. A person 
 
 ### 3. Decide how long it must survive
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Mark the artifact as durable, reproducible temporary work, cache, or disposable output. Record backup and recovery expectations.
+Mark the file or result as durable, reproducible temporary work, a temporary copy kept for faster access, or disposable output. Record backup and recovery expectations.
 
 **Expected:** Irreplaceable material is assigned to approved durable storage.
 
@@ -68,7 +78,7 @@ Mark the artifact as durable, reproducible temporary work, cache, or disposable 
 
 ### 4. Match collaboration and compute locality
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Use GitHub for code, NAS or another approved project store for durable shared data, and approved Euler storage for active cluster I/O.
 
@@ -80,7 +90,7 @@ Use GitHub for code, NAS or another approved project store for durable shared da
 
 ### 5. Record retention and cleanup
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Name when temporary copies are removed and who confirms durable transfer or deletion.
 
@@ -88,15 +98,15 @@ Name when temporary copies are removed and who confirms durable transfer or dele
 
 **Continue when:** Complete the fictional placements.
 
-**If not:** Keep the artifact unchanged until retention authority is clear.
+**If not:** Keep the file or result unchanged until the person responsible for retention has decided what must happen.
 
 ### 6. Complete each placement
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Choose a location for every fictional file and check it against all five decisions above.
 
-**Expected:** No sensitive or durable artifact is assigned to unapproved temporary storage.
+**Expected:** No sensitive or durable file or result is assigned to unapproved temporary storage.
 
 **Continue when:** Run Check my work.
 
@@ -107,8 +117,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -134,6 +144,6 @@ exercise.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

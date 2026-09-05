@@ -2,13 +2,16 @@
 
 ## Outcome
 
-Use Git manually to edit and review one file, record a Conventional Commit, send the branch to GitHub, and open a draft pull request for review.
+Make one small change in the practice project, inspect exactly what changed,
+save that version with Git, send it to GitHub, and open it for review.
 
 ## Concept
 
 A Git change moves through a visible sequence. The working tree contains the files you are editing. A branch keeps the work separate. Staging selects the reviewed changes for one commit; the commit records them with an author and message. Pushing sends that branch to GitHub. A pull request, or PR, asks others to review the branch before it is merged.
 
-Complete this sequence manually once before delegating it to an IDE button or AI agent.
+A Conventional Commit is a commit message in `type(scope): summary` form. The type states the kind of change, the optional scope names the affected area, and the summary says what changed. Consistent messages make history easier to search and can support release notes and version tags later.
+
+Complete this sequence manually once before delegating it to an editor button or AI agent.
 
 ## Worked Example
 
@@ -29,11 +32,19 @@ Make one small manual change, review both diffs, create a Conventional Commit, p
 
 **Follow these steps in order.** Do this mission without an AI agent. Use the exact practice folder and commands prepared by the Passport.
 
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
+
 ### 1. Learn the manual Git change path
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Edit a file in the working tree, inspect the diff, stage only the reviewed file, record it as a commit, push the branch to GitHub, then open a pull request for review. A draft pull request is visible but explicitly not ready to merge.
+The working tree is the project folder you are editing. A diff shows changed lines. Staging selects reviewed changes for the next commit; a commit records that version with an author and message. Pushing sends the branch to GitHub. A pull request, or PR, asks for the branch to be reviewed before merging. A draft PR is visible but explicitly not ready to merge. Follow the order: edit, diff, stage, commit, push, pull request.
 
 - [Read the beginner Git workflow](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/git_workflow.md)
 
@@ -41,11 +52,11 @@ Edit a file in the working tree, inspect the diff, stage only the reviewed file,
 
 **Continue when:** Open the prepared practice folder.
 
-**If not:** Do not use an IDE button or agent to skip a step you cannot yet identify.
+**If not:** Do not use an editor button or AI agent to skip a step you cannot yet identify.
 
 ### 2. Open the practice folder
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder in this step. Run the displayed enter-folder command, then keep this terminal in that folder.
 
@@ -57,11 +68,11 @@ Press Prepare practice folder in this step. Run the displayed enter-folder comma
 
 ### 3. Inspect before editing
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Read workspace/manual_task/README.md and project-note.md. Confirm the branch is the practice branch and the working tree has no unexpected change.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git status --short --branch
@@ -69,7 +80,7 @@ Get-Content -LiteralPath workspace/manual_task/README.md
 Get-Content -LiteralPath workspace/manual_task/project-note.md
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git status --short --branch
@@ -77,7 +88,7 @@ sed -n '1,160p' workspace/manual_task/README.md
 sed -n '1,160p' workspace/manual_task/project-note.md
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git status --short --branch
@@ -93,7 +104,7 @@ sed -n '1,160p' workspace/manual_task/project-note.md
 
 ### 4. Open the exact practice folder in an editor
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Use a plain-text code editor you already trust. If you do not have one, install VS Code from the official link, open it, choose File > Open Folder, and select the exact practice-folder path shown by the Passport. Do not enable an AI agent for this mission.
 
@@ -107,7 +118,7 @@ Use a plain-text code editor you already trust. If you do not have one, install 
 
 ### 5. Make the requested edit
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Open workspace/manual_task/project-note.md in the editor file tree. Add the exact block shown below at the end of the file, then save it. Do not edit another file.
 
@@ -127,25 +138,25 @@ The staged diff must be reviewed before publishing.
 
 ### 6. Review the unstaged diff
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Check the changed path and read every added or removed line before staging.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git status --short
 git diff -- workspace/manual_task/project-note.md
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git status --short
 git diff -- workspace/manual_task/project-note.md
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git status --short
@@ -160,11 +171,11 @@ git diff -- workspace/manual_task/project-note.md
 
 ### 7. Stage one file
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Add only the reviewed project note, then check whitespace and inspect the staged diff.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git add -- workspace/manual_task/project-note.md
@@ -172,7 +183,7 @@ git diff --cached --check
 git diff --cached
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git add -- workspace/manual_task/project-note.md
@@ -180,7 +191,7 @@ git diff --cached --check
 git diff --cached
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git add -- workspace/manual_task/project-note.md
@@ -196,23 +207,23 @@ git diff --cached
 
 ### 8. Create a Conventional Commit
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Use the exact commit command prepared by the Passport. The form is type(scope): concise summary; the scope names the affected area.
+Use the exact commit command prepared by the Passport. This is a Conventional Commit: a consistent message in type(scope): concise summary form. The type states the kind of change, the optional scope names the affected area, and the summary says what changed.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git commit -m "docs(practice): explain staged diff review"
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git commit -m "docs(practice): explain staged diff review"
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git commit -m "docs(practice): explain staged diff review"
@@ -226,7 +237,7 @@ git commit -m "docs(practice): explain staged diff review"
 
 ### 9. Push and open a draft pull request
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the exact push and gh pr create commands displayed by Prepare practice folder. Keep the pull request in draft and do not merge it.
 
@@ -238,23 +249,23 @@ Run the exact push and gh pr create commands displayed by Prepare practice folde
 
 ### 10. Review what GitHub received
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Open the current branch's draft PR, then confirm the author, source branch, target branch, commit subject, and single changed file. Leave the PR open as learning evidence.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 gh pr view --web
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 gh pr view --web
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 gh pr view --web
@@ -271,8 +282,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -295,6 +306,6 @@ must not perform the change, invent test output, or choose files to stage.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

@@ -1,7 +1,7 @@
 # IDEAL Lab IT Passport Exercises
 
 This public repository contains fictional exercises and structured mission contracts
-for the IDEAL Lab IT and Research Computing Passport `2.1.1`.
+for the IDEAL Lab IT and Research Computing Passport `2.1.2`.
 It contains no student records, research data, credentials, or privileged
 workflow.
 
@@ -11,7 +11,7 @@ Do not clone this repository manually. Install the public GitHub CLI extension,
 then let it create or reuse your public learning record:
 
 ```text
-gh extension install soheylm-passport-sandbox/gh-passport --force --pin v0.4.2
+gh extension install soheylm-passport-sandbox/gh-passport --force --pin v0.5.0
 gh passport start
 ```
 

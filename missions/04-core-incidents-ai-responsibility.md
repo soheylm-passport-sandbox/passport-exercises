@@ -2,12 +2,15 @@
 
 ## Outcome
 
-Stop and report an IT incident safely, and understand who is responsible for
-actions performed by AI tools or automation.
+Stop and report an IT incident safely. An AI coding agent is software that can
+inspect project files and request actions; learn who remains responsible when
+it or other automation performs work.
 
 ## Concept
 
 An incident is a real or suspected loss of confidentiality, access, control, or data. Stop the harmful action, preserve useful evidence, verify containment, and report through the private route.
+
+An AI coding agent is a tool that can read project files and request edits or commands. Automation is software that performs steps without a person typing each one. The person who authorizes and reviews either kind of action remains responsible for it.
 
 One example is a runaway Euler job: a program submitted to the shared cluster through Slurm that is consuming resources by mistake. Its numeric job ID identifies it; `scancel` stops it, `squeue` shows queued or running jobs, and `sacct` shows recorded job history. These commands are introduced here only so the fictional scenario is understandable; the Euler track teaches how to use them.
 
@@ -34,9 +37,9 @@ Practise a safe incident response and confirm who remains responsible for automa
 
 ### 1. Understand the incident examples
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-An incident is a suspected loss of confidentiality, access, control, or data. In the Euler example, a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.
+An incident is a suspected loss of confidentiality, access, control, or data. An AI coding agent is a tool that can read project files and request edits or commands. Automation is software that performs steps without a person typing each one. In the Euler example, Slurm is the scheduler and a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.
 
 - [Read the incident and help procedure](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md)
 
@@ -48,7 +51,7 @@ An incident is a suspected loss of confidentiality, access, control, or data. In
 
 ### 2. Confirm the scenario is fictional
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Do not enter real names, account identifiers, logs, credentials, job output, or project details in this public learning record.
 
@@ -60,7 +63,7 @@ Do not enter real names, account identifiers, logs, credentials, job output, or 
 
 ### 3. Stop the risky action
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Stop the known harmful action without destroying evidence. For a runaway Euler job, record its job ID and cancel that job.
 
@@ -70,11 +73,11 @@ Stop the known harmful action without destroying evidence. For a runaway Euler j
 
 **Continue when:** Verify the stopped state.
 
-**If not:** Stop trying to fix it alone. Use the linked incident procedure to send a private report to your supervisor or lab IT, ETH cyber incident support, or ETH HPC support.
+**If not:** Stop trying to fix it alone. Use the linked incident procedure to send a private report to your supervisor or lab IT, ETH cyber incident support, or ETH High-Performance Computing (HPC) support.
 
 ### 4. Verify containment
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Check the affected service directly. Examples include confirming a token is revoked or using squeue or sacct to confirm a job stopped.
 
@@ -88,9 +91,9 @@ Check the affected service directly. Examples include confirming a token is revo
 
 ### 5. Identify the private reporting route
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-For each fictional scenario, use the linked procedure to identify who you would contact: your supervisor or lab IT for lab projects, NAS, or research data; ETH cyber incident support for stolen credentials, phishing, malware, or attacks; ETH HPC support for Euler service or account problems that contain no confidential research content. Do not send a real report for a fictional scenario. Public Passport PRs and issues are never incident channels.
+For each fictional scenario, use the linked procedure to identify the private contact. Contact your supervisor or lab IT for lab projects, NAS, or research data. Contact ETH cyber incident support for stolen credentials, phishing, malware, or attacks. Contact ETH High-Performance Computing (HPC) support for Euler service or account problems that contain no confidential research content. Do not send a real report for a fictional scenario. Public Passport submissions and public help issues are never incident channels.
 
 - [Open the incident and help procedure](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/incidents-and-help.md)
 
@@ -102,7 +105,7 @@ For each fictional scenario, use the linked procedure to identify who you would 
 
 ### 6. Keep a person accountable
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 The person who authorizes and reviews an AI or automation action remains responsible for its commands, changes, publication, and consequences.
 
@@ -114,7 +117,7 @@ The person who authorizes and reviews an AI or automation action remains respons
 
 ### 7. Complete the scenarios
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Put the response actions in order and answer the accountability questions.
 
@@ -129,8 +132,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -158,6 +161,6 @@ the documented incident path was followed.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

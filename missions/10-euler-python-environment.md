@@ -2,13 +2,24 @@
 
 ## Outcome
 
-Create or safely reuse a small Python environment on Euler, the ETH shared computing cluster, and activate it inside every submitted Slurm job script.
+Python is a programming language. Set up a small, separate interpreter and
+package set, called a Python environment, directly on Euler. Make every
+scheduled Python job select that environment explicitly.
 
 ## Concept
 
-Your laptop and Euler are separate computers with different operating systems and software. An environment created on one cannot be copied safely to the other. Euler provides software modules, which select a maintained application version for the current shell. A project environment then adds the Python packages needed by that project.
+Python files are run by a program called an interpreter; packages add reusable
+code. Your laptop and Euler are separate computers with different operating
+systems and software. An environment created on one cannot be copied safely to
+the other. Euler provides software modules, which select a maintained
+application version for the current shell. A project environment then adds the
+Python interpreter and packages needed by that project.
 
 Recreate the environment on Euler from a reviewed definition, and make every Slurm batch script load its module and activate its environment before running Python.
+
+On Euler, `$HOME` is the small private folder assigned to your account. This
+mission uses a training folder there; it does not copy the environment from
+your laptop.
 
 ## Worked Example
 
@@ -33,11 +44,19 @@ Create or safely reuse one small Euler-native Python virtual environment and ver
 
 **Follow these steps in order.** Your laptop environment and Euler environment are separate. Run these steps on Euler after the SSH mission prints config-ok. This exercise creates no Slurm job and installs no project package.
 
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
+
 ### 1. Separate laptop and Euler software
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python packages. Both must be selected again inside each submitted batch job.
+Python is a programming language, and an interpreter is the program that runs Python files. Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python interpreter and packages. Both must be selected again inside each submitted batch job.
 
 - [Read the Euler Python environment reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/python-environments.md)
 
@@ -45,27 +64,27 @@ Your laptop and Euler are different computers. An Euler module selects a maintai
 
 **Continue when:** Connect to Euler with the tested alias.
 
-**If not:** Return to the local Python environment mission before creating another environment.
+**If not:** Read the linked Euler Python reference again. You do not need the laptop Python track unless it appears in your assigned route.
 
 ### 2. Connect to Euler
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 From the local terminal, connect with the verified euler alias. Run every later command in the Euler Bash shell that opens.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 ssh euler
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 ssh euler
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 ssh euler
@@ -79,11 +98,11 @@ ssh euler
 
 ### 3. Check the Euler Python module
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Load the dated Euler software stack used by this training release and verify the interpreter before creating anything. This affects only the current shell.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -107,11 +126,11 @@ printf 'module-python-ok\n'
 
 ### 4. Inspect before creating
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Check the exact training path without changing it. A valid existing environment is kept. A symbolic link, incomplete directory, or different Python version stops the recipe instead of being replaced.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -141,11 +160,11 @@ fi
 
 ### 5. Create or reuse the environment
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Run this after the inspection passes. The command creates into a private temporary directory and moves it into place only after Python and pip work. If the valid target already exists, it is reused without modification.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -187,11 +206,11 @@ fi
 
 ### 6. Verify the active interpreter
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Activate the training environment, verify its exact path and Python version, then deactivate it. The marker is safe to enter in the Passport; do not paste the full private path into a submission.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -215,7 +234,7 @@ deactivate
 
 ### 7. Put setup inside the Slurm script
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Read this batch-script fragment. Do not run a workload on the login node. Every Python job must load its module and activate its environment inside the submitted script before the Python command.
 
@@ -236,7 +255,7 @@ python your_script.py
 
 ### 8. Confirm the safe marker
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Return to the local Passport, enter only euler-python-env-ok, complete the questions, and run Check my work.
 
@@ -251,7 +270,7 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks the exact
+Use **Check my work** before submitting. The automatic check confirms the exact
 safe marker printed by the Euler environment command. A score of 100% is
 required, and every safety-critical question must be correct.
 
@@ -270,5 +289,5 @@ an environment, or install packages without your review.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

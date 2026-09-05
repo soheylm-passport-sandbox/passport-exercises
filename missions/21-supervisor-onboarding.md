@@ -1,4 +1,4 @@
-# Mission: Assign A Researcher Route And Safe Project Environment
+# Mission: Assign Lessons And A Safe Project Environment
 
 ## Outcome
 
@@ -7,9 +7,10 @@ review dates for a new researcher.
 
 ## Concept
 
-Technical instructions cannot resolve missing ownership and access decisions.
-Assigning every student the same route also wastes time and leaves role-specific
-risks unaddressed.
+A Passport lesson list is selected from the person's real work. Training shows
+that the person completed those lessons; it does not grant
+permission to a repository, dataset, machine, or paid service. Those operational
+access decisions still require the named system or information owner.
 
 ## Worked Example
 
@@ -22,21 +23,21 @@ Check these points:
 
 ## Common Trap
 
-Treating a passed training mission as authorization to access a system or dataset.
+Treating a passed training lesson as authorization to access a system or dataset.
 
 ## Your Action
 
-Review a fictional researcher onboarding case and choose the route, owners, access, locations, dates, and approval boundaries.
+Review a fictional researcher onboarding case and choose the lessons, owners, access, locations, dates, and approval boundaries.
 
-**Follow these steps in order.** Training completion never grants system access. Every operational permission needs a separate owner decision.
+**Follow these steps in order.** A Passport lesson list is selected from the person's real work. Training completion never grants system access. Every operational permission needs a separate decision from the person responsible for that system or information.
 
 ### 1. Define the person's work
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 List the fictional researcher's real responsibilities: code, data stewardship, Euler CPU or GPU, Blade, AI tools, supervision, or none of these.
 
-**Expected:** The route contains only relevant responsibility tracks and their prerequisites.
+**Expected:** The list contains only the relevant lesson groups and their required earlier lessons.
 
 **Continue when:** Map each responsibility to a system.
 
@@ -44,7 +45,7 @@ List the fictional researcher's real responsibilities: code, data stewardship, E
 
 ### 2. Name decision owners
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 For each repository, dataset, storage area, compute share, software license, and AI service, name who approves access and who supports it.
 
@@ -56,19 +57,19 @@ For each repository, dataset, storage area, compute share, software license, and
 
 ### 3. Limit scope and duration
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Request only the permissions needed for the stated task. Add a review or end date for temporary roles, guests, and project-specific access.
 
 **Expected:** No broad or permanent access lacks a task and review date.
 
-**Continue when:** Name authoritative code and data locations.
+**Continue when:** Name the code and data locations that hold the main approved copies.
 
 **If not:** Reduce the request or obtain a documented owner exception.
 
 ### 4. Document working locations
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Record where code, durable data, temporary data, computation, and handover records belong.
 
@@ -76,13 +77,13 @@ Record where code, durable data, temporary data, computation, and handover recor
 
 **Continue when:** Separate training from provisioning.
 
-**If not:** Resolve the authoritative location before data is created.
+**If not:** Decide which approved location will hold the main copy before data is created.
 
-### 5. Track operational approvals separately
+### 5. Record operational approvals separately
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Record each access request and owner decision outside the public assessment. A passed mission is evidence of training, not authorization.
+Record each access request and owner decision outside the public assessment. A passed lesson is evidence of training, not authorization.
 
 **Expected:** Provisioning status and Passport status are separate.
 
@@ -92,7 +93,7 @@ Record each access request and owner decision outside the public assessment. A p
 
 ### 6. Review the onboarding packet
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Use the scenarios below to check responsibilities, owners, minimum access, locations, dates, and help paths for the fictional case.
 
@@ -107,8 +108,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -131,6 +132,6 @@ approve AI services, choose compute shares, or create policy exceptions.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

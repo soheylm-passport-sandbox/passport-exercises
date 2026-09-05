@@ -2,13 +2,15 @@
 
 ## Outcome
 
-Create an isolated Python interpreter and package set for one project with Conda, keep the local `.venv` folder out of Git, and verify which interpreter runs.
+Python is a programming language. Create a separate interpreter and package
+set for one practice project, recreate it from a small definition file, and
+keep computer-specific setup files out of shared Git history.
 
 ## Concept
 
 Python is a programming language, and a Python interpreter is the program that runs Python files. Projects often require different package versions, so each project needs an isolated environment containing its own interpreter and packages.
 
-Conda creates and manages such environments. Miniforge is the small Conda distribution used by this guide. This mission stores the project environment in `.venv`; the folder is local and ignored by Git, while `environment.yml` records the reproducible definition.
+Conda creates and manages such environments. Miniforge is the small Conda distribution used by this guide. Conda's shared `base` environment is not used for project packages. This mission stores the project environment in `.venv`; `.gitignore` tells Git not to record that local folder, while `environment.yml` records the reproducible definition.
 
 ## Worked Example
 
@@ -27,13 +29,21 @@ Creating the environment in Git-tracked files or installing into an unrelated gl
 
 Install or verify Miniforge, create the project environment from environment.yml, and prove that Git ignores .venv.
 
-**Follow these steps in order.** Do not install packages into base or the system Python. Keep an existing .venv until you have identified what it contains.
+**Follow these steps in order.** Do not install packages into Conda's shared base environment or into the Python installation used by the operating system. Keep an existing .venv folder until you have identified what it contains.
+
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
 ### 1. Know what the Python environment contains
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Python is run by an interpreter. Packages add reusable code. A project environment keeps one interpreter and package set separate from other projects. Conda manages the environment; Miniforge provides Conda; environment.yml records what to recreate; .venv is the local environment folder used in this mission.
+Python is run by a program called an interpreter. Packages add reusable code. A project environment keeps one interpreter and package set separate from other projects. Conda manages environments, and Miniforge provides Conda. Conda's base environment is the shared default and is not used for project packages. environment.yml records what to recreate. .venv is the local project environment folder. .gitignore tells Git not to record named local files or folders.
 
 - [Open the Python setup reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/python_setup.md)
 
@@ -45,9 +55,9 @@ Python is run by an interpreter. Packages add reusable code. A project environme
 
 ### 2. Prepare the Python practice folder
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Press Prepare practice folder in this step and run the displayed enter-folder command. Keep all following commands at the repository root unless a step says otherwise.
+Press Prepare practice folder in this step and run the displayed enter-folder command. The repository root is the top-level project folder that contains files such as environment.yml and .gitignore. Keep all following commands there unless a step says otherwise.
 
 **Expected:** The practice repository and practice branch are active.
 
@@ -57,25 +67,25 @@ Press Prepare practice folder in this step and run the displayed enter-folder co
 
 ### 3. Check Conda
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the version check. If it succeeds, keep the existing working installation and skip installation.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 conda --version
 conda info --base
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 conda --version
 conda info --base
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 conda --version
@@ -90,11 +100,11 @@ conda info --base
 
 ### 4. Recover an existing Conda installation
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Run this only when conda was not recognized. The check looks only in common personal installation folders and does not delete anything. If it finds exactly one installation, it runs conda init for this operating system; that change becomes available only in a newly opened terminal. On Windows, also search the Start menu for Miniforge Prompt, Miniconda Prompt, or Anaconda Prompt. If one exists but this check found nothing, open that prompt, run conda info --base, and use the sanitized help path rather than installing another copy.
+Run this only when conda was not recognized. The check looks only in common personal installation folders and does not delete anything. If it finds exactly one installation, it runs conda init for this operating system; that change becomes available only in a newly opened terminal. On Windows, also search the Start menu for Miniforge Prompt, Miniconda Prompt, or Anaconda Prompt. If one exists but this check found nothing, open that prompt, run conda info --base, and request help without including private information rather than installing another copy.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -121,7 +131,7 @@ Run this only when conda was not recognized. The check looks only in common pers
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -140,7 +150,7 @@ fi
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -163,11 +173,11 @@ fi
 
 **Continue when:** After existing-conda-initialized, skip installation and continue at Reopen and recheck Conda. After no-common-conda-installation, run only the installation step for this operating system.
 
-**If not:** If more than one installation is listed, or a Start-menu Conda prompt exists at another path, stop and use the sanitized help path. Do not uninstall, rename, or overwrite any installation.
+**If not:** If more than one installation is listed, or a Start-menu Conda prompt exists at another path, stop and request help without including private information. Do not uninstall, rename, or overwrite any installation.
 
 ### 5. Install Miniforge on Windows only if needed
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run this step only after the recovery check printed no-common-conda-installation and no Conda prompt exists in the Start menu. Download the Windows x86-64 installer from the official page, run it for Just Me, keep the default personal installation folder and Start Menu shortcut, and leave Add Miniforge to PATH disabled. Open Miniforge Prompt from the Start menu, run conda --version, then run conda init powershell once. Close only that Miniforge Prompt, keep the terminal running the Passport open, and open a new PowerShell window.
 
@@ -181,11 +191,11 @@ Run this step only after the recovery check printed no-common-conda-installation
 
 ### 6. Install Miniforge on macOS only if needed
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum for this Mac, verifies the download, then starts the interactive installer. Answer yes when asked to initialize zsh.
+Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum, a fingerprint used to detect a changed or damaged download. It checks that fingerprint before starting the interactive installer. Answer yes when asked to initialize zsh.
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 <!-- passport-snippet:miniforge-macos-installer -->
 ```zsh
@@ -221,11 +231,11 @@ bash "$installer"
 
 ### 7. Install Miniforge on Linux only if needed
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum for this Linux machine, verifies the download, then starts the interactive installer. Answer yes when asked to initialize bash. Do not use sudo.
+Run this step only after the recovery check printed no-common-conda-installation. The block downloads the official installer and its published SHA-256 checksum, a fingerprint used to detect a changed or damaged download. It checks that fingerprint before starting the interactive installer. Answer yes when asked to initialize Bash. Do not use sudo.
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 <!-- passport-snippet:miniforge-linux-installer -->
 ```bash
@@ -255,31 +265,31 @@ bash "$installer"
 
 **Expected:** The operating system is Linux, the checksum matches, and installation finishes without replacing another Conda installation.
 
-**Continue when:** Close this command terminal after the installer finishes, open a new Bash terminal, and continue at Reopen and recheck Conda.
+**Continue when:** Close this command terminal after the installer finishes, open a new Terminal window, which normally starts Bash, and continue at Reopen and recheck Conda.
 
 **If not:** If curl is unavailable, use the official release link and choose the Linux installer for this computer's architecture. Stop if the architecture or destination is unclear; do not use sudo or overwrite another Conda installation.
 
 ### 8. Reopen and recheck Conda
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-If Conda already worked in the first check, keep this terminal. If you initialized or installed Conda, close only the terminal used for the setup commands, leave the terminal running the Passport open, and open a new PowerShell, Terminal, or Bash window. Run the enter-folder command shown in Prepare the Python practice folder, then run both checks below.
+If Conda already worked in the first check, keep this terminal. If you initialized or installed Conda, close only the terminal used for the setup commands, leave the terminal running the Passport open, and open a new PowerShell window on Windows or Terminal window on macOS or Linux. On Linux, Terminal normally starts Bash. Run the enter-folder command shown in Prepare the Python practice folder, then run both checks below.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 conda --version
 conda info --base
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 conda --version
 conda info --base
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 conda --version
@@ -290,27 +300,27 @@ conda info --base
 
 **Continue when:** Keep this terminal open and continue to the environment definition.
 
-**If not:** Do not install another copy. On Windows, try Miniforge Prompt and run conda info --base. On any platform, use the sanitized help path with the command-not-found message and the base path already found; do not include your username or full home path.
+**If not:** Do not install another copy. On Windows, try Miniforge Prompt and run conda info --base. On any platform, request help with the command-not-found message and the base path already found; do not include your username or full home path.
 
 ### 9. Read the environment definition
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Open environment.yml at the practice repository root. This versioned file selects conda-forge, uses nodefaults so personal Conda settings cannot add another package channel, and pins Python 3.11. Do not edit it in this exercise.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 Get-Content -LiteralPath environment.yml
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 cat environment.yml
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 cat environment.yml
@@ -324,11 +334,11 @@ cat environment.yml
 
 ### 10. Inspect the environment path
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Check whether .venv already exists before creating anything. A real project directory using Python 3.11 is kept. A symbolic link, incomplete environment, or different Python version stops the recipe; nothing is deleted.
+Check whether .venv already exists before creating anything. A symbolic link is a path that redirects to another file or folder; this recipe will not follow one. A normal project folder using Python 3.11 is kept. A link, incomplete environment, or different Python version stops the recipe; nothing is deleted.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -349,7 +359,7 @@ Check whether .venv already exists before creating anything. A real project dire
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -367,7 +377,7 @@ fi
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -393,23 +403,23 @@ fi
 
 ### 11. Verify the environment path is ignored
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Ask Git whether the future .venv contents are excluded before creating anything there. --no-index makes the check work even when the path does not exist yet.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git check-ignore -v --no-index .venv/conda-meta/history
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git check-ignore -v --no-index .venv/conda-meta/history
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git check-ignore -v --no-index .venv/conda-meta/history
@@ -423,11 +433,11 @@ git check-ignore -v --no-index .venv/conda-meta/history
 
 ### 12. Create or reuse the project Conda environment
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 If the earlier path check printed existing-conda-environment, keep it and let this command report reused-conda-environment. Otherwise, create the project-local .venv from the committed environment.yml. Do not install packages into base and do not replace the definition with a manual package list.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -447,7 +457,7 @@ If the earlier path check printed existing-conda-environment, keep it and let th
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -465,7 +475,7 @@ fi
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -491,23 +501,23 @@ fi
 
 ### 13. Activate the project environment
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Activate the environment by its local prefix. Activation changes which Python this terminal uses; it does not change the project files.
+Activate the environment by its local .venv folder path. Activation changes which Python this terminal uses; it does not change the project files.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 conda activate ./.venv
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 conda activate ./.venv
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 conda activate ./.venv
@@ -521,23 +531,23 @@ conda activate ./.venv
 
 ### 14. Verify the active interpreter
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Print the executable path and Python version. The path, not only the prompt decoration, proves which environment is active.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 python -c "import sys; print(sys.executable); print(sys.version)"
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 python -c "import sys; print(sys.executable); print(sys.version)"
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 python -c "import sys; print(sys.executable); print(sys.version)"
@@ -551,7 +561,7 @@ python -c "import sys; print(sys.executable); print(sys.version)"
 
 ### 15. Use the same interpreter in your editor
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Terminal activation and editor selection are separate. If you use VS Code, open the practice repository, press Ctrl+Shift+P on Windows/Linux or Command+Shift+P on macOS, run Python: Select Interpreter, and choose the interpreter inside this repository's .venv folder. For another editor, use its Python interpreter setting and choose the same path printed in the previous step. If you run Python only from the terminal, no editor setting is required.
 
@@ -568,8 +578,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -593,6 +603,6 @@ before installation.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

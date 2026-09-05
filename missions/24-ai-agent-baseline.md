@@ -6,15 +6,15 @@ Use an AI coding agent, a tool that can inspect and change project files, on one
 
 ## Concept
 
-An AI coding agent can inspect repository files, propose or make edits, and request terminal commands. It is more capable than an ordinary chat window because its tools can change real files or services. The person who authorizes those actions remains responsible.
+An AI coding agent can inspect repository files, propose or make edits, and request terminal commands. It is more capable than an ordinary chat window because its tools can change real files or services. The person who authorizes those actions remains responsible. This exercise includes a protected file named `scope-canary.txt`; if it changes, the agent exceeded the permitted scope.
 
 Give the agent one specific task, limit the files and commands it may use, review every proposed action, and verify the final diff and tests yourself.
 
 ## Worked Example
 
-The agent changes only the allowed file. The canary remains unchanged, the
-verifier passes, and the learner reviews the result without submitting a chat
-transcript.
+The agent changes only the allowed file. The protected file remains unchanged,
+Check my work passes, and the learner reviews the result without submitting an
+agent conversation.
 
 Check these points:
 
@@ -29,11 +29,19 @@ Granting a broad task, sharing protected data, or accepting a claimed test resul
 
 Give an agent one small fictional task, review its plan and diff, then verify the result yourself.
 
-**Follow these steps in order.** The agent may edit only storage-plan.md. The canary file, repository settings, dependencies, and real data are outside scope.
+**Follow these steps in order.** The agent may edit only storage-plan.md. The protected scope-canary.txt file, repository settings, dependencies, and real data are outside scope.
 
-### 1. Prepare the agent fixture
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
-**Where:** Your computer
+### 1. Prepare the AI practice files
+
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder in this step and run the displayed enter-folder command. In the editor you configured in the previous AI mission, open the workspace/agent_task folder inside this practice repository. Check the editor title or file tree before opening an agent chat.
 
@@ -45,9 +53,9 @@ Press Prepare practice folder in this step and run the displayed enter-folder co
 
 ### 2. Understand the task first
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Read the fixture README and unsafe storage plan. Identify the four required corrections and the one file the agent may edit.
+Read the practice README and unsafe storage plan. Identify the four required corrections and the one file the agent may edit.
 
 **Expected:** You can describe the intended P:, D:, C:, and heavy-compute rules.
 
@@ -57,7 +65,7 @@ Read the fixture README and unsafe storage plan. Identify the four required corr
 
 ### 3. Ask for a plan without allowing changes
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Start a new agent chat in workspace/agent_task and paste the prompt below. Keep the agent in read-only or planning mode if the editor offers that choice. Do not approve any edit or command yet.
 
@@ -75,7 +83,7 @@ Read README.md, storage-plan.md, and scope-canary.txt in this folder. Explain th
 
 ### 4. Authorize only the one-file edit
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 If the plan is correct, paste the authorization below. Do not enable auto-approval. Reject installs, permission changes, access to real files, destructive commands, and edits outside storage-plan.md.
 
@@ -93,23 +101,23 @@ Apply the reviewed plan. Edit only storage-plan.md. Do not edit scope-canary.txt
 
 ### 5. Inspect the changed paths
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Use Git independently of the agent to list changed files.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git status --short -- workspace/agent_task
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git status --short -- workspace/agent_task
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git status --short -- workspace/agent_task
@@ -123,23 +131,23 @@ git status --short -- workspace/agent_task
 
 ### 6. Review the complete diff
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Check that the plan makes P: durable, D: temporary, C: unsuitable for project data, and Euler or approved compute the place for heavy work.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git diff -- workspace/agent_task
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git diff -- workspace/agent_task
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git diff -- workspace/agent_task
@@ -151,13 +159,13 @@ git diff -- workspace/agent_task
 
 **If not:** Correct the one allowed file manually or start a new chat with the missing constraint stated explicitly.
 
-### 7. Run the Passport verifier
+### 7. Check the result
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Return to this page and press Check my work. The verifier checks the changed path, exact canary, and required storage statements.
+Return to this page and press Check my work. The automatic check confirms the changed file, the unchanged protected file, and the required storage statements.
 
-**Expected:** The changed-path, canary, and storage-rule checks pass.
+**Expected:** The changed-file, protected-file, and storage-rule checks pass.
 
 **Continue when:** Submit the mission once.
 
@@ -168,15 +176,15 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
 ## If Blocked
 
 Start a new agent thread for the same specific task if context has become inconsistent. Return to
-the clean baseline when edits spread outside the fixture. Use the
+the clean baseline when edits spread outside the practice files. Use the
 [manual versus agent lab](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/labs/manual-vs-agent.md) for recovery.
 
 Useful references:
@@ -193,6 +201,6 @@ pass.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

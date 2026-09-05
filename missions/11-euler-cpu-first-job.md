@@ -2,13 +2,19 @@
 
 ## Outcome
 
-Submit one tiny CPU program to an Euler compute node through the Slurm scheduler, then follow its job ID through the queue, accounting, efficiency, and output checks.
+Run one tiny CPU program on Euler. Learn how to submit it, see whether it is
+waiting, running, or finished, stop it if needed, and inspect its resource use
+and output.
 
 ## Concept
 
 Euler has login nodes and compute nodes. An SSH session first reaches a login node, which is only for editing files, transferring data, and controlling jobs. Programs that use significant CPU or memory run on compute nodes.
 
 Slurm is the scheduler that allocates a compute node and resources. A batch job is a script submitted with `sbatch`; `squeue` shows whether it is waiting or running, `sacct` records its final state and resources, and `seff` summarizes efficiency. This mission submits one tiny CPU job and follows that same job ID to completion.
+
+On Euler, `$HOME` is the small private folder assigned to your account. A job
+ID is the number Slurm gives one submitted job. GiB is the memory unit used in
+this guide; 1 GiB is approximately one gigabyte.
 
 ## Worked Example
 
@@ -30,11 +36,19 @@ Create one small Python CPU batch script, inspect it, submit it once, and verify
 
 **Follow these steps in order.** Run every Euler command on the same login node. The recipe stores one job ID in $HOME/passport-euler/first-job.id so it survives logout; never resubmit because a job is pending.
 
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
+
 ### 1. Know where an Euler job runs
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-SSH opens an Euler login node for file and job management. Slurm schedules actual computation on a compute node. sbatch submits one batch script, squeue shows active jobs, sacct reports recorded state and resources, and seff summarizes efficiency. All four commands use the same numeric job ID.
+SSH opens an Euler login node for file and job management. Slurm schedules actual computation on a compute node. sbatch submits one batch script, squeue shows active jobs, sacct reports recorded state and resources, and seff summarizes efficiency. All four commands use the same numeric job ID. GiB is the memory unit used in this guide; 1 GiB is approximately one gigabyte.
 
 - [Open the Slurm command reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/slurm.md)
 
@@ -46,23 +60,23 @@ SSH opens an Euler login node for file and job management. Slurm schedules actua
 
 ### 2. Connect to Euler
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 From your local terminal, connect with the tested euler alias. The prompt should change to an Euler login node.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 ssh euler
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 ssh euler
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 ssh euler
@@ -76,11 +90,11 @@ ssh euler
 
 ### 3. Confirm the login node and account
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Run these read-only checks on Euler before creating a job. The host must be a login node and my_share_info must list es_fuge.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 hostname
@@ -95,11 +109,11 @@ my_share_info
 
 ### 4. Create and inspect the job script
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Create the expected script in your home training folder without overwriting an existing different file. The script establishes its Python environment inside the job. If the same script already exists after an interrupted session, reuse it. Validate Bash syntax and print it before submission.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 <!-- passport-snippet:euler-cpu-tiny-request -->
 ```bash
@@ -174,11 +188,11 @@ sed -n '1,100p' first-job.slurm
 
 ### 5. Submit once and record the job ID
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Submit only when no stored job ID exists. If this step was already completed, the command reuses the stored numeric ID and does not submit another job.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -209,11 +223,11 @@ fi
 
 ### 6. Inspect the queue
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Query only the recorded job. A header without a row means the short job already left the active queue.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -231,11 +245,11 @@ squeue -j "$job_id" -o "%.18i %.2t %.30R"
 
 ### 7. Verify completion with sacct
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Run this for the same job. If it says job-not-finished, wait 30 seconds and run this same step again. Never return to sbatch while waiting.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -261,11 +275,11 @@ sacct -j "$job_id" --format=JobID,JobName,User,Account,State,ExitCode,Elapsed,Al
 
 ### 8. Inspect seff
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Read the requested-versus-used CPU and memory summary for the same job.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -283,11 +297,11 @@ seff "$job_id"
 
 ### 9. Verify the environment and output markers
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Read only the two expected lines from the output file for the stored job ID. They prove that the batch script used the training environment and completed its calculation.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -307,9 +321,9 @@ grep -Fx "5 squared is 25" "$output"
 
 ### 10. Check and submit the mission
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Return to the local Passport, enter only the requested sanitized job facts, press Check my work, then submit once.
+Return to the local Passport, enter only the requested job facts, press Check my work, then submit once. Do not enter a username, path, log, or other private value.
 
 **Expected:** The Passport accepts the job ID, account, owner check, queue check, final state, resources, Python environment check, seff check, and output marker.
 
@@ -322,8 +336,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -347,6 +361,6 @@ inspect output and accounting. An agent must not submit or enlarge the job.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

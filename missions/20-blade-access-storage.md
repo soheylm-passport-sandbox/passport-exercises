@@ -1,4 +1,4 @@
-# Mission: Use Blade For GUI Work Without Losing Data
+# Mission: Use Blade For Graphical Work Without Losing Data
 
 ## Outcome
 
@@ -6,7 +6,7 @@ Connect by Remote Desktop to Blade, the lab's shared Windows computer for licens
 
 ## Concept
 
-Blade is the IDEAL Lab's shared Windows computer. You reach its graphical desktop through Remote Desktop Protocol (RDP) when you need licensed Windows engineering software such as Siemens NX or interactive pre/post-processing. Several people may be connected at once.
+Blade is the IDEAL Lab's shared Windows computer. You reach its graphical desktop through Remote Desktop Protocol (RDP) when you need licensed Windows engineering software such as Siemens NX or interactive pre/post-processing. ETH VPN, or Virtual Private Network, provides the official secure connection when the service is not reachable directly from your current network. Several people may be connected at once.
 
 Blade is not the lab's permanent storage or its heavy-compute cluster. `P:` maps to durable project data on the NAS, `D:` is temporary local working space, and `C:` plus Desktop, Documents, and Downloads are not project storage.
 
@@ -17,25 +17,33 @@ The durable copy remains on P:, D: is clean, C: was not used, and no heavy unatt
 Check these points:
 
 - **Where does durable Blade project work belong?** In the approved P: supervisor and username folder.
-- **What is Blade primarily for?** Interactive Windows GUI software and light prototyping.
+- **What is Blade primarily for?** Interactive graphical Windows software and light prototyping.
 
 ## Common Trap
 
-Keeping the only copy on C: or D:, treating Blade as a general ML server, or exposing the real mapped path in the public submission.
+Keeping the only copy on C: or D:, treating Blade as a general machine-learning server, or exposing the real mapped path in the public submission.
 
 ## Your Action
 
 Connect to Blade by RDP, verify the host, and complete a safe temporary-to-durable file round trip.
 
-**Follow these steps in order.** Blade is the lab's shared remote Windows computer for licensed graphical software. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.
+**Follow these steps in order.** Blade is the lab's shared remote Windows computer for licensed graphical software. RDP, or Remote Desktop Protocol, displays and controls its Windows desktop from your computer. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.
+
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
 ### 1. Confirm Blade is the right system
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP). Use it for interactive licensed Windows software, CAD, pre/post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.
+Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP). Use it for interactive licensed Windows software, computer-aided design (CAD), simulation pre-processing and post-processing, and light prototypes. Use Euler or another approved compute system for long or unattended heavy workloads.
 
-**Expected:** Your task requires the shared Windows GUI environment.
+**Expected:** Your task requires the shared graphical Windows environment.
 
 **Continue when:** Connect to the ETH network.
 
@@ -43,9 +51,9 @@ Blade is a shared Windows computer reached through Remote Desktop Protocol (RDP)
 
 ### 2. Connect to ETH network or VPN
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Use the campus network or connect ETH VPN before opening RDP.
+Use the campus network or connect ETH VPN before opening RDP. VPN means Virtual Private Network: the official secure connection used to reach ETH-only services from outside the campus network.
 
 - [Open the ETH VPN instructions](https://unlimited.ethz.ch/en/help/network/vpn)
 
@@ -57,7 +65,7 @@ Use the campus network or connect ETH VPN before opening RDP.
 
 ### 3. Connect from Windows
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Open Start, search for Remote Desktop Connection, and open it. Enter mavt-ide-s100w.d.ethz.ch as the computer. At the credential prompt choose More choices and Use a different account if needed, then sign in as d\<eth-username> with your own ETH password.
 
@@ -73,7 +81,7 @@ Open Start, search for Remote Desktop Connection, and open it. Enter mavt-ide-s1
 
 ### 4. Connect from macOS
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Install Microsoft Windows App from the Mac App Store if it is absent. Open Windows App, select Devices, select +, choose Add PC, enter mavt-ide-s100w.d.ethz.ch in PC Name, and select Add. Double-click the new PC. At the credential prompt sign in as d\<eth-username> with your own ETH password; do not reuse another person's saved account.
 
@@ -89,7 +97,7 @@ Install Microsoft Windows App from the Mac App Store if it is absent. Open Windo
 
 ### 5. Connect from Linux
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Search your applications for Remmina. If it is installed, open it, choose RDP, enter mavt-ide-s100w.d.ethz.ch as the server, and sign in as d\<eth-username> with your own ETH password. If Remmina is absent on a personal Linux computer, use your distribution's Software application or the official Remmina installation guide; install the RDP client and plugin only. On an ETH-managed computer, request software installation instead. Do not install a remote-desktop server, change a firewall, or alter Blade security settings.
 
@@ -101,15 +109,15 @@ Search your applications for Remmina. If it is installed, open it, choose RDP, e
 
 **Continue when:** Verify the remote hostname.
 
-**If not:** Check VPN, protocol RDP, the exact hostname, and d\username. If the client or RDP plugin cannot be installed through the approved software source, use the sanitized Passport help form; do not install remote services.
+**If not:** Check VPN, protocol RDP, the exact hostname, and d\username. If the client or RDP plugin cannot be installed through the approved software source, use the Passport help form without including private information; do not install remote services.
 
 ### 6. Verify the remote computer
 
-**Where:** Blade server
+**Where:** The remote Blade Windows desktop
 
 Open PowerShell inside the remote Blade desktop and run the block below. The hostname check is required. The GPU line is informational and may say that the query is unavailable.
 
-**Run on Blade - PowerShell:**
+**Open PowerShell inside the remote Blade Windows desktop, then run:**
 
 ```powershell
 & {
@@ -132,7 +140,7 @@ Open PowerShell inside the remote Blade desktop and run the block below. The hos
 
 ### 7. Confirm P: and D: paths
 
-**Where:** Blade server
+**Where:** The remote Blade Windows desktop
 
 Obtain the supervisor first name and approval to use that project folder. Open P:\SupervisorFirstName and create one folder named exactly with your short ETH username if it is absent. The temporary folder is D:\eth-username. Do not use C:, Desktop, Documents, Downloads, or other mapped drives.
 
@@ -144,11 +152,11 @@ Obtain the supervisor first name and approval to use that project folder. Open P
 
 ### 8. Copy, verify, and clean one test file
 
-**Where:** Blade server
+**Where:** The remote Blade Windows desktop
 
 Run this PowerShell block on Blade. It first refuses files, shortcuts, and junctions at either target. It then creates a random non-sensitive file on D:, copies it to the approved P: folder, verifies equal hashes, and removes both probe files.
 
-**Run on Blade - PowerShell:**
+**Open PowerShell inside the remote Blade Windows desktop, then run:**
 
 ```powershell
 & {
@@ -198,23 +206,23 @@ Run this PowerShell block on Blade. It first refuses files, shortcuts, and junct
 
 ### 9. Leave heavy work off Blade
 
-**Where:** Blade server
+**Where:** The remote Blade Windows desktop
 
-Do not start overnight training, broad sweeps, or unscheduled heavy computation. Do not install a WSL distribution or enable Windows features without approval.
+Do not start overnight training, broad sweeps, or unscheduled heavy computation. Do not install a Windows Subsystem for Linux (WSL) distribution or enable Windows features without approval.
 
-**Expected:** Only the interactive GUI or light prototype remains on Blade.
+**Expected:** Only the interactive graphical application or light prototype remains on Blade.
 
 **Continue when:** Return to the local Passport.
 
 **If not:** Stop the workload safely and move it to an approved scheduled compute system.
 
-### 10. Record the sanitized result
+### 10. Record the safe result
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Enter only the hostname and yes/no storage confirmations in the local Passport. Do not publish the supervisor name, mapped path, credentials, or screenshot.
 
-**Expected:** The receipt confirms correct host, durable copy, D: cleanup, and no C: usage.
+**Expected:** The result confirms the correct host, durable copy, D: cleanup, and no C: usage.
 
 **Continue when:** Run Check my work and submit once.
 
@@ -225,8 +233,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -250,6 +258,6 @@ shared-resource impact.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

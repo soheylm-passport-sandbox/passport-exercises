@@ -7,7 +7,12 @@ personal account or computer.
 
 ## Concept
 
-A project handover is the documented transfer of ownership, access, locations, and knowledge before a person leaves. It identifies the authoritative code and data, explains how to reproduce important results, confirms that successors can access them, and names what may be cleaned up.
+A project handover is the documented transfer of ownership, access, locations,
+and knowledge before a person leaves. It identifies the main approved code and
+data, explains how to reproduce important results, confirms that successors
+can access them, and names what may be cleaned up. A code revision is the exact
+recorded version used for a result; an environment definition records the
+software needed to run it.
 
 A directory full of unexplained files is not a handover, even if the files still exist.
 
@@ -26,17 +31,25 @@ Listing a folder without naming its owner, code revision, environment, access bo
 
 ## Your Action
 
-Complete the synthetic handover file so another authorized person can locate, verify, rerun, and retire the project.
+Complete the fictional handover practice file so another authorized person can locate, verify, rerun, and retire the project.
 
 **Follow these steps in order.** Use fictional values only. Never enter a real private path, person, credential, unpublished detail, or participant information.
 
-### 1. Prepare the handover fixture
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
-**Where:** Your computer
+### 1. Prepare the handover practice file
+
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder, enter it, and open workspace/handover/project-handover.md.
 
-**Expected:** The synthetic template is open in the practice repository.
+**Expected:** The fictional template is open in the practice repository.
 
 **Continue when:** Replace every placeholder with fictional information.
 
@@ -44,7 +57,7 @@ Press Prepare practice folder, enter it, and open workspace/handover/project-han
 
 ### 2. Record current and successor ownership
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Replace the two ownership placeholders with fictional role names. Use the example below so this public exercise contains no real person.
 
@@ -64,9 +77,9 @@ Authorized successor: Example Project Maintainer
 
 ### 3. Record reproducible code
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Replace the revision and environment placeholders with the fictional values below. A real handover would use the exact commit produced by git rev-parse HEAD and the committed environment file.
+A code revision is the exact recorded version used for a result; an environment definition records the required software. Replace both placeholders with the fictional values below. A real handover would use the exact commit produced by git rev-parse HEAD and the committed environment file.
 
 **Put this in the named Markdown file:**
 
@@ -78,20 +91,20 @@ Environment definition: environment.yml at the recorded revision
 
 **Expected:** The revision has exactly 40 hexadecimal characters and the environment field is complete.
 
-**Continue when:** Record authoritative and temporary data locations.
+**Continue when:** Record the main approved and temporary data locations.
 
 **If not:** Replace labels such as latest or current with an exact revision.
 
 ### 4. Record data locations and cleanup
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Replace both data placeholders with the fictional paths below. They demonstrate a durable project location and a temporary copy without exposing a real lab path.
 
 **Put this in the named Markdown file:**
 
 ```markdown
-Authoritative location: P:\ExampleSupervisor\example-user\synthetic-project
+Main approved data location: P:\ExampleSupervisor\example-user\synthetic-project
 
 Temporary locations to remove: D:\example-user\synthetic-project-cache
 ```
@@ -100,11 +113,11 @@ Temporary locations to remove: D:\example-user\synthetic-project-cache
 
 **Continue when:** Add a verification command and expected result.
 
-**If not:** Resolve which copy is authoritative before continuing.
+**If not:** Resolve which copy is the main approved copy before continuing.
 
 ### 5. Record how to verify the project
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Replace the verification placeholders with the harmless fictional command and exact expected result below.
 
@@ -124,7 +137,7 @@ Expected result: All 12 synthetic tests pass.
 
 ### 6. Record access and retention actions
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Use fictional role names for access and retention. Replace YYYY-MM-DD with a real future date for this exercise, such as a date 30 days from today. Then replace the Known Limitations placeholder with one fictional unresolved limitation.
 
@@ -148,23 +161,23 @@ Unresolved risk or limitation: Synthetic rerun has not been tested on a second o
 
 ### 7. Check scope and placeholders
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Confirm that only the synthetic handover file changed, every placeholder is gone, and no real information was inserted.
+Confirm that only the fictional handover practice file changed, every placeholder is gone, and no real information was inserted.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git diff -- workspace/handover/project-handover.md
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git diff -- workspace/handover/project-handover.md
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git diff -- workspace/handover/project-handover.md
@@ -181,8 +194,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -205,6 +218,6 @@ works, results reproduce, or disposal is approved. A person verifies each item.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

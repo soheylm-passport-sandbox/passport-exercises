@@ -2,7 +2,8 @@
 
 ## Outcome
 
-Review a Slurm script that reserves one GPU accelerator on Euler, then set an explicit model, CPU, memory, time, account, and log plan without submitting it.
+Review a practice request for one graphics processor (GPU) on Euler. Set
+reasonable limits without starting the job.
 
 ## Concept
 
@@ -10,9 +11,14 @@ A GPU is an accelerator used only by software written to perform GPU operations.
 
 Start with one supported GPU and measured CPU, memory, and time. Use more GPUs only after a representative test proves that the program scales.
 
+The Slurm account, also called a computing share, identifies which approved
+group allocation pays for the job; this guide uses `es_fuge`. A partition is
+a named group of compute nodes. The starter request lets Euler choose the
+partition instead of forcing one.
+
 ## Worked Example
 
-The verifier accepts one named GPU, no forced partition, at most 16 CPUs, at
+Check my work accepts one named GPU, no forced partition, at most 16 CPUs, at
 most 64 GiB total system memory, at most four hours, and distinct logs.
 
 Check these points:
@@ -22,17 +28,25 @@ Check these points:
 
 ## Common Trap
 
-Assuming GPUs are on the public share, requesting all node CPUs for one GPU, or submitting the review fixture accidentally.
+Assuming GPUs are on the public share, requesting all node CPUs for one GPU, or submitting the practice file accidentally.
 
 ## Your Action
 
-Repair the unsafe one-GPU Slurm fixture locally and apply the lab starter limits without submitting it.
+Repair the unsafe one-GPU Slurm practice file locally and apply the lab starter limits without submitting it.
 
-**Follow these steps in order.** This is a review exercise. Do not run sbatch. Use one explicit GPU model and the es_fuge account.
+**Follow these steps in order.** This is a review exercise. Do not run sbatch, the Slurm submission command. Use one explicit GPU model and the es_fuge lab computing share. A Slurm partition is a named group of compute nodes; this starter request lets Euler choose it instead of forcing one.
+
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
 ### 1. Understand what a GPU request reserves
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 A GPU accelerates only compatible code. A Slurm request such as rtx_4090:1 reserves one accelerator on a compute node; it does not prove that the program uses it efficiently and does not grant the whole node. CPU, memory, time, logs, and the project account are requested separately.
 
@@ -40,13 +54,13 @@ A GPU accelerates only compatible code. A Slurm request such as rtx_4090:1 reser
 
 **Expected:** You can explain why the starter plan requests one explicit GPU plus measured supporting resources.
 
-**Continue when:** Review the synthetic GPU fixture.
+**Continue when:** Review the fictional GPU practice file.
 
 **If not:** Do not request multiple GPUs from dataset size or assumption alone.
 
-### 2. Prepare the GPU fixture
+### 2. Prepare the GPU practice file
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder, enter it, and open workspace/slurm/gpu_job.slurm.txt.
 
@@ -54,11 +68,11 @@ Press Prepare practice folder, enter it, and open workspace/slurm/gpu_job.slurm.
 
 **Continue when:** Identify every unsafe directive.
 
-**If not:** Do not copy the unsafe fixture into a real project.
+**If not:** Do not copy the unsafe practice file into a real project.
 
 ### 3. Identify the unsafe request
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Find the public account, forced partition, four-GPU request, 64 CPUs, 500 GiB memory, 48-hour time, and missing log directives.
 
@@ -70,7 +84,7 @@ Find the public account, forced partition, four-GPU request, 64 CPUs, 500 GiB me
 
 ### 4. Choose one GPU model
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Use rtx_4090:1 by default. Use rtx_3090:1 when a 4090 is unavailable. Use pro_6000:1 only for a tested compatible workload that needs its capability.
 
@@ -82,7 +96,7 @@ Use rtx_4090:1 by default. Use rtx_3090:1 when a 4090 is unavailable. Use pro_60
 
 ### 5. Set the lab starter profile
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Remove the partition line and the old --mem line. Replace the account, GPU, CPU, memory-per-CPU, and time directives with the starter lines below. If you selected another supported GPU, replace only rtx_4090 with rtx_3090 or pro_6000.
 
@@ -105,9 +119,9 @@ Remove the partition line and the old --mem line. Replace the account, GPU, CPU,
 
 ### 6. Add output and error logs
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Add the time and log directives below. %x expands to the job name and %j to its job ID. Create the logs directory only when this script is later used in a real project; do not submit this exercise fixture.
+Add the time and log settings below. %x expands to the job name and %j to its job ID. Create the logs directory only when this script is later used in a real project; do not submit this exercise practice file.
 
 **Put this in the named Bash file:**
 
@@ -125,23 +139,23 @@ Add the time and log directives below. %x expands to the job name and %j to its 
 
 ### 7. Review without submitting
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Inspect only the synthetic GPU file. Confirm that no sbatch command was run.
+Inspect only the fictional GPU practice file. Confirm that no sbatch command was run.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git diff -- workspace/slurm/gpu_job.slurm.txt
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git diff -- workspace/slurm/gpu_job.slurm.txt
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git diff -- workspace/slurm/gpu_job.slurm.txt
@@ -151,15 +165,15 @@ git diff -- workspace/slurm/gpu_job.slurm.txt
 
 **Continue when:** Run Check my work.
 
-**If not:** Correct the fixture locally; live testing is a separate deliberate action.
+**If not:** Correct the practice file locally; live testing is a separate deliberate action.
 
 The Passport presents the questions and required confirmation in the
 browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -184,6 +198,6 @@ pipeline.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

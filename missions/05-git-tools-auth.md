@@ -6,7 +6,7 @@ Configure Git, the file-history program on your computer, and GitHub, the servic
 
 ## Concept
 
-Git is version-control software on your computer: it records file changes as commits. A repository is a project folder plus that history. GitHub stores a remote copy of a repository so people can share and review work. GitHub CLI is the `gh` terminal program used to sign in and perform GitHub actions.
+Git is version-control software on your computer: it records file changes as commits. A repository is a project folder plus that history. GitHub stores a remote copy of a repository so people can share and review work. GitHub CLI is the command-line program named `gh` that signs in and performs GitHub actions.
 
 Git author identity and GitHub login are separate. Check both before changing a project so commits have the correct author and go to the intended repository and branch.
 
@@ -29,11 +29,19 @@ Prepare the practice repository, verify Git and GitHub CLI, authenticate the int
 
 **Follow these steps in order.** Run one step at a time in the practice folder. Keep a working setup; repair only the check that fails.
 
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
+
 ### 1. Know what Git and GitHub do
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Git records versions of files on this computer. A repository is the project folder and its history; a branch keeps one line of work separate. GitHub stores the shared remote repository, and GitHub CLI is the gh terminal program used to sign in and perform GitHub actions.
+Git records versions of files on this computer. A repository is a project folder and its history. A branch keeps one line of work separate. GitHub stores a shared online copy of the repository. A clone is a separate working copy on your computer. Git saves the online address under a short name called a remote; origin is the usual name for the copy you cloned from. GitHub CLI is the program named gh that signs in and performs GitHub actions from a terminal.
 
 - [Open the Git workflow reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/onboarding_IT_guides/git_workflow.md)
 
@@ -45,7 +53,7 @@ Git records versions of files on this computer. A repository is the project fold
 
 ### 2. Prepare the Git practice folder
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder in this step. Wait for the Passport to show one folder path and one practice branch. Run the displayed enter-folder command and keep this terminal in that folder.
 
@@ -57,41 +65,41 @@ Press Prepare practice folder in this step. Wait for the Passport to show one fo
 
 ### 3. Check Git and GitHub CLI
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Open PowerShell on Windows, Terminal on macOS, or Bash on Linux. Run both checks after entering the practice folder.
+Open PowerShell on Windows or the Terminal application on macOS or Linux. On Linux, the terminal normally starts the Bash shell. Run both checks after entering the practice folder.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git --version
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git --version
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git --version
 ```
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 gh --version
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 gh --version
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 gh --version
@@ -109,23 +117,23 @@ gh --version
 
 ### 4. Check the GitHub account
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the status command before changing anything. Read the username shown under github.com.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 gh auth status --active --hostname github.com
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 gh auth status --active --hostname github.com
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 gh auth status --active --hostname github.com
@@ -139,11 +147,11 @@ gh auth status --active --hostname github.com
 
 ### 5. Sign in only when needed
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run this only when the previous check showed no account or the wrong account. Enter the intended GitHub username. The command first tries to select an account already stored on this computer; otherwise it opens a new browser login. It does not remove another account.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -155,7 +163,7 @@ Run this only when the previous check showed no account or the wrong account. En
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -166,7 +174,7 @@ gh auth status --active --hostname github.com
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -185,25 +193,25 @@ gh auth status --active --hostname github.com
 
 ### 6. Inspect your commit identity
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 From the practice repository, print the effective name and email Git will attach to its commits and the configuration file each value comes from. A GitHub no-reply address is acceptable if you use it consistently.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git config --show-origin --get user.name
 git config --show-origin --get user.email
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git config --show-origin --get user.name
 git config --show-origin --get user.email
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git config --show-origin --get user.name
@@ -218,11 +226,11 @@ git config --show-origin --get user.email
 
 ### 7. Set identity only if needed
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Use this step only if the previous check was empty or wrong. Enter the author name and a verified GitHub email or GitHub-provided no-reply email. This sets the identity only in the practice repository, so it cannot silently change your other projects. The email identifies commits; it is not an ETH password or login.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -236,7 +244,7 @@ Use this step only if the previous check was empty or wrong. Enter the author na
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -250,7 +258,7 @@ git config --show-origin --get user.email
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -270,11 +278,11 @@ git config --show-origin --get user.email
 
 **Continue when:** Continue to the optional student benefit.
 
-**If not:** Do not continue with an empty identity; correct the value or request sanitized help.
+**If not:** Do not continue with an empty identity; correct the value or request help without including private information.
 
 ### 8. Students: verify your ETH email for GitHub Education
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 Students: open GitHub email settings on the same account confirmed above. If a verified ETH email is already listed, keep it and continue. Otherwise add the ETH email, open GitHub's verification message in your ETH mailbox, and finish verification. Do not make the address public unless you choose to.
 
@@ -288,7 +296,7 @@ Students: open GitHub email settings on the same account confirmed above. If a v
 
 ### 9. Students: apply for GitHub Education
 
-**Where:** This browser
+**Where:** This web page in your browser
 
 GitHub Education is GitHub's student-verification program; approved accounts can see the current Student Developer Pack benefits. Students: open Education benefits on the same account. If GitHub already shows approved student benefits, keep them and skip the application. Otherwise select Start an application and submit only the proof requested through that GitHub page. Staff and learners who are not eligible skip this step. Approval may take time and does not block Git practice.
 
@@ -298,38 +306,38 @@ GitHub Education is GitHub's student-verification program; approved accounts can
 
 **Expected:** Eligible students see approved benefits or a pending application. Staff and other ineligible learners skip this student-only step.
 
-**Continue when:** Continue now; return to Copilot setup after approval.
+**Continue when:** Continue now. If your route later includes the AI tool mission, that mission will check whether Copilot is available.
 
 **If not:** Continue the manual Git route. Do not buy a product to pass this mission.
 
 ### 10. Inspect repository, branch, and remote
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Confirm that you are inside the Passport practice clone, on its practice branch, and that the remote URL contains no embedded password or token.
+Confirm that you are inside the Passport practice clone, meaning its separate working copy on this computer. Check its practice branch and the saved online address called the remote. The usual remote name is origin. Its URL must contain no password or token.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git status --short --branch
 git remote -v
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git status --short --branch
 git remote -v
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git status --short --branch
 git remote -v
 ```
 
-**Expected:** The branch starts with practice/, and origin points to the expected GitHub repository without credentials in the URL.
+**Expected:** The branch starts with practice/. The lines beginning with origin point to the expected GitHub repository and contain no password or token.
 
 **Continue when:** Run Check my work.
 
@@ -340,8 +348,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -350,9 +358,10 @@ feedback and can be retried without penalty.
 If the editor is missing, install only the editor; do not clone again. If the
 remote or branch is wrong, stop and run `gh passport doctor`. Do not delete the
 folder, reset Git, replace SSH keys, or paste a token into the remote URL.
-Use **Request help without posting secrets** on the passport dashboard if the
-doctor's named recovery command does not resolve the problem. Submit one
-sanitized issue and return later; the reviewer does not need to be online.
+Use **Request help without posting secrets** on the Passport progress page if the
+doctor's named recovery command does not resolve the problem. Submit one issue
+without private information and return later; the reviewer does not need to be
+online.
 
 Useful references:
 
@@ -367,6 +376,6 @@ identity, remote, and branch yourself before accepting its claim of success.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

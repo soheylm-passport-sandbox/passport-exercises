@@ -2,13 +2,16 @@
 
 ## Outcome
 
-Connect your computer to Euler, ETH Zurich's shared computing cluster, through SSH. Reuse or create one dedicated key and configure a safe `euler` shortcut without replacing existing SSH files.
+Connect from your computer to Euler, ETH Zurich's service made of many managed
+computers for research calculations. Use SSH, the protected text connection
+for remote computers, and set up one dedicated sign-in key without replacing
+existing keys or settings.
 
 ## Concept
 
-Euler is ETH Zurich's shared high-performance computing cluster: many managed computers used through a central login service and the Slurm job scheduler. SSH, or Secure Shell, opens a protected terminal connection from your computer to Euler.
+Euler is ETH Zurich's shared high-performance computing cluster: many managed computers reached through a central login service. SSH, or Secure Shell, opens a protected terminal connection from your computer to Euler. Later lessons explain how Euler schedules and runs programs; this lesson only sets up the connection.
 
-An SSH key pair has a private key that stays on your computer and a public `.pub` file that may be installed on Euler. The key passphrase unlocks the local private key; it is different from your ETH password. Test network, password login, key installation, and local configuration in that order, changing only the part that fails.
+An SSH key pair has a private key that stays on your computer and a public `.pub` file that may be installed on Euler. The key passphrase unlocks the local private key; it is different from your ETH password. A host fingerprint identifies the remote SSH service before you trust it. An SSH alias is a short local name for saved connection settings, and `IdentityFile` is the setting that names the private key. Test network, password login, key installation, and local configuration in that order, changing only the part that fails.
 
 ## Worked Example
 
@@ -27,13 +30,21 @@ Running PowerShell at an Euler Bash prompt, concatenating Host blocks, or pointi
 
 Test your direct Euler login, keep a working dedicated key or create one without overwriting anything, then configure and test the euler SSH alias.
 
-**Follow these steps in order.** Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.
+**Follow these steps in order.** Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. An SSH alias is a short local name for saved connection settings; IdentityFile is the setting that names the private key. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.
+
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
 ### 1. Check the network or VPN
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Confirm that this computer has working internet access. Euler SSH normally connects directly to euler.ethz.ch. If that address times out on a restricted network, try the campus network or ETH VPN before changing any SSH file.
+Confirm that this computer has working internet access. Euler SSH normally connects directly to euler.ethz.ch. ETH VPN, or Virtual Private Network, is the official secure connection for reaching ETH-only services from outside the campus network. If the address times out on a restricted network, try the campus network or ETH VPN before changing any SSH file.
 
 - [Open the ETH VPN instructions](https://unlimited.ethz.ch/en/help/network/vpn)
 
@@ -45,11 +56,11 @@ Confirm that this computer has working internet access. Euler SSH normally conne
 
 ### 2. Test password login
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Enter the short ETH username, not an email address. On a first connection, compare the host fingerprint with ETH's published host keys before accepting it. This test ignores your user SSH config and disables public-key authentication so it really tests the ETH password.
+Enter the short ETH username, not an email address. A host fingerprint is a short identifier for the remote computer's SSH key. On a first connection, compare the displayed fingerprint with ETH's published host keys before accepting it. This test ignores your user SSH config and disables public-key authentication so it really tests the ETH password.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -59,7 +70,7 @@ Enter the short ETH username, not an email address. On a first connection, compa
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -69,7 +80,7 @@ ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInter
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -89,11 +100,11 @@ ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInter
 
 ### 3. Inspect existing SSH files without changing them
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-List the local .ssh folder, print the numbered user config if it exists, and ask OpenSSH to parse the current euler alias. This step is read-only. Do not edit or delete anything.
+OpenSSH is the ssh command-line program on your computer. Its .ssh folder contains keys and an optional config file. List that folder, print the numbered config if it exists, and ask OpenSSH to parse the current euler alias. This step is read-only. Do not edit or delete anything.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -112,7 +123,7 @@ List the local .ssh folder, print the numbered user config if it exists, and ask
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -132,7 +143,7 @@ fi
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -160,11 +171,11 @@ fi
 
 ### 4. Keep working key-only access
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-First test an existing euler alias when it resolves to this Euler account. The command forces a direct connection to euler.ethz.ch on port 22 and ignores any ProxyCommand or ProxyJump. If that is not available, test the canonical id_ed25519_euler pair directly while ignoring user config. Every connection in this step disables ETH-password and keyboard-interactive fallback.
+First test an existing euler alias when it resolves to this Euler account. ProxyCommand and ProxyJump are settings that can reroute SSH through another connection; this test disables them and connects directly to euler.ethz.ch on the standard SSH port 22. If no suitable alias is available, test id_ed25519_euler, the standard key filename used by this guide, while ignoring user config. Keyboard-interactive login is another password-like login method. Every connection in this step disables both ETH-password and keyboard-interactive fallback, so success proves that a key worked.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -187,13 +198,13 @@ First test an existing euler alias when it resolves to this Euler account. The c
   $KeyPath = Join-Path $env:USERPROFILE ".ssh\id_ed25519_euler"
   $PrivateExists = Test-Path -LiteralPath $KeyPath
   $PublicExists = Test-Path -LiteralPath "$KeyPath.pub"
-  if ($PrivateExists -xor $PublicExists) { throw "STOP: the canonical key pair is incomplete; do not overwrite either file" }
-  if (-not $PrivateExists) { Write-Host "no-canonical-key"; return }
-  ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$EulerUser@euler.ethz.ch" "echo canonical-key-ok"
+  if ($PrivateExists -xor $PublicExists) { throw "STOP: the standard key pair is incomplete; do not overwrite either file" }
+  if (-not $PrivateExists) { Write-Host "no-standard-key"; return }
+  ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$EulerUser@euler.ethz.ch" "echo standard-key-ok"
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -221,18 +232,18 @@ private_exists=0; public_exists=0
 [ -f "$key" ] && private_exists=1
 [ -f "$key.pub" ] && public_exists=1
 if [ "$private_exists" -ne "$public_exists" ]; then
-  printf 'STOP: the canonical key pair is incomplete; do not overwrite either file\n' >&2
+  printf 'STOP: the standard key pair is incomplete; do not overwrite either file\n' >&2
   exit 1
 fi
 if [ "$private_exists" -eq 0 ]; then
-  printf 'no-canonical-key\n'
+  printf 'no-standard-key\n'
   exit 0
 fi
-ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'echo canonical-key-ok'
+ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'echo standard-key-ok'
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -260,30 +271,30 @@ private_exists=0; public_exists=0
 [ -f "$key" ] && private_exists=1
 [ -f "$key.pub" ] && public_exists=1
 if [ "$private_exists" -ne "$public_exists" ]; then
-  printf 'STOP: the canonical key pair is incomplete; do not overwrite either file\n' >&2
+  printf 'STOP: the standard key pair is incomplete; do not overwrite either file\n' >&2
   exit 1
 fi
 if [ "$private_exists" -eq 0 ]; then
-  printf 'no-canonical-key\n'
+  printf 'no-standard-key\n'
   exit 0
 fi
-ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'echo canonical-key-ok'
+ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'echo standard-key-ok'
 )
 ```
 
-**Expected:** The final marker is existing-alias-ok, canonical-key-ok, or no-canonical-key.
+**Expected:** The final marker is existing-alias-ok, standard-key-ok, or no-standard-key.
 
-**Continue when:** After existing-alias-ok, skip key generation and installation and continue at the alias step, which preserves the working identity. After canonical-key-ok, also skip to the alias step. After no-canonical-key, continue to key generation.
+**Continue when:** After existing-alias-ok, skip key generation and installation and continue at the alias step, which preserves the working identity. After standard-key-ok, also skip to the alias step. After no-standard-key, continue to key generation.
 
-**If not:** If the canonical pair exists but neither key-only test succeeds, use the next diagnostic step. If OpenSSH reports a .pub IdentityFile, correct that config line first.
+**If not:** If the standard id_ed25519_euler pair exists but neither key-only test succeeds, use the next diagnostic step. If OpenSSH reports a .pub IdentityFile, correct that config line first.
 
 ### 5. Diagnose an existing key pair without replacing it
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Run this only when id_ed25519_euler exists but the canonical key-only test did not print canonical-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it.
+Run this only when id_ed25519_euler exists but its key-only test did not print standard-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -299,7 +310,7 @@ Run this only when id_ed25519_euler exists but the canonical key-only test did n
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -312,7 +323,7 @@ printf 'key-pair-matches\n'
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -333,20 +344,20 @@ printf 'key-pair-matches\n'
 
 **If not:** Stop and use the SSH help path. Never overwrite either key file or point IdentityFile at a .pub file.
 
-### 6. Create the canonical key only when absent
+### 6. Create the standard dedicated key only when absent
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Run this only after no-canonical-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks.
+Run this only after no-standard-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
   $SshDir = Join-Path $env:USERPROFILE ".ssh"
   $KeyPath = Join-Path $SshDir "id_ed25519_euler"
   New-Item -ItemType Directory -Force $SshDir | Out-Null
-  if ((Test-Path -LiteralPath $KeyPath) -or (Test-Path -LiteralPath "$KeyPath.pub")) { throw "STOP: canonical key or public key already exists; nothing was overwritten" }
+  if ((Test-Path -LiteralPath $KeyPath) -or (Test-Path -LiteralPath "$KeyPath.pub")) { throw "STOP: standard key or public key already exists; nothing was overwritten" }
   ssh-keygen -t ed25519 -a 100 -f $KeyPath -C "$env:USERNAME@euler"
   if ($LASTEXITCODE -ne 0) { throw "STOP: ssh-keygen failed" }
   icacls $KeyPath /inheritance:r
@@ -354,24 +365,24 @@ Run this only after no-canonical-key. The guard stops if either half of the pair
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
 key="$HOME/.ssh/id_ed25519_euler"
 mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
-if [ -e "$key" ] || [ -e "$key.pub" ]; then printf 'STOP: canonical key or public key already exists; nothing was overwritten\n' >&2; exit 1; fi
+if [ -e "$key" ] || [ -e "$key.pub" ]; then printf 'STOP: standard key or public key already exists; nothing was overwritten\n' >&2; exit 1; fi
 ssh-keygen -t ed25519 -a 100 -f "$key" -C "$USER@euler"
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
 key="$HOME/.ssh/id_ed25519_euler"
 mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
-if [ -e "$key" ] || [ -e "$key.pub" ]; then printf 'STOP: canonical key or public key already exists; nothing was overwritten\n' >&2; exit 1; fi
+if [ -e "$key" ] || [ -e "$key.pub" ]; then printf 'STOP: standard key or public key already exists; nothing was overwritten\n' >&2; exit 1; fi
 ssh-keygen -t ed25519 -a 100 -f "$key" -C "$USER@euler"
 )
 ```
@@ -384,11 +395,11 @@ ssh-keygen -t ed25519 -a 100 -f "$key" -C "$USER@euler"
 
 ### 7. Install only the public key
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Send the contents of id_ed25519_euler.pub through the working password login. The remote command removes a possible Windows carriage return, preserves authorized_keys, and avoids adding a duplicate exact line.
+Send only the contents of id_ed25519_euler.pub through the working password login. Euler stores accepted public keys in a file named authorized_keys. The remote command removes a possible Windows carriage return, preserves all existing entries, and avoids adding a duplicate exact line.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -400,7 +411,7 @@ Send the contents of id_ed25519_euler.pub through the working password login. Th
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -412,7 +423,7 @@ cat "$public_key" | ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentica
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -432,11 +443,11 @@ cat "$public_key" | ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentica
 
 ### 8. Prove direct key-only access
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the direct test with password and keyboard-interactive authentication disabled. Enter only the local key passphrase if prompted.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -447,7 +458,7 @@ Run the direct test with password and keyboard-interactive authentication disabl
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -457,7 +468,7 @@ ssh -F none -i "$HOME/.ssh/id_ed25519_euler" -o IdentitiesOnly=yes -o PreferredA
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -475,11 +486,11 @@ ssh -F none -i "$HOME/.ssh/id_ed25519_euler" -o IdentitiesOnly=yes -o PreferredA
 
 ### 9. Create or update an isolated euler alias
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Back up the existing config and validate it without connecting. If the current euler alias already passed the key-only test, preserve its resolved private-key selection; otherwise use the tested canonical key. Write the policy to passport.d/euler.conf and add one Include line. Backups go in passport-backups, which OpenSSH does not load.
+The SSH config file stores named connection settings. This guarded command backs it up and validates the result before any connection. If the current euler alias already passed the key-only test, it preserves that private-key selection; otherwise it uses the tested id_ed25519_euler key. It writes the euler settings to passport.d/euler.conf and adds one Include line telling OpenSSH to read that separate file. Backups go in passport-backups, which OpenSSH does not load.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 & {
@@ -509,15 +520,15 @@ Back up the existing config and validate it without connecting. If the current e
     $UseExisting = $LASTEXITCODE -eq 0
   }
 
-  $CanonicalWorks = $false
+  $StandardKeyWorks = $false
   $PrivateExists = Test-Path -LiteralPath $KeyPath
   $PublicExists = Test-Path -LiteralPath "$KeyPath.pub"
-  if (-not $UseExisting -and ($PrivateExists -xor $PublicExists)) { throw "STOP: canonical key pair is incomplete" }
+  if (-not $UseExisting -and ($PrivateExists -xor $PublicExists)) { throw "STOP: standard key pair is incomplete" }
   if (-not $UseExisting -and $PrivateExists) {
     ssh -F none -i $KeyPath -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$EulerUser@euler.ethz.ch" "exit 0"
-    $CanonicalWorks = $LASTEXITCODE -eq 0
+    $StandardKeyWorks = $LASTEXITCODE -eq 0
   }
-  if (-not $UseExisting -and -not $CanonicalWorks) { throw "STOP: no tested key-only identity is available" }
+  if (-not $UseExisting -and -not $StandardKeyWorks) { throw "STOP: no tested key-only identity is available" }
 
   New-Item -ItemType Directory -Force $IncludeDir, $BackupDir -ErrorAction Stop | Out-Null
   $Stamp = "$(Get-Date -Format yyyyMMdd-HHmmss-fffffff)-$PID"
@@ -584,7 +595,7 @@ Back up the existing config and validate it without connecting. If the current e
 }
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 (
@@ -619,14 +630,14 @@ Back up the existing config and validate it without connecting. If the current e
   private_exists=0; public_exists=0
   [ -f "$key" ] && private_exists=1
   [ -f "$key.pub" ] && public_exists=1
-  if [ "$use_existing" -eq 0 ] && [ "$private_exists" -ne "$public_exists" ]; then printf 'STOP: canonical key pair is incomplete\n' >&2; exit 1; fi
-  canonical_works=0
+  if [ "$use_existing" -eq 0 ] && [ "$private_exists" -ne "$public_exists" ]; then printf 'STOP: standard key pair is incomplete\n' >&2; exit 1; fi
+  standard_key_works=0
   if [ "$use_existing" -eq 0 ] && [ "$private_exists" -eq 1 ]; then
     if ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'exit 0'; then
-      canonical_works=1
+      standard_key_works=1
     fi
   fi
-  if [ "$use_existing" -eq 0 ] && [ "$canonical_works" -eq 0 ]; then
+  if [ "$use_existing" -eq 0 ] && [ "$standard_key_works" -eq 0 ]; then
     printf 'STOP: no tested key-only identity is available\n' >&2
     exit 1
   fi
@@ -699,7 +710,7 @@ EOF
 )
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 (
@@ -734,14 +745,14 @@ EOF
   private_exists=0; public_exists=0
   [ -f "$key" ] && private_exists=1
   [ -f "$key.pub" ] && public_exists=1
-  if [ "$use_existing" -eq 0 ] && [ "$private_exists" -ne "$public_exists" ]; then printf 'STOP: canonical key pair is incomplete\n' >&2; exit 1; fi
-  canonical_works=0
+  if [ "$use_existing" -eq 0 ] && [ "$private_exists" -ne "$public_exists" ]; then printf 'STOP: standard key pair is incomplete\n' >&2; exit 1; fi
+  standard_key_works=0
   if [ "$use_existing" -eq 0 ] && [ "$private_exists" -eq 1 ]; then
     if ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'exit 0'; then
-      canonical_works=1
+      standard_key_works=1
     fi
   fi
-  if [ "$use_existing" -eq 0 ] && [ "$canonical_works" -eq 0 ]; then
+  if [ "$use_existing" -eq 0 ] && [ "$standard_key_works" -eq 0 ]; then
     printf 'STOP: no tested key-only identity is available\n' >&2
     exit 1
   fi
@@ -814,37 +825,37 @@ EOF
 )
 ```
 
-**Expected:** The command finishes without a config error. A working existing identity is retained, or the tested canonical private key is selected. Prior files have timestamped backups, and a failed final install restores them automatically.
+**Expected:** The command finishes without a config error. A working existing identity is retained, or the tested id_ed25519_euler private key is selected. Prior files have timestamped backups, and a failed final install restores them automatically.
 
 **Continue when:** Display the resolved settings.
 
-**If not:** Do not append another host block. The command restores the original files after an install failure. If it reports an incomplete restore, use only the two timestamped files it names; otherwise open the sanitized error through the Passport help link.
+**If not:** Do not append another host block. The command restores the original files after an install failure. If it reports an incomplete restore, use only the two timestamped files it names; otherwise open the Passport help link and include the error with private information removed.
 
 ### 10. Verify the resolved SSH fields
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Display the target, port, username, identity files, authentication methods, proxy state, and agent-forwarding setting that OpenSSH will actually use.
+Run ssh -G, which displays resolved settings without connecting. Verify the target computer, port, short ETH username, private-key path, allowed login methods, proxy state, and agent-forwarding setting that OpenSSH will actually use.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 ssh -G euler | Select-String '^(hostname|port|user|identityfile|identitiesonly|preferredauthentications|passwordauthentication|kbdinteractiveauthentication|proxycommand|proxyjump|forwardagent) '
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 ssh -G euler | grep -E '^(hostname|port|user|identityfile|identitiesonly|preferredauthentications|passwordauthentication|kbdinteractiveauthentication|proxycommand|proxyjump|forwardagent) '
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 ssh -G euler | grep -E '^(hostname|port|user|identityfile|identitiesonly|preferredauthentications|passwordauthentication|kbdinteractiveauthentication|proxycommand|proxyjump|forwardagent) '
 ```
 
-**Expected:** hostname is euler.ethz.ch; port is 22; user is the short ETH username; no identityfile ends in .pub; preferredauthentications is publickey; passwordauthentication and kbdinteractiveauthentication are no; forwardagent is no; no proxycommand or proxyjump line is present. A generated canonical setup also shows id_ed25519_euler and identitiesonly yes.
+**Expected:** hostname is euler.ethz.ch; port is 22; user is the short ETH username; no identityfile ends in .pub; preferredauthentications is publickey; passwordauthentication and kbdinteractiveauthentication are no; forwardagent is no; no proxycommand or proxyjump line is present. A newly generated setup also shows id_ed25519_euler and identitiesonly yes.
 
 **Continue when:** Run the final alias test.
 
@@ -852,23 +863,23 @@ ssh -G euler | grep -E '^(hostname|port|user|identityfile|identitiesonly|preferr
 
 ### 11. Prove the alias is key-only
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the alias with ETH-password and keyboard-interactive fallback disabled. A prompt for the local key passphrase is allowed.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 ssh -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler "echo config-ok"
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 ssh -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler "echo config-ok"
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 ssh -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no euler "echo config-ok"
@@ -882,7 +893,7 @@ ssh -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInt
 
 ### 12. Configure euler-tunnel only after config-ok
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 If you need VS Code on an allocated compute node, follow the separate euler-tunnel procedure now. It depends on the working euler alias.
 
@@ -899,8 +910,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -909,7 +920,8 @@ feedback and can be retried without penalty.
 Stop at the first failed gate. Do not regenerate repeatedly, overwrite keys,
 replace the whole SSH config, or loosen permissions broadly. Use
 [Euler SSH troubleshooting](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/troubleshooting.md)
-and share only the exact error plus sanitized `ssh -G` fields.
+and share only the exact error plus the requested `ssh -G` fields, which exclude
+credentials and private-key contents.
 
 Useful references:
 
@@ -924,6 +936,6 @@ are configuration errors, not reasons to delete all SSH state.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

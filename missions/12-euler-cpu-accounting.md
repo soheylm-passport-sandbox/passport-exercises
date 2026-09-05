@@ -2,13 +2,22 @@
 
 ## Outcome
 
-Use Slurm accounting commands to compare the CPU and memory reserved for one completed Euler job with what it actually used, then choose the next request from evidence.
+Inspect how much CPU, memory, and time the completed practice job reserved and
+used. Use those measurements to choose the next resource request.
 
 ## Concept
 
 A Slurm request reserves CPU, memory, and time for an Euler job. Requested resources and resources actually used are different. `sacct` reports exact accounting fields for a recorded job, while `seff` summarizes CPU and memory efficiency.
 
-Large “just in case” requests can wait longer and reduce capacity for others without making a serial or I/O-bound program faster. Measure a representative run before changing the next request.
+`AllocCPUS` is the number of CPUs reserved. `ReqMem` is the requested memory.
+`MaxRSS` is the largest recorded memory use. `Elapsed` is the run time,
+`State` is the final condition, and `ExitCode` reports whether the program
+finished successfully.
+
+Large “just in case” requests can wait longer and reduce capacity for others
+without making a program faster when it uses one CPU or spends most of its
+time waiting for files. Measure a representative run before changing the next
+request.
 
 ## Worked Example
 
@@ -30,11 +39,19 @@ Connect to Euler, read sacct and seff for the completed training job, then choos
 
 **Follow these steps in order.** Connect to Euler and reuse the job ID from the first-job mission. This mission does not submit another job.
 
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
+
 ### 1. Distinguish requested and used resources
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-A Slurm request reserves CPUs, memory, and time before a job runs. sacct provides exact recorded fields; seff summarizes CPU and memory efficiency. Read both for the existing job before deciding what a future run should request.
+A Slurm request reserves CPUs, memory, and time before a job runs. sacct provides exact recorded fields; seff summarizes CPU and memory efficiency. AllocCPUS is the allocated CPU count, ReqMem is requested memory, MaxRSS is the largest recorded memory use, Elapsed is run time, State is the final condition, and ExitCode reports program success or failure. Read both commands for the existing job before deciding what a future run should request.
 
 - [Open the Slurm accounting reference](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/euler/slurm.md)
 
@@ -46,23 +63,23 @@ A Slurm request reserves CPUs, memory, and time before a job runs. sacct provide
 
 ### 2. Connect to Euler
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 From the local terminal, connect with the tested euler alias. Run every later command in the Euler shell that opens.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 ssh euler
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 ssh euler
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 ssh euler
@@ -76,11 +93,11 @@ ssh euler
 
 ### 3. Use the existing job ID
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Read the job ID saved by the previous mission. If the file is missing, list recent accounting records and identify the single passport-cpu job instead of submitting another job.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 id_file="$HOME/passport-euler/first-job.id"
@@ -95,11 +112,11 @@ if [ -s "$id_file" ]; then printf 'Stored job ID: '; cat "$id_file"; else sacct 
 
 ### 4. Read the accounting fields
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Load the stored ID. If it was missing, enter the passport-cpu ID you identified and save it. Then query state, exit code, elapsed time, allocated CPUs, requested memory, and maximum resident memory. Continue only after the main job is COMPLETED with exit code 0:0.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -125,11 +142,11 @@ printf 'accounting-ready\n'
 
 ### 5. Read seff
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Use seff for a concise CPU and memory efficiency summary, while keeping sacct as the source for exact fields.
 
-**Run on Euler - Bash:**
+**After SSH connects to Euler, run this in the same text window:**
 
 ```bash
 (
@@ -147,7 +164,7 @@ seff "$job_id"
 
 ### 6. Interpret before changing resources
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Separate requested resources from actual use. A very short smoke test proves the workflow but may be too short to size a production run.
 
@@ -159,7 +176,7 @@ Separate requested resources from actual use. A very short smoke test proves the
 
 ### 7. Choose the next measured request
 
-**Where:** Euler login node
+**Where:** The remote Euler computer after you connect from your computer
 
 Keep or reduce unused resources, leave sensible headroom for representative variation, and increase a resource only after identifying that bottleneck.
 
@@ -171,11 +188,11 @@ Keep or reduce unused resources, leave sensible headroom for representative vari
 
 ### 8. Submit accounting evidence
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Enter the existing job ID and confirm that you personally inspected sacct and seff. Do not paste logs into the public record.
 
-**Expected:** The local receipt records only the sanitized inspection facts.
+**Expected:** The result contains only the requested inspection facts and no username, path, log, or other private value.
 
 **Continue when:** Run Check my work and submit once.
 
@@ -186,8 +203,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -210,6 +227,6 @@ parallelism claim. An agent cannot infer scaling merely from CPU availability.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

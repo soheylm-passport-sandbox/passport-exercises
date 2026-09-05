@@ -2,7 +2,8 @@
 
 ## Outcome
 
-Use a Python test to reproduce a small bug, add a regression check, make the smallest fix, rerun all declared tests, and inspect the Git diff.
+Reproduce a small Python bug with a test, fix it, rerun all tests, and inspect
+exactly which lines changed.
 
 ## Concept
 
@@ -29,27 +30,35 @@ Reproduce a Python bug, add a regression test, make the smallest fix, and rerun 
 
 **Follow these steps in order.** A test must fail for the missing behavior before the implementation is changed, then pass after the correction.
 
-### 1. Open the Python fixture
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
-**Where:** Your computer
+### 1. Open the Python practice project
+
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder in this step and run the displayed enter-folder command. Then activate ./.venv and move to workspace/python_project with the command below.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 conda activate ./.venv
 cd workspace/python_project
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 conda activate ./.venv
 cd workspace/python_project
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 conda activate ./.venv
@@ -64,23 +73,23 @@ cd workspace/python_project
 
 ### 2. Run the baseline test
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the complete declared test command before editing.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 python -m unittest discover -s tests -v
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 python -m unittest discover -s tests -v
@@ -94,7 +103,7 @@ python -m unittest discover -s tests -v
 
 ### 3. Explain the missing behavior
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Read passport_example.py and tests/test_passport_example.py. Work out the expected total for four CPUs at 3 GiB per CPU.
 
@@ -106,7 +115,7 @@ Read passport_example.py and tests/test_passport_example.py. Work out the expect
 
 ### 4. Add and run the regression test
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Open tests/test_passport_example.py. Add the shown method inside the TotalMemoryTests class, save the file, then run the suite before fixing the function.
 
@@ -117,19 +126,19 @@ def test_multiple_cpus(self) -> None:
     self.assertEqual(total_memory_gib(4, 3), 12)
 ```
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 python -m unittest discover -s tests -v
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 python -m unittest discover -s tests -v
@@ -143,7 +152,7 @@ python -m unittest discover -s tests -v
 
 ### 5. Correct the implementation
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Open passport_example.py. Keep the existing input validation and replace only the current return line with the line shown below.
 
@@ -161,23 +170,23 @@ return cpus * memory_per_cpu_gib
 
 ### 6. Run the complete tests
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Run the same declared command in the same activated environment.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 python -m unittest discover -s tests -v
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 python -m unittest discover -s tests -v
@@ -191,11 +200,11 @@ python -m unittest discover -s tests -v
 
 ### 7. Review the reproducible change
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Confirm that only source and tests changed, no environment or cache is tracked, and the diff has no whitespace errors.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git status --short
@@ -203,7 +212,7 @@ git diff --check
 git diff -- workspace/python_project
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git status --short
@@ -211,7 +220,7 @@ git diff --check
 git diff -- workspace/python_project
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git status --short
@@ -230,8 +239,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 80% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -254,6 +263,6 @@ was not personally run.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.

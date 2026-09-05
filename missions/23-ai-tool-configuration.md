@@ -1,14 +1,17 @@
-# Mission: Choose And Configure An AI Access Route
+# Mission: Set Up One AI Coding Tool Safely
 
 ## Outcome
 
-Choose and configure one AI coding route by identifying its model, access provider, agent, and editor. Keep credentials private and do not assume that the lab pays for the service.
+An AI coding tool can inspect project files and propose edits or commands.
+Set up one such tool for the fictional practice project. Learn which account
+provides access, what may cost money, where any secret access key is stored,
+and how to confirm that setup changed no project file.
 
 ## Concept
 
-An AI setup contains several parts. A model generates text. A provider or gateway supplies API access and billing. An agent uses the model while reading files or requesting tools. The editor or terminal is the interface where you control it; MCP or ACP may connect additional tools.
+An artificial-intelligence (AI) setup contains several parts. A model generates text. A provider or gateway supplies access and billing. A coding agent uses the model while reading files or requesting tools. An editor is the application where you view, control, and review that work. An application programming interface (API) key is a secret that authorizes programmatic service use and may spend money.
 
-Choose the complete access route, not only a model name. Account ownership, cost limits, permissions, and data rules still apply independently.
+Choose one complete setup option, not only a model name. Account ownership, cost limits, permissions, and data rules still apply independently.
 
 ## Worked Example
 
@@ -21,47 +24,55 @@ Check these points:
 
 ## Common Trap
 
-Calling OpenRouter an agent, confusing a model with an IDE, or pasting an API key into settings tracked by Git.
+Calling OpenRouter an agent, confusing a model with an editor, or pasting an API key into settings tracked by Git.
 
 ## Your Action
 
-Configure one AI route, open only the synthetic practice repository, and prove that a read-only request changes no file.
+Configure one AI coding tool, open only the fictional practice repository, and prove that a read-only request changes no file.
 
-**Follow these steps in order.** An AI model, access provider, coding agent, and editor are separate parts. Identify them first. Use the no-cost Copilot Student route if eligible; any personal paid service remains your financial responsibility.
+**Follow these steps in order.** An artificial-intelligence (AI) model generates a response. A provider supplies access and billing. A coding agent may read files and request tools. An editor is the application where you see and control it. An application programming interface (API) key is a secret that authorizes programmatic service use and may spend money. Identify these parts first. Use the no-cost Copilot Student option if eligible; any personal paid service remains your financial responsibility.
+
+**New to text commands?** A command is a line of text that tells a
+computer to do one task. A terminal is the text application in which a
+shell reads that command. Open PowerShell on Windows or the application
+named Terminal on macOS or Linux. The application starts the correct
+shell automatically; do not install a separate Bash or zsh application. Read
+[Terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/core/command-line-basics.md)
+before continuing if these words are new.
 
 ### 1. Identify the components
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the agent can read files or request tools; the editor or terminal is the interface; MCP or ACP may connect extra tools. For example, OpenRouter is a gateway, not the coding agent.
+Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the coding agent can read files or request tools; the editor is the application where you control it. For example, OpenRouter is a gateway, not a coding agent. You do not need to configure a tool protocol for this lesson.
 
 - [Read agents and interfaces](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/agents-and-interfaces.md)
 
 **Expected:** You can name the role of every component in the chosen setup.
 
-**Continue when:** Choose one access route.
+**Continue when:** Choose one setup option.
 
 **If not:** Do not configure credentials until the billing path and agent are clear.
 
-### 2. Choose the access route
+### 2. Choose one setup option
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Use exactly one route. Eligible students use VS Code with GitHub Copilot Student. If you deliberately choose Zed with a personal OpenRouter account, skip the two Copilot-only steps and follow the linked Zed procedure. Use another route only when its owner has supplied written setup, data, cost, and permission rules. If no route is available, leave this mission pending and continue the non-AI missions.
+Use exactly one option. Eligible students use VS Code with GitHub Copilot Student. If you deliberately choose Zed with a personal OpenRouter account, skip the two Copilot-only steps and follow the linked Zed procedure. Use another option only when its owner has supplied written setup, data, cost, and permission rules. If no option is available, leave this lesson pending and continue the non-AI lessons.
 
-- [Compare supported AI routes](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/README.md)
+- [Compare supported AI setup options](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/README.md)
 
-**Expected:** You have selected one route and can name its account owner, payer, editor, and agent interface.
+**Expected:** You have selected one option and can name its account owner, payer, editor, and agent interface.
 
-**Continue when:** Follow only the selected route below.
+**Continue when:** Follow only the selected option below.
 
-**If not:** Leave this mission pending and continue manually. Do not create a paid account merely to pass.
+**If not:** Leave this lesson pending and continue manually. Do not create a paid account merely to pass.
 
-### 3. Copilot route: activate the Student benefit
+### 3. Copilot option: activate the Student benefit
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Do this step only for the Copilot route. After GitHub Education approval, open Education benefits. If Copilot Student is already active, keep it. Otherwise select the Copilot Student activation offered by GitHub. If GitHub asks for payment or a payment method, stop; payment is not required for this route.
+Do this step only for the Copilot option. After GitHub Education approval, open Education benefits. If Copilot Student is already active, keep it. Otherwise select the Copilot Student activation offered by GitHub. If GitHub asks for payment or a payment method, stop; payment is not required for this option.
 
 - [Open Education benefits](https://github.com/settings/education/benefits)
 
@@ -73,11 +84,11 @@ Do this step only for the Copilot route. After GitHub Education approval, open E
 
 **If not:** Continue manual onboarding while verification is pending; do not purchase access to pass.
 
-### 4. Copilot route: connect VS Code
+### 4. Copilot option: connect VS Code
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Do this step only for the Copilot route. Install or open VS Code. Open Extensions, install GitHub Copilot from publisher GitHub if it is absent, then select the Copilot icon, choose Use AI Features, and sign in with the same GitHub account used for the Passport. If more than one GitHub account is present, use the Accounts menu to select the intended account for Copilot.
+Do this step only for the Copilot option. VS Code is the editor used here. An extension is an add-on installed inside the editor; GitHub Copilot is the coding-agent extension. Install or open VS Code. Open Extensions, install GitHub Copilot from publisher GitHub if it is absent, then select the Copilot icon, choose Use AI Features, and sign in with the same GitHub account used for the Passport. If more than one GitHub account is present, use the Accounts menu to select the intended account for Copilot.
 
 - [Download VS Code](https://code.visualstudio.com/)
 
@@ -85,27 +96,27 @@ Do this step only for the Copilot route. Install or open VS Code. Open Extension
 
 **Expected:** VS Code shows the intended GitHub account and opens its Chat or Agent interface.
 
-**Continue when:** Continue to Prepare the synthetic practice repository.
+**Continue when:** Continue to Prepare the fictional practice repository.
 
 **If not:** Use the Accounts menu to select the intended account. Do not purchase a plan or grant unexplained access to pass this mission.
 
-### 5. Zed route: follow the personal OpenRouter procedure
+### 5. Zed option: follow the personal OpenRouter procedure
 
-**Where:** This browser
+**Where:** This web page in your browser
 
-Do this step only for the Zed route; Copilot users skip it. Follow the linked procedure from start to finish: create a separate personal key, set a low key limit before use, and enter it only through Zed's provider UI so the operating-system keychain stores it. The lab does not provide credits, reimburse charges, or accept liability for personal usage or loss.
+Do this step only for the Zed option; Copilot users skip it. Follow the linked procedure from start to finish: create a separate personal key, set a low key limit before use, and enter it only through Zed's provider UI so the operating-system keychain stores it. The lab does not provide credits, reimburse charges, or accept liability for personal usage or loss.
 
 - [Read the optional Zed and OpenRouter procedure](https://github.com/IDEALLab/onboarding-IT/blob/docs/llm-agent-overhaul/docs/reference/ai/zed-openrouter.md)
 
-**Expected:** For the Zed route, a dedicated limited key is stored outside files and Git. For the Copilot route, this step is skipped.
+**Expected:** For the Zed option, a dedicated limited key is stored outside files and Git. For the Copilot option, this step is skipped.
 
-**Continue when:** Continue to Prepare the synthetic practice repository.
+**Continue when:** Continue to Prepare the fictional practice repository.
 
 **If not:** Revoke an exposed key and stop requests until account activity is understood.
 
-### 6. Open the synthetic practice repository
+### 6. Open the fictional practice repository
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Press Prepare practice folder, run the displayed enter-folder command, and open that exact folder in the editor configured above. Check the editor title or file tree before opening the agent. Do not use a research repository for this test.
 
@@ -117,7 +128,7 @@ Press Prepare practice folder, run the displayed enter-folder command, and open 
 
 ### 7. Run a read-only agent check
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
 Start a new agent chat for the open practice repository and paste the prompt below. Do not approve an edit or terminal command.
 
@@ -135,29 +146,29 @@ Read the repository instructions and list the top-level files and folders you ca
 
 ### 8. Verify that configuration changed no project file
 
-**Where:** Your computer
+**Where:** The laptop or desktop in front of you
 
-Run the scoped Git status command at the practice-repository root. It checks the AI fixture and common editor or credential-file locations without confusing this mission with unfinished files from another exercise.
+Run the limited Git status command at the practice repository's root, meaning its top-level folder. It checks the AI practice files and common editor or credential-file locations without confusing this lesson with unfinished files from another exercise.
 
-**Run on Windows - PowerShell:**
+**Open PowerShell on your Windows computer, then run:**
 
 ```powershell
 git status --short -- workspace/agent_task .vscode .zed .env .env.local
 ```
 
-**Run on macOS - zsh:**
+**Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
 git status --short -- workspace/agent_task .vscode .zed .env .env.local
 ```
 
-**Run on Linux - Bash:**
+**Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
 git status --short -- workspace/agent_task .vscode .zed .env .env.local
 ```
 
-**Expected:** The command prints nothing: no AI fixture, editor setting, transcript, or credential file changed.
+**Expected:** The command prints nothing: no AI practice file, editor setting, transcript, or credential file changed.
 
 **Continue when:** Complete the questions and run Check my work.
 
@@ -168,8 +179,8 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Use **Check my work** before submitting. The local verifier checks only the
-mission activity above. A score of 100% is required, and every
+Use **Check my work** before submitting. This check runs on your computer and
+checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
 
@@ -193,6 +204,6 @@ personal account and for every accepted command and diff.
 
 ## Finish And Continue
 
-When **Check my work** passes, use **Submit mission** once. The launcher
-publishes only this mission's generated, sanitized submission. Continue when the
-dashboard shows the trusted result; a local check alone is not a pass.
+When **Check my work** passes, use **Submit lesson** once. The launcher
+publishes only this lesson's generated submission after private information is excluded. Continue when the
+progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.
