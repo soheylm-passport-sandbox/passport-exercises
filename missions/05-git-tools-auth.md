@@ -2,32 +2,52 @@
 
 ## Outcome
 
-Configure Git, the file-history program on your computer, and GitHub, the service that stores shared repositories and reviews. Verify the account and commit identity used by the practice repository.
+Inspect Git, the file-history program on your computer, the prepared practice
+clone, GitHub login and commit author. Repair only
+what is missing or wrong; keep working accounts and other repositories intact.
 
 ## Concept
 
-Git is version-control software on your computer: it records file changes as commits. A repository is a project folder plus that history. GitHub stores a remote copy of a repository so people can share and review work. GitHub CLI is the command-line program named `gh` that signs in and performs GitHub actions.
+Git is version-control software: it records file versions. A repository is a
+project folder with history; a clone is its separate local working copy.
+GitHub stores the shared online copy; GitHub CLI (gh) acts through your login.
 
-Git author identity and GitHub login are separate. Check both before changing a project so commits have the correct author and go to the intended repository and branch.
+| Setting | Purpose | Inspection |
+| --- | --- | --- |
+| GitHub login | Authorizes GitHub actions | Which account gh uses |
+| Git author identity | Labels commits with name/email | Effective values and their configuration source |
+| Branch and origin remote | Select work and its online repository | Prepared practice branch and credential-free URL |
+
+A correct login does not set the commit author. A remote address must not contain
+a password or token. The repair below changes author identity only in this clone.
+GitHub Education is an optional student benefit application; waiting for approval
+does not block this Git practice.
+
+## Learning Challenge
+
+Inspect all three settings before changing one. If the login is right but the
+author is wrong, which repair would address the actual problem?
 
 ## Worked Example
 
-Git and GitHub CLI are available, GitHub CLI names the intended account, and Git identity is explicit.
+<details>
+<summary>Separate login from commit authorship</summary>
 
-Check these points:
+Keep the intended GitHub account. Confirm the effective name/email from the
+practice clone, then use its local identity repair only if needed. Inspect the
+branch and origin independently. Do not reset another project to match this one.
 
-- **What must gh auth status confirm?** The intended GitHub account is authenticated.
-- **What should you do before repairing a failed tool check?** Read the named check and follow its specific recovery step.
+</details>
 
 ## Common Trap
 
-Changing SSH keys, deleting configuration, or reinstalling everything before reading the exact failed check.
+Repair the specific setting that failed, inside the practice repository.
 
 ## Your Action
 
 Prepare the practice repository, verify Git and GitHub CLI, authenticate the intended account, and set a valid commit identity.
 
-**Follow these steps in order.** Run one step at a time in the practice folder. Keep a working setup; repair only the check that fails.
+**Follow these steps in order.** Stay in the displayed practice folder. Inspect the login, author identity and branch before using a conditional repair.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -41,7 +61,7 @@ before continuing if these words are new.
 
 **Where:** This web page in your browser
 
-Git records versions of files on this computer. A repository is a project folder and its history. A branch keeps one line of work separate. GitHub stores a shared online copy of the repository. A clone is a separate working copy on your computer. Git saves the online address under a short name called a remote; origin is the usual name for the copy you cloned from. GitHub CLI is the program named gh that signs in and performs GitHub actions from a terminal.
+Git is version-control software: it records file versions on this computer. A repository is a project folder and its history; a branch separates work. A clone is a separate working copy. Git saves the online address under a short name called a remote; origin is the usual name. GitHub stores the shared online copy. GitHub CLI (gh) performs authenticated GitHub actions. Use the identity/login/remote table above before changing any settings.
 
 - [Open the Git workflow reference](https://github.com/IDEALLab/onboarding-IT/blob/main/onboarding_IT_guides/git_workflow.md)
 
@@ -151,6 +171,9 @@ gh auth status --active --hostname github.com
 
 Run this only when the previous check showed no account or the wrong account. Enter the intended GitHub username. The command first tries to select an account already stored on this computer; otherwise it opens a new browser login. It does not remove another account.
 
+<details>
+<summary>Show sign-in repair only if the account check failed</summary>
+
 **Open PowerShell on your Windows computer, then run:**
 
 ```powershell
@@ -163,6 +186,11 @@ Run this only when the previous check showed no account or the wrong account. En
 }
 ```
 
+</details>
+
+<details>
+<summary>Show sign-in repair only if the account check failed</summary>
+
 **Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
@@ -174,6 +202,11 @@ gh auth status --active --hostname github.com
 )
 ```
 
+</details>
+
+<details>
+<summary>Show sign-in repair only if the account check failed</summary>
+
 **Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
@@ -184,6 +217,8 @@ if ! gh auth switch --hostname github.com --user "$github_user"; then gh auth lo
 gh auth status --active --hostname github.com
 )
 ```
+
+</details>
 
 **Expected:** The final status names the intended GitHub username.
 
@@ -230,6 +265,9 @@ git config --show-origin --get user.email
 
 Use this step only if the previous check was empty or wrong. Enter the author name and a verified GitHub email or GitHub-provided no-reply email. This sets the identity only in the practice repository, so it cannot silently change your other projects. The email identifies commits; it is not an ETH password or login.
 
+<details>
+<summary>Show identity repair only if the name or email is wrong</summary>
+
 **Open PowerShell on your Windows computer, then run:**
 
 ```powershell
@@ -243,6 +281,11 @@ Use this step only if the previous check was empty or wrong. Enter the author na
   git config --show-origin --get user.email
 }
 ```
+
+</details>
+
+<details>
+<summary>Show identity repair only if the name or email is wrong</summary>
 
 **Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
@@ -258,6 +301,11 @@ git config --show-origin --get user.email
 )
 ```
 
+</details>
+
+<details>
+<summary>Show identity repair only if the name or email is wrong</summary>
+
 **Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
@@ -272,6 +320,8 @@ git config --show-origin --get user.email
 )
 ```
 
+</details>
+
 - [Open GitHub email settings](https://github.com/settings/emails)
 
 **Expected:** The repeated check prints the values you entered and names .git/config as their source.
@@ -284,7 +334,7 @@ git config --show-origin --get user.email
 
 **Where:** This web page in your browser
 
-Students: open GitHub email settings on the same account confirmed above. If a verified ETH email is already listed, keep it and continue. Otherwise add the ETH email, open GitHub's verification message in your ETH mailbox, and finish verification. Do not make the address public unless you choose to.
+Students: open GitHub email settings on the same account confirmed above. If a verified ETH email is already listed, keep it and continue. Otherwise add the ETH email, open GitHub's verification message in your ETH mailbox, and finish verification. Do not make the address public unless you choose to. This optional benefit setup does not block the Git exercise. Never submit an ETH mailbox password or verification code here.
 
 - [Verify GitHub email addresses](https://github.com/settings/emails)
 
@@ -314,7 +364,7 @@ GitHub Education is GitHub's student-verification program; approved accounts can
 
 **Where:** The laptop or desktop in front of you
 
-Confirm that you are inside the Passport practice clone, meaning its separate working copy on this computer. Check its practice branch and the saved online address called the remote. The usual remote name is origin. Its URL must contain no password or token.
+Inspect the practice clone, its branch and origin remote using the existing commands. The remote is a saved repository address, not a login credential. If anything differs from the prepared folder/branch, stop and use the named recovery; do not switch or reset another project.
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -352,6 +402,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. gh shows the correct GitHub account, but git config prints a different author email. Will logging in again fix the next commit author?
+
+   - Yes; GitHub login sets every repository's author.
+   - No; inspect the effective Git author identity and repair it only in this practice repository if needed.
+   - Delete the clone and create another account.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+Git author identity labels commits; GitHub authentication authorizes account actions. They are separate. Inspect before using the repository-local identity repair.
+
+</details>
 
 ## If Blocked
 

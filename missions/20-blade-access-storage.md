@@ -2,35 +2,53 @@
 
 ## Outcome
 
-Connect by Remote Desktop to Blade, the lab's shared Windows computer for licensed graphical software. Use the correct temporary and durable storage drives and verify one file copy.
+Verify Blade, the shared Windows computer, and one temporary-to-durable file
+round trip.
+Keep private paths and credentials out of the learning record.
 
 ## Concept
 
-Blade is the IDEAL Lab's shared Windows computer. You reach its graphical desktop through Remote Desktop Protocol (RDP) when you need licensed Windows engineering software such as Siemens NX or interactive pre/post-processing. ETH VPN, or Virtual Private Network, provides the official secure connection when the service is not reachable directly from your current network. Several people may be connected at once.
+Blade is a shared Windows computer reached through Remote Desktop Protocol
+(RDP). Use it for licensed graphical software, computer-aided design (CAD) and
+light pre/post-processing. Route heavy or unattended computation to Euler or
+another approved system.
 
-Blade is not the lab's permanent storage or its heavy-compute cluster. `P:` maps to durable project data on the NAS, `D:` is temporary local working space, and `C:` plus Desktop, Documents, and Downloads are not project storage.
+| Location inside Blade | Role | Lifetime |
+| --- | --- | --- |
+| Assigned `P:` supervisor/username folder | Approved durable project copy | Owner decides access and retention |
+| Your `D:` username folder | Temporary fast working copy | Preserve useful output in P: before cleanup |
+| `C:` and user folders | Operating-system/personal locations | Not approved project storage |
+
+The Blade desktop is a different computer from the terminal on your laptop.
+Verify the hostname before running the file test there.
+
+## Learning Challenge
+
+A useful result exists only on D:. Does copying it successfully into a folder
+called archive on D: make it durable? Decide the destination before the test.
 
 ## Worked Example
 
-The test verifies the copy to P:, then removes both random probe files from
-D: and P:. No probe file remains. Real project results belong on P:; they must
-be retained rather than cleaned up like this disposable test. C: was not used,
-and no heavy unattended compute was started.
+<details>
+<summary>Separate test cleanup from project retention</summary>
 
-Check these points:
+The probe verifies equal contents between D: and the approved P: boundary,
+then removes both random test files. Real useful output must instead remain
+verified in approved durable storage according to its owner's retention rule.
+A matching hash alone does not approve a location or verify backup.
 
-- **Where does durable Blade project work belong?** In the approved P: supervisor and username folder.
-- **What is Blade primarily for?** Interactive graphical Windows software and light prototyping.
+</details>
 
 ## Common Trap
 
-Keeping the only copy on C: or D:, treating Blade as a general machine-learning server, or exposing the real mapped path in the public submission.
+Verify the remote desktop and preserve useful results in the approved durable
+location before cleanup.
 
 ## Your Action
 
 Connect to Blade by RDP, verify the host, and complete a safe temporary-to-durable file round trip.
 
-**Follow these steps in order.** Blade is the lab's shared remote Windows computer for licensed graphical software. RDP, or Remote Desktop Protocol, displays and controls its Windows desktop from your computer. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.
+**Follow these steps in order.** Use your computer's RDP client to reach Blade, verify the remote host then test the approved temporary/durable boundary. No heavy workload runs here.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -145,7 +163,7 @@ Open PowerShell inside the remote Blade desktop and run the block below. The hos
 
 **Where:** The remote Blade Windows desktop
 
-Obtain the supervisor first name and approval to use that project folder. Open P:\SupervisorFirstName and create one folder named exactly with your short ETH username if it is absent. The temporary folder is D:\eth-username. Do not use C:, Desktop, Documents, Downloads, or other mapped drives.
+Use the D:/P: lifetime table above. Obtain the supervisor first name and approval before entering P:\SupervisorFirstName; your temporary folder is D:\eth-username. Create your exact ETH-username folder only if absent and authorized. D: is temporary. Do not use C:, Desktop, Documents, Downloads or other mapped drives for project storage.
 
 **Expected:** The approved P: username folder exists and the D: username folder is clearly temporary.
 
@@ -157,7 +175,7 @@ Obtain the supervisor first name and approval to use that project folder. Open P
 
 **Where:** The remote Blade Windows desktop
 
-Run this PowerShell block on Blade. It first refuses files, shortcuts, and junctions at either target. It then creates a random non-sensitive file on D:, copies it to the approved P: folder, verifies equal hashes, and removes both probe files.
+Run the existing guarded PowerShell block inside Blade after the hostname check passes. It refuses files, shortcuts and junctions at either target, creates one random non-sensitive D: file, copies it to the approved P: folder, compares hashes and removes both probe files. This cleanup applies only to the test; retain useful real outputs under the owner's rules.
 
 **Open PowerShell inside the remote Blade Windows desktop, then run:**
 

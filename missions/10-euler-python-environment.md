@@ -2,47 +2,52 @@
 
 ## Outcome
 
-Python is a programming language. Set up a small, separate interpreter and
-package set, called a Python environment, directly on Euler. Make every
-scheduled Python job select that environment explicitly.
+Create or keep one small Euler-native Python environment at its final path.
+The guarded checks stop safely for an incomplete or moved environment.
 
 ## Concept
 
-Python files are run by a program called an interpreter; packages add reusable
-code. Your laptop and Euler are separate computers with different operating
-systems and software. An environment created on one cannot be copied safely to
-the other. Euler provides software modules, which select a maintained
-application version for the current shell. A project environment then adds the
-Python interpreter and packages needed by that project.
+Python is a programming language run by a program called an interpreter.
+Your laptop and Euler are separate computers; copying an installed environment
+between them is not a reproducible setup.
 
-Recreate the environment on Euler from a reviewed definition, and make every Slurm batch script load its module and activate its environment before running Python.
+| Selection | Lifetime | What it provides |
+| --- | --- | --- |
+| Euler software modules | Current shell | Training software stack and Python |
+| Project environment at its final path | Stored files | Isolated project interpreter and packages |
+| Activation | Current shell | Selects that environment for commands here |
 
-On Euler, `$HOME` is the small private folder assigned to your account. This
-mission uses a training folder there; it does not copy the environment from
-your laptop.
+A new Slurm batch script must select its module and environment again.
+A check in a temporary shell verifies the installation without keeping your
+parent terminal activated. The command's explicit path is the installation target.
+
+## Learning Challenge
+
+Predict which selections a fresh job needs before opening the batch fragment.
+First inspect the target; do not replace a valid environment.
 
 ## Worked Example
 
-The training environment uses the documented Euler Python module, lives in the
-dedicated training folder under `$HOME`, and prints `euler-python-env-ok` after
-its path and version are verified.
+<details>
+<summary>Read the environment checks</summary>
 
-Check these points:
+The inspection checks ownership, activation path, Python and both pip entrypoints.
+Creation exclusively claims an empty final directory; a failure is retained for
+safe recovery. Only the complete verification prints `euler-python-env-ok`.
+An absent success marker is a stop, not permission to delete the directory.
 
-- **Can a laptop `.venv` be copied to Euler?** No; recreate it on Euler.
-- **Where does activation happen for a job?** Inside the Slurm script.
+</details>
 
 ## Common Trap
 
-Copying `.venv` from another machine, installing into a shared base
-environment, or activating Python only in the login shell and assuming the job
-will reproduce that setup.
+Create at the final path and retain a failed target for safe recovery. Select
+the module and environment inside each job.
 
 ## Your Action
 
 Create or safely reuse one small Euler-native Python virtual environment and verify how a Slurm job activates it.
 
-**Follow these steps in order.** Your laptop environment and Euler environment are separate. Run these steps on Euler after the SSH mission prints config-ok. This exercise creates no Slurm job and installs no project package.
+**Follow these steps in order.** In Euler Bash, inspect the final training path before creating anything. Keep a valid environment; stop for safe recovery if checks fail.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -56,7 +61,7 @@ before continuing if these words are new.
 
 **Where:** This web page in your browser
 
-Python is a programming language, and an interpreter is the program that runs Python files. Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python interpreter and packages. Both must be selected again inside each submitted batch job.
+Python is a programming language run by a program called an interpreter. Your laptop and Euler are separate computers. Use the software modules/project environment table above. Each Slurm batch script starts its own shell and must select both again.
 
 - [Read the Euler Python environment reference](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/python-environments.md)
 
@@ -100,7 +105,7 @@ ssh euler
 
 **Where:** The remote Euler computer after you connect from your computer
 
-Load the dated Euler software stack used by this training release and verify the interpreter before creating anything. This affects only the current shell.
+Check the dated software stack used by this training release. This command loads it in a temporary shell; the later checks load it again for their own work.
 
 **After SSH connects to Euler, run this in the same text window:**
 
@@ -209,7 +214,10 @@ fi
 
 **Where:** The remote Euler computer after you connect from your computer
 
-Create the environment directly at its final path, after exclusively claiming an empty directory. A valid existing environment is checked and kept. A failed creation is retained for recovery; nothing is recursively deleted or overwritten.
+If inspection printed environment-target-available, open and run the creation command. It claims an empty final directory and verifies the new environment. If inspection printed existing-environment-ok, keep it and go directly to Verify the active interpreter. If inspection stopped, use its safe recovery before continuing. A failed creation is retained; nothing is recursively deleted or overwritten.
+
+<details>
+<summary>Create only after environment-target-available</summary>
 
 **After SSH connects to Euler, run this in the same text window:**
 
@@ -291,6 +299,8 @@ else
 fi
 )
 ```
+
+</details>
 
 - [Recover an affected training environment safely](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/python-environments.md#recover-a-broken-passport-training-environment)
 
@@ -378,7 +388,10 @@ printf 'python_environment=passport-python\neuler-python-env-ok\n'
 
 **Where:** The remote Euler computer after you connect from your computer
 
-Read this batch-script fragment. Do not run a workload on the login node. Every Python job must load its module and activate its environment inside the submitted script before the Python command.
+Open this fragment to see how a fresh Slurm job selects its module and project environment before running Python. It illustrates setup only; do not paste it as a workload on the login node.
+
+<details>
+<summary>Show environment setup inside a batch script</summary>
 
 **Put this in the named Bash file:**
 
@@ -388,6 +401,8 @@ module load stack/2024-06 python/3.11.6
 . "$HOME/passport-euler/venvs/passport-python/bin/activate"
 python your_script.py
 ```
+
+</details>
 
 **Expected:** You can identify the three environment lines that must precede the program in a Slurm script.
 
@@ -415,6 +430,26 @@ browser. Do not create or edit a submission JSON file by hand.
 Use **Check my work** before submitting. The automatic check confirms the exact
 safe marker printed by the Euler environment command. A score of 100% is
 required, and every safety-critical question must be correct.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. Your login terminal uses the project interpreter. A new batch script only says python run.py. Does the terminal activation carry over?
+
+   - Yes, because both run under the same account.
+   - No; select the module and activate the final-path environment inside the batch script.
+   - Copy the laptop environment folder to Euler.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+A batch script starts its own shell. Declare the Euler software module and activate the environment at its final path in that script; do not rely on a previously activated terminal.
+
+</details>
 
 ## If Blocked
 

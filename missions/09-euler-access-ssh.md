@@ -2,35 +2,59 @@
 
 ## Outcome
 
-Connect from your computer to Euler, ETH Zurich's service made of many managed
-computers for research calculations. Use SSH, the protected text connection
-for remote computers, and set up one dedicated sign-in key without replacing
-existing keys or settings.
+Euler is ETH's service made of many managed computers for research calculations.
+Keep working key-only access or create a dedicated key without overwriting one.
+Test the direct connection and the euler SSH alias separately.
 
 ## Concept
 
-Euler is ETH Zurich's shared high-performance computing cluster: many managed computers reached through a central login service. SSH, or Secure Shell, opens a protected terminal connection from your computer to Euler. Later lessons explain how Euler schedules and runs programs; this lesson only sets up the connection.
+Euler is ETH's high-performance computing cluster. SSH, or Secure Shell,
+connects your computer to its remote command shell.
 
-An SSH key pair has a private key that stays on your computer and a public `.pub` file that may be installed on Euler. The key passphrase unlocks the local private key; it is different from your ETH password. A host fingerprint identifies the remote SSH service before you trust it. An SSH alias is a short local name for saved connection settings, and `IdentityFile` is the setting that names the private key. Test network, password login, key installation, and local configuration in that order, changing only the part that fails.
+| File or proof | Where it belongs | What it establishes |
+| --- | --- | --- |
+| Private key | Private on your own computer | Proof used for login; never uploaded |
+| Public `.pub` file | Installed for your Euler account | Permits its matching private key |
+| Key passphrase | Entered locally when prompted | Unlocks the private key, not the ETH account |
+| Host fingerprint | Compared with the published host key | Identity of the remote SSH server |
+| SSH alias euler | Local connection settings | Which host, username and private key SSH selects |
+
+An SSH alias is a short local name for these settings. IdentityFile is the setting
+selecting the private-key path. An SSH key pair has both files. A successful ETH password test does not prove
+key-only access. The tests disable password fallback so success means a key worked.
+
+The alias helper has four operations: read the tested identity; back up existing
+configuration; write an isolated Include file; validate the resolved settings.
+Validation failure stops safely with recovery information. Do not improvise edits
+or remove backups after a failure.
+
+## Learning Challenge
+
+Inspect before creating. If key-only access already works, keep it. If a pair
+exists but fails, diagnose it instead of replacing it. Compare direct access
+with what the alias actually selects.
 
 ## Worked Example
 
-Key-only SSH prints config-ok; IdentityFile names a private key, never a .pub file, and no existing key was overwritten.
+<details>
+<summary>Distinguish the two password prompts</summary>
 
-Check these points:
+The first test deliberately uses your ETH password. Later key-only tests disable
+that fallback; a prompt for the local key passphrase is allowed. Only the public
+.pub file is installed remotely. A working key stays on its original computer.
 
-- **Which file must IdentityFile reference?** The private key path without .pub.
-- **What is the safe default when a target key or config already exists?** Stop, back it up, inspect it, and avoid overwriting.
+</details>
 
 ## Common Trap
 
-Running PowerShell at an Euler Bash prompt, concatenating Host blocks, or pointing IdentityFile at the public .pub key.
+Keep existing keys, install only the public file and inspect the resolved
+alias settings before relying on it.
 
 ## Your Action
 
 Test your direct Euler login, keep a working dedicated key or create one without overwriting anything, then configure and test the euler SSH alias.
 
-**Follow these steps in order.** Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. An SSH alias is a short local name for saved connection settings; IdentityFile is the setting that names the private key. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.
+**Follow these steps in order.** Work from your computer until a step names Euler. Keep a working key, diagnose a failed pair and create only after the absent-key marker.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -292,7 +316,10 @@ ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publicke
 
 **Where:** The laptop or desktop in front of you
 
-Run this only when id_ed25519_euler exists but its key-only test did not print standard-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it.
+Run this only when id_ed25519_euler exists but its key-only test did not print standard-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it. Open the diagnostic only for this failed existing-pair case. Stop if the pair differs; do not regenerate or overwrite either file.
+
+<details>
+<summary>Show the existing-key diagnostic</summary>
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -310,6 +337,11 @@ Run this only when id_ed25519_euler exists but its key-only test did not print s
 }
 ```
 
+</details>
+
+<details>
+<summary>Show the existing-key diagnostic</summary>
+
 **Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
@@ -322,6 +354,11 @@ printf '%s\n%s\n' "$private_fingerprint" "$public_fingerprint"
 printf 'key-pair-matches\n'
 )
 ```
+
+</details>
+
+<details>
+<summary>Show the existing-key diagnostic</summary>
 
 **Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
@@ -336,6 +373,8 @@ printf 'key-pair-matches\n'
 )
 ```
 
+</details>
+
 - [Open Euler SSH troubleshooting](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/troubleshooting.md)
 
 **Expected:** Both fingerprint lines contain the same SHA256 value and the final line is key-pair-matches.
@@ -348,7 +387,10 @@ printf 'key-pair-matches\n'
 
 **Where:** The laptop or desktop in front of you
 
-Run this only after no-standard-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks.
+Run this only after no-standard-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks. If either file already exists, use the diagnostic and request help; creating a new key is not a repair for an unexplained existing-pair failure.
+
+<details>
+<summary>Show key creation only after no-standard-key</summary>
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -365,6 +407,11 @@ Run this only after no-standard-key. The guard stops if either half of the pair 
 }
 ```
 
+</details>
+
+<details>
+<summary>Show key creation only after no-standard-key</summary>
+
 **Open Terminal on your Mac; zsh starts inside it automatically. Then run:**
 
 ```zsh
@@ -376,6 +423,11 @@ ssh-keygen -t ed25519 -a 100 -f "$key" -C "$USER@euler"
 )
 ```
 
+</details>
+
+<details>
+<summary>Show key creation only after no-standard-key</summary>
+
 **Open Terminal on your Linux computer; Bash normally starts inside it automatically. Then run:**
 
 ```bash
@@ -386,6 +438,8 @@ if [ -e "$key" ] || [ -e "$key.pub" ]; then printf 'STOP: standard key or public
 ssh-keygen -t ed25519 -a 100 -f "$key" -C "$USER@euler"
 )
 ```
+
+</details>
 
 **Expected:** Both id_ed25519_euler and id_ed25519_euler.pub are created; the private key has restricted permissions.
 
@@ -547,7 +601,7 @@ ssh -F none -i "$HOME/.ssh/id_ed25519_euler" -o IdentitiesOnly=yes -o PreferredA
 
 **Where:** The laptop or desktop in front of you
 
-The SSH config file stores named connection settings. This guarded command backs it up and validates the result before any connection. If the current euler alias already passed the key-only test, it preserves that private-key selection; otherwise it uses the tested id_ed25519_euler key. It writes the euler settings to passport.d/euler.conf and adds one Include line telling OpenSSH to read that separate file. Backups go in passport-backups, which OpenSSH does not load.
+The SSH config stores named connection settings. This helper reads the tested identity, backs up existing files, writes one isolated passport.d/euler.conf and Include entry, then validates resolved settings. It preserves a tested existing key. Backups in passport-backups are not loaded by OpenSSH. It does not change Euler jobs or GitHub authentication. Read the four operations above before running it.
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -954,7 +1008,7 @@ ssh -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInt
 
 **Where:** The laptop or desktop in front of you
 
-If you need VS Code on an allocated compute node, follow the separate euler-tunnel procedure now. It depends on the working euler alias.
+Optional, only if you need VS Code on an allocated compute node: open the separate euler-tunnel reference after config-ok. The basic SSH lesson is complete without that extra setup.
 
 - [Open the euler-tunnel procedure](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/euler-tunnel.md)
 

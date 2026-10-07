@@ -594,7 +594,7 @@
           }
         ],
         "recipe": {
-          "intro": "Blade is the lab's shared remote Windows computer for licensed graphical software. RDP, or Remote Desktop Protocol, displays and controls its Windows desktop from your computer. Connect through RDP, use P: for durable project data, use D: only for temporary work, and never use C: or user folders for project storage.",
+          "intro": "Use your computer's RDP client to reach Blade, verify the remote host then test the approved temporary/durable boundary. No heavy workload runs here.",
           "steps": [
             {
               "commands": [],
@@ -722,7 +722,7 @@
               "commands": [],
               "expected": "The approved P: username folder exists and the D: username folder is clearly temporary.",
               "id": "paths",
-              "instruction": "Obtain the supervisor first name and approval to use that project folder. Open P:\\SupervisorFirstName and create one folder named exactly with your short ETH username if it is absent. The temporary folder is D:\\eth-username. Do not use C:, Desktop, Documents, Downloads, or other mapped drives.",
+              "instruction": "Use the D:/P: lifetime table above. Obtain the supervisor first name and approval before entering P:\\SupervisorFirstName; your temporary folder is D:\\eth-username. Create your exact ETH-username folder only if absent and authorized. D: is temporary. Do not use C:, Desktop, Documents, Downloads or other mapped drives for project storage.",
               "links": [],
               "machine": "blade",
               "on_failure": "Ask the supervisor or lab IT for the correct P: folder before creating project data.",
@@ -742,7 +742,7 @@
               ],
               "expected": "The final line says copy_verified=True, temporary_removed=True, and probe_removed=True.",
               "id": "round-trip",
-              "instruction": "Run this PowerShell block on Blade. It first refuses files, shortcuts, and junctions at either target. It then creates a random non-sensitive file on D:, copies it to the approved P: folder, verifies equal hashes, and removes both probe files.",
+              "instruction": "Run the existing guarded PowerShell block inside Blade after the hostname check passes. It refuses files, shortcuts and junctions at either target, creates one random non-sensitive D: file, copies it to the approved P: folder, compares hashes and removes both probe files. This cleanup applies only to the test; retain useful real outputs under the owner's rules.",
               "links": [],
               "machine": "blade",
               "on_failure": "Read the first error. The finally block attempts to remove both random probe files even after a failure. If either remains, remove only the two displayed passport probe paths; do not broaden folder permissions or delete the username folder.",
@@ -2752,7 +2752,7 @@
           }
         ],
         "recipe": {
-          "intro": "Euler is ETH Zurich's shared computing cluster, and SSH is the secure terminal connection from your computer. An SSH alias is a short local name for saved connection settings; IdentityFile is the setting that names the private key. Run the 12 checks in order. A key passphrase prompt is normal; an ETH password prompt is not normal during a key-only test.",
+          "intro": "Work from your computer until a step names Euler. Keep a working key, diagnose a failed pair and create only after the absent-key marker.",
           "steps": [
             {
               "commands": [],
@@ -2872,23 +2872,26 @@
               "commands": [
                 {
                   "command": "& {\n  $KeyPath = Join-Path $env:USERPROFILE \".ssh\\id_ed25519_euler\"\n  $PrivateFingerprint = ssh-keygen -lf $KeyPath\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: private key could not be inspected\" }\n  $PublicFingerprint = ssh-keygen -lf \"$KeyPath.pub\"\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: public key could not be inspected\" }\n  $PrivateFingerprint\n  $PublicFingerprint\n  if (($PrivateFingerprint -split '\\s+')[1] -ne ($PublicFingerprint -split '\\s+')[1]) { throw \"STOP: private and public keys do not match\" }\n  Write-Host \"key-pair-matches\"\n}",
+                  "disclosure": "Show the existing-key diagnostic",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
                   "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nprivate_fingerprint=\"$(ssh-keygen -lf \"$key\")\" || { printf 'STOP: private key could not be inspected\\n' >&2; exit 1; }\npublic_fingerprint=\"$(ssh-keygen -lf \"$key.pub\")\" || { printf 'STOP: public key could not be inspected\\n' >&2; exit 1; }\nprintf '%s\\n%s\\n' \"$private_fingerprint\" \"$public_fingerprint\"\n[ \"$(printf '%s\\n' \"$private_fingerprint\" | awk '{print $2}')\" = \"$(printf '%s\\n' \"$public_fingerprint\" | awk '{print $2}')\" ] || { printf 'STOP: private and public keys do not match\\n' >&2; exit 1; }\nprintf 'key-pair-matches\\n'\n)",
+                  "disclosure": "Show the existing-key diagnostic",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
                   "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nprivate_fingerprint=\"$(ssh-keygen -lf \"$key\")\" || { printf 'STOP: private key could not be inspected\\n' >&2; exit 1; }\npublic_fingerprint=\"$(ssh-keygen -lf \"$key.pub\")\" || { printf 'STOP: public key could not be inspected\\n' >&2; exit 1; }\nprintf '%s\\n%s\\n' \"$private_fingerprint\" \"$public_fingerprint\"\n[ \"$(printf '%s\\n' \"$private_fingerprint\" | awk '{print $2}')\" = \"$(printf '%s\\n' \"$public_fingerprint\" | awk '{print $2}')\" ] || { printf 'STOP: private and public keys do not match\\n' >&2; exit 1; }\nprintf 'key-pair-matches\\n'\n)",
+                  "disclosure": "Show the existing-key diagnostic",
                   "platform": "linux",
                   "shell": "bash"
                 }
               ],
               "expected": "Both fingerprint lines contain the same SHA256 value and the final line is key-pair-matches.",
               "id": "failed-key-stop",
-              "instruction": "Run this only when id_ed25519_euler exists but its key-only test did not print standard-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it.",
+              "instruction": "Run this only when id_ed25519_euler exists but its key-only test did not print standard-key-ok. Compare the private- and public-key fingerprints. This reads the key pair but does not change it. Open the diagnostic only for this failed existing-pair case. Stop if the pair differs; do not regenerate or overwrite either file.",
               "links": [
                 {
                   "label": "Open Euler SSH troubleshooting",
@@ -2907,23 +2910,26 @@
               "commands": [
                 {
                   "command": "& {\n  $SshDir = Join-Path $env:USERPROFILE \".ssh\"\n  $KeyPath = Join-Path $SshDir \"id_ed25519_euler\"\n  New-Item -ItemType Directory -Force $SshDir | Out-Null\n  if ((Test-Path -LiteralPath $KeyPath) -or (Test-Path -LiteralPath \"$KeyPath.pub\")) { throw \"STOP: standard key or public key already exists; nothing was overwritten\" }\n  ssh-keygen -t ed25519 -a 100 -f $KeyPath -C \"$env:USERNAME@euler\"\n  if ($LASTEXITCODE -ne 0) { throw \"STOP: ssh-keygen failed\" }\n  icacls $KeyPath /inheritance:r\n  icacls $KeyPath /grant:r \"${env:USERNAME}:(R)\"\n}",
+                  "disclosure": "Show key creation only after no-standard-key",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
                   "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nmkdir -p \"$HOME/.ssh\" && chmod 700 \"$HOME/.ssh\"\nif [ -e \"$key\" ] || [ -e \"$key.pub\" ]; then printf 'STOP: standard key or public key already exists; nothing was overwritten\\n' >&2; exit 1; fi\nssh-keygen -t ed25519 -a 100 -f \"$key\" -C \"$USER@euler\"\n)",
+                  "disclosure": "Show key creation only after no-standard-key",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
                   "command": "(\nkey=\"$HOME/.ssh/id_ed25519_euler\"\nmkdir -p \"$HOME/.ssh\" && chmod 700 \"$HOME/.ssh\"\nif [ -e \"$key\" ] || [ -e \"$key.pub\" ]; then printf 'STOP: standard key or public key already exists; nothing was overwritten\\n' >&2; exit 1; fi\nssh-keygen -t ed25519 -a 100 -f \"$key\" -C \"$USER@euler\"\n)",
+                  "disclosure": "Show key creation only after no-standard-key",
                   "platform": "linux",
                   "shell": "bash"
                 }
               ],
               "expected": "Both id_ed25519_euler and id_ed25519_euler.pub are created; the private key has restricted permissions.",
               "id": "generate",
-              "instruction": "Run this only after no-standard-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks.",
+              "instruction": "Run this only after no-standard-key. The guard stops if either half of the pair exists. Choose a passphrase when ssh-keygen asks. If either file already exists, use the diagnostic and request help; creating a new key is not a repair for an unexplained existing-pair failure.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop at the first error and keep all pre-existing files unchanged.",
@@ -3018,7 +3024,7 @@
               ],
               "expected": "The command finishes without a config error. A working existing identity is retained, or the tested id_ed25519_euler private key is selected. Prior files have timestamped backups, and a failed final install restores them automatically.",
               "id": "alias",
-              "instruction": "The SSH config file stores named connection settings. This guarded command backs it up and validates the result before any connection. If the current euler alias already passed the key-only test, it preserves that private-key selection; otherwise it uses the tested id_ed25519_euler key. It writes the euler settings to passport.d/euler.conf and adds one Include line telling OpenSSH to read that separate file. Backups go in passport-backups, which OpenSSH does not load.",
+              "instruction": "The SSH config stores named connection settings. This helper reads the tested identity, backs up existing files, writes one isolated passport.d/euler.conf and Include entry, then validates resolved settings. It preserves a tested existing key. Backups in passport-backups are not loaded by OpenSSH. It does not change Euler jobs or GitHub authentication. Read the four operations above before running it.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not append another host block. The command restores the original files after an install failure. If it reports an incomplete restore, use only the two timestamped files it names; otherwise open the Passport help link and include the error with private information removed.",
@@ -3092,7 +3098,7 @@
               "commands": [],
               "expected": "The direct euler alias already prints config-ok.",
               "id": "tunnel-gate",
-              "instruction": "If you need VS Code on an allocated compute node, follow the separate euler-tunnel procedure now. It depends on the working euler alias.",
+              "instruction": "Optional, only if you need VS Code on an allocated compute node: open the separate euler-tunnel reference after config-ok. The basic SSH lesson is complete without that extra setup.",
               "links": [
                 {
                   "label": "Open the euler-tunnel procedure",
@@ -4328,6 +4334,33 @@
         "action": "Create or safely reuse one small Euler-native Python virtual environment and verify how a Slurm job activates it.",
         "expected_result": "Python 3.11.6 runs from the dedicated Euler environment, no existing directory is overwritten, and the learner can place the activation lines inside a batch script.",
         "kind": "guided_remote",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "A batch script starts its own shell. Declare the Euler software module and activate the environment at its final path in that script; do not rely on a previously activated terminal.",
+            "hint": "Which shell selected the interpreter?",
+            "id": "fresh_job_shell",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Yes, because both run under the same account."
+              },
+              {
+                "id": "correct",
+                "label": "No; select the module and activate the final-path environment inside the batch script."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Copy the laptop environment folder to Euler."
+              }
+            ],
+            "prompt": "Your login terminal uses the project interpreter. A new batch script only says python run.py. Does the terminal activation carry over?",
+            "type": "single"
+          }
+        ],
         "machine": "euler",
         "questions": [
           {
@@ -4404,13 +4437,13 @@
           }
         ],
         "recipe": {
-          "intro": "Your laptop environment and Euler environment are separate. Run these steps on Euler after the SSH mission prints config-ok. This exercise creates no Slurm job and installs no project package.",
+          "intro": "In Euler Bash, inspect the final training path before creating anything. Keep a valid environment; stop for safe recovery if checks fail.",
           "steps": [
             {
               "commands": [],
               "expected": "You know why a laptop environment is not copied to Euler and why a job script activates its own environment.",
               "id": "terms",
-              "instruction": "Python is a programming language, and an interpreter is the program that runs Python files. Your laptop and Euler are different computers. An Euler module selects a maintained software version in the current shell; a project environment adds that project's Python interpreter and packages. Both must be selected again inside each submitted batch job.",
+              "instruction": "Python is a programming language run by a program called an interpreter. Your laptop and Euler are separate computers. Use the software modules/project environment table above. Each Slurm batch script starts its own shell and must select both again.",
               "links": [
                 {
                   "label": "Read the Euler Python environment reference",
@@ -4465,7 +4498,7 @@
               ],
               "expected": "The final two lines are Python 3.11.6 and module-python-ok.",
               "id": "module",
-              "instruction": "Load the dated Euler software stack used by this training release and verify the interpreter before creating anything. This affects only the current shell.",
+              "instruction": "Check the dated software stack used by this training release. This command loads it in a temporary shell; the later checks load it again for their own work.",
               "links": [
                 {
                   "label": "Euler Python environment reference",
@@ -4509,13 +4542,14 @@
               "commands": [
                 {
                   "command": "(\nset -eu\numask 077\nmodule purge\nmodule load stack/2024-06 python/3.11.6\n[ \"$(python -c 'import platform; print(platform.python_version())')\" = 3.11.6 ] || {\n  printf 'STOP: the loaded module must provide Python 3.11.6.\\n' >&2; exit 1\n}\nroot=\"$HOME/passport-euler\"\nbase=\"$root/venvs\"\nvenv=\"$base/passport-python\"\n# <!-- passport-snippet:euler-environment-check -->\ncheck_directories() {\n  python - \"$@\" <<'PY'\nimport os, stat, sys\nfor name in sys.argv[1:]:\n    info = os.lstat(name)\n    if not stat.S_ISDIR(info.st_mode) or info.st_uid != os.getuid() or info.st_mode & 0o022:\n        raise SystemExit(\"STOP: training paths must be real directories owned by you, without group/other write access.\")\nPY\n}\nverify_environment() (\n  check_directories \"$root\" \"$base\" \"$venv\" \"$venv/bin\" || exit 1\n  [ -f \"$venv/pyvenv.cfg\" ] && [ ! -L \"$venv/pyvenv.cfg\" ] &&\n    [ -f \"$venv/bin/activate\" ] && [ ! -L \"$venv/bin/activate\" ] &&\n    [ -x \"$venv/bin/python\" ] && [ -x \"$venv/bin/pip\" ] || {\n    printf 'STOP: the training environment is incomplete or unsafe.\\n' >&2; exit 1\n  }\n  . \"$venv/bin/activate\" || exit 1\n  [ \"${VIRTUAL_ENV:-}\" = \"$venv\" ] && [ \"$(command -v python)\" = \"$venv/bin/python\" ] || {\n    printf 'STOP: activation points to another location; use the training-environment recovery instructions.\\n' >&2; exit 1\n  }\n  python - \"$venv\" <<'PY' || exit 1\nimport pathlib, platform, sys\nimport pip\nexpected = pathlib.Path(sys.argv[1])\nassert pathlib.Path(sys.prefix).resolve() == expected.resolve(), \"wrong environment prefix\"\nassert pathlib.Path(sys.executable).parent.resolve() == (expected / \"bin\").resolve(), \"wrong interpreter directory\"\nassert pathlib.Path(sys.executable).name == \"python\", \"wrong interpreter\"\nassert platform.python_version() == \"3.11.6\", \"wrong Python version\"\nassert expected.resolve() in pathlib.Path(pip.__file__).resolve().parents, \"pip belongs to another environment\"\nPY\n  module_pip=\"$(python -m pip --version)\" || exit 1\n  entry_pip=\"$(\"$venv/bin/pip\" --version)\" || exit 1\n  [ \"$module_pip\" = \"$entry_pip\" ] || { printf 'STOP: pip entrypoint uses another environment.\\n' >&2; exit 1; }\n  printf '%s\\n' \"$module_pip\"\n  deactivate\n)\n# <!-- /passport-snippet:euler-environment-check -->\nfor directory in \"$root\" \"$base\"; do\n  if [ ! -e \"$directory\" ] && [ ! -L \"$directory\" ]; then\n    mkdir -m 700 -- \"$directory\" || { printf 'STOP: a training parent appeared concurrently; inspect again.\\n' >&2; exit 1; }\n  fi\n  check_directories \"$directory\"\ndone\nif [ -e \"$venv\" ] || [ -L \"$venv\" ]; then\n  [ ! -e \"$venv/.passport-create-in-progress\" ] || {\n    printf 'STOP: a creation may still be running; do not move this environment. Ask lab IT if interrupted.\\n' >&2; exit 1\n  }\n  verify_environment\n  printf 'existing-environment-kept\\n'\nelse\n  # Claim the final directory exclusively; never run venv over an existing target.\n  mkdir -m 700 -- \"$venv\" || { printf 'STOP: the target appeared concurrently; inspect again.\\n' >&2; exit 1; }\n  mkdir -- \"$venv/.passport-create-in-progress\"\n  trap 'rmdir -- \"$venv/.passport-create-in-progress\"' EXIT\n  trap 'exit 1' HUP INT TERM\n  printf 'passport-python-training-v1\\n' > \"$venv/.passport-training-environment\"\n  # venv records absolute paths. Create and test it at its permanent location.\n  python -m venv \"$venv\" || {\n    printf 'STOP: creation failed; the partial training directory was kept for safe recovery.\\n' >&2; exit 1\n  }\n  verify_environment\n  printf 'created-environment-ok\\n'\nfi\n)",
+                  "disclosure": "Create only after environment-target-available",
                   "platform": "euler",
                   "shell": "bash"
                 }
               ],
               "expected": "The command prints existing-environment-kept or created-environment-ok and does not overwrite an existing path.",
               "id": "create",
-              "instruction": "Create the environment directly at its final path, after exclusively claiming an empty directory. A valid existing environment is checked and kept. A failed creation is retained for recovery; nothing is recursively deleted or overwritten.",
+              "instruction": "If inspection printed environment-target-available, open and run the creation command. It claims an empty final directory and verifies the new environment. If inspection printed existing-environment-ok, keep it and go directly to Verify the active interpreter. If inspection stopped, use its safe recovery before continuing. A failed creation is retained; nothing is recursively deleted or overwritten.",
               "links": [
                 {
                   "label": "Recover an affected training environment safely",
@@ -4559,6 +4593,7 @@
               "commands": [
                 {
                   "command": "module purge\nmodule load stack/2024-06 python/3.11.6\n. \"$HOME/passport-euler/venvs/passport-python/bin/activate\"\npython your_script.py",
+                  "disclosure": "Show environment setup inside a batch script",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "bash"
@@ -4566,7 +4601,7 @@
               ],
               "expected": "You can identify the three environment lines that must precede the program in a Slurm script.",
               "id": "batch-script",
-              "instruction": "Read this batch-script fragment. Do not run a workload on the login node. Every Python job must load its module and activate its environment inside the submitted script before the Python command.",
+              "instruction": "Open this fragment to see how a fresh Slurm job selects its module and project environment before running Python. It illustrates setup only; do not paste it as a workload on the login node.",
               "links": [],
               "machine": "euler",
               "on_failure": "Do not rely on a login-shell activation to define an unattended job.",
@@ -5325,6 +5360,33 @@
         "action": "Prepare the practice repository, verify Git and GitHub CLI, authenticate the intended account, and set a valid commit identity.",
         "expected_result": "Git and GitHub CLI are available, GitHub CLI names the intended account, and Git identity is explicit.",
         "kind": "guided_local",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "Git author identity labels commits; GitHub authentication authorizes account actions. They are separate. Inspect before using the repository-local identity repair.",
+            "hint": "Which setting labels the commit, and which signs in?",
+            "id": "login_author",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Yes; GitHub login sets every repository's author."
+              },
+              {
+                "id": "correct",
+                "label": "No; inspect the effective Git author identity and repair it only in this practice repository if needed."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Delete the clone and create another account."
+              }
+            ],
+            "prompt": "gh shows the correct GitHub account, but git config prints a different author email. Will logging in again fix the next commit author?",
+            "type": "single"
+          }
+        ],
         "machine": "local",
         "questions": [
           {
@@ -5377,13 +5439,13 @@
           }
         ],
         "recipe": {
-          "intro": "Run one step at a time in the practice folder. Keep a working setup; repair only the check that fails.",
+          "intro": "Stay in the displayed practice folder. Inspect the login, author identity and branch before using a conditional repair.",
           "steps": [
             {
               "commands": [],
               "expected": "You can distinguish Git on your computer from GitHub on the web.",
               "id": "terms",
-              "instruction": "Git records versions of files on this computer. A repository is a project folder and its history. A branch keeps one line of work separate. GitHub stores a shared online copy of the repository. A clone is a separate working copy on your computer. Git saves the online address under a short name called a remote; origin is the usual name for the copy you cloned from. GitHub CLI is the program named gh that signs in and performs GitHub actions from a terminal.",
+              "instruction": "Git is version-control software: it records file versions on this computer. A repository is a project folder and its history; a branch separates work. A clone is a separate working copy. Git saves the online address under a short name called a remote; origin is the usual name. GitHub stores the shared online copy. GitHub CLI (gh) performs authenticated GitHub actions. Use the identity/login/remote table above before changing any settings.",
               "links": [
                 {
                   "label": "Open the Git workflow reference",
@@ -5500,16 +5562,19 @@
               "commands": [
                 {
                   "command": "& {\n  $GitHubUser = Read-Host \"Intended GitHub username\"\n  if ($GitHubUser -notmatch \"^[A-Za-z0-9-]+$\") { throw \"STOP: invalid GitHub username\" }\n  gh auth switch --hostname github.com --user $GitHubUser\n  if ($LASTEXITCODE -ne 0) { gh auth login --hostname github.com --git-protocol https --web }\n  gh auth status --active --hostname github.com\n}",
+                  "disclosure": "Show sign-in repair only if the account check failed",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
                   "command": "(\nprintf 'Intended GitHub username: '; read -r github_user\ncase \"$github_user\" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-]*) printf 'STOP: invalid GitHub username\\n' >&2; exit 1;; esac\nif ! gh auth switch --hostname github.com --user \"$github_user\"; then gh auth login --hostname github.com --git-protocol https --web; fi\ngh auth status --active --hostname github.com\n)",
+                  "disclosure": "Show sign-in repair only if the account check failed",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
                   "command": "(\nprintf 'Intended GitHub username: '; read -r github_user\ncase \"$github_user\" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-]*) printf 'STOP: invalid GitHub username\\n' >&2; exit 1;; esac\nif ! gh auth switch --hostname github.com --user \"$github_user\"; then gh auth login --hostname github.com --git-protocol https --web; fi\ngh auth status --active --hostname github.com\n)",
+                  "disclosure": "Show sign-in repair only if the account check failed",
                   "platform": "linux",
                   "shell": "bash"
                 }
@@ -5560,16 +5625,19 @@
               "commands": [
                 {
                   "command": "& {\n  $GitName = Read-Host \"Commit author name\"\n  $GitEmail = Read-Host \"GitHub email or no-reply email\"\n  if ([string]::IsNullOrWhiteSpace($GitName) -or $GitEmail -notmatch \"^[^@\\s]+@[^@\\s]+$\") { throw \"STOP: invalid name or email\" }\n  git config --local user.name \"$GitName\"\n  git config --local user.email \"$GitEmail\"\n  git config --show-origin --get user.name\n  git config --show-origin --get user.email\n}",
+                  "disclosure": "Show identity repair only if the name or email is wrong",
                   "platform": "windows",
                   "shell": "powershell"
                 },
                 {
                   "command": "(\nprintf 'Commit author name: '; read -r git_name\nprintf 'GitHub email or no-reply email: '; read -r git_email\nif [ -z \"$git_name\" ] || ! printf '%s\\n' \"$git_email\" | grep -Eq '^[^[:space:]@]+@[^[:space:]@]+$'; then printf 'STOP: invalid name or email\\n' >&2; exit 1; fi\ngit config --local user.name \"$git_name\"\ngit config --local user.email \"$git_email\"\ngit config --show-origin --get user.name\ngit config --show-origin --get user.email\n)",
+                  "disclosure": "Show identity repair only if the name or email is wrong",
                   "platform": "macos",
                   "shell": "zsh"
                 },
                 {
                   "command": "(\nprintf 'Commit author name: '; read -r git_name\nprintf 'GitHub email or no-reply email: '; read -r git_email\nif [ -z \"$git_name\" ] || ! printf '%s\\n' \"$git_email\" | grep -Eq '^[^[:space:]@]+@[^[:space:]@]+$'; then printf 'STOP: invalid name or email\\n' >&2; exit 1; fi\ngit config --local user.name \"$git_name\"\ngit config --local user.email \"$git_email\"\ngit config --show-origin --get user.name\ngit config --show-origin --get user.email\n)",
+                  "disclosure": "Show identity repair only if the name or email is wrong",
                   "platform": "linux",
                   "shell": "bash"
                 }
@@ -5595,7 +5663,7 @@
               "commands": [],
               "expected": "Eligible students see their ETH address marked Verified. Staff and other ineligible learners skip this student-only step.",
               "id": "education-email",
-              "instruction": "Students: open GitHub email settings on the same account confirmed above. If a verified ETH email is already listed, keep it and continue. Otherwise add the ETH email, open GitHub's verification message in your ETH mailbox, and finish verification. Do not make the address public unless you choose to.",
+              "instruction": "Students: open GitHub email settings on the same account confirmed above. If a verified ETH email is already listed, keep it and continue. Otherwise add the ETH email, open GitHub's verification message in your ETH mailbox, and finish verification. Do not make the address public unless you choose to. This optional benefit setup does not block the Git exercise. Never submit an ETH mailbox password or verification code here.",
               "links": [
                 {
                   "label": "Verify GitHub email addresses",
@@ -5653,7 +5721,7 @@
               ],
               "expected": "The branch starts with practice/. The lines beginning with origin point to the expected GitHub repository and contain no password or token.",
               "id": "repository-state",
-              "instruction": "Confirm that you are inside the Passport practice clone, meaning its separate working copy on this computer. Check its practice branch and the saved online address called the remote. The usual remote name is origin. Its URL must contain no password or token.",
+              "instruction": "Inspect the practice clone, its branch and origin remote using the existing commands. The remote is a saved repository address, not a login credential. If anything differs from the prepared folder/branch, stop and use the named recovery; do not switch or reset another project.",
               "links": [],
               "machine": "local",
               "on_failure": "Return to Prepare practice folder; do not edit the remote until the mismatch is understood.",
@@ -5706,6 +5774,33 @@
         "action": "Connect to the approved NAS project folder, verify your username boundary, and let the Passport perform one harmless write-read-delete probe.",
         "expected_result": "One write/read/delete test succeeds inside the approved username folder; the raw path is never submitted publicly.",
         "kind": "guided_remote",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "Read and write access are separate. Confirm the intended username boundary with its owner; a readable share is not authorization to broaden permissions or test elsewhere.",
+            "hint": "What location and operation were approved?",
+            "id": "readable_root",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "The whole share should be made writable."
+              },
+              {
+                "id": "correct",
+                "label": "Reading the share does not prove write permission in the approved boundary; ask its owner before changing access."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Test inside another person's writable folder."
+              }
+            ],
+            "prompt": "You can read the supervisor folder, but your username folder is not writable. What does this show?",
+            "type": "single"
+          }
+        ],
         "machine": "nas",
         "questions": [
           {
@@ -5758,13 +5853,13 @@
           }
         ],
         "recipe": {
-          "intro": "The NAS is a remote shared drive, not a folder inside your laptop. Connecting it so it appears as a drive or folder is called mapping or mounting the share. SMB, or Server Message Block, is the network file-sharing method used here; an address beginning with smb:// tells macOS or Linux to use it. Copy that address exactly. You need the supervisor's first name and explicit permission first. Never test access at the NAS root or in another person's folder.",
+          "intro": "First obtain the supervisor folder and approval. Mount it using only your computer's instructions, then enter your exact ETH-username folder. Never probe the share root or someone else's folder. Never use chmod 777 or broaden permissions to repair access.",
           "steps": [
             {
               "commands": [],
               "expected": "You can distinguish durable NAS project data from local, GitHub, and temporary storage.",
               "id": "terms",
-              "instruction": "NAS means network-attached storage. It is the lab's durable shared project drive reached over the ETH network. It is not inside your laptop and is not a general folder open to everyone. High input/output (high-I/O) work repeatedly reads or writes a large amount of data; do not run that kind of Euler job directly against the NAS.",
+              "instruction": "NAS means network-attached storage: approved durable shared project storage over the ETH network. Mapping or mounting makes a remote share visible locally. SMB (Server Message Block) is its file-sharing method. Use the address/path distinction above; high-I/O Euler work belongs on approved compute storage.",
               "links": [
                 {
                   "label": "Open the NAS reference",
@@ -5903,7 +5998,7 @@
               ],
               "expected": "The printed local path ends with your short ETH username and opens the same authorized folder in the file manager.",
               "id": "local-path",
-              "instruction": "Open a local terminal. Type cd followed by one space, drag the authorized ETH-username folder from File Explorer, Finder, or your Linux file manager into the terminal, and press Enter. Then run the displayed command. If dragging does not insert a path, use the file manager's address bar or path-copy action. Copy the printed local path into the Passport field; do not enter the smb:// address.",
+              "instruction": "Open a local terminal. Type cd followed by one space, drag the authorized ETH-username folder from File Explorer, Finder, or your Linux file manager into the terminal, and press Enter. Then run the displayed command. If dragging does not insert a path, use the file manager's address bar or path-copy action. Copy the printed local path into the Passport field; do not enter the smb:// address. Paths with spaces must stay quoted as inserted by the file manager. An SMB network address is not the mounted filesystem path.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not guess a hidden mount path. Ask for the approved mount method if the file manager cannot expose a local path.",
@@ -5920,7 +6015,7 @@
               "instruction": "Enter your ETH username and the mounted username-folder path in the local confirmation fields. Check my work creates a random test file, reads it, and removes it inside that boundary.",
               "links": [],
               "machine": "local",
-              "on_failure": "Do not broaden permissions or use chmod 777. For folder ownership or access, message your supervisor through your usual private ETH or lab channel. If the folder works but Check my work fails, use the public help form with only your operating system, this mission title, and the failed step; omit the path and username.",
+              "on_failure": "Stop and inspect the named failure. If cleanup failed, request private support for the affected username folder and exact check; do not broaden permissions, test the root or delete other files.",
               "on_success": "Confirm the storage rules.",
               "platforms": [
                 "all"
