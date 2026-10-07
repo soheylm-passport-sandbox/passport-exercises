@@ -58,7 +58,7 @@
           }
         ],
         "recipe": {
-          "intro": "The agent may edit only storage-plan.md. The protected scope-canary.txt file, repository settings, dependencies, and real data are outside scope.",
+          "intro": "Read the fictional plan manually, then review and authorize one file edit. Keep the protected file and unrelated folders unchanged.",
           "steps": [
             {
               "commands": [],
@@ -78,7 +78,7 @@
               "commands": [],
               "expected": "You can describe the intended P:, D:, C:, and heavy-compute rules.",
               "id": "manual-baseline",
-              "instruction": "Read the practice README and unsafe storage plan. Identify the four required corrections and the one file the agent may edit.",
+              "instruction": "Read the unsafe fictional plan before asking the agent. Identify the four corrections yourself and name the only editable file. scope-canary.txt is a protected file whose unchanged content checks that boundary.",
               "links": [],
               "machine": "local",
               "on_failure": "Return to the systems mission before delegating the task.",
@@ -120,7 +120,7 @@
               ],
               "expected": "Only the intended file edit is authorized.",
               "id": "review-actions",
-              "instruction": "If the plan is correct, paste the authorization below. Do not enable auto-approval. Reject installs, permission changes, access to real files, destructive commands, and edits outside storage-plan.md.",
+              "instruction": "Compare the proposed plan with your four corrections. Use the existing narrow authorization below only if it stays within the named file and permissions. Reject extra edits, installs, permission changes, destructive commands and real-file access. Do not enable auto-approval.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop the agent; inspect repository state before continuing.",
@@ -180,7 +180,7 @@
               ],
               "expected": "The diff is limited to the four requested policy corrections.",
               "id": "inspect-diff",
-              "instruction": "Check that the plan makes P: durable, D: temporary, C: unsuitable for project data, and Euler or approved compute the place for heavy work. Write each policy correction as its own sentence or bullet, connecting the location with its role. Keep the compute task and its destination together; their order does not matter. Remove contradictory claims left from the unsafe plan.",
+              "instruction": "Check that the plan makes P: durable, D: temporary, C: unsuitable for project data, and Euler or approved compute the place for heavy work. Write each policy correction as its own sentence or bullet, connecting the location with its role. Keep the compute task and its destination together; their order does not matter. Remove contradictory claims left from the unsafe plan. Review the actual diff independently; an agent summary is not verification.",
               "links": [],
               "machine": "local",
               "on_failure": "Correct the one allowed file manually or start a new chat with the missing constraint stated explicitly.",
@@ -249,6 +249,33 @@
         "action": "Configure one AI coding tool, open only the fictional practice repository, and prove that a read-only request changes no file.",
         "expected_result": "The selected agent inspects the fictional practice repository without changing it, and the learner knows which account pays for any usage.",
         "kind": "guided_local",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "The request authorized reading fictional files, not installing software or running commands. Reject the extra action and inspect state independently. A model suggestion does not expand your permission.",
+            "hint": "What did this request actually authorize?",
+            "id": "permission_prompt",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Approve it because the agent says it is needed."
+              },
+              {
+                "id": "correct",
+                "label": "Reject the install, stop the request and inspect the practice folder before retrying with the stated boundary."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Enable all future tool approvals to finish setup faster."
+              }
+            ],
+            "prompt": "The read-only request makes an agent propose a terminal install. Which action stays inside the lesson?",
+            "type": "single"
+          }
+        ],
         "machine": "local",
         "questions": [
           {
@@ -301,13 +328,13 @@
           }
         ],
         "recipe": {
-          "intro": "An artificial-intelligence (AI) model generates a response. A provider supplies access and billing. A coding agent may read files and request tools. An editor is the application where you see and control it. An application programming interface (API) key is a secret that authorizes programmatic service use and may spend money. Identify these parts first. Use the no-cost Copilot Student option if eligible; any personal paid service remains your financial responsibility.",
+          "intro": "Choose one setup. Use fictional practice files, approve no paid purchase for onboarding, and keep the request read-only.",
           "steps": [
             {
               "commands": [],
               "expected": "You can name the role of every component in the chosen setup.",
               "id": "components",
-              "instruction": "Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the coding agent can read files or request tools; the editor is the application where you control it. For example, OpenRouter is a gateway, not a coding agent. You do not need to configure a tool protocol for this lesson.",
+              "instruction": "Use the chosen setup table above. The editor is where you review work; the agent can request tools; the model generates a response; its provider or gateway supplies access and billing. No tool protocol setup is required.",
               "links": [
                 {
                   "label": "Read agents and interfaces",
@@ -326,7 +353,7 @@
               "commands": [],
               "expected": "You have selected one option and can name its account owner, payer, editor, and agent interface.",
               "id": "choose-route",
-              "instruction": "Use exactly one option. Eligible students use VS Code with GitHub Copilot Student. If you deliberately choose Zed with a personal OpenRouter account, skip the two Copilot-only steps and follow the linked Zed procedure. Use another option only when its owner has supplied written setup, data, cost, and permission rules. If no option is available, leave this lesson pending and continue the non-AI lessons.",
+              "instruction": "Choose one complete setup. Eligible students use VS Code/Copilot. Zed/personal OpenRouter is an optional paid alternative, not a purchase to pass. Other tools need written owner-approved data, cost and permission rules. If access is unavailable, leave this AI lesson pending and continue non-AI lessons; manual work does not award an AI pass.",
               "links": [
                 {
                   "label": "Compare supported AI setup options",
@@ -362,6 +389,7 @@
               "platforms": [
                 "all"
               ],
+              "setup_route": "copilot",
               "title": "Copilot option: activate the Student benefit"
             },
             {
@@ -385,16 +413,17 @@
               "platforms": [
                 "all"
               ],
+              "setup_route": "copilot",
               "title": "Copilot option: connect VS Code"
             },
             {
               "commands": [],
               "expected": "For the Zed option, a dedicated limited key is stored outside files and Git. For the Copilot option, this step is skipped.",
               "id": "optional-paid",
-              "instruction": "Do this step only for the Zed option; Copilot users skip it. Follow the linked procedure from start to finish: create a separate personal key, set a low key limit before use, and enter it only through Zed's provider UI so the operating-system keychain stores it. The lab does not provide credits, reimburse charges, or accept liability for personal usage or loss.",
+              "instruction": "Only for the deliberately selected Zed alternative: follow the linked optional procedure, then return to Prepare practice folder here. Copilot users skip this step. Personal spending, loss and liability remain yours; the lab provides no credits or reimbursement. Enter a key only through the supported secret store, never a project file or prompt.",
               "links": [
                 {
-                  "label": "Read the optional Zed and OpenRouter procedure",
+                  "label": "Optional paid alternative only: Zed/OpenRouter setup",
                   "url": "../../../docs/reference/ai/zed-openrouter.md"
                 }
               ],
@@ -404,6 +433,7 @@
               "platforms": [
                 "all"
               ],
+              "setup_route": "zed",
               "title": "Zed option: follow the personal OpenRouter procedure"
             },
             {
@@ -459,13 +489,13 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The command prints nothing: no AI practice file, editor setting, transcript, or credential file changed.",
+              "expected": "This limited Git status prints nothing for the named paths; independently confirm the response attempted no edit or command.",
               "id": "verify-clean",
-              "instruction": "Run the limited Git status command at the practice repository's root, meaning its top-level folder. It checks the AI practice files and common editor or credential-file locations without confusing this lesson with unfinished files from another exercise.",
+              "instruction": "Run the existing limited Git status command at the practice repository root. An empty result means the named practice and common settings paths did not change; it is not an audit of every secret or service on your computer. Inspect any output before continuing.",
               "links": [],
               "machine": "local",
-              "on_failure": "Do not commit the change; remove it safely and rotate any exposed credential.",
-              "on_success": "Complete the questions and run Check my work.",
+              "on_failure": "Stop and inspect the named change; preserve intended manual work. If a credential was exposed, use the private incident procedure.",
+              "on_success": "Confirm the read-only result you observed, then answer the two questions.",
               "platforms": [
                 "all"
               ],

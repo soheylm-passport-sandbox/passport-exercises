@@ -2,34 +2,46 @@
 
 ## Outcome
 
-Use an AI coding agent, a tool that can inspect and change project files, on one fictional file. Review every proposed action, then verify the Git diff and result yourself.
+Authorize one small fictional file edit, then verify its scope and policy
+meaning independently. No agent transcript is uploaded.
 
 ## Concept
 
-An AI coding agent can inspect repository files, propose or make edits, and request terminal commands. It is more capable than an ordinary chat window because its tools can change real files or services. The person who authorizes those actions remains responsible. This exercise includes a protected file named `scope-canary.txt`; if it changes, the agent exceeded the permitted scope.
+An AI coding agent can request actions that change files or services; an
+ordinary chat window only supplies text unless separately given tools. The
+person who authorizes an action remains responsible for its scope and result.
+Verify the final diff and tests required by the task. This exercise checks the
+plan and protected file, rather than running a program test suite. This practice folder contains
+an unsafe storage plan and scope-canary.txt, a protected file that must not change.
 
-Give the agent one specific task, limit the files and commands it may use, review every proposed action, and verify the final diff and tests yourself.
+## Learning Challenge
+
+Read the unsafe plan first. What needs correcting, and what must stay untouched?
+Ask for a plan, compare it with your own reasoning, then authorize only the
+reviewed edit. Read the actual diff before accepting any claimed success.
 
 ## Worked Example
 
-The agent changes only the allowed file. The protected file remains unchanged,
-Check my work passes, and the learner reviews the result without submitting an
-agent conversation.
+<details>
+<summary>Review one proposed action</summary>
 
-Check these points:
+Check the file, intended correction, forbidden actions and independent
+verification. A correct sentence does not excuse another file changing.
+Keep each storage role/location together in a sentence or bullet and remove
+contradictions. The shared local/remote rules accept documented phrasing variants,
+not arbitrary contradictory plans. Check the canary and diff yourself.
 
-- **What is a safe agent task?** One specific outcome with named files, constraints, and verification.
-- **Who verifies the final diff and tests?** You do, even if the agent reports success.
+</details>
 
 ## Common Trap
 
-Granting a broad task, sharing protected data, or accepting a claimed test result without checking the diff and rerunning it.
+Approve only the bounded plan and inspect the actual changed files.
 
 ## Your Action
 
 Give an agent one small fictional task, review its plan and diff, then verify the result yourself.
 
-**Follow these steps in order.** The agent may edit only storage-plan.md. The protected scope-canary.txt file, repository settings, dependencies, and real data are outside scope.
+**Follow these steps in order.** Read the fictional plan manually, then review and authorize one file edit. Keep the protected file and unrelated folders unchanged.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -55,7 +67,7 @@ Press Prepare practice folder in this step and run the displayed enter-folder co
 
 **Where:** The laptop or desktop in front of you
 
-Read the practice README and unsafe storage plan. Identify the four required corrections and the one file the agent may edit.
+Read the unsafe fictional plan before asking the agent. Identify the four corrections yourself and name the only editable file. scope-canary.txt is a protected file whose unchanged content checks that boundary.
 
 **Expected:** You can describe the intended P:, D:, C:, and heavy-compute rules.
 
@@ -85,7 +97,7 @@ Read README.md, storage-plan.md, and scope-canary.txt in this folder. Explain th
 
 **Where:** The laptop or desktop in front of you
 
-If the plan is correct, paste the authorization below. Do not enable auto-approval. Reject installs, permission changes, access to real files, destructive commands, and edits outside storage-plan.md.
+Compare the proposed plan with your four corrections. Use the existing narrow authorization below only if it stays within the named file and permissions. Reject extra edits, installs, permission changes, destructive commands and real-file access. Do not enable auto-approval.
 
 **Paste this into the agent:**
 
@@ -133,7 +145,7 @@ git status --short -- workspace/agent_task
 
 **Where:** The laptop or desktop in front of you
 
-Check that the plan makes P: durable, D: temporary, C: unsuitable for project data, and Euler or approved compute the place for heavy work. Write each policy correction as its own sentence or bullet, connecting the location with its role. Keep the compute task and its destination together; their order does not matter. Remove contradictory claims left from the unsafe plan.
+Check that the plan makes P: durable, D: temporary, C: unsuitable for project data, and Euler or approved compute the place for heavy work. Write each policy correction as its own sentence or bullet, connecting the location with its role. Keep the compute task and its destination together; their order does not matter. Remove contradictory claims left from the unsafe plan. Review the actual diff independently; an agent summary is not verification.
 
 **Open PowerShell on your Windows computer, then run:**
 

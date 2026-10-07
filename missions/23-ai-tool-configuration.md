@@ -2,35 +2,50 @@
 
 ## Outcome
 
-An AI coding tool can inspect project files and propose edits or commands.
-Set up one such tool for the fictional practice project. Learn which account
-provides access, what may cost money, where any secret access key is stored,
-and how to confirm that setup changed no project file.
+An AI coding tool can inspect project files and request actions. Configure one
+for a read-only check on fictional files; no paid purchase is required to pass.
 
 ## Concept
 
-An artificial-intelligence (AI) setup contains several parts. A model generates text. A provider or gateway supplies access and billing. A coding agent uses the model while reading files or requesting tools. An editor is the application where you view, control, and review that work. An application programming interface (API) key is a secret that authorizes programmatic service use and may spend money.
+An editor is the application where you read and change code. Its coding agent
+requests tools; a model generates text in response. A provider or gateway supplies model access and billing.
 
-Choose one complete setup option, not only a model name. Account ownership, cost limits, permissions, and data rules still apply independently.
+| Chosen setup | Access/cost owner | Permission for this test |
+| --- | --- | --- |
+| VS Code/Copilot student route | Intended verified GitHub account and current included benefit | Read fictional practice files only |
+| Optional Zed/OpenRouter route | Your personal account and charges | Same read-only boundary; no purchase obligation |
+
+An extension is an add-on inside the editor. An application programming interface (API) key is a secret authorizing service use and spending. Keep API keys private and use only the supported secret store. The official questions include one gateway distinction: OpenRouter
+is a provider/gateway, not the coding agent. You do not need to configure a tool protocol such as MCP or ACP for this test.
+
+## Learning Challenge
+
+The tool is configured, but its first response asks to install a package.
+Would approving that satisfy this read-only request? Decide before acting.
 
 ## Worked Example
 
-The components are classified correctly and no credential appears in a file, prompt, screenshot, or Git diff.
+<details>
+<summary>What a successful read-only check establishes</summary>
 
-Check these points:
+The response names files actually present, no edit or command was attempted,
+and the independent limited Git status check is empty. This checks the exercise's
+scope, not the whole computer. Use the intended verified account and stop at a
+paid checkout. Unavailable access leaves this AI lesson pending while non-AI
+work continues; a manual alternative is not an AI completion.
 
-- **What is OpenRouter in this stack?** A provider or gateway for model access, routing, billing, and limits.
-- **Where may an API key be stored?** In the supported operating-system keychain or approved secret store.
+</details>
 
 ## Common Trap
 
-Calling OpenRouter an agent, confusing a model with an editor, or pasting an API key into settings tracked by Git.
+Review permission before approving a proposed action. Keep keys in the
+supported secret store.
 
 ## Your Action
 
 Configure one AI coding tool, open only the fictional practice repository, and prove that a read-only request changes no file.
 
-**Follow these steps in order.** An artificial-intelligence (AI) model generates a response. A provider supplies access and billing. A coding agent may read files and request tools. An editor is the application where you see and control it. An application programming interface (API) key is a secret that authorizes programmatic service use and may spend money. Identify these parts first. Use the no-cost Copilot Student option if eligible; any personal paid service remains your financial responsibility.
+**Follow these steps in order.** Choose one setup. Use fictional practice files, approve no paid purchase for onboarding, and keep the request read-only.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -44,7 +59,7 @@ before continuing if these words are new.
 
 **Where:** This web page in your browser
 
-Identify each part of the setup: the model generates a response; the provider or gateway supplies access and billing; the coding agent can read files or request tools; the editor is the application where you control it. For example, OpenRouter is a gateway, not a coding agent. You do not need to configure a tool protocol for this lesson.
+Use the chosen setup table above. The editor is where you review work; the agent can request tools; the model generates a response; its provider or gateway supplies access and billing. No tool protocol setup is required.
 
 - [Read agents and interfaces](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/agents-and-interfaces.md)
 
@@ -58,7 +73,7 @@ Identify each part of the setup: the model generates a response; the provider or
 
 **Where:** This web page in your browser
 
-Use exactly one option. Eligible students use VS Code with GitHub Copilot Student. If you deliberately choose Zed with a personal OpenRouter account, skip the two Copilot-only steps and follow the linked Zed procedure. Use another option only when its owner has supplied written setup, data, cost, and permission rules. If no option is available, leave this lesson pending and continue the non-AI lessons.
+Choose one complete setup. Eligible students use VS Code/Copilot. Zed/personal OpenRouter is an optional paid alternative, not a purchase to pass. Other tools need written owner-approved data, cost and permission rules. If access is unavailable, leave this AI lesson pending and continue non-AI lessons; manual work does not award an AI pass.
 
 - [Compare supported AI setup options](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/README.md)
 
@@ -104,9 +119,9 @@ Do this step only for the Copilot option. VS Code is the editor used here. An ex
 
 **Where:** This web page in your browser
 
-Do this step only for the Zed option; Copilot users skip it. Follow the linked procedure from start to finish: create a separate personal key, set a low key limit before use, and enter it only through Zed's provider UI so the operating-system keychain stores it. The lab does not provide credits, reimburse charges, or accept liability for personal usage or loss.
+Only for the deliberately selected Zed alternative: follow the linked optional procedure, then return to Prepare practice folder here. Copilot users skip this step. Personal spending, loss and liability remain yours; the lab provides no credits or reimbursement. Enter a key only through the supported secret store, never a project file or prompt.
 
-- [Read the optional Zed and OpenRouter procedure](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/zed-openrouter.md)
+- [Optional paid alternative only: Zed/OpenRouter setup](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/zed-openrouter.md)
 
 **Expected:** For the Zed option, a dedicated limited key is stored outside files and Git. For the Copilot option, this step is skipped.
 
@@ -148,7 +163,7 @@ Read the repository instructions and list the top-level files and folders you ca
 
 **Where:** The laptop or desktop in front of you
 
-Run the limited Git status command at the practice repository's root, meaning its top-level folder. It checks the AI practice files and common editor or credential-file locations without confusing this lesson with unfinished files from another exercise.
+Run the existing limited Git status command at the practice repository root. An empty result means the named practice and common settings paths did not change; it is not an audit of every secret or service on your computer. Inspect any output before continuing.
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -168,11 +183,11 @@ git status --short -- workspace/agent_task .vscode .zed .env .env.local
 git status --short -- workspace/agent_task .vscode .zed .env .env.local
 ```
 
-**Expected:** The command prints nothing: no AI practice file, editor setting, transcript, or credential file changed.
+**Expected:** This limited Git status prints nothing for the named paths; independently confirm the response attempted no edit or command.
 
-**Continue when:** Complete the questions and run Check my work.
+**Continue when:** Confirm the read-only result you observed, then answer the two questions.
 
-**If not:** Do not commit the change; remove it safely and rotate any exposed credential.
+**If not:** Stop and inspect the named change; preserve intended manual work. If a credential was exposed, use the private incident procedure.
 
 The Passport presents the questions and required confirmation in the
 browser. Do not create or edit a submission JSON file by hand.
@@ -183,6 +198,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. The read-only request makes an agent propose a terminal install. Which action stays inside the lesson?
+
+   - Approve it because the agent says it is needed.
+   - Reject the install, stop the request and inspect the practice folder before retrying with the stated boundary.
+   - Enable all future tool approvals to finish setup faster.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+The request authorized reading fictional files, not installing software or running commands. Reject the extra action and inspect state independently. A model suggestion does not expand your permission.
+
+</details>
 
 ## If Blocked
 
