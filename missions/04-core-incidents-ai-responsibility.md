@@ -2,44 +2,57 @@
 
 ## Outcome
 
-Stop and report an IT incident safely. An AI coding agent is software that can
-inspect project files and request actions; learn who remains responsible when
-it or other automation performs work.
+Choose the order of a safe fictional response and identify who owns an
+AI-assisted action. No real report, credential or job is changed by this exercise.
 
 ## Concept
 
-An incident is a real or suspected loss of confidentiality, access, control, or data. Stop the harmful action, preserve useful evidence, verify containment, and report through the private route.
+An incident is a suspected loss of confidentiality, access, control or data.
+An AI coding agent can read files and request edits or commands. Automation is software that performs steps without someone typing each one;
+responsibility remains human.
 
-An AI coding agent is a tool that can read project files and request edits or commands. Automation is software that performs steps without a person typing each one. The person who authorizes and reviews either kind of action remains responsible for it.
+In this fictional case, an agent puts a token in a public commit. The person
+who authorized the action must stop further sharing, contain the credential's
+use, verify containment and report privately. A reassuring agent reply is not
+independent verification. In the runaway Euler job case, Slurm schedules numbered
+jobs and scancel stops a specified job. Run no job command for this exercise.
 
-One example is a runaway Euler job: a program submitted to the shared cluster through Slurm that is consuming resources by mistake. Its numeric job ID identifies it; `scancel` stops it, `squeue` shows queued or running jobs, and `sacct` shows recorded job history. These commands are introduced here only so the fictional scenario is understandable; the Euler track teaches how to use them.
+**A real incident:** stop the exercise and use the [private incident procedure](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md).
+Public Passport submissions and help issues are never incident channels.
+
+## Learning Challenge
+
+The agent says it deleted the token. What still needs verifying at the service?
+Choose the response order before opening the explanation.
 
 ## Worked Example
 
-The answer preserves evidence, contains risk, uses the private reporting path, and leaves accountability with a person.
+<details>
+<summary>Containment and reporting are separate steps</summary>
 
-Check these points:
+Stop the harmful action; revoke or rotate the exposed credential; verify it
+cannot be used; preserve evidence with credentials and private details removed and report through the private
+route. Removing text alone does not disable access. The authorizing person
+remains responsible for verification and consequences.
 
-- **Put the first incident-response actions in order.** Stop the risky action and preserve evidence. -> Contain or revoke what can cause further harm. -> Report through the private incident path. -> Document verified facts and follow-up.
-- **Who owns an action taken by an AI coding agent?** The person who authorized and reviewed the action.
-- **A mistaken Euler job is consuming resources. Put the immediate actions in order.** Record the job ID and stop it with scancel. -> Confirm with squeue or sacct that it stopped. -> Inspect the script and first meaningful error before resubmitting.
-- **The only copy of a result was left in scratch and is now missing. What is the honest response?** Stop creating new files there, check approved recovery options, report the loss, and reconstruct only from recorded inputs if possible.
+</details>
 
 ## Common Trap
 
-Trying to make the incident look harmless before preserving evidence or notifying the owner.
+Use the private incident route for evidence and verify containment at the
+affected service.
 
 ## Your Action
 
 Practise a safe incident response and confirm who remains responsible for automated actions.
 
-**Follow these steps in order.** Use only the fictional scenarios below. If one resembles a current event, leave the exercise and use the private incident path.
+**Follow these steps in order.** Use fictional examples only. For a real incident stop this exercise and use the private route; do not post evidence publicly.
 
 ### 1. Understand the incident examples
 
 **Where:** This web page in your browser
 
-An incident is a suspected loss of confidentiality, access, control, or data. An AI coding agent is a tool that can read project files and request edits or commands. Automation is software that performs steps without a person typing each one. In the Euler example, Slurm is the scheduler and a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.
+Use the fictional case above. For the later Euler scenario, Slurm is the scheduler and a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs and sacct shows recorded history. Decide the response order here; run no command.
 
 - [Read the incident and help procedure](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md)
 
@@ -65,11 +78,11 @@ Do not enter real names, account identifiers, logs, credentials, job output, or 
 
 **Where:** This web page in your browser
 
-Stop the known harmful action without destroying evidence. For a runaway Euler job, record its job ID and cancel that job.
+In the fictional case, stop further sharing and disable or replace the exposed token through its service. For the fictional runaway job, record its job ID and stop that exact job. Do not destroy useful evidence or act on a real account/job to practise.
 
 - [Choose the correct private incident route](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md)
 
-**Expected:** The immediate harmful action has stopped.
+**Expected:** You identify the known harmful action and the affected credential or recorded job.
 
 **Continue when:** Verify the stopped state.
 
@@ -83,7 +96,7 @@ Check the affected service directly. Examples include confirming a token is revo
 
 - [Choose the correct private incident route](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md)
 
-**Expected:** The service reports the contained state.
+**Expected:** You can name the direct service check that would confirm containment.
 
 **Continue when:** Continue to reporting.
 

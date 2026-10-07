@@ -2,37 +2,55 @@
 
 ## Outcome
 
-Learn which sign-in information must stay secret, protect your GitHub and ETH
-accounts, and practise what to do if secret information is exposed.
+Decide which sign-in information must stay secret. Keep or set up the required
+account protections, then answer fictional scenarios. Do not submit any secret.
 
 ## Concept
 
-An account is your personal identity on a service. A credential, such as a password, token, private key, or recovery code, proves that identity and must not be shared. A token is secret text that authorizes account or service access. An SSH key pair has a private key that stays on your computer and a public file ending in `.pub` that may be given to the named service. A password manager is an encrypted application for storing unique passwords and recovery information. Two-factor authentication (2FA) asks for a second proof after the password, which limits the damage if the password is stolen.
+An account is your personal identity at a service. A credential proves access;
+keep its secret part private. A password manager encrypts unique passwords and
+recovery information.
+Two-factor authentication (2FA) asks for another proof after a password.
+Keep an approved setup that already works; the steps below explain missing setup.
 
-A passphrase is a password-like secret that unlocks an SSH private key on your
-computer. It does not make the private key safe to share.
+| Item | Boundary |
+| --- | --- |
+| Password, token, recovery code | Approved private secret store; never a public record |
+| SSH private key | Stays private on its computer |
+| SSH public key (the .pub file) | May be given to the named service |
+| Example settings file | Setting names and fictional values only |
 
-Commands and automated tools run under your identity. A leaked credential may provide access to private repositories, research data, or shared compute even when your password was not disclosed.
+A token authorizes service access. An SSH key pair separates the public key
+from the private proof. A passphrase is a password protecting the private-key file;
+it does not make the file safe to share. Git's ignore rule prevents recording
+selected files; it is not encryption or permission to disclose their contents.
+
+## Learning Challenge
+
+A fictional token has entered a public commit. Would deleting that file stop
+someone using the token? Decide the containment action before the explanation.
 
 ## Worked Example
 
-Every credential-critical answer is correct before the mission can pass.
+<details>
+<summary>Why deleting the file is insufficient</summary>
 
-Check these points:
+Copies and history can retain it. The service must disable or replace the
+exposed credential. Preserve evidence with credentials and private details removed and use the private reporting
+route. This is a fictional decision; do not disable a healthy account to practise.
 
-- **A token may have been exposed. What comes first?** Revoke or rotate it, then report through the private incident path.
-- **When a service asks for an SSH key, which file may be shared?** Only the public key ending in .pub.
-- **How should you verify GitHub two-factor authentication without exposing a secret?** Check the authentication status in your own GitHub security settings; never submit a recovery code.
+</details>
 
 ## Common Trap
 
-Pasting a real token, private key, recovery code, or screenshot to prove that it exists.
+Keep private keys private even when protected by a passphrase. Use fictional
+values in example files.
 
 ## Your Action
 
 Set up the minimum account protections, learn what may never be submitted, then answer the credential scenarios.
 
-**Follow these steps in order.** Use your own account pages. Never paste a password, token, private key, one-time code, or recovery code into the Passport.
+**Follow these steps in order.** Keep working approved protections. Set up only missing safeguards, then answer fictional scenarios. Publish no credential or recovery code.
 
 ### 1. Prepare an approved password manager
 
@@ -68,7 +86,7 @@ Two-factor authentication (2FA) asks for a second proof after your password. Ope
 
 **Where:** This web page in your browser
 
-Store local secrets only in an approved secret store or an ignored local file. Ignored means Git is configured not to record that file. A token is secret text that authorizes account or service access. An SSH key pair has a private key that stays on your computer and a public file ending in .pub that may be given to the named service. A sample environment file may show the names of settings a program needs, but never their real secret values.
+Use the secret/public boundary above. Ignored means Git is configured not to record a file, not that the file is safe to share. An example environment file names settings without their real values. Keep working protections; do not revoke a healthy credential for this exercise.
 
 **Expected:** No secret value is inside any file that Git is asked to record or share.
 
@@ -80,13 +98,13 @@ Store local secrets only in an approved secret store or an ignored local file. I
 
 **Where:** This web page in your browser
 
-If a credential may be exposed, revoke it, meaning disable it, or rotate it, meaning replace it with a new one. Do this first, preserve useful evidence, and report through the private incident path. Deleting a message or a recorded Git version is not sufficient.
+For the fictional exposure, decide what stops further credential use. In a real exposure, follow the private incident procedure immediately: revoke (disable) or rotate (replace) the affected credential, preserve evidence with credentials and private details removed and report. Deleting a message or Git version does not contain it. Do not perform a real revocation for the fictional question.
 
 - [Open the incident and help procedure](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/incidents-and-help.md)
 
-**Expected:** The compromised credential can no longer be used.
+**Expected:** You can name the containment action for the fictional credential and the private reporting route.
 
-**Continue when:** Document only non-secret facts and continue.
+**Continue when:** Complete the fictional scenarios without performing a real revocation.
 
 **If not:** Stop using the affected account. Use the linked incident procedure to contact your supervisor or lab IT, ETH cyber incident support, or ETH High-Performance Computing (HPC) support, according to the affected system.
 
