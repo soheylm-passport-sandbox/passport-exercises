@@ -2,31 +2,40 @@
 
 ## Outcome
 
-Correct a practice script that starts many similar Euler tasks. Limit how many
-can run at once and give every task its own log file.
+Review the local fictional array file, limit simultaneous tasks and make its
+log names traceable. This exercise never submits an array.
 
 ## Concept
 
-A Slurm job array submits many similar tasks from one script. The array range sets the total number of tasks; the value after `%` limits how many may run at the same time. This concurrency cap controls simultaneous demand, not total work.
+An array runs similar tasks from one script. The range sets total tasks; the
+number after % is the concurrency cap, or maximum allowed to run together.
+Each running task reserves its own resources. The cap limits simultaneous
+demand, not the amount of work and not your other jobs. A distinct log name
+keeps each task's output separate, so it can be traced and does not overwrite another.
 
-Every task also needs a distinct log name, and the combined CPU, memory, and GPU request must be calculated before submission.
+## Learning Challenge
+
+The unsafe file allows 100 tasks without a cap. Before opening the supplied
+repair, identify the unbounded setting and predict what a cap of one changes.
+This guided assessment requires exactly --array=0-9%1 and the shown log form.
+Do not paste file directives into a terminal or run sbatch.
 
 ## Worked Example
 
-The checker accepts exactly ten tasks with at most one running at a time and
-distinct logs for every task. No command submits the practice file to Euler.
+<details>
+<summary>Check the separate concurrency calculation</summary>
 
-Check these points:
+With cap three, two CPUs and 4 GiB per CPU, at most three tasks reserve
+3 x 2 = 6 CPUs and 3 x 2 x 4 = 24 GiB together. Add other running jobs before
+any future approved submission. %A labels the parent array and %a its task
+index; %j is also a distinct running job ID, but does not directly label both.
 
-- **What does %4 mean in --array=0-31%4?** At most four array tasks may run concurrently.
-- **Which placeholders show the parent array and task index in log filenames?** %A for the parent job and %a for the task index.
+</details>
 
 ## Common Trap
 
-Submitting a large array without a concurrency cap, or giving every task the
-same fixed log filename. `%j` is a distinct job ID for each array task; it does
-not inherently cause collisions. This exercise requires `%A_%a` so filenames
-also show which array and task index produced the log.
+Confusing total tasks with running tasks, or omitting other arrays and jobs.
+A fixed shared filename can collide; %j does not inherently cause a collision.
 
 ## Your Action
 
@@ -46,7 +55,7 @@ before continuing if these words are new.
 
 **Where:** This web page in your browser
 
-A job array creates many similar Slurm tasks from one script. The range sets the total number of tasks. The value after %, called the concurrency cap, limits how many tasks may run at the same time. Each task still reserves its own CPU, memory, GPU, and time and needs a distinct log name.
+Use the range and cap distinction above when reading the fictional file. Before opening a repair, predict the total task count and how many could run together.
 
 - [Open the job-array lab](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/labs/euler-job-arrays.md)
 
@@ -72,7 +81,7 @@ Press Prepare practice folder, enter it, and open workspace/slurm/array_job.slur
 
 **Where:** The laptop or desktop in front of you
 
-Read the array and log settings. The practice file allows 100 tasks without a concurrency cap. Its %j log names use each task's distinct job ID, but do not directly show the parent array and task index. This exercise uses %A_%a to make that relationship visible.
+Read the array and two log directives in the unsafe local file. Which setting bounds simultaneous demand? Which filename placeholders identify the parent and index? Compare your reasoning with the repair steps afterwards; do not submit this file.
 
 **Expected:** You can explain the missing concurrency cap and why parent/index labels make array logs easier to trace.
 
@@ -86,11 +95,16 @@ Read the array and log settings. The practice file allows 100 tasks without a co
 
 Replace the unsafe array directive with the exact line below. It creates ten tasks, numbered 0 through 9, and allows at most one to run at a time.
 
+<details>
+<summary>Show the required cap-one repair</summary>
+
 **Put this in the named Bash file:**
 
 ```bash
 #SBATCH --array=0-9%1
 ```
+
+</details>
 
 **Expected:** The directive is exactly --array=0-9%1.
 
@@ -104,12 +118,17 @@ Replace the unsafe array directive with the exact line below. It creates ten tas
 
 Replace both log directives with the two exact lines below. %A is the parent job ID and %a is the array task index.
 
+<details>
+<summary>Show the required parent/index log lines</summary>
+
 **Put this in the named Bash file:**
 
 ```bash
 #SBATCH --output=logs/%x_%A_%a.out
 #SBATCH --error=logs/%x_%A_%a.err
 ```
+
+</details>
 
 **Expected:** Each array task has a distinct output and error path.
 
@@ -121,7 +140,7 @@ Replace both log directives with the two exact lines below. %A is the parent job
 
 **Where:** The laptop or desktop in front of you
 
-Before using any array in a real project, multiply the cap by each task's CPU, memory, and GPU request. For --array=0-9%3 with 2 CPUs and 4 GiB per CPU, three tasks can run together: 3 x 2 = 6 CPUs and 3 x 2 x 4 GiB = 24 GiB. Then add your other active jobs and arrays; the cap applies only to this array.
+The practice repair uses ten tasks with cap one. For the separate question, first calculate the simultaneous demand of cap three with two CPUs and 4 GiB per CPU, then compare with the model above. Add other active jobs: this cap limits only this array. No real array is submitted.
 
 **Expected:** You can calculate the maximum simultaneous tasks, CPUs, system memory, and GPUs before submission.
 
@@ -168,6 +187,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. Another job already uses two CPUs and 6 GiB. An array has eight tasks, cap two, and each task requests one CPU and 3 GiB. What maximum combined reservation should you review?
+
+   - Eight CPUs and 24 GiB, ignoring the already-running job.
+   - Four CPUs and 12 GiB: two array tasks plus the existing job.
+   - Two CPUs and 6 GiB, because the cap covers every job.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+Two running array tasks reserve 2 CPUs and 6 GiB. Add the existing 2 CPUs and 6 GiB: 4 CPUs and 12 GiB total. The eight tasks determine total work, not simultaneous demand; the cap does not constrain other jobs.
+
+</details>
 
 ## If Blocked
 
