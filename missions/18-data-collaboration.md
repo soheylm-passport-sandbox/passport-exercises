@@ -2,39 +2,59 @@
 
 ## Outcome
 
-Plan how team members share code and data without editing one common project
-folder or granting unnecessarily broad file access.
+Decide how two fictional collaborators work without overwriting shared inputs.
+This is a design exercise; grant or repair no real permissions.
 
 ## Concept
 
-Code and data are shared differently. Each developer uses a separate Git clone for code and exchanges reviewed changes through GitHub. A Git working tree is the checked-out project folder, including its current branch, staged changes, and uncommitted edits; sharing one writable tree mixes those states and file ownership between people.
+Code and data are shared differently. Each editor has a separate Git clone.
+Its Git working tree holds that person's branch, staged and uncommitted changes.
+Shared data instead has a named information owner and approved location.
 
-Datasets, checkpoints, logs, and results instead use an approved shared data location with a named owner. Permissions state who may read or change files. A detailed access-control list (ACL) can grant extra permissions to named people or groups. Write boundaries name the folders each person or program may change. Version and cleanup rules identify the main approved copy and when temporary copies are removed.
+Mira analyses beam measurements; Leo reviews her report.
+
+| Area | Mira | Leo | Boundary |
+| --- | --- | --- | --- |
+| Main input | Read | Read only if approved for review | Neither replaces it |
+| Mira's run output | Write | Read the agreed report | Separate outputs for concurrent runs |
+| Code | Own clone | Own clone if editing | Reviewed changes through GitHub |
+
+Permissions state who may read or change files. An access-control list (ACL)
+expresses detailed permissions. A readable folder is not automatically writable.
+
+## Learning Challenge
+
+Leo cannot edit the main input. Is that a defect if his task is to review the
+report? Decide the necessary boundary before opening the explanation.
 
 ## Worked Example
 
-Collaborators have the minimum required access, shared data has an owner, and each developer keeps a separate Git clone.
+<details>
+<summary>Why read and write roles differ</summary>
 
-Check these points:
+The reviewer needs the agreed report and provenance, not permission to replace
+measurements. Diagnose owner, group, ACL and intended boundary before a narrow
+authorized repair. Preserve conflicting outputs for the owner to resolve;
+never use shared credentials or make everything writable.
 
-- **How should several students collaborate on code?** Each uses a separate clone and collaborates through branches and PRs.
-- **What is the safe response to a shared-folder permission problem?** Inspect the owner, group, detailed access-control list (ACL), and intended folder boundary before making a narrow change.
+</details>
 
 ## Common Trap
 
-Using one shared Git working tree or broad recursive permission changes such as `chmod 777` to solve collaboration problems.
+Keep separate Git working trees. Diagnose a failed permission before asking
+for a narrow owner-approved repair.
 
 ## Your Action
 
-Apply the collaboration rules to a fictional team sharing source data, derived results, code, and credentials.
+Reason about the fictional collaborators and answer six decisions. Change no real access or shared folder.
 
-**Follow these steps in order.** A dataset is a collection of research data. A checkpoint is a saved program or model state. Permissions state who may read or change files. A detailed access-control list (ACL) can grant extra permissions to named people or groups. Use only the fictional scenario below; do not apply permissions to a real shared folder in this mission.
+**Follow these steps in order.** Use only Mira and Leo's fictional collaboration. Decide the required boundaries; do not apply real permissions or share credentials.
 
 ### 1. Name the dataset owner
 
 **Where:** This web page in your browser
 
-Identify the person responsible for classification, access approval, retention, and final deletion.
+The fictional owner approves access and retention. Mira analyses the input; Leo reviews the report. Neither needs permission to replace the main input simply to do those tasks.
 
 **Expected:** One accountable information owner is named.
 
@@ -46,7 +66,7 @@ Identify the person responsible for classification, access approval, retention, 
 
 **Where:** This web page in your browser
 
-Give each role read or write access according to its task. Avoid world-writable permissions and shared credentials.
+Decide the read/write access each role needs. An access-control list expresses permissions, not authorization to broaden them. Change no actual permissions.
 
 **Expected:** No collaborator receives broader access than needed.
 
@@ -58,7 +78,7 @@ Give each role read or write access according to its task. Avoid world-writable 
 
 **Where:** This web page in your browser
 
-Keep source data that must not change separate from derived data, checkpoints, and logs. Name which folders each program may modify.
+Keep the main input read-only to analysts and reviewers. Each analysis writes its own run output. A write boundary names exactly which folders each person/program may change.
 
 **Expected:** Concurrent work cannot silently overwrite the main approved inputs.
 
@@ -70,7 +90,7 @@ Keep source data that must not change separate from derived data, checkpoints, a
 
 **Where:** This web page in your browser
 
-Each developer keeps a separate clone and shares code through GitHub. The shared data folder is not a shared Git working tree.
+Each editor uses their own Git working tree: a checkout with its own branch, staged and uncommitted changes. Reviewed changes travel through GitHub; shared data does not require a shared writable checkout.
 
 **Expected:** Git ownership and file permissions cannot collide inside one shared checkout.
 
@@ -82,7 +102,7 @@ Each developer keeps a separate clone and shares code through GitHub. The shared
 
 **Where:** This web page in your browser
 
-Record who resolves duplicate outputs, how versions are identified, where the durable copy lives, and how temporary work is cleaned.
+If reports conflict, preserve both copies and identifiers, then ask the owner which is authoritative. Do not overwrite one merely because its timestamp is newer.
 
 **Expected:** A collaborator can recover without guessing which copy is the main approved one.
 
@@ -94,7 +114,7 @@ Record who resolves duplicate outputs, how versions are identified, where the du
 
 **Where:** This web page in your browser
 
-Choose permissions, ownership, write boundaries, and recovery actions for the fictional scenario.
+Answer six scenario decisions. A private plan may support discussion, but this assessment submits choices and creates no access.
 
 **Expected:** The plan uses minimum access and separate code clones.
 

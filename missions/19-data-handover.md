@@ -2,32 +2,39 @@
 
 ## Outcome
 
-Create a handover that another authorized researcher can use without your
-personal account or computer.
+Complete one fictional handover document so its missing information is visible.
+This assessment checks fields, not a real successor's access or reproduction.
 
 ## Concept
 
-A project handover is the documented transfer of ownership, access, locations,
-and knowledge before a person leaves. It identifies the main approved code and
-data, explains how to reproduce important results, confirms that successors
-can access them, and names what may be cleaned up. A code revision is the exact
-recorded version used for a result; an environment definition records the
-software needed to run it.
+A project handover is a transfer of ownership, locations and knowledge needed
+to continue without someone's private account or machine. A code revision
+identifies exact code; an environment definition describes its required software.
 
-A directory full of unexplained files is not a handover, even if the files still exist.
+## Learning Challenge
+
+The template names a repository but lacks its revision, data location and
+expected result. What would stop a successor from verifying it? Read the file
+before opening field models. Choose fictional roles and a limitation; keep the
+labels, synthetic values and future-date rule of this guided exercise.
 
 ## Worked Example
 
-Another authorized person could locate, verify, rerun, and safely retire the fictional project without hidden personal dependencies.
+<details>
+<summary>What the missing fields let a successor check</summary>
 
-Check these points:
+An exact revision avoids guessing which code produced a result. Data locations
+distinguish the main copy from temporary work. A command plus expected result
+makes verification observable. Access/retention owners decide what can continue
+and what may be removed. This exercise describes those checks; it does not
+perform a real handover.
 
-- **What is a successful handover?** An authorized successor can locate, verify, rerun, and maintain or retire the work.
-- **How are credentials handled in a handover?** Rotate or provision access through approved channels; never place secrets in the document.
+</details>
 
 ## Common Trap
 
-Listing a folder without naming its owner, code revision, environment, access boundary, or retention decision.
+Verify the fields during a real private handover. Keep real paths out of this
+public fictional exercise.
 
 ## Your Action
 
@@ -59,7 +66,10 @@ Press Prepare practice folder, enter it, and open workspace/handover/project-han
 
 **Where:** The laptop or desktop in front of you
 
-Replace the two ownership placeholders with fictional role names. Use the example below so this public exercise contains no real person.
+Choose fictional role names for the current owner and authorized successor. Keep the field labels; open the model if needed. Put no real person in this public exercise.
+
+<details>
+<summary>Show a fictional model for these handover fields</summary>
 
 **Put this in the named Markdown file:**
 
@@ -68,6 +78,8 @@ Current owner: Example Researcher
 
 Authorized successor: Example Project Maintainer
 ```
+
+</details>
 
 **Expected:** Both ownership fields contain non-placeholder values.
 
@@ -79,7 +91,10 @@ Authorized successor: Example Project Maintainer
 
 **Where:** The laptop or desktop in front of you
 
-A code revision is the exact recorded version used for a result; an environment definition records the required software. Replace both placeholders with the fictional values below. A real handover would use the exact commit produced by git rev-parse HEAD and the committed environment file.
+Keep the field labels and fictional example values. The synthetic revision has 40 hexadecimal characters. It identifies an exact version, not proof of reproduction; a real handover uses its own reviewed commit and environment definition.
+
+<details>
+<summary>Show a fictional model for these handover fields</summary>
 
 **Put this in the named Markdown file:**
 
@@ -88,6 +103,8 @@ Revision: 0123456789abcdef0123456789abcdef01234567
 
 Environment definition: environment.yml at the recorded revision
 ```
+
+</details>
 
 **Expected:** The revision has exactly 40 hexadecimal characters and the environment field is complete.
 
@@ -99,7 +116,10 @@ Environment definition: environment.yml at the recorded revision
 
 **Where:** The laptop or desktop in front of you
 
-Replace both data placeholders with the fictional paths below. They demonstrate a durable project location and a temporary copy without exposing a real lab path.
+Use the model's fictional durable and temporary paths. Explain their different lifetimes before filling the fields. Real private paths belong only in an approved private handover.
+
+<details>
+<summary>Show a fictional model for these handover fields</summary>
 
 **Put this in the named Markdown file:**
 
@@ -108,6 +128,8 @@ Main approved data location: P:\ExampleSupervisor\example-user\synthetic-project
 
 Temporary locations to remove: D:\example-user\synthetic-project-cache
 ```
+
+</details>
 
 **Expected:** The durable and temporary roles are unambiguous.
 
@@ -119,7 +141,10 @@ Temporary locations to remove: D:\example-user\synthetic-project-cache
 
 **Where:** The laptop or desktop in front of you
 
-Replace the verification placeholders with the harmless fictional command and exact expected result below.
+Keep the model's harmless fictional command and expected result. The checker reads fields; it does not execute that command or prove twelve real tests passed.
+
+<details>
+<summary>Show a fictional model for these handover fields</summary>
 
 **Put this in the named Markdown file:**
 
@@ -128,6 +153,8 @@ Verification command: python -m unittest discover -s tests -v
 
 Expected result: All 12 synthetic tests pass.
 ```
+
+</details>
 
 **Expected:** The successor can tell success from failure.
 
@@ -139,7 +166,10 @@ Expected result: All 12 synthetic tests pass.
 
 **Where:** The laptop or desktop in front of you
 
-Use fictional role names for access and retention. Replace YYYY-MM-DD with a real future date for this exercise, such as a date 30 days from today. Then replace the Known Limitations placeholder with one fictional unresolved limitation.
+Choose fictional access/retention role names and state one fictional limitation in your own words. Keep the labels. Use a valid future deletion date for a new attempt, such as 30 days from today. Do not alter an already completed record because its example date passed.
+
+<details>
+<summary>Show a fictional model for these handover fields</summary>
 
 **Put this in the named Markdown file:**
 
@@ -152,6 +182,8 @@ Temporary-copy deletion date: YYYY-MM-DD
 
 Unresolved risk or limitation: Synthetic rerun has not been tested on a second operating system.
 ```
+
+</details>
 
 **Expected:** Both owners, a valid future date, and one fictional limitation replace all placeholders.
 

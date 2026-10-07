@@ -2,28 +2,41 @@
 
 ## Outcome
 
-Define responsibilities, owners, systems, data locations, minimum access, and
-review dates for a new researcher.
+Select relevant lessons and approval boundaries for a fictional eight-week
+visitor. This exercise provisions no accounts or system access.
 
 ## Concept
 
 A Passport lesson list is selected from the person's real work. Training shows
-that the person completed those lessons; it does not grant
-permission to a repository, dataset, machine, or paid service. Those operational
-access decisions still require the named system or information owner.
+lesson completion; it does not grant access. Operational access decisions
+require the separate owner's approval for a repository, dataset, machine or service.
+
+| Visitor's task | Training choice | Operational decision |
+| --- | --- | --- |
+| Edit code | Git; Python when needed | Repository owner approves access |
+| Analyse approved measurements with CPU jobs | Data and Euler CPU | Data owner and compute owner approve use |
+| Finish an eight-week visit | Handover and departure planning | Owners review access/end dates and retained work |
+
+## Learning Challenge
+
+Training is complete, but the data owner has not approved access. Can the
+visitor start using the dataset? Decide the next action before the explanation.
 
 ## Worked Example
 
-The plan grants no access by implication and clearly separates training completion from authorization.
+<details>
+<summary>When training is complete but access is pending</summary>
 
-Check these points:
+Record the missing decision privately and contact its named owner. Continue only
+work already authorized. Completion does not grant access or justify buying an
+optional service. Review temporary permissions at the agreed date.
 
-- **Does passing the passport authorize system access?** No. Access requires a separate owner-approved operational decision.
-- **What access should be requested?** Only what the person needs, with an owner and review or end date.
+</details>
 
 ## Common Trap
 
-Treating a passed training lesson as authorization to access a system or dataset.
+Assign lessons for the stated work and obtain access decisions from their
+owners.
 
 ## Your Action
 
@@ -35,7 +48,7 @@ Review a fictional researcher onboarding case and choose the lessons, owners, ac
 
 **Where:** This web page in your browser
 
-List the fictional researcher's real responsibilities: code, data stewardship, Euler CPU or GPU, Blade, AI tools, supervision, or none of these.
+An eight-week fictional visitor will edit code and analyse approved data using CPU jobs. Choose lessons for that work, not every tool mentioned in the catalogue.
 
 **Expected:** The list contains only the relevant lesson groups and their required earlier lessons.
 
@@ -47,7 +60,7 @@ List the fictional researcher's real responsibilities: code, data stewardship, E
 
 **Where:** This web page in your browser
 
-For each repository, dataset, storage area, compute share, software license, and AI service, name who approves access and who supports it.
+Name the responsible owners in the fictional case. Teaching support helps with lessons; information and system owners approve data and operational access.
 
 **Expected:** Every requested system has an accountable owner.
 
@@ -59,7 +72,7 @@ For each repository, dataset, storage area, compute share, software license, and
 
 **Where:** This web page in your browser
 
-Request only the permissions needed for the stated task. Add a review or end date for temporary roles, guests, and project-specific access.
+The visitor needs only access for the stated work, with an end/review date. Training completion and access approval are separate decisions.
 
 **Expected:** No broad or permanent access lacks a task and review date.
 
@@ -71,7 +84,7 @@ Request only the permissions needed for the stated task. Add a review or end dat
 
 **Where:** This web page in your browser
 
-Record where code, durable data, temporary data, computation, and handover records belong.
+Use the case's approved code, durable data and temporary compute locations. Do not record real private paths in public exercise answers.
 
 **Expected:** The researcher does not need to guess between laptop, GitHub, NAS, Blade, and Euler.
 
@@ -83,7 +96,7 @@ Record where code, durable data, temporary data, computation, and handover recor
 
 **Where:** This web page in your browser
 
-Record each access request and owner decision outside the public assessment. A passed lesson is evidence of training, not authorization.
+In real work, record requests and owner decisions privately. In this exercise, decide how a missing approval is escalated. A passed lesson grants no access.
 
 **Expected:** Provisioning status and Passport status are separate.
 
@@ -95,7 +108,7 @@ Record each access request and owner decision outside the public assessment. A p
 
 **Where:** This web page in your browser
 
-Use the scenarios below to check responsibilities, owners, minimum access, locations, dates, and help paths for the fictional case.
+Answer the seven fictional scenarios. They check decisions, not a completed real onboarding packet.
 
 **Expected:** Every scenario has one explicit, least-privilege decision.
 
