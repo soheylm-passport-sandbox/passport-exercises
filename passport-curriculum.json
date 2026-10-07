@@ -894,7 +894,7 @@
           }
         ],
         "recipe": {
-          "intro": "Use your own account pages. Never paste a password, token, private key, one-time code, or recovery code into the Passport.",
+          "intro": "Keep working approved protections. Set up only missing safeguards, then answer fictional scenarios. Publish no credential or recovery code.",
           "steps": [
             {
               "commands": [],
@@ -942,7 +942,7 @@
               "commands": [],
               "expected": "No secret value is inside any file that Git is asked to record or share.",
               "id": "secret-files",
-              "instruction": "Store local secrets only in an approved secret store or an ignored local file. Ignored means Git is configured not to record that file. A token is secret text that authorizes account or service access. An SSH key pair has a private key that stays on your computer and a public file ending in .pub that may be given to the named service. A sample environment file may show the names of settings a program needs, but never their real secret values.",
+              "instruction": "Use the secret/public boundary above. Ignored means Git is configured not to record a file, not that the file is safe to share. An example environment file names settings without their real values. Keep working protections; do not revoke a healthy credential for this exercise.",
               "links": [],
               "machine": "browser",
               "on_failure": "Remove the value from the project files and any staged Git change, then rotate it if it may have been exposed.",
@@ -954,9 +954,9 @@
             },
             {
               "commands": [],
-              "expected": "The compromised credential can no longer be used.",
+              "expected": "You can name the containment action for the fictional credential and the private reporting route.",
               "id": "exposure",
-              "instruction": "If a credential may be exposed, revoke it, meaning disable it, or rotate it, meaning replace it with a new one. Do this first, preserve useful evidence, and report through the private incident path. Deleting a message or a recorded Git version is not sufficient.",
+              "instruction": "For the fictional exposure, decide what stops further credential use. In a real exposure, follow the private incident procedure immediately: revoke (disable) or rotate (replace) the affected credential, preserve evidence with credentials and private details removed and report. Deleting a message or Git version does not contain it. Do not perform a real revocation for the fictional question.",
               "links": [
                 {
                   "label": "Open the incident and help procedure",
@@ -965,7 +965,7 @@
               ],
               "machine": "browser",
               "on_failure": "Stop using the affected account. Use the linked incident procedure to contact your supervisor or lab IT, ETH cyber incident support, or ETH High-Performance Computing (HPC) support, according to the affected system.",
-              "on_success": "Document only non-secret facts and continue.",
+              "on_success": "Complete the fictional scenarios without performing a real revocation.",
               "platforms": [
                 "all"
               ],
@@ -1129,13 +1129,13 @@
           }
         ],
         "recipe": {
-          "intro": "Use only the fictional scenarios below. If one resembles a current event, leave the exercise and use the private incident path.",
+          "intro": "Use fictional examples only. For a real incident stop this exercise and use the private route; do not post evidence publicly.",
           "steps": [
             {
               "commands": [],
               "expected": "You can explain the Euler example without needing to know Slurm syntax.",
               "id": "terms",
-              "instruction": "An incident is a suspected loss of confidentiality, access, control, or data. An AI coding agent is a tool that can read project files and request edits or commands. Automation is software that performs steps without a person typing each one. In the Euler example, Slurm is the scheduler and a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs, and sacct shows recorded job history. You are learning the response order here, not running these commands.",
+              "instruction": "Use the fictional case above. For the later Euler scenario, Slurm is the scheduler and a job is a submitted program identified by a number. scancel stops that job, squeue shows active jobs and sacct shows recorded history. Decide the response order here; run no command.",
               "links": [
                 {
                   "label": "Read the incident and help procedure",
@@ -1166,9 +1166,9 @@
             },
             {
               "commands": [],
-              "expected": "The immediate harmful action has stopped.",
+              "expected": "You identify the known harmful action and the affected credential or recorded job.",
               "id": "stop",
-              "instruction": "Stop the known harmful action without destroying evidence. For a runaway Euler job, record its job ID and cancel that job.",
+              "instruction": "In the fictional case, stop further sharing and disable or replace the exposed token through its service. For the fictional runaway job, record its job ID and stop that exact job. Do not destroy useful evidence or act on a real account/job to practise.",
               "links": [
                 {
                   "label": "Choose the correct private incident route",
@@ -1185,7 +1185,7 @@
             },
             {
               "commands": [],
-              "expected": "The service reports the contained state.",
+              "expected": "You can name the direct service check that would confirm containment.",
               "id": "verify-containment",
               "instruction": "Check the affected service directly. Examples include confirming a token is revoked or using squeue or sacct to confirm a job stopped.",
               "links": [
@@ -1284,6 +1284,33 @@
         "action": "Confirm that you are in your local Passport, review your assigned lessons, then prove that you can close and reopen it.",
         "expected_result": "Your saved lesson list reopens on this computer, and GitHub records a result only after you submit an exercise.",
         "kind": "knowledge_check",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "The local address belongs to a running process. The launcher finds your saved Passport and starts or reuses that process; a stale address does not mean your progress was lost.",
+            "hint": "What starts the program serving the page?",
+            "id": "old_address",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Create a new Passport and start over."
+              },
+              {
+                "id": "correct",
+                "label": "Run gh passport open on this computer; use the address it opens."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Change the saved URL until something loads."
+              }
+            ],
+            "prompt": "Tomorrow the old localhost browser bookmark does not open. How do you resume?",
+            "type": "single"
+          }
+        ],
         "machine": "browser",
         "questions": [
           {
@@ -1360,7 +1387,7 @@
           }
         ],
         "recipe": {
-          "intro": "Do not submit anything from a public course preview. Complete each check before moving to the next one.",
+          "intro": "Confirm local mode and this computer, then reopen the same Passport. A public preview cannot save or submit.",
           "steps": [
             {
               "commands": [],
@@ -1394,10 +1421,10 @@
               "commands": [],
               "expected": "You can distinguish a terminal from a shell and identify the machine named above a command.",
               "id": "command-basics",
-              "instruction": "Every command names the computer and application where it runs. Your computer or local means the laptop or desktop in front of you; remote means another computer reached through the network. A terminal is the text application you open. A shell is the program inside it that reads commands: PowerShell on Windows, zsh on macOS, and Bash on Linux or Euler. On Windows, open PowerShell. On macOS or Linux, open Terminal; it starts zsh or Bash automatically. You do not need to install a separate Bash or zsh application. A prompt is the text and cursor showing that the shell is ready. Paste only the displayed command after that prompt, press Enter once, and read the output before continuing. A path is the address of a file or folder.",
+              "instruction": "Use the machine and shell label above each command. Open PowerShell on Windows or Terminal on macOS/Linux. A terminal is the text application; a shell is the program inside it that reads commands. PowerShell, zsh and Bash are shells. You do not need to install a separate Bash or zsh application. Paste after the prompt, the cursor showing readiness, press Enter once and read the result. A path is a file or folder address. Keep the server terminal open; use another terminal for lesson commands.",
               "links": [
                 {
-                  "label": "Open terminal and command basics",
+                  "label": "Optional: terminal basics if the prompt is unfamiliar",
                   "url": "../../../docs/core/command-line-basics.md"
                 }
               ],
@@ -1413,10 +1440,10 @@
               "commands": [],
               "expected": "You can state in one sentence what GitHub, NAS, Blade, and Euler are used for.",
               "id": "system-map",
-              "instruction": "Read the short system map. Git and GitHub manage code history and review. The NAS stores durable shared project data. Blade is a shared remote Windows computer for licensed graphical software. Euler is an ETH Zurich service made of many managed computers for research calculations. A CPU is the general-purpose processor used by most programs; a GPU is an accelerator used only by compatible programs. Euler schedules both kinds of work. Later lessons explain access; do not connect to any of these systems in this step.",
+              "instruction": "Use the system map above to distinguish code history, durable data, graphical software and scheduled computation. A CPU is the general-purpose processor; a GPU is an accelerator for compatible programs. Do not connect to any remote system in this step.",
               "links": [
                 {
-                  "label": "Open the laptop, NAS, Blade, and Euler map",
+                  "label": "Optional: compare the lab systems",
                   "url": "../../../docs/core/environments-overview.md"
                 }
               ],
@@ -1446,7 +1473,7 @@
               "commands": [],
               "expected": "You can distinguish a local draft, a public submission record, and the automatic GitHub result.",
               "id": "understand-status",
-              "instruction": "Draft answers stay on this computer. When you submit a lesson, the launcher creates a small public submission record on GitHub containing only the requested safe answers. An automatic Passport check reads that submitted record and reports the official result on GitHub. A checked box in the browser alone is not an official pass.",
+              "instruction": "Use the three progress states above. Check my work verifies locally; Submit lesson sends only the requested safe exercise record. Wait for the official GitHub result before treating a lesson as passed.",
               "links": [],
               "machine": "browser",
               "on_failure": "Re-read the status explanation before submitting any lesson.",

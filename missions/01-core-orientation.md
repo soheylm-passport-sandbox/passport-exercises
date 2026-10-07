@@ -2,41 +2,53 @@
 
 ## Outcome
 
-Open the assigned Passport, understand where progress is stored, and reopen
-the same Passport later.
+Open the working Passport on this computer and reopen the same lesson list.
+A public course preview lets you explore; it cannot save or submit work.
 
 ## Concept
 
-Before using a lab system, know its role. Git records file history; GitHub stores shared project folders, called repositories, and their reviews. Network-attached storage (NAS) is durable shared project storage. Blade is a shared remote Windows computer for licensed graphical software. Euler is an ETH Zurich service made of many managed computers for research calculations. A CPU is the general-purpose processor used by most programs; a GPU is an accelerator used only by compatible programs. Euler schedules both kinds of work.
+The Passport itself runs locally. Its launcher starts a local server, a program
+serving the page from your computer. A terminal is the application containing
+a text prompt; a shell is the program reading its commands. No separate Bash
+application is needed. Keep the server terminal open; use another for commands.
 
-The Passport itself runs locally, meaning on the computer in front of you. It appears in your web browser, such as Chrome, Edge, Firefox, or Safari. It remembers your draft and current page on that computer. An automatic Passport check on GitHub records whether submitted work passed.
+| What you see | Where it lives | What it establishes |
+| --- | --- | --- |
+| Draft answers | This computer | Work you can resume; no official pass |
+| Submitted exercise | GitHub | The requested safe record awaiting assessment |
+| Passed result | GitHub automatic Passport check | Official completion for that submission |
 
-Some lessons use text commands. A command is one instruction for a computer. A
-terminal is the application where you type or paste it. A shell is the program
-inside the terminal that reads it: PowerShell on Windows, zsh on macOS, and
-Bash on Linux or Euler. On macOS and Linux, open the application named
-Terminal; it starts zsh or Bash automatically. Bash runs inside that terminal;
-no separate Bash application is needed for this course.
+Git records file history; GitHub hosts shared code and review. NAS means
+network-attached storage for approved durable shared data. Blade is a shared
+remote Windows computer for graphical software. Euler is an ETH Zurich service
+that schedules research calculations on managed computers. Later lessons teach their access separately.
+
+## Learning Challenge
+
+Close and reopen this Passport. Check that the lesson list returns before
+answering the questions. An old browser address is not the way to start it.
 
 ## Worked Example
 
-Your saved lesson list reopens on this computer, and GitHub records a result
-only after you submit an exercise.
+<details>
+<summary>Why the old local address may stop working</summary>
 
-Check these points:
+Stopping the server closes that address, not the saved Passport. Run
+`gh passport open` to start or reuse its process and open the current address.
+Do not clone again or create a second learning record.
 
-- **Which source proves that submitted work passed?** The automatic Passport check shown on GitHub for the submitted work.
-- **How do you reopen the real passport later?** Run gh passport open; the launcher remembers the managed folder on this computer.
+</details>
 
 ## Common Trap
 
-Treating a remembered browser page as proof that a lesson passed.
+Use a command terminal for lesson commands and wait for the official GitHub
+result after submission.
 
 ## Your Action
 
 Confirm that you are in your local Passport, review your assigned lessons, then prove that you can close and reopen it.
 
-**Follow these steps in order.** Do not submit anything from a public course preview. Complete each check before moving to the next one.
+**Follow these steps in order.** Confirm local mode and this computer, then reopen the same Passport. A public preview cannot save or submit.
 
 **New to text commands?** A command is a line of text that tells a
 computer to do one task. A terminal is the text application in which a
@@ -74,9 +86,9 @@ Open the Passport progress page and confirm that it names the operating system o
 
 **Where:** This web page in your browser
 
-Every command names the computer and application where it runs. Your computer or local means the laptop or desktop in front of you; remote means another computer reached through the network. A terminal is the text application you open. A shell is the program inside it that reads commands: PowerShell on Windows, zsh on macOS, and Bash on Linux or Euler. On Windows, open PowerShell. On macOS or Linux, open Terminal; it starts zsh or Bash automatically. You do not need to install a separate Bash or zsh application. A prompt is the text and cursor showing that the shell is ready. Paste only the displayed command after that prompt, press Enter once, and read the output before continuing. A path is the address of a file or folder.
+Use the machine and shell label above each command. Open PowerShell on Windows or Terminal on macOS/Linux. A terminal is the text application; a shell is the program inside it that reads commands. PowerShell, zsh and Bash are shells. You do not need to install a separate Bash or zsh application. Paste after the prompt, the cursor showing readiness, press Enter once and read the result. A path is a file or folder address. Keep the server terminal open; use another terminal for lesson commands.
 
-- [Open terminal and command basics](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/command-line-basics.md)
+- [Optional: terminal basics if the prompt is unfamiliar](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/command-line-basics.md)
 
 **Expected:** You can distinguish a terminal from a shell and identify the machine named above a command.
 
@@ -88,9 +100,9 @@ Every command names the computer and application where it runs. Your computer or
 
 **Where:** This web page in your browser
 
-Read the short system map. Git and GitHub manage code history and review. The NAS stores durable shared project data. Blade is a shared remote Windows computer for licensed graphical software. Euler is an ETH Zurich service made of many managed computers for research calculations. A CPU is the general-purpose processor used by most programs; a GPU is an accelerator used only by compatible programs. Euler schedules both kinds of work. Later lessons explain access; do not connect to any of these systems in this step.
+Use the system map above to distinguish code history, durable data, graphical software and scheduled computation. A CPU is the general-purpose processor; a GPU is an accelerator for compatible programs. Do not connect to any remote system in this step.
 
-- [Open the laptop, NAS, Blade, and Euler map](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/environments-overview.md)
+- [Optional: compare the lab systems](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/core/environments-overview.md)
 
 **Expected:** You can state in one sentence what GitHub, NAS, Blade, and Euler are used for.
 
@@ -114,7 +126,7 @@ Read the lesson list from top to bottom. Each lesson teaches and checks one prac
 
 **Where:** This web page in your browser
 
-Draft answers stay on this computer. When you submit a lesson, the launcher creates a small public submission record on GitHub containing only the requested safe answers. An automatic Passport check reads that submitted record and reports the official result on GitHub. A checked box in the browser alone is not an official pass.
+Use the three progress states above. Check my work verifies locally; Submit lesson sends only the requested safe exercise record. Wait for the official GitHub result before treating a lesson as passed.
 
 **Expected:** You can distinguish a local draft, a public submission record, and the automatic GitHub result.
 
@@ -161,6 +173,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. Tomorrow the old localhost browser bookmark does not open. How do you resume?
+
+   - Create a new Passport and start over.
+   - Run gh passport open on this computer; use the address it opens.
+   - Change the saved URL until something loads.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+The local address belongs to a running process. The launcher finds your saved Passport and starts or reuses that process; a stale address does not mean your progress was lost.
+
+</details>
 
 ## If Blocked
 
