@@ -2,34 +2,48 @@
 
 ## Outcome
 
-Transfer project ownership and records before removing a departing person's
-access.
+Plan a fictional departure without losing project records or removing access
+before its replacement works. No real credential or account is changed.
 
 ## Concept
 
 Offboarding is the planned transfer of work and removal of access when someone
-leaves a project or the lab. Starting only after accounts expire can lose data
-and leave old access active. Transfer and verify required project records first;
-remove access only after an authorized successor can use them.
+leaves. The information and system owners govern those actions. Verify that an
+authorized successor can continue before you remove access.
+
+Three dependencies remain in this fictional project: an active job, a useful
+result in temporary storage, and a project-owned service. A successor needs
+the reviewed code/environment, approved data and verification instructions.
+A real exposed credential is an incident: use the incident procedure immediately,
+not this planned-departure exercise.
+
+## Learning Challenge
+
+Which dependencies would break if the account disappeared today? Review them
+before choosing the seven-action order and handling unfinished work.
 
 ## Worked Example
 
-Operational actions have named owners and dates, and no project asset depends on the departing person's private account or storage.
+<details>
+<summary>Compare your departure sequence</summary>
 
-Check these points:
+Inventory; transfer ownership; verify the successor's access and agreed check;
+close active work and preserve useful temporary results; let the service owner
+rotate project-owned credentials; remove unnecessary access; record owners,
+remaining actions and dates. Retention is an owner decision, not blanket deletion.
 
-- **Choose the safe high-level offboarding order.** Inventory and transfer ownership. -> Verify durable data, code, and documentation. -> Rotate shared credentials and remove access. -> Record completion and remaining retention decisions.
-- **What must be removed from the project?** Dependencies on the departing person's private accounts, laptop, and undocumented knowledge.
+</details>
 
 ## Common Trap
 
-Removing accounts before transferring ownership, or assuming that access revocation also archives project knowledge.
+Verify the transfer before removing access; record unfinished actions with
+an owner and date.
 
 ## Your Action
 
 Apply the safe order to a fictional departure: inventory, transfer, verify, clean temporary work, rotate credentials, revoke, and record.
 
-**Follow these steps in order.** Offboarding is the planned transfer of work and removal of access when someone leaves. Preserve required project records and evidence. Do not delete broadly while ownership or retention is unresolved.
+**Follow these steps in order.** Reason about the fictional departure only. No account, credential, job or real project is changed. Keep unfinished decisions visible with an owner and date.
 
 ### 1. Inventory project dependencies
 
@@ -59,7 +73,7 @@ Move repositories, service ownership, durable data responsibility, and operation
 
 **Where:** This web page in your browser
 
-Have the successor locate the code revision, environment definition, main approved data copy, verification command, expected result, and known limitations.
+Decide what the fictional successor needs to locate and reproduce the agreed check: exact revision, environment, main data copy, command, expected result and limitations. This lesson does not perform that real check.
 
 **Expected:** The successor can reproduce the agreed verification command and result.
 
@@ -71,7 +85,7 @@ Have the successor locate the code revision, environment definition, main approv
 
 **Where:** This web page in your browser
 
-Record or stop active jobs, copy required results to durable storage, and assign deletion dates to scratch and Blade D: copies.
+Decide who safely stops or transfers the fictional active job, verifies useful output in durable storage and owns temporary-copy deletion dates. Do not launch or cancel a real job for this exercise.
 
 **Expected:** No required output remains only in temporary storage.
 

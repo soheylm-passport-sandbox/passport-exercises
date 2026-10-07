@@ -1823,8 +1823,8 @@
     },
     "data-collaboration": {
       "activity": {
-        "action": "Apply the collaboration rules to a fictional team sharing source data, derived results, code, and credentials.",
-        "expected_result": "The team uses separate Git clones, minimum individual access, protected source data, and an explicit recovery rule.",
+        "action": "Reason about the fictional collaborators and answer six decisions. Change no real access or shared folder.",
+        "expected_result": "Your choices use minimum access, protected inputs and separate code clones; no real permission plan is checked.",
         "kind": "structured_plan",
         "machine": "browser",
         "questions": [
@@ -1974,13 +1974,13 @@
           }
         ],
         "recipe": {
-          "intro": "A dataset is a collection of research data. A checkpoint is a saved program or model state. Permissions state who may read or change files. A detailed access-control list (ACL) can grant extra permissions to named people or groups. Use only the fictional scenario below; do not apply permissions to a real shared folder in this mission.",
+          "intro": "Use only Mira and Leo's fictional collaboration. Decide the required boundaries; do not apply real permissions or share credentials.",
           "steps": [
             {
               "commands": [],
               "expected": "One accountable information owner is named.",
               "id": "owner",
-              "instruction": "Identify the person responsible for classification, access approval, retention, and final deletion.",
+              "instruction": "The fictional owner approves access and retention. Mira analyses the input; Leo reviews the report. Neither needs permission to replace the main input simply to do those tasks.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not grant access until ownership is clear.",
@@ -1994,7 +1994,7 @@
               "commands": [],
               "expected": "No collaborator receives broader access than needed.",
               "id": "permissions",
-              "instruction": "Give each role read or write access according to its task. Avoid world-writable permissions and shared credentials.",
+              "instruction": "Decide the read/write access each role needs. An access-control list expresses permissions, not authorization to broaden them. Change no actual permissions.",
               "links": [],
               "machine": "browser",
               "on_failure": "Reduce the proposed permission or obtain owner approval.",
@@ -2008,7 +2008,7 @@
               "commands": [],
               "expected": "Concurrent work cannot silently overwrite the main approved inputs.",
               "id": "write-boundary",
-              "instruction": "Keep source data that must not change separate from derived data, checkpoints, and logs. Name which folders each program may modify.",
+              "instruction": "Keep the main input read-only to analysts and reviewers. Each analysis writes its own run output. A write boundary names exactly which folders each person/program may change.",
               "links": [],
               "machine": "browser",
               "on_failure": "Make source files read-only or use clearly versioned copies before collaboration starts.",
@@ -2022,7 +2022,7 @@
               "commands": [],
               "expected": "Git ownership and file permissions cannot collide inside one shared checkout.",
               "id": "git-clones",
-              "instruction": "Each developer keeps a separate clone and shares code through GitHub. The shared data folder is not a shared Git working tree.",
+              "instruction": "Each editor uses their own Git working tree: a checkout with its own branch, staged and uncommitted changes. Reviewed changes travel through GitHub; shared data does not require a shared writable checkout.",
               "links": [],
               "machine": "browser",
               "on_failure": "Move the repository out of the shared writable data directory.",
@@ -2036,7 +2036,7 @@
               "commands": [],
               "expected": "A collaborator can recover without guessing which copy is the main approved one.",
               "id": "recovery",
-              "instruction": "Record who resolves duplicate outputs, how versions are identified, where the durable copy lives, and how temporary work is cleaned.",
+              "instruction": "If reports conflict, preserve both copies and identifiers, then ask the owner which is authoritative. Do not overwrite one merely because its timestamp is newer.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not start shared writes until the main approved copy is named.",
@@ -2050,7 +2050,7 @@
               "commands": [],
               "expected": "The plan uses minimum access and separate code clones.",
               "id": "answer",
-              "instruction": "Choose permissions, ownership, write boundaries, and recovery actions for the fictional scenario.",
+              "instruction": "Answer six scenario decisions. A private plan may support discussion, but this assessment submits choices and creates no access.",
               "links": [],
               "machine": "browser",
               "on_failure": "Use the feedback to correct the unsafe decision.",
@@ -2093,7 +2093,7 @@
     "data-handover": {
       "activity": {
         "action": "Complete the fictional handover practice file so another authorized person can locate, verify, rerun, and retire the project.",
-        "expected_result": "Another authorized person could locate, verify, rerun, and safely retire the fictional project without hidden personal dependencies.",
+        "expected_result": "One fictional document contains complete handover fields. The checks do not execute its example command or verify a real successor.",
         "kind": "structured_plan",
         "machine": "browser",
         "questions": [
@@ -2167,6 +2167,7 @@
               "commands": [
                 {
                   "command": "Current owner: Example Researcher\n\nAuthorized successor: Example Project Maintainer",
+                  "disclosure": "Show a fictional model for these handover fields",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "markdown"
@@ -2174,7 +2175,7 @@
               ],
               "expected": "Both ownership fields contain non-placeholder values.",
               "id": "ownership",
-              "instruction": "Replace the two ownership placeholders with fictional role names. Use the example below so this public exercise contains no real person.",
+              "instruction": "Choose fictional role names for the current owner and authorized successor. Keep the field labels; open the model if needed. Put no real person in this public exercise.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not claim a handover without an authorized successor.",
@@ -2188,6 +2189,7 @@
               "commands": [
                 {
                   "command": "Revision: 0123456789abcdef0123456789abcdef01234567\n\nEnvironment definition: environment.yml at the recorded revision",
+                  "disclosure": "Show a fictional model for these handover fields",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "markdown"
@@ -2195,7 +2197,7 @@
               ],
               "expected": "The revision has exactly 40 hexadecimal characters and the environment field is complete.",
               "id": "revision",
-              "instruction": "A code revision is the exact recorded version used for a result; an environment definition records the required software. Replace both placeholders with the fictional values below. A real handover would use the exact commit produced by git rev-parse HEAD and the committed environment file.",
+              "instruction": "Keep the field labels and fictional example values. The synthetic revision has 40 hexadecimal characters. It identifies an exact version, not proof of reproduction; a real handover uses its own reviewed commit and environment definition.",
               "links": [],
               "machine": "local",
               "on_failure": "Replace labels such as latest or current with an exact revision.",
@@ -2209,6 +2211,7 @@
               "commands": [
                 {
                   "command": "Main approved data location: P:\\ExampleSupervisor\\example-user\\synthetic-project\n\nTemporary locations to remove: D:\\example-user\\synthetic-project-cache",
+                  "disclosure": "Show a fictional model for these handover fields",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "markdown"
@@ -2216,7 +2219,7 @@
               ],
               "expected": "The durable and temporary roles are unambiguous.",
               "id": "data",
-              "instruction": "Replace both data placeholders with the fictional paths below. They demonstrate a durable project location and a temporary copy without exposing a real lab path.",
+              "instruction": "Use the model's fictional durable and temporary paths. Explain their different lifetimes before filling the fields. Real private paths belong only in an approved private handover.",
               "links": [],
               "machine": "local",
               "on_failure": "Resolve which copy is the main approved copy before continuing.",
@@ -2230,6 +2233,7 @@
               "commands": [
                 {
                   "command": "Verification command: python -m unittest discover -s tests -v\n\nExpected result: All 12 synthetic tests pass.",
+                  "disclosure": "Show a fictional model for these handover fields",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "markdown"
@@ -2237,7 +2241,7 @@
               ],
               "expected": "The successor can tell success from failure.",
               "id": "reproduction",
-              "instruction": "Replace the verification placeholders with the harmless fictional command and exact expected result below.",
+              "instruction": "Keep the model's harmless fictional command and expected result. The checker reads fields; it does not execute that command or prove twelve real tests passed.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not write works on my machine as verification.",
@@ -2251,6 +2255,7 @@
               "commands": [
                 {
                   "command": "Access owner: Example Project Maintainer\n\nRetention owner: Example Data Steward\n\nTemporary-copy deletion date: YYYY-MM-DD\n\nUnresolved risk or limitation: Synthetic rerun has not been tested on a second operating system.",
+                  "disclosure": "Show a fictional model for these handover fields",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "markdown"
@@ -2258,7 +2263,7 @@
               ],
               "expected": "Both owners, a valid future date, and one fictional limitation replace all placeholders.",
               "id": "retention",
-              "instruction": "Use fictional role names for access and retention. Replace YYYY-MM-DD with a real future date for this exercise, such as a date 30 days from today. Then replace the Known Limitations placeholder with one fictional unresolved limitation.",
+              "instruction": "Choose fictional access/retention role names and state one fictional limitation in your own words. Keep the labels. Use a valid future deletion date for a new attempt, such as 30 days from today. Do not alter an already completed record because its example date passed.",
               "links": [],
               "machine": "local",
               "on_failure": "Do not delete or revoke anything without a named owner and date.",
@@ -2339,9 +2344,36 @@
     },
     "data-placement": {
       "activity": {
-        "action": "Apply the storage decision sequence to six fictional research files or results, then answer the placement scenarios.",
-        "expected_result": "Every placement has a named owner, an approved location, a durability rule, and a cleanup rule.",
+        "action": "Use the fictional beam project to answer six placement decisions. No real files, location map or permissions are submitted.",
+        "expected_result": "Your choices distinguish owner approval, durability and cleanup; this is not verification of a real project storage map.",
         "kind": "structured_plan",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "Checksums compare contents. They do not establish approval, backup, access or retention. Verify the needed result in owner-approved durable storage before removing other copies.",
+            "hint": "What does a checksum measure, and what does the owner decide?",
+            "id": "verified_wrong_location",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Yes; matching checksums prove durable storage."
+              },
+              {
+                "id": "correct",
+                "label": "Not yet; equality is verified, but approval, durability and retention must be checked."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Yes, if its filename contains final."
+              }
+            ],
+            "prompt": "A report copied into temporary storage has the same checksum as its source. Is its placement safe for handover?",
+            "type": "single"
+          }
+        ],
         "machine": "browser",
         "questions": [
           {
@@ -2490,13 +2522,13 @@
           }
         ],
         "recipe": {
-          "intro": "Sensitivity describes the harm or access restriction associated with disclosure. Durability describes whether a file must survive failure or cleanup. Retention states how long it must be kept. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Decide these points, ownership, collaboration, and where computation runs before choosing storage; free space alone is not a reason.",
+          "intro": "Use the fictional beam project. Decide approval, durability, computation and retention before choosing a location. Move or delete no real data.",
           "steps": [
             {
               "commands": [],
               "expected": "The classification is explicit and justified.",
               "id": "classify",
-              "instruction": "For each file or result produced or used by the project, decide whether it is public, internal, confidential, personal, or otherwise restricted under the project's approved classification.",
+              "instruction": "Use the fictional measurements, report and replaceable mesh above. Classification comes from the information owner and context, not a file extension. Do not use real project details here.",
               "links": [],
               "machine": "browser",
               "on_failure": "Stop placement until the project owner resolves the classification.",
@@ -2510,7 +2542,7 @@
               "commands": [],
               "expected": "One accountable owner is named.",
               "id": "owner",
-              "instruction": "Identify who decides access, retention, and deletion for the file or result. A person who happens to have a copy is not automatically the owner.",
+              "instruction": "The fictional project owner decides access and retention. Holding a downloaded copy does not make the analyst the information owner.",
               "links": [],
               "machine": "browser",
               "on_failure": "Ask the supervisor; do not self-authorize access.",
@@ -2524,7 +2556,7 @@
               "commands": [],
               "expected": "Irreplaceable material is assigned to approved durable storage.",
               "id": "durability",
-              "instruction": "Mark the file or result as durable, reproducible temporary work, a temporary copy kept for faster access, or disposable output. Record backup and recovery expectations.",
+              "instruction": "The measurements cannot be reconstructed; the mesh can. Compare recovery needs before assigning a location. A checksum verifies equal contents, not backup or authorization.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not leave the only copy in scratch, Blade D:, or a laptop.",
@@ -2538,7 +2570,7 @@
               "commands": [],
               "expected": "The location supports the actual collaborators and workload.",
               "id": "locality",
-              "instruction": "Use GitHub for code, NAS or another approved project store for durable shared data, and approved Euler storage for active cluster I/O.",
+              "instruction": "Keep code in a separate Git clone. Choose approved shared storage for measurements/report and approved compute storage for high-I/O working copies. Do not put data or checkpoints in Git.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not run high-I/O Euler work directly against external NAS.",
@@ -2552,7 +2584,7 @@
               "commands": [],
               "expected": "Every temporary copy has an end condition.",
               "id": "retention",
-              "instruction": "Name when temporary copies are removed and who confirms durable transfer or deletion.",
+              "instruction": "Cleanup is safe only after required outputs reach verified durable storage and the owner-approved retention rule permits removal. No actual deletion is performed.",
               "links": [],
               "machine": "browser",
               "on_failure": "Keep the file or result unchanged until the person responsible for retention has decided what must happen.",
@@ -2566,7 +2598,7 @@
               "commands": [],
               "expected": "No sensitive or durable file or result is assigned to unapproved temporary storage.",
               "id": "answer",
-              "instruction": "Choose a location for every fictional file and check it against all five decisions above.",
+              "instruction": "Answer the six fictional decisions. This assessment checks choices; any extra location map is optional private practice, not a public upload.",
               "links": [],
               "machine": "browser",
               "on_failure": "Correct the first placement with an unresolved owner or durability rule.",
@@ -6816,7 +6848,7 @@
     "supervisor-offboarding": {
       "activity": {
         "action": "Apply the safe order to a fictional departure: inventory, transfer, verify, clean temporary work, rotate credentials, revoke, and record.",
-        "expected_result": "Ownership and reproducibility are verified before access is removed, and every remaining action has an owner and date.",
+        "expected_result": "Your sequence and six other choices describe the fictional departure. They do not verify a real transfer or revoke access.",
         "kind": "structured_plan",
         "machine": "browser",
         "questions": [
@@ -7012,7 +7044,7 @@
           }
         ],
         "recipe": {
-          "intro": "Offboarding is the planned transfer of work and removal of access when someone leaves. Preserve required project records and evidence. Do not delete broadly while ownership or retention is unresolved.",
+          "intro": "Reason about the fictional departure only. No account, credential, job or real project is changed. Keep unfinished decisions visible with an owner and date.",
           "steps": [
             {
               "commands": [],
@@ -7046,7 +7078,7 @@
               "commands": [],
               "expected": "The successor can reproduce the agreed verification command and result.",
               "id": "verify",
-              "instruction": "Have the successor locate the code revision, environment definition, main approved data copy, verification command, expected result, and known limitations.",
+              "instruction": "Decide what the fictional successor needs to locate and reproduce the agreed check: exact revision, environment, main data copy, command, expected result and limitations. This lesson does not perform that real check.",
               "links": [],
               "machine": "browser",
               "on_failure": "Complete the handover before revocation.",
@@ -7060,7 +7092,7 @@
               "commands": [],
               "expected": "No required output remains only in temporary storage.",
               "id": "active-work",
-              "instruction": "Record or stop active jobs, copy required results to durable storage, and assign deletion dates to scratch and Blade D: copies.",
+              "instruction": "Decide who safely stops or transfers the fictional active job, verifies useful output in durable storage and owns temporary-copy deletion dates. Do not launch or cancel a real job for this exercise.",
               "links": [],
               "machine": "browser",
               "on_failure": "Preserve state and ask the relevant system owner before deletion.",
@@ -7145,7 +7177,7 @@
     "supervisor-onboarding": {
       "activity": {
         "action": "Review a fictional researcher onboarding case and choose the lessons, owners, access, locations, dates, and approval boundaries.",
-        "expected_result": "Every requested capability has a reason, owner, location, review date when needed, and separate operational approval.",
+        "expected_result": "The seven fictional decisions separate relevant lessons from owner-approved access. No real onboarding packet or provisioning is checked.",
         "kind": "structured_plan",
         "machine": "browser",
         "questions": [
@@ -7325,7 +7357,7 @@
               "commands": [],
               "expected": "The list contains only the relevant lesson groups and their required earlier lessons.",
               "id": "responsibilities",
-              "instruction": "List the fictional researcher's real responsibilities: code, data stewardship, Euler CPU or GPU, Blade, AI tools, supervision, or none of these.",
+              "instruction": "An eight-week fictional visitor will edit code and analyse approved data using CPU jobs. Choose lessons for that work, not every tool mentioned in the catalogue.",
               "links": [],
               "machine": "browser",
               "on_failure": "Clarify the project role before requesting access.",
@@ -7339,7 +7371,7 @@
               "commands": [],
               "expected": "Every requested system has an accountable owner.",
               "id": "owners",
-              "instruction": "For each repository, dataset, storage area, compute share, software license, and AI service, name who approves access and who supports it.",
+              "instruction": "Name the responsible owners in the fictional case. Teaching support helps with lessons; information and system owners approve data and operational access.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not grant access by implication or convenience.",
@@ -7353,7 +7385,7 @@
               "commands": [],
               "expected": "No broad or permanent access lacks a task and review date.",
               "id": "least-privilege",
-              "instruction": "Request only the permissions needed for the stated task. Add a review or end date for temporary roles, guests, and project-specific access.",
+              "instruction": "The visitor needs only access for the stated work, with an end/review date. Training completion and access approval are separate decisions.",
               "links": [],
               "machine": "browser",
               "on_failure": "Reduce the request or obtain a documented owner exception.",
@@ -7367,7 +7399,7 @@
               "commands": [],
               "expected": "The researcher does not need to guess between laptop, GitHub, NAS, Blade, and Euler.",
               "id": "locations",
-              "instruction": "Record where code, durable data, temporary data, computation, and handover records belong.",
+              "instruction": "Use the case's approved code, durable data and temporary compute locations. Do not record real private paths in public exercise answers.",
               "links": [],
               "machine": "browser",
               "on_failure": "Decide which approved location will hold the main copy before data is created.",
@@ -7381,7 +7413,7 @@
               "commands": [],
               "expected": "Provisioning status and Passport status are separate.",
               "id": "provision",
-              "instruction": "Record each access request and owner decision outside the public assessment. A passed lesson is evidence of training, not authorization.",
+              "instruction": "In real work, record requests and owner decisions privately. In this exercise, decide how a missing approval is escalated. A passed lesson grants no access.",
               "links": [],
               "machine": "browser",
               "on_failure": "Do not activate access solely because training passed.",
@@ -7395,7 +7427,7 @@
               "commands": [],
               "expected": "Every scenario has one explicit, least-privilege decision.",
               "id": "review",
-              "instruction": "Use the scenarios below to check responsibilities, owners, minimum access, locations, dates, and help paths for the fictional case.",
+              "instruction": "Answer the seven fictional scenarios. They check decisions, not a completed real onboarding packet.",
               "links": [],
               "machine": "browser",
               "on_failure": "Add the missing owner or decision before approval.",

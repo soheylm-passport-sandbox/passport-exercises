@@ -2,49 +2,58 @@
 
 ## Outcome
 
-Choose a safe location for each research file by asking who owns it, who may
-see it, how long it must remain available, and where it will be used.
+Decide where fictional project data belongs: who owns it, who may see it,
+where it must survive and where it will be used. Move no real data.
 
 ## Concept
 
-Research data includes source measurements, derived datasets, checkpoints,
-logs, results, and records needed to understand the work. The main approved
-copy is the named version the project treats as correct; other copies are for
-work, transfer, faster access, or backup. Sensitivity describes the harm or
-access restriction associated with disclosure. Durability describes whether
-the file is intended to survive failure or cleanup. Retention states how long
-it must be kept.
+Research data includes measurements, derived results and records explaining
+them. The main approved copy is the version the owner treats as correct.
+Sensitivity describes disclosure/access restrictions; durability describes
+survival; retention states how long a copy must be kept.
 
-A checksum is a calculated fingerprint used to check whether two file copies
-contain the same data. It helps verify a copy; it does not decide whether the
-storage location is durable or approved.
+| Fictional beam item | Recovery need | Decision |
+| --- | --- | --- |
+| Measurements | Cannot be reconstructed | Owner approves classification and durable main copy |
+| Derived report | Useful result with provenance | Collaborators need an approved recoverable copy |
+| Mesh cache | Can be rebuilt from recorded inputs | Compute location and safe cleanup condition |
 
-A file can be accessible without being durable, approved, backed up, or safe to share. Choose its location from sensitivity, owner, collaborators, compute needs, retention, and deletion rules.
+A checksum is a calculated fingerprint comparing contents. It establishes
+neither permission nor durability. Keep code separate from data and results.
+
+## Learning Challenge
+
+A copy is readable and its checksum matches. Which placement decisions remain?
+Try the decisions before opening the explanation.
 
 ## Worked Example
 
-Every placement has a reason and no sensitive or durable data is assigned to an unapproved temporary location.
+<details>
+<summary>Separate a verified copy from an approved main copy</summary>
 
-Check these points:
+Verify contents, then confirm the owner's approved service, access,
+backup/recovery and retention. Temporary work does not replace the durable main
+copy. Stage high-I/O inputs to approved compute storage; verify needed output
+back before owner-approved cleanup.
 
-- **Should a research dataset be committed to the exercise or code repository?** No; use the supervisor-approved data location and version metadata instead.
-- **What must happen to required output created on temporary storage?** Copy it to the approved durable project location and remove the temporary copy when appropriate.
+</details>
 
 ## Common Trap
 
-Using Git for datasets or checkpoints, or assuming a synced personal folder is approved project storage.
+Choose storage by ownership, access, recovery and lifetime; a filename does
+not establish those properties.
 
 ## Your Action
 
-Apply the storage decision sequence to six fictional research files or results, then answer the placement scenarios.
+Use the fictional beam project to answer six placement decisions. No real files, location map or permissions are submitted.
 
-**Follow these steps in order.** Sensitivity describes the harm or access restriction associated with disclosure. Durability describes whether a file must survive failure or cleanup. Retention states how long it must be kept. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Decide these points, ownership, collaboration, and where computation runs before choosing storage; free space alone is not a reason.
+**Follow these steps in order.** Use the fictional beam project. Decide approval, durability, computation and retention before choosing a location. Move or delete no real data.
 
 ### 1. Classify sensitivity
 
 **Where:** This web page in your browser
 
-For each file or result produced or used by the project, decide whether it is public, internal, confidential, personal, or otherwise restricted under the project's approved classification.
+Use the fictional measurements, report and replaceable mesh above. Classification comes from the information owner and context, not a file extension. Do not use real project details here.
 
 **Expected:** The classification is explicit and justified.
 
@@ -56,7 +65,7 @@ For each file or result produced or used by the project, decide whether it is pu
 
 **Where:** This web page in your browser
 
-Identify who decides access, retention, and deletion for the file or result. A person who happens to have a copy is not automatically the owner.
+The fictional project owner decides access and retention. Holding a downloaded copy does not make the analyst the information owner.
 
 **Expected:** One accountable owner is named.
 
@@ -68,7 +77,7 @@ Identify who decides access, retention, and deletion for the file or result. A p
 
 **Where:** This web page in your browser
 
-Mark the file or result as durable, reproducible temporary work, a temporary copy kept for faster access, or disposable output. Record backup and recovery expectations.
+The measurements cannot be reconstructed; the mesh can. Compare recovery needs before assigning a location. A checksum verifies equal contents, not backup or authorization.
 
 **Expected:** Irreplaceable material is assigned to approved durable storage.
 
@@ -80,7 +89,7 @@ Mark the file or result as durable, reproducible temporary work, a temporary cop
 
 **Where:** This web page in your browser
 
-Use GitHub for code, NAS or another approved project store for durable shared data, and approved Euler storage for active cluster I/O.
+Keep code in a separate Git clone. Choose approved shared storage for measurements/report and approved compute storage for high-I/O working copies. Do not put data or checkpoints in Git.
 
 **Expected:** The location supports the actual collaborators and workload.
 
@@ -92,7 +101,7 @@ Use GitHub for code, NAS or another approved project store for durable shared da
 
 **Where:** This web page in your browser
 
-Name when temporary copies are removed and who confirms durable transfer or deletion.
+Cleanup is safe only after required outputs reach verified durable storage and the owner-approved retention rule permits removal. No actual deletion is performed.
 
 **Expected:** Every temporary copy has an end condition.
 
@@ -104,7 +113,7 @@ Name when temporary copies are removed and who confirms durable transfer or dele
 
 **Where:** This web page in your browser
 
-Choose a location for every fictional file and check it against all five decisions above.
+Answer the six fictional decisions. This assessment checks choices; any extra location map is optional private practice, not a public upload.
 
 **Expected:** No sensitive or durable file or result is assigned to unapproved temporary storage.
 
@@ -121,6 +130,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. A report copied into temporary storage has the same checksum as its source. Is its placement safe for handover?
+
+   - Yes; matching checksums prove durable storage.
+   - Not yet; equality is verified, but approval, durability and retention must be checked.
+   - Yes, if its filename contains final.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+Checksums compare contents. They do not establish approval, backup, access or retention. Verify the needed result in owner-approved durable storage before removing other copies.
+
+</details>
 
 ## If Blocked
 
