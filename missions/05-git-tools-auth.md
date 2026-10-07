@@ -168,7 +168,7 @@ Run this only when the previous check showed no account or the wrong account. En
 ```zsh
 (
 printf 'Intended GitHub username: '; read -r github_user
-case "$github_user" in ''|*[^A-Za-z0-9-]*) printf 'STOP: invalid GitHub username\n' >&2; exit 1;; esac
+case "$github_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-]*) printf 'STOP: invalid GitHub username\n' >&2; exit 1;; esac
 if ! gh auth switch --hostname github.com --user "$github_user"; then gh auth login --hostname github.com --git-protocol https --web; fi
 gh auth status --active --hostname github.com
 )
@@ -179,7 +179,7 @@ gh auth status --active --hostname github.com
 ```bash
 (
 printf 'Intended GitHub username: '; read -r github_user
-case "$github_user" in ''|*[^A-Za-z0-9-]*) printf 'STOP: invalid GitHub username\n' >&2; exit 1;; esac
+case "$github_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-]*) printf 'STOP: invalid GitHub username\n' >&2; exit 1;; esac
 if ! gh auth switch --hostname github.com --user "$github_user"; then gh auth login --hostname github.com --git-protocol https --web; fi
 gh auth status --active --hostname github.com
 )

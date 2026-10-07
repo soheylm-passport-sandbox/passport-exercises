@@ -2,33 +2,50 @@
 
 ## Outcome
 
-Review a practice request for one graphics processor (GPU) on Euler. Set
-reasonable limits without starting the job.
+Correct a fictional graphics processor (GPU) request locally. No GPU allocation or live computation
+is required; the file is public practice material only.
 
 ## Concept
 
-A GPU is an accelerator used only by software written to perform GPU operations. Requesting a GPU reserves it even when the program is waiting on CPU, data, or configuration. One Slurm GPU request normally allocates one accelerator on a shared compute node, not the whole physical node.
+A GPU is an accelerator for compatible operations, not every program.
+A Slurm GPU request reserves that shared accelerator; it does not grant the
+entire compute node.
 
-Start with one supported GPU and measured CPU, memory, and time. Use more GPUs only after a representative test proves that the program scales.
+| Resource | Meaning in this review |
+| --- | --- |
+| GPU count | One explicitly supported accelerator |
+| CPU count | Supporting work; more CPUs do not establish faster GPU code |
+| System RAM | CPU count times memory per CPU, distinct from GPU memory |
+| GPU memory | Capacity on the accelerator; not Slurm system RAM |
+| Time | Bounded reservation, later justified by representative measurements |
 
-The Slurm account, also called a computing share, identifies which approved
-group allocation pays for the job; this guide uses `es_fuge`. A partition is
-a named group of compute nodes. The starter request lets Euler choose the
-partition instead of forcing one.
+The account identifies the approved lab computing share, es_fuge. A partition is a group of
+compute nodes; the teaching request leaves selection to Euler. Current dated
+lab hardware policy remains in the reference.
+
+## Learning Challenge
+
+The unsafe file requests four GPUs without evidence of scaling. Spot one
+unsupported reservation before opening the repair. The accepted teaching
+profile is bounded, but its maximum values are ceilings, not targets.
 
 ## Worked Example
 
-Check my work accepts one named GPU, no forced partition, at most 16 CPUs, at
-most 64 GiB total system memory, at most four hours, and distinct logs.
+<details>
+<summary>What the current script checker accepts</summary>
 
-Check these points:
+One supported named GPU, es_fuge, no forced partition, 1..16 CPUs, at most
+64 GiB total system memory, positive time up to four hours and per-job logs.
+The supplied profile is compatible with this review. Real workloads need their
+own measured CPU, memory and time; passing this fixture proves neither runtime
+compatibility nor efficient GPU use.
 
-- **Which account provides the documented lab GPU access?** The approved es_fuge share.
-- **What should a one-GPU starter request do?** Request one named GPU and explicit CPU, memory, and time limits.
+</details>
 
 ## Common Trap
 
-Assuming GPUs are on the public share, requesting all node CPUs for one GPU, or submitting the practice file accidentally.
+Increasing GPUs because the dataset is large, or submitting the unsafe practice
+file. Keep this exercise a local text review.
 
 ## Your Action
 
@@ -48,7 +65,7 @@ before continuing if these words are new.
 
 **Where:** This web page in your browser
 
-A GPU accelerates only compatible code. A Slurm request such as rtx_4090:1 reserves one accelerator on a compute node; it does not prove that the program uses it efficiently and does not grant the whole node. CPU, memory, time, logs, and the project account are requested separately.
+Compare the unsafe request with the resource distinctions above. A GPU request reserves an accelerator even when software waits for CPU or data; reservation does not prove useful GPU work.
 
 - [Open the Euler GPU policy](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/policy/euler-share.md)
 
@@ -74,7 +91,7 @@ Press Prepare practice folder, enter it, and open workspace/slurm/gpu_job.slurm.
 
 **Where:** The laptop or desktop in front of you
 
-Find the public account, forced partition, four-GPU request, 64 CPUs, 500 GiB memory, 48-hour time, and missing log directives.
+Read the deliberately unsafe local file. Choose one request that is unsupported by a program needing one GPU, and explain why before opening the model. Do not submit it to Euler.
 
 **Expected:** You can explain why the script is not a one-GPU starter.
 
@@ -86,7 +103,9 @@ Find the public account, forced partition, four-GPU request, 64 CPUs, 500 GiB me
 
 **Where:** The laptop or desktop in front of you
 
-Use rtx_4090:1 by default. Use rtx_3090:1 when a 4090 is unavailable. Use pro_6000:1 only for a tested compatible workload that needs its capability.
+Keep the existing documented teaching default rtx_4090:1. The supported fallback and special-purpose profile are in the optional GPU reference; do not choose hardware simply to bypass a queue. This lesson changes no current hardware or entitlement policy.
+
+- [Only if needed: fallback and special-purpose GPU profile](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/slurm.md#rtx-pro-6000-special-purpose-profile)
 
 **Expected:** Exactly one explicit GPU model and one GPU are requested.
 
@@ -98,7 +117,10 @@ Use rtx_4090:1 by default. Use rtx_3090:1 when a 4090 is unavailable. Use pro_60
 
 **Where:** The laptop or desktop in front of you
 
-Remove the partition line and the old --mem line. Replace the account, GPU, CPU, memory-per-CPU, and time directives with the starter lines below. If you selected another supported GPU, replace only rtx_4090 with rtx_3090 or pro_6000.
+Keep this a local text edit. Remove the forced partition and old --mem line. Predict the correction, then inspect the compatible teaching model. Its limits are an assessment profile, not optimized settings for an unknown research workload.
+
+<details>
+<summary>Show the compatible one-GPU teaching profile</summary>
 
 **Put this in the named Bash file:**
 
@@ -110,6 +132,8 @@ Remove the partition line and the old --mem line. Replace the account, GPU, CPU,
 #SBATCH --mem-per-cpu=3G
 ```
 <!-- /passport-snippet:euler-gpu-4090-starter -->
+
+</details>
 
 **Expected:** The script uses es_fuge, one supported GPU, no partition, at most 16 CPUs, no more than 64 GiB total memory, and at most 04:00:00.
 
@@ -176,6 +200,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 100% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. One GPU is reserved, but the program spends most time waiting for slow input reads. What is the next useful investigation?
+
+   - Reserve a second GPU immediately.
+   - Inspect data locality and the input pipeline before changing GPU count.
+   - Request the whole node because a reservation guarantees utilization.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+Waiting for data is not evidence of GPU scaling. Inspect where and how inputs are read, using the approved storage workflow. Cancel an unnecessary real allocation safely; do setup and log review without retaining an idle GPU.
+
+</details>
 
 ## If Blocked
 

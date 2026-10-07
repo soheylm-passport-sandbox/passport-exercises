@@ -2,31 +2,52 @@
 
 ## Outcome
 
-Choose where Euler code, inputs, temporary work, results, and logs belong.
-Record enough information for another person to repeat the run.
+Choose how a fictional beam run preserves exact inputs and useful results.
+The current assessment checks decisions, not a real recoverable run record.
 
 ## Concept
 
-Euler provides several storage areas. Names beginning with `$` below are shell variables: short names that resolve to paths. `$HOME` is small private storage for code and configuration. `/cluster/work/fuge` is shared working storage for approved lab projects. `$SCRATCH` is temporary high-throughput storage, and `$TMPDIR` exists only on the compute node during one job.
+Names beginning with $ are shell variables that resolve to paths. Follow one
+fictional project through its run; locations must still be owner-approved.
 
-A reproducible run records the code revision, environment, inputs, configuration, command, logs, and durable output location. Neither scratch storage nor the submitted Slurm script alone preserves all of that information.
+| Stage | Fictional item | Decision |
+| --- | --- | --- |
+| Before submission | Reviewed code, measurements and configuration | Identify the commit, environment and unchanged input snapshot |
+| During computation | Rebuildable mesh and intermediate files | Use $SCRATCH or job-local $TMPDIR, never the only important copy |
+| After computation | Result, useful logs and run metadata | Verify the copy in approved durable project storage before cleanup |
+
+$HOME is small private storage; /cluster/work/fuge is approved shared working
+storage. Neither a temporary directory nor a Slurm script replaces a run record.
+A reproducible run records code, environment, inputs, configuration and command
+so someone can identify what produced its result.
+
+## Learning Challenge
+
+The job is pending while a collaborator edits its input. What must be stable
+before it starts? Make that decision before reading the explanation.
 
 ## Worked Example
 
-The plan separates Git, approved Euler storage, scratch, and durable results and records enough inputs to rerun the job.
+<details>
+<summary>Why the pending job needs unchanged referenced files</summary>
 
-Check these points:
+The submitted batch script is captured, but external code/configuration/input
+files can still change. Use an immutable reviewed run snapshot and retain its
+identifiers. Copy useful results and metadata back to approved durable storage
+and verify them. A matching checksum establishes copy equality, not permission,
+backup or retention. The optional GitHub code-sync guide is extra practice after
+this lesson; it introduces no completion requirement.
 
-- **What is Euler scratch for?** Temporary high-throughput files that can be recreated.
-- **What must a reproducible run identify?** Code revision, environment, exact unchanged inputs, parameters, resources, and outputs.
+</details>
 
 ## Common Trap
 
-Keeping the only copy in scratch, processing high-I/O workloads directly on an external NAS mount, or changing inputs in place.
+Keeping the only result in temporary storage, or assuming that a commit ID
+freezes every file in a live working directory.
 
 ## Your Action
 
-Apply the reproducible-run sequence to a fictional Euler job before deciding where each file or result belongs.
+Apply the fictional beam-run lifecycle to the six placement and reproducibility decisions. No real run record or project data is submitted.
 
 **Follow these steps in order.** Names such as $HOME and $SCRATCH are shell variables: short names that resolve to paths on Euler. High input/output (high-I/O) work repeatedly reads or writes a large amount of data. Use the fictional scenario. Choose locations by ownership and durability, not convenience.
 
@@ -34,7 +55,7 @@ Apply the reproducible-run sequence to a fictional Euler job before deciding whe
 
 **Where:** This web page in your browser
 
-Use $HOME for small private code and configuration, /cluster/work/fuge for approved shared working data, $SCRATCH for replaceable high-throughput files, and $TMPDIR for temporary files inside one running job. Name the durable location that will hold the main copy after the run.
+Follow the fictional beam run in the table above. $HOME holds small private code/configuration; approved shared work storage holds the main inputs and outputs. Temporary copies need a rebuild or copy-back rule.
 
 - [Open the Euler storage reference](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/euler/storage.md)
 
@@ -48,7 +69,7 @@ Use $HOME for small private code and configuration, /cluster/work/fuge for appro
 
 **Where:** This web page in your browser
 
-Use a reviewed Git commit as the code identifier. The commit's identifier records exactly which code version was used, but it does not stop someone from editing other uncommitted files in the active project folder.
+For this fictional run, choose the reviewed commit before submission. Its identifier records a version; a separate clean, immutable run snapshot prevents later working-tree edits from changing what the job reads.
 
 **Expected:** The run plan names one exact commit and a clean or explicitly described source state.
 
@@ -60,7 +81,7 @@ Use a reviewed Git commit as the code identifier. The commit's identifier record
 
 **Where:** This web page in your browser
 
-Place approved durable inputs in project storage and record a version or checksum. A checksum is a short calculated fingerprint used to detect whether a file changed. Copy the exact run inputs to a run-specific location when required.
+The approved beam measurements have a known version/checksum. Decide whether a job may point to a file still edited by a collaborator. A checksum detects a changed file; it does not approve its contents or freeze it.
 
 **Expected:** The inputs used by the job can be identified later.
 
@@ -84,7 +105,7 @@ Use Euler scratch for high-throughput temporary files that can be rebuilt. Do no
 
 **Where:** This web page in your browser
 
-Assign durable results to an approved Euler project/work location or NAS project location with a named owner and retention decision.
+After computation, verify the result in the owner-approved durable location and retain its metadata. Only then follow the approved cleanup/retention rule. No actual copy or deletion is required in this lesson.
 
 **Expected:** The main durable result location and its owner are stated explicitly.
 
@@ -120,7 +141,7 @@ Use run-specific log names containing the job ID and retain the useful logs with
 
 **Where:** This web page in your browser
 
-Place every fictional file or result and explain how the plan survives reruns, collaboration, and scratch cleanup.
+Answer the six fictional decisions. Use the table as a lookup; this assessment does not create or check a free-form run plan. Optional code synchronization after completion is separate from progress.
 
 **Expected:** Git, durable storage, scratch, environment metadata, and logs have distinct roles.
 
@@ -137,6 +158,26 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Learning Check
+
+### Practise
+
+Try an answer before opening the explanation. These questions are for
+practice; they do not affect your progress.
+
+1. A job is pending. Its batch script names a configuration file that a collaborator replaces. Has the submitted script frozen that configuration?
+
+   - No. Preserve a run-specific configuration snapshot and leave referenced files unchanged.
+   - Yes. Submitting the script freezes every named file automatically.
+   - Yes, if the new file keeps the same name.
+
+<details class="learning-explanation">
+<summary>See an explanation</summary>
+
+Slurm captures the submitted script, not every external file it references. A run-specific unchanged snapshot and its identifiers keep the intended configuration identifiable. A filename alone cannot do that.
+
+</details>
 
 ## If Blocked
 

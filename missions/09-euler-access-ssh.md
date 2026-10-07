@@ -75,7 +75,7 @@ Enter the short ETH username, not an email address. A host fingerprint is a shor
 ```zsh
 (
 printf 'Short ETH username: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInteractiveAuthentication=yes -o PreferredAuthentications=keyboard-interactive,password "$eth_user@euler.ethz.ch" 'echo password-login-ok'
 )
 ```
@@ -85,7 +85,7 @@ ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInter
 ```bash
 (
 printf 'Short ETH username: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInteractiveAuthentication=yes -o PreferredAuthentications=keyboard-interactive,password "$eth_user@euler.ethz.ch" 'echo password-login-ok'
 )
 ```
@@ -209,7 +209,7 @@ First test an existing euler alias when it resolves to this Euler account. Proxy
 ```zsh
 (
 printf 'Short ETH username: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 
 resolved="$(ssh -G euler 2>/dev/null)" || {
   printf 'STOP: existing SSH config is invalid\n' >&2
@@ -248,7 +248,7 @@ ssh -F none -i "$key" -o IdentitiesOnly=yes -o PreferredAuthentications=publicke
 ```bash
 (
 printf 'Short ETH username: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 
 resolved="$(ssh -G euler 2>/dev/null)" || {
   printf 'STOP: existing SSH config is invalid\n' >&2
@@ -441,7 +441,7 @@ printf "public-key-installed\n"
 ```zsh
 (
 printf 'Short ETH username used in the password test: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 public_key="$HOME/.ssh/id_ed25519_euler.pub"
 test -f "$public_key" || { printf 'STOP: public key is missing\n' >&2; exit 1; }
 cat "$public_key" | ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInteractiveAuthentication=yes -o PreferredAuthentications=keyboard-interactive,password "$eth_user@euler.ethz.ch" 'set -eu
@@ -469,7 +469,7 @@ printf "public-key-installed\n"'
 ```bash
 (
 printf 'Short ETH username used in the password test: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 public_key="$HOME/.ssh/id_ed25519_euler.pub"
 test -f "$public_key" || { printf 'STOP: public key is missing\n' >&2; exit 1; }
 cat "$public_key" | ssh -F none -o PubkeyAuthentication=no -o PasswordAuthentication=yes -o KbdInteractiveAuthentication=yes -o PreferredAuthentications=keyboard-interactive,password "$eth_user@euler.ethz.ch" 'set -eu
@@ -522,7 +522,7 @@ Run the direct test with password and keyboard-interactive authentication disabl
 ```zsh
 (
 printf 'Short ETH username: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 ssh -F none -i "$HOME/.ssh/id_ed25519_euler" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'echo key-ok'
 )
 ```
@@ -532,7 +532,7 @@ ssh -F none -i "$HOME/.ssh/id_ed25519_euler" -o IdentitiesOnly=yes -o PreferredA
 ```bash
 (
 printf 'Short ETH username: '; read -r eth_user
-case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
 ssh -F none -i "$HOME/.ssh/id_ed25519_euler" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no "$eth_user@euler.ethz.ch" 'echo key-ok'
 )
 ```
@@ -660,7 +660,7 @@ The SSH config file stores named connection settings. This guarded command backs
 (
   set -eu
   printf 'Short ETH username: '; read -r eth_user
-  case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+  case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
   ssh_dir="$HOME/.ssh"; config="$ssh_dir/config"; include_dir="$ssh_dir/passport.d"; backup_dir="$ssh_dir/passport-backups"; euler_config="$include_dir/euler.conf"; key="$ssh_dir/id_ed25519_euler"
   [ ! -L "$config" ] || { printf "STOP: %s is a symbolic link; no file was changed\n" "$config" >&2; exit 1; }
   [ ! -L "$euler_config" ] || { printf "STOP: %s is a symbolic link; no file was changed\n" "$euler_config" >&2; exit 1; }
@@ -775,7 +775,7 @@ EOF
 (
   set -eu
   printf 'Short ETH username: '; read -r eth_user
-  case "$eth_user" in ''|*[^A-Za-z0-9._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
+  case "$eth_user" in ''|*[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-]*) printf 'STOP: invalid ETH username\n' >&2; exit 1;; esac
   ssh_dir="$HOME/.ssh"; config="$ssh_dir/config"; include_dir="$ssh_dir/passport.d"; backup_dir="$ssh_dir/passport-backups"; euler_config="$include_dir/euler.conf"; key="$ssh_dir/id_ed25519_euler"
   [ ! -L "$config" ] || { printf "STOP: %s is a symbolic link; no file was changed\n" "$config" >&2; exit 1; }
   [ ! -L "$euler_config" ] || { printf "STOP: %s is a symbolic link; no file was changed\n" "$euler_config" >&2; exit 1; }
