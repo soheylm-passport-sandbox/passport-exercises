@@ -6809,9 +6809,9 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The existing one-CPU test passes.",
+              "expected": "On a first pass, one test runs and passes. A green result covers that input, not every CPU count. Resumed work may already contain the second test.",
               "id": "baseline",
-              "instruction": "Run the complete declared test command before editing.",
+              "instruction": "On your first pass, run the complete declared test command before editing. If these files already contain your work, resume from your last step; do not delete a test or reset the function to repeat the lesson.",
               "links": [],
               "machine": "local",
               "on_failure": "Stop and repair the environment or baseline before changing code.",
@@ -6825,7 +6825,7 @@
               "commands": [],
               "expected": "You can compare the function inputs, its return value and the value the test expects.",
               "id": "understand",
-              "instruction": "Read passport_example.py and tests/test_passport_example.py. The function should calculate total requested memory. Before opening a model, explain why the one-CPU test passes and predict what changes with four CPUs at 3 GiB per CPU. If inputs and return values are new, read one function-and-return example at the optional link, then come back here; the rest of the Python course is not required.",
+              "instruction": "Read passport_example.py and tests/test_passport_example.py. Explain why the one-CPU test passes, then predict the result for four CPUs at 3 GiB per CPU before opening the example. If the syntax is unfamiliar, use Reading the function and test on this page; the optional link gives another function example. You do not need the rest of the Python course.",
               "links": [
                 {
                   "label": "Optional: function inputs and return values",
@@ -6865,12 +6865,12 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The new test fails for the expected 3-versus-12 behavior.",
+              "expected": "Two tests run: the one-CPU test passes and the new test fails comparing 3 with 12.",
               "id": "red-test",
-              "instruction": "In tests/test_passport_example.py, add the model method inside TotalMemoryTests at the same indentation as test_one_cpu. This guided exercise requires this assertion. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.",
+              "instruction": "In tests/test_passport_example.py, add the required test inside TotalMemoryTests at the same indentation as test_one_cpu. Its name must start with test_ so Python finds it. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.",
               "links": [],
               "machine": "local",
-              "on_failure": "If the test passes or fails for another reason, correct the test before editing the implementation.",
+              "on_failure": "If only one test runs, check the new name, indentation and saved file. If the new test passes or fails for another reason, correct the test before editing the implementation. Keep the independently calculated expected value; do not change it to match the bug.",
               "on_success": "Make the smallest implementation fix.",
               "platforms": [
                 "all"
@@ -6881,6 +6881,7 @@
               "commands": [
                 {
                   "command": "return cpus * memory_per_cpu_gib",
+                  "disclosure": "Show the required correction",
                   "mode": "edit",
                   "platform": "all",
                   "shell": "python"
@@ -6916,7 +6917,7 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "All visible tests pass.",
+              "expected": "Both tests run and pass. The non-positive input validation remains in the source.",
               "id": "green-test",
               "instruction": "Run the same declared command in the same activated environment.",
               "links": [],

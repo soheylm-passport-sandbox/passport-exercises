@@ -14,6 +14,29 @@ The fictional function calculates total memory from CPU count and memory per
 CPU. The existing test uses one CPU. It passes even though the function is
 incomplete: a green test only covers the case it ran.
 
+<details class="learning-explanation" id="python-reading-code">
+<summary>Reading the function and test</summary>
+
+```python
+def add_label_pages(content_pages, label_pages):
+    return content_pages + label_pages
+```
+
+`def` defines a function; the names in parentheses are its inputs. `return`
+gives the result. `add_label_pages(8, 2)` returns 10. In the memory function,
+`*` multiplies and `+` adds; the same input-and-result idea applies.
+
+```python
+self.assertEqual(add_label_pages(8, 2), 10)
+```
+
+The first part calls the function; the second is the expected result.
+`assertEqual` fails when they differ. This example only explains syntax:
+use the existing memory test as the template in your file. Keep its `self`
+and indentation, and start the new test's name with `test_`.
+
+</details>
+
 ## Learning Challenge
 
 Read the function before editing. Why can its one-CPU example pass while a
@@ -89,7 +112,7 @@ cd workspace/python_project
 
 **Where:** The laptop or desktop in front of you
 
-Run the complete declared test command before editing.
+On your first pass, run the complete declared test command before editing. If these files already contain your work, resume from your last step; do not delete a test or reset the function to repeat the lesson.
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -109,7 +132,7 @@ python -m unittest discover -s tests -v
 python -m unittest discover -s tests -v
 ```
 
-**Expected:** The existing one-CPU test passes.
+**Expected:** On a first pass, one test runs and passes. A green result covers that input, not every CPU count. Resumed work may already contain the second test.
 
 **Continue when:** Read the source and existing test.
 
@@ -119,7 +142,7 @@ python -m unittest discover -s tests -v
 
 **Where:** The laptop or desktop in front of you
 
-Read passport_example.py and tests/test_passport_example.py. The function should calculate total requested memory. Before opening a model, explain why the one-CPU test passes and predict what changes with four CPUs at 3 GiB per CPU. If inputs and return values are new, read one function-and-return example at the optional link, then come back here; the rest of the Python course is not required.
+Read passport_example.py and tests/test_passport_example.py. Explain why the one-CPU test passes, then predict the result for four CPUs at 3 GiB per CPU before opening the example. If the syntax is unfamiliar, use Reading the function and test on this page; the optional link gives another function example. You do not need the rest of the Python course.
 
 - [Optional: function inputs and return values](https://www.w3schools.com/python/python_functions.asp)
 
@@ -133,7 +156,7 @@ Read passport_example.py and tests/test_passport_example.py. The function should
 
 **Where:** The laptop or desktop in front of you
 
-In tests/test_passport_example.py, add the model method inside TotalMemoryTests at the same indentation as test_one_cpu. This guided exercise requires this assertion. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.
+In tests/test_passport_example.py, add the required test inside TotalMemoryTests at the same indentation as test_one_cpu. Its name must start with test_ so Python finds it. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.
 
 <details>
 <summary>Show the required regression method</summary>
@@ -165,11 +188,11 @@ python -m unittest discover -s tests -v
 python -m unittest discover -s tests -v
 ```
 
-**Expected:** The new test fails for the expected 3-versus-12 behavior.
+**Expected:** Two tests run: the one-CPU test passes and the new test fails comparing 3 with 12.
 
 **Continue when:** Make the smallest implementation fix.
 
-**If not:** If the test passes or fails for another reason, correct the test before editing the implementation.
+**If not:** If only one test runs, check the new name, indentation and saved file. If the new test passes or fails for another reason, correct the test before editing the implementation. Keep the independently calculated expected value; do not change it to match the bug.
 
 ### 5. Correct the implementation
 
@@ -177,11 +200,16 @@ python -m unittest discover -s tests -v
 
 In passport_example.py, change only the return calculation. Predict it first, then compare with the required model. Keep the validation for non-positive inputs: this guided exercise checks the shown form, rather than every possible correct implementation.
 
+<details>
+<summary>Show the required correction</summary>
+
 **Put this in the named Python file:**
 
 ```python
 return cpus * memory_per_cpu_gib
 ```
+
+</details>
 
 **Expected:** The function returns the total while invalid non-positive inputs still raise ValueError.
 
@@ -213,7 +241,7 @@ python -m unittest discover -s tests -v
 python -m unittest discover -s tests -v
 ```
 
-**Expected:** All visible tests pass.
+**Expected:** Both tests run and pass. The non-positive input validation remains in the source.
 
 **Continue when:** Review repository state and diff.
 
@@ -264,6 +292,56 @@ Use **Check my work** before submitting. This check runs on your computer and
 checks only the practical work in this lesson. A score of 80% is required, and every
 safety-critical question must be correct. Failed attempts provide targeted
 feedback and can be retried without penalty.
+
+## Reflection
+
+<details id="python-extra-practice">
+<summary>Try a different bug (optional)</summary>
+
+Read this example without changing your practice files. It does not affect
+completion. You can write your prediction and test on paper; no extra folder,
+installation or submission is needed.
+
+A box contains several identical items. The box is weighed once, but this
+fictional function has a bug:
+
+```python
+def packed_weight_g(item_count, item_weight_g, box_weight_g):
+    return item_count * (item_weight_g + box_weight_g)
+```
+
+A one-item test passes. For four items of 50 g in a 30 g box, what weight should
+a new test expect, and what will this function return? Write the assertion you
+would add before opening the explanation.
+
+<details>
+<summary>Hint</summary>
+
+Which weight belongs to each item, and which belongs to the whole box?
+
+</details>
+
+<details>
+<summary>Compare your test and correction</summary>
+
+```python
+self.assertEqual(packed_weight_g(4, 50, 30), 230)
+```
+
+The buggy function returns 320: it counts the box weight four times.
+The expected 230 is four item weights plus one box weight. Keep that expected
+value even when the test fails. The correction is:
+
+```python
+return item_count * item_weight_g + box_weight_g
+```
+
+Now consider zero items in a 20 g box. Choose any non-negative item weight.
+What should a test expect? This new case also exposes the original bug.
+
+</details>
+
+</details>
 
 ## Learning Check
 
