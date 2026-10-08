@@ -1,5 +1,5 @@
 {
-  "curriculum_version": "3.0.0",
+  "curriculum_version": "2.1.2",
   "missions": {
     "ai-agent-baseline": {
       "activity": {
@@ -6653,7 +6653,7 @@
     "python-reproducible-change": {
       "activity": {
         "action": "Reproduce a Python bug, add a regression test, make the smallest fix, and rerun the tests in the project Conda environment.",
-        "expected_result": "Your original and multi-CPU tests pass locally. The Passport checks the calculation, input guards and discovered tests. No environment or cache belongs in the change.",
+        "expected_result": "Visible tests pass locally and the declared source/test correction passes the bounded checks. No environment or cache belongs in the change.",
         "kind": "repository_task",
         "learning_checks": [
           {
@@ -6843,6 +6843,13 @@
             {
               "commands": [
                 {
+                  "command": "def test_multiple_cpus(self) -> None:\n    self.assertEqual(total_memory_gib(4, 3), 12)",
+                  "disclosure": "Show the required regression method",
+                  "mode": "edit",
+                  "platform": "all",
+                  "shell": "python"
+                },
+                {
                   "command": "python -m unittest discover -s tests -v",
                   "platform": "windows",
                   "shell": "powershell"
@@ -6858,9 +6865,9 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "At least two tests run. The original test passes; your multi-CPU test fails because the old function returns memory per CPU, not the total.",
+              "expected": "Two tests run: the one-CPU test passes and the new test fails comparing 3 with 12.",
               "id": "red-test",
-              "instruction": "Keep test_one_cpu. Add another method inside TotalMemoryTests, at the same indentation. Choose more than one CPU and positive memory per CPU, using small integers up to 1,000; calculate the expected total yourself. Name the method test_ followed by a description. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.",
+              "instruction": "In tests/test_passport_example.py, add the required test inside TotalMemoryTests at the same indentation as test_one_cpu. Its name must start with test_ so Python finds it. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.",
               "links": [],
               "machine": "local",
               "on_failure": "If only one test runs, check the new name, indentation and saved file. If the new test passes or fails for another reason, correct the test before editing the implementation. Keep the independently calculated expected value; do not change it to match the bug.",
@@ -6871,10 +6878,18 @@
               "title": "Add and run the regression test"
             },
             {
-              "commands": [],
+              "commands": [
+                {
+                  "command": "return cpus * memory_per_cpu_gib",
+                  "disclosure": "Show the required correction",
+                  "mode": "edit",
+                  "platform": "all",
+                  "shell": "python"
+                }
+              ],
               "expected": "The function returns the total while invalid non-positive inputs still raise ValueError.",
               "id": "fix",
-              "instruction": "Change the return calculation to produce the total for every positive integer pair. Keep ValueError for either non-positive input. Ordinary multiplication, a temporary variable or equivalent integer arithmetic with +, - and * are accepted. Keep this small exercise free of extra imports, loops or helper calls. Optional tests using with self.assertRaises(ValueError) are accepted.",
+              "instruction": "In passport_example.py, change only the return calculation. Predict it first, then compare with the required model. Keep the validation for non-positive inputs: this guided exercise checks the shown form, rather than every possible correct implementation.",
               "links": [],
               "machine": "local",
               "on_failure": "Revert only the mistaken edit in your editor and return to the failing test.",
@@ -6902,7 +6917,7 @@
                   "shell": "bash"
                 }
               ],
-              "expected": "The original and your new test run and pass. Any invalid-input tests also pass. Keep the independently calculated expected result.",
+              "expected": "Both tests run and pass. The non-positive input validation remains in the source.",
               "id": "green-test",
               "instruction": "Run the same declared command in the same activated environment.",
               "links": [],
@@ -6970,13 +6985,16 @@
       "track": "python",
       "verification": {
         "critical_must_pass": true,
-        "local_verifier": "python_project_v2",
+        "local_verifier": "python_project",
         "pass_percent": 80,
         "receipt_checks": [
-          "semantic_model",
+          "visible_tests",
+          "regression_test",
+          "correct_behavior",
+          "input_validation",
           "bounded_diff"
         ],
-        "remote_assessor": "python_project_v2",
+        "remote_assessor": "python_project",
         "requires_live_confirmation": false
       }
     },

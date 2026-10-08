@@ -40,9 +40,9 @@ and indentation, and start the new test's name with `test_`.
 ## Learning Challenge
 
 Read the function before editing. Why can its one-CPU example pass while a
-four-CPU example fails? Make a prediction, then use the regression test to
-check it. This is a guided correction; the current verifier requires the
-provided assertion and return form.
+multi-CPU example fails? Choose a new input, calculate its expected total,
+then write a test before fixing the function. The check accepts equivalent
+integer arithmetic, rather than one supplied spelling.
 
 ## Worked Example
 
@@ -156,19 +156,7 @@ Read passport_example.py and tests/test_passport_example.py. Explain why the one
 
 **Where:** The laptop or desktop in front of you
 
-In tests/test_passport_example.py, add the required test inside TotalMemoryTests at the same indentation as test_one_cpu. Its name must start with test_ so Python finds it. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.
-
-<details>
-<summary>Show the required regression method</summary>
-
-**Put this in the named Python file:**
-
-```python
-def test_multiple_cpus(self) -> None:
-    self.assertEqual(total_memory_gib(4, 3), 12)
-```
-
-</details>
+Keep test_one_cpu. Add another method inside TotalMemoryTests, at the same indentation. Choose more than one CPU and positive memory per CPU, using small integers up to 1,000; calculate the expected total yourself. Name the method test_ followed by a description. Save and run the suite before changing the function. An AssertionError comparing values is the intended failure; an import or indentation error is a different problem.
 
 **Open PowerShell on your Windows computer, then run:**
 
@@ -188,7 +176,7 @@ python -m unittest discover -s tests -v
 python -m unittest discover -s tests -v
 ```
 
-**Expected:** Two tests run: the one-CPU test passes and the new test fails comparing 3 with 12.
+**Expected:** At least two tests run. The original test passes; your multi-CPU test fails because the old function returns memory per CPU, not the total.
 
 **Continue when:** Make the smallest implementation fix.
 
@@ -198,18 +186,7 @@ python -m unittest discover -s tests -v
 
 **Where:** The laptop or desktop in front of you
 
-In passport_example.py, change only the return calculation. Predict it first, then compare with the required model. Keep the validation for non-positive inputs: this guided exercise checks the shown form, rather than every possible correct implementation.
-
-<details>
-<summary>Show the required correction</summary>
-
-**Put this in the named Python file:**
-
-```python
-return cpus * memory_per_cpu_gib
-```
-
-</details>
+Change the return calculation to produce the total for every positive integer pair. Keep ValueError for either non-positive input. Ordinary multiplication, a temporary variable or equivalent integer arithmetic with +, - and * are accepted. Keep this small exercise free of extra imports, loops or helper calls. Optional tests using with self.assertRaises(ValueError) are accepted.
 
 **Expected:** The function returns the total while invalid non-positive inputs still raise ValueError.
 
@@ -241,7 +218,7 @@ python -m unittest discover -s tests -v
 python -m unittest discover -s tests -v
 ```
 
-**Expected:** Both tests run and pass. The non-positive input validation remains in the source.
+**Expected:** The original and your new test run and pass. Any invalid-input tests also pass. Keep the independently calculated expected result.
 
 **Continue when:** Review repository state and diff.
 
