@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "curriculum_version": "2.1.2",
+  "github_user": "arodriguezv11",
+  "source_repository": "soheylm-passport-sandbox/passport-exercises",
+  "fork_repository": "arodriguezv11/passport-exercises",
+  "assessment_branch": "onboarding/arodriguezv11",
+  "platform": "macos",
+  "responsibilities": [
+    "ai_agents",
+    "data_steward",
+    "euler_cpu",
+    "euler_gpu",
+    "git",
+    "python"
+  ],
+  "missions": [
+    "core-orientation",
+    "core-accounts-secrets",
+    "core-systems-data",
+    "core-incidents-ai-responsibility",
+    "git-tools-auth",
+    "git-manual-pr",
+    "python-environment",
+    "python-reproducible-change",
+    "euler-access-ssh",
+    "euler-python-environment",
+    "euler-cpu-first-job",
+    "euler-cpu-accounting",
+    "euler-cpu-arrays",
+    "euler-storage-reproducibility",
+    "euler-gpu-review",
+    "data-placement",
+    "data-collaboration",
+    "data-handover",
+    "ai-tool-configuration",
+    "ai-agent-baseline"
+  ],
+  "setup_complete": true
+}
