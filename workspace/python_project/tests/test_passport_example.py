@@ -10,3 +10,6 @@ class TotalMemoryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_multiple_cpus(self) -> None:
+        self.assertEqual(total_memory_gib(4, 3), 12)
