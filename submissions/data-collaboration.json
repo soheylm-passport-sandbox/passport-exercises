@@ -1,0 +1,38 @@
+{
+  "answers": {
+    "conflict_recovery": [
+      "correct"
+    ],
+    "git_clones": [
+      "correct"
+    ],
+    "individual_access": [
+      "correct"
+    ],
+    "output_identity": [
+      "correct"
+    ],
+    "permission_fix": [
+      "correct"
+    ],
+    "source_boundary": [
+      "correct"
+    ]
+  },
+  "artifacts": [],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "2.1.2",
+  "mission": "data-collaboration",
+  "receipts": {
+    "checks": {
+      "structured_activity": true
+    },
+    "passed": true,
+    "verifier": "data_plan"
+  },
+  "schema_version": 2
+}

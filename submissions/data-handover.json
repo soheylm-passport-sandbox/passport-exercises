@@ -1,0 +1,35 @@
+{
+  "answers": {
+    "handover_goal": [
+      "correct"
+    ],
+    "secret_transfer": [
+      "correct"
+    ]
+  },
+  "artifacts": [
+    "workspace/handover/project-handover.md"
+  ],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "2.1.2",
+  "mission": "data-handover",
+  "receipts": {
+    "checks": {
+      "code_revision": true,
+      "data_locations": true,
+      "environment": true,
+      "known_limitations": true,
+      "no_placeholders": true,
+      "owners": true,
+      "reproduction": true,
+      "retention": true
+    },
+    "passed": true,
+    "verifier": "handover_document"
+  },
+  "schema_version": 2
+}
