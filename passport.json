@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "curriculum_version": "2.1.2",
+  "github_user": "ArtusGPT",
+  "source_repository": "soheylm-passport-sandbox/passport-exercises",
+  "fork_repository": "ArtusGPT/passport-exercises",
+  "assessment_branch": "onboarding/artusgpt",
+  "platform": "windows",
+  "responsibilities": [
+    "ai_agents",
+    "data_steward",
+    "python"
+  ],
+  "missions": [
+    "core-orientation",
+    "core-accounts-secrets",
+    "core-systems-data",
+    "core-incidents-ai-responsibility",
+    "git-tools-auth",
+    "git-manual-pr",
+    "python-environment",
+    "python-reproducible-change",
+    "data-placement",
+    "data-collaboration",
+    "data-handover",
+    "ai-tool-configuration",
+    "ai-agent-baseline"
+  ],
+  "setup_complete": true
+}
