@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "curriculum_version": "2.1.2",
+  "github_user": "matotrinkler",
+  "source_repository": "soheylm-passport-sandbox/passport-exercises",
+  "fork_repository": "matotrinkler/passport-exercises",
+  "assessment_branch": "onboarding/matotrinkler",
+  "platform": "macos",
+  "responsibilities": [
+    "ai_agents",
+    "python"
+  ],
+  "missions": [
+    "core-orientation",
+    "core-accounts-secrets",
+    "core-systems-data",
+    "core-incidents-ai-responsibility",
+    "git-tools-auth",
+    "git-manual-pr",
+    "python-environment",
+    "python-reproducible-change",
+    "ai-tool-configuration",
+    "ai-agent-baseline"
+  ],
+  "setup_complete": true
+}
