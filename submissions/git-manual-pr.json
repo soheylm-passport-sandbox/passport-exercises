@@ -1,0 +1,37 @@
+{
+  "answers": {
+    "pr_roles": [
+      "correct"
+    ],
+    "staged_diff": [
+      "correct"
+    ]
+  },
+  "artifacts": [
+    "workspace/manual_task/project-note.md"
+  ],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "2.1.2",
+  "mission": "git-manual-pr",
+  "receipts": {
+    "checks": {
+      "bounded_diff": true,
+      "conventional_commit": true,
+      "draft_pr": true,
+      "practice_branch": true
+    },
+    "passed": true,
+    "practice": {
+      "branch": "practice/alandvrs",
+      "head_sha": "300ed7f20bd98eba576b0d375db5ddf108ae8e6e",
+      "pull_request": 1,
+      "repository": "alandvrs/passport-exercises"
+    },
+    "verifier": "git_practice"
+  },
+  "schema_version": 2
+}
