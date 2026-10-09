@@ -1,0 +1,37 @@
+{
+  "answers": {
+    "pr_roles": [
+      "correct"
+    ],
+    "staged_diff": [
+      "correct"
+    ]
+  },
+  "artifacts": [
+    "workspace/manual_task/project-note.md"
+  ],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "2.1.2",
+  "mission": "git-manual-pr",
+  "receipts": {
+    "checks": {
+      "bounded_diff": true,
+      "conventional_commit": true,
+      "draft_pr": true,
+      "practice_branch": true
+    },
+    "passed": true,
+    "practice": {
+      "branch": "practice/lennartmuhlhauser",
+      "head_sha": "508c3c1cdbdc00801ec9e9f89262f4c6008ace6f",
+      "pull_request": 1,
+      "repository": "LennartMuhlhauser/passport-exercises"
+    },
+    "verifier": "git_practice"
+  },
+  "schema_version": 2
+}
