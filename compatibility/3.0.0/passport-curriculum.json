@@ -1,5 +1,5 @@
 {
-  "curriculum_version": "4.0.0",
+  "curriculum_version": "3.0.0",
   "missions": {
     "ai-agent-baseline": {
       "activity": {
@@ -4989,78 +4989,106 @@
         "action": "Make one small manual change, review both diffs, create a Conventional Commit, push it, and open a draft pull request.",
         "expected_result": "The personal practice PR contains only the intended file, a Conventional Commit, and an honest verification record.",
         "kind": "repository_task",
+        "learning_checks": [
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "Stage the note again to select the newer saved version, then review git diff --cached. Saving alone does not update the selection; pushing sends existing commits to GitHub.",
+            "hint": "Did saving the correction update the version you had already staged?",
+            "id": "saved_after_staging",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Commit now; saving includes the correction."
+              },
+              {
+                "id": "correct",
+                "label": "Stage the note again, then review the staged diff."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Push the branch to include the saved correction."
+              }
+            ],
+            "prompt": "You staged your note, then saved one more correction. You want that correction in the next commit. What should you do before committing?",
+            "type": "single"
+          },
+          {
+            "answer": [
+              "correct"
+            ],
+            "critical": false,
+            "feedback": "Committing records the change on your computer; pushing sends it to GitHub. A draft PR gives your colleague a review page for a pushed branch. Neither action merges it into main.",
+            "hint": "Where does a commit live before you share it with GitHub?",
+            "id": "local_commit_visibility",
+            "options": [
+              {
+                "id": "wrong_a",
+                "label": "Open a draft PR so GitHub uploads the local commit."
+              },
+              {
+                "id": "wrong_b",
+                "label": "Make another local commit to update the GitHub copy."
+              },
+              {
+                "id": "correct",
+                "label": "Push the practice branch so GitHub receives the commit."
+              }
+            ],
+            "prompt": "You commit a fix on your practice branch but have not pushed. Your colleague looks for that commit on GitHub. What must happen before they can see it there?",
+            "type": "single"
+          }
+        ],
         "machine": "local",
         "questions": [
           {
             "answer": [
-              "staged"
+              "correct"
             ],
             "critical": true,
-            "feedback": "A commit records the staged version. To include a later saved correction, stage the note again and inspect git diff --cached before committing.",
-            "id": "commit_snapshot",
+            "feedback": "Create your own draft practice PR in your exercise fork. Submit lesson handles a separate submission; this exercise does not change the shared handbook.",
+            "id": "pr_roles",
             "options": [
               {
-                "id": "saved",
-                "label": "The latest saved version, including the correction."
+                "id": "correct",
+                "label": "A draft PR from my practice branch to main in my own exercise fork."
               },
               {
-                "id": "staged",
-                "label": "The version you staged, without the later correction."
+                "id": "wrong_a",
+                "label": "The PR the Passport creates when I use Submit lesson."
               },
               {
-                "id": "remote",
-                "label": "The version currently on GitHub."
+                "id": "wrong_b",
+                "label": "A PR proposing changes to the shared onboarding handbook."
               }
             ],
-            "prompt": "You stage a note, then save another correction without staging again. You commit. Which version is recorded?",
+            "prompt": "Which PR do you create manually in this mission?",
             "type": "single"
           },
           {
             "answer": [
-              "published"
+              "correct"
             ],
             "critical": true,
-            "feedback": "An open PR compares the GitHub branch with main. Push the same practice branch to share your new commit, then inspect the updated PR diff. Neither committing nor pushing merges it.",
-            "id": "share_commit",
+            "feedback": "git diff --cached shows the selected lines compared with the last commit. git diff shows unstaged edits; git status lists file states rather than the complete change.",
+            "id": "staged_diff",
             "options": [
               {
-                "id": "latest",
-                "label": "The new local commit, because the PR is already open."
+                "id": "correct",
+                "label": "Inspect git diff --cached and confirm every staged change."
               },
               {
-                "id": "merged",
-                "label": "The new commit merged into main."
+                "id": "wrong_a",
+                "label": "Inspect git diff to see changes since the last staging."
               },
               {
-                "id": "published",
-                "label": "The previously pushed change; the new commit is still on your computer."
+                "id": "wrong_b",
+                "label": "Inspect git status to see which files are staged."
               }
             ],
-            "prompt": "Your draft PR is open. You make another commit on the same practice branch, but have not pushed. What does its Files changed page show?",
-            "type": "single"
-          },
-          {
-            "answer": [
-              "amend"
-            ],
-            "critical": true,
-            "feedback": "A PR follows its source branch. Review and commit the correction on the same practice branch, then push and inspect the updated diff. Keep this exercise PR open in draft; do not merge it.",
-            "id": "review_correction",
-            "options": [
-              {
-                "id": "amend",
-                "label": "Review and stage the correction, commit and push the same branch; inspect the updated draft PR."
-              },
-              {
-                "id": "new_pr",
-                "label": "Open another PR; the first one cannot receive later changes."
-              },
-              {
-                "id": "merge",
-                "label": "Merge the draft PR first, then correct main."
-              }
-            ],
-            "prompt": "Someone reviewing your draft PR spots an unclear sentence. You agree and save a correction in the same practice folder. How do you update that PR?",
+            "prompt": "You have saved and staged your note. Which check shows what the next commit will record?",
             "type": "single"
           }
         ],
@@ -5254,7 +5282,7 @@
               "links": [],
               "machine": "local",
               "on_failure": "If a PR already exists, inspect it with gh pr status. Do not create a second one or force-push.",
-              "on_success": "Pushing sends your commits to your GitHub branch. A PR compares that branch with main for review. Opening it does not change main. If you later correct the note, review, stage and commit the correction on this same branch, then push again. The existing PR updates; you do not need another PR.",
+              "on_success": "Pushing sends your commits to your GitHub branch. A PR compares that branch with main for review. Opening it does not change main.",
               "platforms": [
                 "all"
               ],

@@ -242,3 +242,10 @@ personal account and for every accepted command and diff.
 When **Check my work** passes, use **Submit lesson** once. The launcher
 publishes only this lesson's generated submission after private information is excluded. Continue when the
 progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.
+
+## For Your Lab Projects
+
+Finish the fictional practice first. Before using this tool on a lab project,
+[give your agent the lab context](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/ai/lab-context.md).
+The next lesson practises reviewing an agent's work; project context is a
+separate setup for your real work.

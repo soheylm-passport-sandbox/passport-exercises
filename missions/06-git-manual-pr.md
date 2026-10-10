@@ -1,4 +1,4 @@
-# Mission: Complete A Manual Pull Request Loop
+# Complete A Manual Pull Request Loop
 
 ## Outcome
 
@@ -269,7 +269,7 @@ Which command shares your commit, and which asks for review? Run the prepared gi
 
 **Expected:** One open draft PR proposes your practice branch to main. Opening it has not merged your change into main.
 
-**Continue when:** Pushing sends your commits to your GitHub branch. A PR compares that branch with main for review. Opening it does not change main.
+**Continue when:** Pushing sends your commits to your GitHub branch. A PR compares that branch with main for review. Opening it does not change main. If you later correct the note, review, stage and commit the correction on this same branch, then push again. The existing PR updates; you do not need another PR.
 
 **If not:** If a PR already exists, inspect it with gh pr status. Do not create a second one or force-push.
 
@@ -311,46 +311,13 @@ browser. Do not create or edit a submission JSON file by hand.
 
 ## Check Your Work
 
-Try the two practice situations, then answer the two lesson questions.
+Answer the three short lesson questions.
 Review the fictional file you will submit,
 and confirm the results you personally observed. **Check my work** verifies
 the practice branch, the bounded change, the commit and the draft PR. Passing
 this check enables **Submit lesson**. Completion is recorded only when the
-automatic GitHub check passes. Both lesson answers and every required check
+automatic GitHub check passes. All three lesson answers and every required check
 must pass; you can retry with feedback.
-
-## Learning Check
-
-### Practise
-
-Try an answer before opening the explanation. These questions are for
-practice; they do not affect your progress.
-
-1. You staged your note, then saved one more correction. You want that correction in the next commit. What should you do before committing?
-
-   - Commit now; saving includes the correction.
-   - Stage the note again, then review the staged diff.
-   - Push the branch to include the saved correction.
-
-<details class="learning-explanation">
-<summary>See an explanation</summary>
-
-Stage the note again to select the newer saved version, then review git diff --cached. Saving alone does not update the selection; pushing sends existing commits to GitHub.
-
-</details>
-
-2. You commit a fix on your practice branch but have not pushed. Your colleague looks for that commit on GitHub. What must happen before they can see it there?
-
-   - Open a draft PR so GitHub uploads the local commit.
-   - Make another local commit to update the GitHub copy.
-   - Push the practice branch so GitHub receives the commit.
-
-<details class="learning-explanation">
-<summary>See an explanation</summary>
-
-Committing records the change on your computer; pushing sends it to GitHub. A draft PR gives your colleague a review page for a pushed branch. Neither action merges it into main.
-
-</details>
 
 ## If Blocked
 
