@@ -449,3 +449,10 @@ identity, remote, and branch yourself before accepting its claim of success.
 When **Check my work** passes, use **Submit lesson** once. The launcher
 publishes only this lesson's generated submission after private information is excluded. Continue when the
 progress page shows the automatic GitHub result as passed; a check on your computer alone is not a pass.
+
+## For Your Lab Projects
+
+Use a [GitHub SSH key](https://github.com/IDEALLab/onboarding-IT/blob/main/docs/reference/git/github-ssh.md) for Git in
+your lab project clones. An SSH agent can remember your key's passphrase for
+the session. Keep the Passport's prepared folders and existing remotes as they
+are; GitHub CLI authentication is still needed for PRs and checks.
