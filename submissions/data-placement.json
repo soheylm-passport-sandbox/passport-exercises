@@ -1,0 +1,38 @@
+{
+  "answers": {
+    "authoritative_copy": [
+      "correct"
+    ],
+    "cloud_upload": [
+      "correct"
+    ],
+    "dataset_git": [
+      "correct"
+    ],
+    "euler_io": [
+      "correct"
+    ],
+    "owner_first": [
+      "correct"
+    ],
+    "temporary_copy": [
+      "correct"
+    ]
+  },
+  "artifacts": [],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "2.1.2",
+  "mission": "data-placement",
+  "receipts": {
+    "checks": {
+      "structured_activity": true
+    },
+    "passed": true,
+    "verifier": "data_plan"
+  },
+  "schema_version": 2
+}
