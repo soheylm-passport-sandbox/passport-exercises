@@ -1,0 +1,29 @@
+{
+  "answers": {
+    "blade_compute": [
+      "correct"
+    ],
+    "blade_durable": [
+      "correct"
+    ]
+  },
+  "artifacts": [],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "2.1.2",
+  "mission": "blade-access-storage",
+  "receipts": {
+    "checks": {
+      "avoided_c_drive": true,
+      "correct_host": true,
+      "durable_copy": true,
+      "temporary_removed": true
+    },
+    "passed": true,
+    "verifier": "blade_receipt"
+  },
+  "schema_version": 2
+}
