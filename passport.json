@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "curriculum_version": "2.1.2",
+  "github_user": "shermanK2",
+  "source_repository": "soheylm-passport-sandbox/passport-exercises",
+  "fork_repository": "shermanK2/passport-exercises",
+  "assessment_branch": "onboarding/shermank2",
+  "platform": "macos",
+  "responsibilities": [
+    "ai_agents",
+    "euler_cpu",
+    "euler_gpu",
+    "git",
+    "python"
+  ],
+  "missions": [
+    "core-orientation",
+    "core-accounts-secrets",
+    "core-systems-data",
+    "core-incidents-ai-responsibility",
+    "git-tools-auth",
+    "git-manual-pr",
+    "python-environment",
+    "python-reproducible-change",
+    "euler-access-ssh",
+    "euler-python-environment",
+    "euler-cpu-first-job",
+    "euler-cpu-accounting",
+    "euler-cpu-arrays",
+    "euler-storage-reproducibility",
+    "euler-gpu-review",
+    "ai-tool-configuration",
+    "ai-agent-baseline"
+  ],
+  "setup_complete": true
+}
