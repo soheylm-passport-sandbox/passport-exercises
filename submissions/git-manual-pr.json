@@ -1,0 +1,40 @@
+{
+  "answers": {
+    "commit_snapshot": [
+      "staged"
+    ],
+    "review_correction": [
+      "amend"
+    ],
+    "share_commit": [
+      "published"
+    ]
+  },
+  "artifacts": [
+    "workspace/manual_task/project-note.md"
+  ],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "9.0.0",
+  "mission": "git-manual-pr",
+  "receipts": {
+    "checks": {
+      "bounded_diff": true,
+      "conventional_commit": true,
+      "draft_pr": true,
+      "practice_branch": true
+    },
+    "passed": true,
+    "practice": {
+      "branch": "practice/jingzhousun",
+      "head_sha": "c8ba85f76008119f2ac62d7629ff6ca117b2d2af",
+      "pull_request": 1,
+      "repository": "jingzhousun/passport-exercises"
+    },
+    "verifier": "git_practice"
+  },
+  "schema_version": 2
+}

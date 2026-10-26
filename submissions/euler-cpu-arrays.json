@@ -1,0 +1,40 @@
+{
+  "answers": {
+    "budget_cap": [
+      "cap_two"
+    ],
+    "combined_peak": [
+      "combined"
+    ],
+    "node_memory": [
+      "node_total"
+    ]
+  },
+  "artifacts": [
+    "workspace/slurm/array_job.slurm.txt"
+  ],
+  "attestation": {
+    "reviewed": true,
+    "no_secrets": true,
+    "observed_result": true
+  },
+  "curriculum_version": "9.0.0",
+  "mission": "euler-cpu-arrays",
+  "receipts": {
+    "checks": {
+      "account": true,
+      "array_exact": true,
+      "bounded_file": true,
+      "error_unique": true,
+      "header_layout": true,
+      "output_unique": true,
+      "safe_resources": true,
+      "single_allocation": true,
+      "supported_options": true,
+      "unique_directives": true
+    },
+    "passed": true,
+    "verifier": "slurm_array_v3"
+  },
+  "schema_version": 2
+}
